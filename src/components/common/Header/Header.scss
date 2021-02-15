@@ -1,0 +1,208 @@
+@import "styles/base.scss";
+
+//pc, 기본
+.header {
+    &-main {
+        @include flex(row, center, center);
+        width: 100%;
+        background: rgb(45, 45, 45);
+        height: 80px;
+        color: rgb(137, 137, 137);
+        &__logo {
+            @include flex(row, space-between, center);
+            width: 10%;
+            font-size: 30px;
+            padding-left: 20px;
+            padding-right: 120px;
+            color: rgb(255, 210, 120);
+        }
+        &__login {
+            @include flex(row, center, center);
+            width: 15%;
+            height: 25px;
+            padding-right: 60px;
+            border-right: 1px solid white;
+            line-height: 80px;
+            &-login {
+                padding-right: 20px;
+            }
+            &-signup {
+                color: white;
+            }
+        }
+        &__menu {
+            @include flex(row, space-between, center);
+            line-height: 80px;
+            width: 40%;
+            padding-left: 60px;
+            &-content {
+                height: 70px;
+                &:hover {
+                    color: #fff;
+                    border-bottom: 2px solid rgb(255, 210, 120);
+                }
+                &.click {
+                    color: #fff;
+                    border-bottom: 2px solid rgb(255, 210, 120);
+                }
+            }
+            input {
+                border-radius: 20px;
+                height: 20px;
+            }
+        }
+        img {
+            display: none;
+        }
+    }
+    &-hover {
+        @include flex(row, center, center);
+        width: 100%;
+        height: 250px;
+        background: rgb(242, 242, 242);
+        &__border {
+            width: 50%;
+            height: 220px;
+            margin-top: 15px;
+            border-right: 1px solid rgb(45, 45, 45);
+        }
+        &__menu {
+            @include flex(row, flex-start, center);
+            width: 54%;
+            margin-top: 15px;
+            color: rgb(242, 242, 242);
+            &-main {
+                @include flex(column, flex-start, flex-end);
+                width: 23%;
+                height: 220px;
+                border-right: 1px solid rgb(45, 45, 45);
+                span {
+                    margin-right: 24px;
+                }
+            }
+            &-luna {
+                @include flex(column, flex-start, center);
+                width: 11%;
+                height: 220px;
+                border-right: 1px solid rgb(45, 45, 45);
+            }
+            &-free {
+                @include flex(column, flex-start, center);
+                width: 11%;
+                height: 220px;
+                border-right: 1px solid rgb(45, 45, 45);
+            }
+            &-dalgona {
+                @include flex(column, flex-start, center);
+                width: 11%;
+                height: 220px;
+            }
+        }
+    }
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .header {
+        &-main {
+            @include flex(column, space-between, space-between);
+            width: 100%;
+            height: 100px;
+            padding-bottom: 40px;
+            &__logo {
+                @include flex(row, space-around, space-between);
+                width: 100%;
+                padding: 20px 10px 10px 10px;
+            }
+            &__login {
+                display: none;
+            }
+            &__menu {
+                @include flex(row, space-around, center);
+                width: 100%;
+                padding-left: 0px;
+                input {
+                    display: none;
+                }
+            }
+            img {
+                display: inline;
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &-hover {
+            width: 100%;
+            height: 50px;
+            background: rgb(53, 53, 53);
+            @include flex(row, center, center);
+            &__border {
+                display: none;
+            }
+            &__menu {
+                @include flex(row, space-around, center);
+                margin-top: 0px;
+                &-content {
+                    @include flex(row, space-around, center);
+                    width: 100%;
+                    color: white;
+                    border: none;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .header {
+        &-main {
+            @include flex(column, space-between, space-between);
+            width: 100%;
+            height: 100px;
+            padding-bottom: 40px;
+            &__logo {
+                @include flex(row, space-around, space-between);
+                width: 100%;
+                padding: 20px 10px 10px 10px;
+            }
+            &__login {
+                display: none;
+            }
+            &__menu {
+                @include flex(row, space-around, center);
+                width: 100%;
+                padding-left: 0px;
+                input {
+                    display: none;
+                }
+            }
+            img {
+                display: inline;
+                width: 30px;
+                height: 30px;
+            }
+        }
+        &-hover {
+            width: 100%;
+            height: 50px;
+            background: rgb(53, 53, 53);
+            @include flex(row, center, center);
+            &__border {
+                display: none;
+            }
+            &__menu {
+                @include flex(row, space-around, center);
+                margin-top: 0px;
+                &-content {
+                    @include flex(row, space-around, center);
+                    width: 100%;
+                    color: white;
+                    border: none;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+}

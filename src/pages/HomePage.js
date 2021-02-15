@@ -5,7 +5,7 @@ import HomeContainer from 'containers/HomeContainer';
 const HomePage = ({ history, location }) => {
     return (
         <div>
-            <PageTemplate>
+            <PageTemplate history={history} location={location}>
                 <HomeContainer />
             </PageTemplate>
         </div>
