@@ -1,0 +1,157 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.post-list{
+    width:1436px;
+    .post-list__item{
+        padding-left:135px;
+        height:71px;
+        @include flex(row,space-between,center);
+        border-bottom: 1px solid rgba(226, 226, 226, 0.5);
+        &:first-child{
+            border-top: 1px solid rgba(226, 226, 226, 0.5);
+        }
+        .post-list__img{
+            display:none;
+        }
+        .post-list__item--main{ 
+            @include flex(row, space-between, center);
+            .post-list__item--title{ 
+                @include flex(row, flex-start, center);
+                width:800px;
+                font-family: Noto Sans KR; 
+                font-weight: bold;
+                font-size: 14px;
+                .post-list__img--pc{
+                    display:block;
+                    img{ 
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+            }
+            .post-list__item--detail{
+                @include flex(row, center, center);
+                color:#4f4f4f;
+                font-family: Noto Sans KR; 
+                font-size: 11px;
+                div{
+                    margin-right:35px;
+                    &:last-child{
+                        margin-right:0;
+                    }
+                }
+                .post-list__item--comment--pc{
+                    display:block;
+                }
+            }
+        }
+        .post-list__item--comment{
+            display:none;
+        }
+    }
+}
+
+
+//태블릿
+@media screen and (max-width: $tablet-max) { 
+    .post-list{   
+        width:728px;
+        .post-list__item{
+            padding-left:0;  
+            height:101px; 
+            justify-content:space-between;
+            .post-list__item--left{
+                @include flex(row, flex-start, center);
+            }
+            .post-list__img{
+                display:block;
+                margin-right:16px;
+                img{
+                    width:77px;
+                    height:77px;
+                }
+            }
+            .post-list__item--main{  
+                height: 101px; 
+                @include flex(column, space-around, flex-start);
+                .post-list__item--title{
+                    width: auto;
+                    font-family: Roboto; 
+                    font-weight: normal;
+                    font-size: 17px;
+                    .post-list__img--pc{
+                        display:none;
+                    }
+                }
+                .post-list__item--detail{ 
+                    color: #A8A8A8;
+                    font-family: Roboto; 
+                    font-size: 14px;
+                    div{
+                        margin-right:5px;
+                        padding-right:5px;
+                        border-right: 1px solid #A8A8A8;
+                        &:last-child{
+                            border-right:none;
+                        }
+                    }  
+                    .post-list__item--comment--pc{
+                        display:none;
+                    }
+                } 
+            }
+            .post-list__item--comment{ 
+                padding:none; 
+                display:block;
+                width:42px;
+                height:42px;
+                border: 1px solid #e2e2e2;
+                border-radius: 50%;
+                line-height:42px;
+                text-align: center;
+                color: #838383;
+                font-family: Roboto;
+                font-size:16px;
+            }
+        }
+    }
+}
+
+
+
+//모바일
+@media screen and (max-width:$mobile-max){
+    .post-list{ 
+        width:320px;
+        .post-list__item{
+            height:80px;
+            .post-list__img{  
+                img{ 
+                    width:40px;
+                    height:40px;
+                }
+            }
+            .post-list__item--main{  
+                height:80px; 
+                .post-list__item--title{ 
+                    font-family: Noto Sans KR;  
+                }
+                .post-list__item--detail{  
+                    font-family: Noto Sans KR;
+                    font-size: 12px;
+                    div{
+                        margin-right:4px;
+                        padding-right:4px; 
+                    } 
+                } 
+            }
+            .post-list__item--comment{   
+                width:33.45px;
+                height:33.45px; 
+                line-height:33.45px;  
+                font-family: Noto Sans KR; 
+            }
+        }
+    }
+}
