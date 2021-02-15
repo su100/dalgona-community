@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import searchIcon from 'images/search.png';
 import menuIcon from 'images/menu.png';
+import logo from 'images/logo.png';
 import './Header.scss';
 
 class Header extends Component {
@@ -37,9 +38,9 @@ class Header extends Component {
             <div className="header">
                 <div className="header-main">
                     <div className="header-main__logo">
-                        <img src={menuIcon}></img>
-                        <div>dalgona</div>
-                        <img src={searchIcon}></img>
+                        <img className="header-main__logo-menu" src={menuIcon}></img>
+                        <img className="header-main__logo-logoimg" src={logo}></img>
+                        <img className="header-main__logo-search" src={searchIcon}></img>
                     </div>
                     <div className="header-main__login">
                         <Link>
