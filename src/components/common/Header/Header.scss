@@ -43,12 +43,15 @@
             width: 40%;
             padding-left: 60px;
             &-content {
-                height: 70px;
                 &:hover {
-                    color: rgb(255, 210, 120);
+                    height: 28px;
+                    color: white;
+                    border-bottom: 2px solid #ffd278;
                 }
                 &.click {
-                    color: rgb(255, 210, 120);
+                    height: 28px;
+                    color: white;
+                    border-bottom: 2px solid #ffd278;
                 }
             }
             input {
@@ -63,7 +66,7 @@
     &-hover {
         @include flex(row, center, center);
         width: 100%;
-        height: 250px;
+        height: 253px;
         background: rgb(242, 242, 242);
         &__border {
             width: 50%;
@@ -113,14 +116,26 @@
             @include flex(column, space-between, space-between);
             width: 100%;
             height: 119.79px;
-            padding-bottom: 40px;
             &__logo {
-                @include flex(row, space-around, space-between);
+                @include flex(row, space-between, space-between);
                 width: 100%;
-                padding: 20px 10px 10px 10px;
-                &-img {
-                    height: 31.91900062561035px;
-                    width: 110.06999206542969px;
+                padding: 15.97px 0px 20px 0px;
+                img {
+                    display: inline;
+                    margin: 0 20px;
+                    &-menu {
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &-logoimg {
+                        margin-right: 10px;
+                        width: 111.80583953857422px;
+                        height: 21.8803653717041px;
+                    }
+                    &-search {
+                        width: 16px;
+                        height: 16px;
+                    }
                 }
             }
             &__login {
@@ -129,20 +144,25 @@
             &__menu {
                 @include flex(row, space-around, center);
                 width: 100%;
+                height: 35px;
                 padding-left: 0px;
+                &-content {
+                    height: 30px;
+                    font-family: Noto Sans KR;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0em;
+                }
                 input {
                     display: none;
                 }
             }
-            img {
-                display: inline;
-                width: 30px;
-                height: 30px;
-            }
         }
         &-hover {
             width: 100%;
-            height: 50px;
+            height: 42.150001525878906px;
             background: rgb(53, 53, 53);
             @include flex(row, center, center);
             &__border {
@@ -155,8 +175,14 @@
                     @include flex(row, space-around, center);
                     width: 100%;
                     color: white;
+                    font-family: Noto Sans KR;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 17px;
+                    letter-spacing: 0em;
+                    text-align: center;
                     border: none;
-                    line-height: 50px;
                 }
             }
         }
@@ -184,6 +210,7 @@
                     &-logoimg {
                         width: 86.82999420166016px;
                         height: 25.177528381347656px;
+                        padding-right: 10px;
                     }
                     &-search {
                         width: 16px;
