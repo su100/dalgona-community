@@ -2,13 +2,13 @@
 
 
 //pc, 기본
-.home{
+.comment-input{
 }
 
 
 //태블릿
 @media screen and (max-width: $tablet-max) { 
-    .home{ 
+    .comment-input{ 
     }
 }
 
@@ -16,6 +16,6 @@
 
 //모바일
 @media screen and (max-width:$mobile-max){
-    .home{ 
+    .comment-input{ 
     }
 }
