@@ -28,7 +28,6 @@ class Header extends Component {
 
     handleOnClick = (e) => {
         const { openMenu, isOpen } = this.state;
-        this.slideWidth;
         if (e.target.id === openMenu) {
             this.setState({ isOpen: !isOpen, openMenu: e.target.id });
         } else if (e.target.id === 'home') {
@@ -45,9 +44,7 @@ class Header extends Component {
     };
 
     checkIsPc = () => {
-        const { width } = this.state;
-        console.log(this.state.isPC);
-        if (width > 1024) {
+        if (window.innerWidth > 1024) {
             this.setState({ isPC: true });
         } else {
             this.setState({ isPC: false });
@@ -112,20 +109,28 @@ class Header extends Component {
                         <div className="header-hover__menu">
                             {(isPC || openMenu === 'main') && (
                                 <div className="header-hover__menu-main">
-                                    <span> 기사</span>
-                                    <span>투표</span>
+                                    <Link to="/article">
+                                        <span> 기사</span>
+                                    </Link>
+                                    <Link to="/vote">
+                                        <span>투표</span>
+                                    </Link>
                                 </div>
                             )}
                             {(isPC || openMenu === 'luna') && (
                                 <div className="header-hover__menu-luna">
-                                    <span> 비투비</span>
+                                    <Link to="/luna/1">
+                                        <span> 비투비</span>
+                                    </Link>
                                     <span>스키니브라운</span>
                                     <span>아이유</span>
                                 </div>
                             )}
                             {(isPC || openMenu === 'free') && (
                                 <div className="header-hover__menu-free">
-                                    <span> 일상 / 잡담</span>
+                                    <Link to="/free/1">
+                                        <span> 일상 / 잡담</span>
+                                    </Link>
                                     <span>취미</span>
                                     <span>생활정보</span>
                                     <span>고민</span>
@@ -133,8 +138,12 @@ class Header extends Component {
                             )}
                             {(isPC || openMenu === 'dalgona') && (
                                 <div className="header-hover__menu-dalgona">
-                                    <span> 공지사항</span>
-                                    <span>이벤트</span>
+                                    <Link to="notice">
+                                        <span> 공지사항</span>
+                                    </Link>
+                                    <Link to="event">
+                                        <span>이벤트</span>
+                                    </Link>
                                 </div>
                             )}
                         </div>
