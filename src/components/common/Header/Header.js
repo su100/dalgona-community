@@ -23,12 +23,15 @@ class Header extends Component {
         } else {
             this.setState({ isOpen: true, openMenu: e.target.id });
         }
+        console.log(e.target.id);
     };
 
     handleOnClick = (e) => {
-        const { openMenu } = this.state;
+        const { openMenu, isOpen } = this.state;
         this.slideWidth;
-        if (e.target.id === openMenu || e.target.id === 'home') {
+        if (e.target.id === openMenu) {
+            this.setState({ isOpen: !isOpen, openMenu: e.target.id });
+        } else if (e.target.id === 'home') {
             this.setState({ isOpen: false, openMenu: e.target.id });
         } else {
             this.setState({ isOpen: true, openMenu: e.target.id });
@@ -43,54 +46,65 @@ class Header extends Component {
 
     checkIsPc = () => {
         const { width } = this.state;
-        if (width > 1023) {
+        console.log(this.state.isPC);
+        if (width > 1024) {
             this.setState({ isPC: true });
         } else {
             this.setState({ isPC: false });
         }
     };
 
+    goHome = (e) => {
+        this.props.history.push('/');
+    };
+
     componentDidMount() {
-        this.checkIsPc();
+        this.setSize();
         window.addEventListener('resize', this.setSize);
     }
 
     render() {
         const { isOpen, openMenu, isPC } = this.state;
+        const { isHome } = this.props;
         const Menu = { home: '홈', main: '메인', luna: '루나', free: '자유', dalgona: '달고나' };
+
         return (
             <div className="header">
-                <div className="header-main">
+                <div className={isHome ? 'header-main' : 'header-main no'}>
                     <div className="header-main__logo">
                         <img className="header-main__logo-menu" src={menuIcon}></img>
                         <span>dalgona</span>
-                        <img className="header-main__logo-logoimg" src={logo}></img>
+                        <img className="header-main__logo-logoimg" src={logo} onClick={this.goHome}></img>
                         <img className="header-main__logo-search" src={searchIcon}></img>
                     </div>
                     <div className="header-main__login">
-                        <Link>
+                        <Link to="/login">
                             <span className="header-main__login-login">로그인</span>
                         </Link>
-                        <Link>
+                        <Link to="/signup">
                             <span className="header-main__login-signup">회원가입</span>
                         </Link>
                     </div>
-                    <div className="header-main__menu">
-                        {Object.keys(Menu).map((value, index) => (
-                            <div
-                                className={
-                                    openMenu === value ? 'header-main__menu-content click' : 'header-main__menu-content'
-                                }
-                                id={value}
-                                key={index}
-                                onMouseOver={this.handleOver}
-                                onClick={this.handleOnClick}
-                            >
-                                {Menu[value]}
-                            </div>
-                        ))}
-                        <input></input>
-                    </div>
+                    {(isHome || isPC) && (
+                        <div className="header-main__menu">
+                            {Object.keys(Menu).map((value, index) => (
+                                <div
+                                    className={
+                                        openMenu === value
+                                            ? 'header-main__menu-content click'
+                                            : 'header-main__menu-content'
+                                    }
+                                    id={value}
+                                    key={index}
+                                    onMouseOver={this.handleOver}
+                                    onClick={this.handleOnClick}
+                                >
+                                    {Menu[value]}
+                                </div>
+                            ))}
+                            <input></input>
+                        </div>
+                    )}
                 </div>
                 {isOpen && (
                     <div className="header-hover">
