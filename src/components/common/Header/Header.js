@@ -51,19 +51,25 @@ class Header extends Component {
         }
     };
 
-    goHome = (e) => {
+    goHome = () => {
         this.props.history.push('/');
+    };
+
+    setOpenMenu = () => {
+        let path = this.props.location.path;
+        this.setState({ openMenu: path });
     };
 
     componentDidMount() {
         this.setSize();
+        this.setOpenMenu();
         window.addEventListener('resize', this.setSize);
     }
 
     render() {
         const { isOpen, openMenu, isPC } = this.state;
         const { isHome } = this.props;
-        const Menu = { home: '홈', main: '메인', luna: '루나', free: '자유', dalgona: '달고나' };
+        const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
 
         return (
             <div className="header">
@@ -75,11 +81,25 @@ class Header extends Component {
                         <img className="header-main__logo-search" src={searchIcon}></img>
                     </div>
                     <div className="header-main__login">
-                        <Link to="/login">
-                            <span className="header-main__login-login">로그인</span>
+                        <Link to={{ pathname: '/login', path: 'login' }}>
+                            <span
+                                className={
+                                    openMenu === 'login' ? 'header-main__login-login click' : 'header-main__login-login'
+                                }
+                            >
+                                로그인
+                            </span>
                         </Link>
-                        <Link to="/signup">
-                            <span className="header-main__login-signup">회원가입</span>
+                        <Link to={{ pathname: '/signup', path: 'signup' }}>
+                            <span
+                                className={
+                                    openMenu === 'signup'
+                                        ? 'header-main__login-signup click'
+                                        : 'header-main__login-signup'
+                                }
+                            >
+                                회원가입
+                            </span>
                         </Link>
                     </div>
                     {(isHome || isPC) && (
@@ -109,17 +129,17 @@ class Header extends Component {
                         <div className="header-hover__menu">
                             {(isPC || openMenu === 'main') && (
                                 <div className="header-hover__menu-main">
-                                    <Link to="/article">
+                                    <Link to={{ pathname: '/article', path: 'main' }}>
                                         <span> 기사</span>
                                     </Link>
-                                    <Link to="/vote">
+                                    <Link to={{ pathname: '/vote', path: 'main' }}>
                                         <span>투표</span>
                                     </Link>
                                 </div>
                             )}
-                            {(isPC || openMenu === 'luna') && (
+                            {(isPC || openMenu === 'Luna') && (
                                 <div className="header-hover__menu-luna">
-                                    <Link to="/luna/1">
+                                    <Link to={{ pathname: '/luna/1', path: 'Luna' }}>
                                         <span> 비투비</span>
                                     </Link>
                                     <span>스키니브라운</span>
@@ -128,7 +148,7 @@ class Header extends Component {
                             )}
                             {(isPC || openMenu === 'free') && (
                                 <div className="header-hover__menu-free">
-                                    <Link to="/free/1">
+                                    <Link to={{ pathname: '/free/1', path: 'free' }}>
                                         <span> 일상 / 잡담</span>
                                     </Link>
                                     <span>취미</span>
@@ -138,10 +158,10 @@ class Header extends Component {
                             )}
                             {(isPC || openMenu === 'dalgona') && (
                                 <div className="header-hover__menu-dalgona">
-                                    <Link to="notice">
+                                    <Link to={{ pathname: '/notice', path: 'dalgona' }}>
                                         <span> 공지사항</span>
                                     </Link>
-                                    <Link to="event">
+                                    <Link to={{ pathname: '/event', path: 'dalgona' }}>
                                         <span>이벤트</span>
                                     </Link>
                                 </div>

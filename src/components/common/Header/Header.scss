@@ -45,9 +45,15 @@
             &-login {
                 color: #838383;
                 padding-right: 20px;
+                &.click {
+                    color: white;
+                }
             }
             &-signup {
                 color: #838383;
+                &.click {
+                    color: white;
+                }
             }
         }
         &__menu {
@@ -224,6 +230,11 @@
                     text-align: center;
                     border: none;
                     padding-left: 0px;
+                }
+                span {
+                    &:hover {
+                        color: white;
+                    }
                 }
             }
         }
