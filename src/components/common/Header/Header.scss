@@ -4,59 +4,73 @@
 .header {
     &-main {
         @include flex(row, center, center);
-        width: 100%;
+        width: 100vw;
+        height: 120px;
         background: rgb(45, 45, 45);
-        height: 80px;
         color: rgb(137, 137, 137);
         &__logo {
             @include flex(row, space-between, center);
-            width: 10%;
-            font-size: 30px;
-            padding-left: 20px;
-            padding-right: 120px;
-            color: rgb(255, 210, 120);
+            width: 26%;
+            height: 70px;
+            padding-left: 20%;
+            span {
+                color: #f7c95f;
+                font-size: 30px;
+            }
             img {
+                display: inline;
+                &-menu {
+                    display: none;
+                }
                 &-logoimg {
-                    height: 94.84829711914062px;
-                    width: 159px;
-                    border-radius: 0px;
+                    margin-right: 10px;
+                    width: 111.80583953857422px;
+                    height: 21.8803653717041px;
+                }
+                &-search {
+                    display: none;
                 }
             }
         }
         &__login {
             @include flex(row, center, center);
-            width: 15%;
+            width: 12%;
             height: 25px;
             padding-right: 60px;
-            border-right: 1px solid white;
+            border-right: 1px solid #838383;
             line-height: 80px;
+            a {
+                text-decoration: none;
+            }
             &-login {
+                color: #838383;
                 padding-right: 20px;
             }
             &-signup {
-                color: white;
+                color: #838383;
             }
         }
         &__menu {
             @include flex(row, space-between, center);
             line-height: 80px;
-            width: 40%;
-            padding-left: 60px;
+            width: 62%;
+            padding-left: 70px;
             &-content {
                 &:hover {
-                    height: 28px;
-                    color: white;
-                    border-bottom: 2px solid #ffd278;
+                    color: #ffd278;
                 }
                 &.click {
-                    height: 28px;
-                    color: white;
-                    border-bottom: 2px solid #ffd278;
+                    color: #ffd278;
                 }
             }
             input {
-                border-radius: 20px;
-                height: 20px;
+                background-position: 180px center;
+                background-repeat: no-repeat;
+                background-image: url("../../../images/search.png");
+                width: 207px;
+                height: 30px;
+                margin-right: 150px;
+                border-radius: 40px;
             }
         }
         img {
@@ -66,44 +80,57 @@
     &-hover {
         @include flex(row, center, center);
         width: 100%;
-        height: 253px;
-        background: rgb(242, 242, 242);
+        height: 302px;
+        background: #c2c2c2;
         &__border {
-            width: 50%;
-            height: 220px;
+            width: 48%;
+            height: 256px;
             margin-top: 15px;
-            border-right: 1px solid rgb(45, 45, 45);
+            border-right: 1px solid #838383;
         }
         &__menu {
             @include flex(row, flex-start, center);
-            width: 54%;
+            width: 27.5%;
+            height: 256px;
+            padding-right: 20%;
             margin-top: 15px;
-            color: rgb(242, 242, 242);
+            color: #838383;
             &-main {
-                @include flex(column, flex-start, flex-end);
-                width: 23%;
-                height: 220px;
-                border-right: 1px solid rgb(45, 45, 45);
+                @include flex(column, flex-start, center);
+                width: 175px;
+                height: 256px;
+                padding-left: 135px;
+                border-right: 1px solid #838383;
                 span {
-                    margin-right: 24px;
+                    padding: 9px 0;
                 }
             }
             &-luna {
                 @include flex(column, flex-start, center);
-                width: 11%;
-                height: 220px;
-                border-right: 1px solid rgb(45, 45, 45);
+                width: 185px;
+                height: 256px;
+                border-right: 1px solid #838383;
+                span {
+                    padding: 9px 0;
+                }
             }
             &-free {
                 @include flex(column, flex-start, center);
-                width: 11%;
-                height: 220px;
-                border-right: 1px solid rgb(45, 45, 45);
+                width: 185px;
+                height: 256px;
+                border-right: 1px solid #838383;
+                span {
+                    padding: 9px 0;
+                }
             }
             &-dalgona {
                 @include flex(column, flex-start, center);
-                width: 11%;
-                height: 220px;
+                width: 175px;
+                height: 256px;
+                border-right: 1px solid #838383;
+                span {
+                    padding: 9px 0;
+                }
             }
         }
     }
@@ -120,6 +147,9 @@
                 @include flex(row, space-between, space-between);
                 width: 100%;
                 padding: 15.97px 0px 20px 0px;
+                span {
+                    display: none;
+                }
                 img {
                     display: inline;
                     margin: 0 20px;
@@ -129,8 +159,8 @@
                     }
                     &-logoimg {
                         margin-right: 10px;
-                        width: 111.80583953857422px;
-                        height: 21.8803653717041px;
+                        width: 111px;
+                        height: 21px;
                     }
                     &-search {
                         width: 16px;
@@ -171,7 +201,11 @@
             &__menu {
                 @include flex(row, space-around, center);
                 margin-top: 0px;
-                &-content {
+                padding-right: 0px;
+                &-main,
+                &-luna,
+                &-free,
+                &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
                     color: white;
@@ -183,6 +217,7 @@
                     letter-spacing: 0em;
                     text-align: center;
                     border: none;
+                    padding-left: 0px;
                 }
             }
         }
@@ -200,6 +235,9 @@
                 @include flex(row, space-between, space-between);
                 width: 100%;
                 padding: 15.97px 0px 20px 0px;
+                span {
+                    display: none;
+                }
                 img {
                     display: inline;
                     margin: 0 20px;
@@ -251,7 +289,11 @@
             &__menu {
                 @include flex(row, space-around, center);
                 margin-top: 0px;
-                &-content {
+                padding-right: 0px;
+                &-main,
+                &-luna,
+                &-free,
+                &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
                     color: white;
@@ -263,6 +305,7 @@
                     letter-spacing: 0em;
                     text-align: center;
                     border: none;
+                    padding-left: 0px;
                 }
             }
         }

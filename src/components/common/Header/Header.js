@@ -11,6 +11,9 @@ class Header extends Component {
         this.state = {
             isOpen: false,
             openMenu: 'home',
+            width: '',
+            height: '',
+            isPC: true,
         };
     }
 
@@ -24,6 +27,7 @@ class Header extends Component {
 
     handleOnClick = (e) => {
         const { openMenu } = this.state;
+        this.slideWidth;
         if (e.target.id === openMenu || e.target.id === 'home') {
             this.setState({ isOpen: false, openMenu: e.target.id });
         } else {
@@ -31,14 +35,35 @@ class Header extends Component {
         }
     };
 
+    setSize = () => {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.checkIsPc();
+        console.log(window.innerWidth);
+    };
+
+    checkIsPc = () => {
+        const { width } = this.state;
+        if (width > 1023) {
+            this.setState({ isPC: true });
+        } else {
+            this.setState({ isPC: false });
+        }
+    };
+
+    componentDidMount() {
+        this.checkIsPc();
+        window.addEventListener('resize', this.setSize);
+    }
+
     render() {
-        const { isOpen, openMenu } = this.state;
+        const { isOpen, openMenu, isPC } = this.state;
         const Menu = { home: '홈', main: '메인', luna: '루나', free: '자유', dalgona: '달고나' };
         return (
             <div className="header">
                 <div className="header-main">
                     <div className="header-main__logo">
                         <img className="header-main__logo-menu" src={menuIcon}></img>
+                        <span>dalgona</span>
                         <img className="header-main__logo-logoimg" src={logo}></img>
                         <img className="header-main__logo-search" src={searchIcon}></img>
                     </div>
@@ -71,29 +96,29 @@ class Header extends Component {
                     <div className="header-hover">
                         <div className="header-hover__border"></div>
                         <div className="header-hover__menu">
-                            {openMenu === 'main' && (
-                                <div className="header-hover__menu-content">
+                            {(isPC || openMenu === 'main') && (
+                                <div className="header-hover__menu-main">
                                     <span> 기사</span>
                                     <span>투표</span>
                                 </div>
                             )}
-                            {openMenu === 'luna' && (
-                                <div className="header-hover__menu-content">
+                            {(isPC || openMenu === 'luna') && (
+                                <div className="header-hover__menu-luna">
                                     <span> 비투비</span>
                                     <span>스키니브라운</span>
                                     <span>아이유</span>
                                 </div>
                             )}
-                            {openMenu === 'free' && (
-                                <div className="header-hover__menu-content">
+                            {(isPC || openMenu === 'free') && (
+                                <div className="header-hover__menu-free">
                                     <span> 일상 / 잡담</span>
                                     <span>취미</span>
                                     <span>생활정보</span>
                                     <span>고민</span>
                                 </div>
                             )}
-                            {openMenu === 'dalgona' && (
-                                <div className="header-hover__menu-content">
+                            {(isPC || openMenu === 'dalgona') && (
+                                <div className="header-hover__menu-dalgona">
                                     <span> 공지사항</span>
                                     <span>이벤트</span>
                                 </div>
