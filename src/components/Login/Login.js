@@ -11,24 +11,44 @@ class Login extends Component {
             id: '',
             password: '',
             checked: false,
+            isPC: true,
         };
     }
     handleForm = (name) => (e) => {
         this.setState({ [name]: e.target.value });
         console.log(e.target.value);
     };
+
+    checkIsPc = () => {
+        if (window.innerWidth > 1024) {
+            this.setState({ isPC: true });
+        } else {
+            this.setState({ isPC: false });
+        }
+    };
+
+    componentDidMount() {
+        this.checkIsPc();
+        window.addEventListener('resize', this.setSize);
+    }
+
     // handleKeyPress = (e) => {
     //     if (e.key === 'Enter') {
     //         this.signIn();
     //     }
     // };
     render() {
+        const { isPc } = this.state;
         return (
             <div className="login">
                 <div className="login__logo">
                     <img src={logo}></img>
                 </div>
                 <div className="login__input">
+                    <div className="login__input-selectbox mobile">
+                        <img src={unclick}></img>
+                        <span>자동 로그인</span>
+                    </div>
                     <input
                         className="login__input-id"
                         type="text"
@@ -41,10 +61,13 @@ class Login extends Component {
                         onChange={this.handleForm('password')}
                         onKeyPress={this.handleKeyPress}
                     ></input>
-                    <div className="login__input-selectbox">
+                    <div className="login__input-selectbox pc">
                         <img src={unclick}></img>
                         <span>자동 로그인</span>
                     </div>
+                </div>
+                <div className="login__button mobile">
+                    <button>로그인</button>
                 </div>
                 <div className="login__searchandsignup">
                     <div className="login__searchandsignup-id">
@@ -57,7 +80,7 @@ class Login extends Component {
                         <Link to="signup">회원가입</Link>
                     </div>
                 </div>
-                <div className="login__button">
+                <div className="login__button pc">
                     <button>로그인</button>
                 </div>
             </div>

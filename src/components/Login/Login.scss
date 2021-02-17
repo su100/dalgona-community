@@ -31,6 +31,12 @@
         &-selectbox {
             @include flex(row, flex-start, flex-start);
             width: 701px;
+            &.pc {
+                display: inline;
+            }
+            &.mobile {
+                display: none;
+            }
             img {
                 width: 18px;
                 height: 18px;
@@ -70,6 +76,12 @@
     }
     &__button {
         padding-bottom: 250px;
+        &.pc {
+            display: inline;
+        }
+        &.mobile {
+            display: none;
+        }
         button {
             width: 454px;
             height: 103px;
@@ -89,6 +101,86 @@
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .login {
+        @include flex(column, center, center);
+        &__logo {
+            padding-top: 0px;
+            padding-bottom: 76px;
+            img {
+                height: 79.429px;
+                width: 273.87px;
+            }
+        }
+        &__input {
+            @include flex(column, center, center);
+            input {
+                width: 728px;
+                height: 49.9px;
+            }
+            &-id {
+                margin-bottom: 6px;
+            }
+            &-password {
+                margin-bottom: 6px;
+            }
+            &-selectbox {
+                @include flex(row, flex-start, flex-start);
+                width: 728px;
+                &.mobile {
+                    display: inline;
+                    padding-bottom: 26px;
+                }
+                &.pc {
+                    display: none;
+                }
+                img {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+        &__searchandsignup {
+            @include flex(row, center, center);
+            padding-top: 45.61px;
+            &-id {
+                padding: 0 9px;
+            }
+            &-password {
+                padding: 0 9px;
+            }
+            &-signup {
+                padding: 0 9px;
+            }
+            a {
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 25px;
+                color: #5d5d5d;
+            }
+        }
+        &__button {
+            padding-bottom: 0px;
+            &.mobile {
+                display: inline;
+            }
+            &.pc {
+                display: none;
+            }
+            button {
+                width: 728px;
+                height: 49.9px;
+                background: #f7c95f;
+                border-radius: 8px;
+                border: none;
+                font-family: Noto Sans KR;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 29px;
+                letter-spacing: 0em;
+            }
+        }
     }
 }
 
