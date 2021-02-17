@@ -102,6 +102,7 @@
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .login {
         @include flex(column, center, center);
+        height: calc(100vh - 70.79px- 114.9px);
         &__logo {
             padding-top: 0px;
             padding-bottom: 76px;
@@ -170,13 +171,9 @@
             button {
                 width: 728px;
                 height: 49.9px;
-                background: #f7c95f;
-                border-radius: 8px;
-                border: none;
                 font-family: Noto Sans KR;
                 font-size: 20px;
                 font-style: normal;
-                font-weight: 400;
                 line-height: 29px;
                 letter-spacing: 0em;
             }
@@ -187,5 +184,79 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .login {
+        @include flex(column, center, center);
+        height: calc(100vh - 83px - 56px);
+        &__logo {
+            padding-top: 0px;
+            padding-bottom: 50px;
+            img {
+                height: 40px;
+                width: 150px;
+            }
+        }
+        &__input {
+            @include flex(column, center, center);
+            input {
+                width: 320px;
+                height: 32px;
+            }
+            &-id {
+                margin-bottom: 6px;
+            }
+            &-password {
+                margin-bottom: 6px;
+            }
+            &-selectbox {
+                @include flex(row, flex-start, flex-start);
+                width: 320px;
+                span {
+                    font-size: 11px;
+                    line-height: 16px;
+                }
+                &.mobile {
+                    display: inline;
+                    padding-bottom: 12px;
+                }
+                &.pc {
+                    display: none;
+                }
+                img {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+        &__searchandsignup {
+            @include flex(row, center, center);
+            padding-top: 15px;
+            &-id {
+                padding: 0 3px;
+            }
+            &-password {
+                padding: 0 3px;
+            }
+            &-signup {
+                padding: 0 3px;
+            }
+            a {
+                font-size: 11px;
+                line-height: 11px;
+            }
+        }
+        &__button {
+            padding-bottom: 0px;
+            &.mobile {
+                display: inline;
+            }
+            &.pc {
+                display: none;
+            }
+            button {
+                width: 320px;
+                height: 32px;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
     }
 }
