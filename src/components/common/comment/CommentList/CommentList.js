@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import CommentInput from 'components/common/comment/CommentInput';
 
 import userDefault from 'images/user-default.png';
 import heartFilled from 'images/heart_filled.png';
@@ -6,59 +7,133 @@ import heart from 'images/heart.png';
 
 import './CommentList.scss';
 
-const CommentList = (props) => {
-    return (
-        <div className="comment-list">
-            {props.commentList.map((comment) => {
-                return (
-                    <div key={comment.id}>
-                        <div className="comment-list__item">
-                            <div className="comment-list__item--left">
-                                <div className="not-pc">
-                                    <img
-                                        className="comment-list__item--user-default"
-                                        src={comment.userImg ?? userDefault}
-                                        alt="userImg"
-                                    />
-                                </div>
-                                <div className="comment-list__item--main">
-                                    <div className="comment-list__item--detail">
-                                        <span className="comment-list__item--username">{comment.username}</span>
-                                        <span>{comment.time}</span>
-                                        <span>{props.isRecommend && `추천 ${comment.recommend}`}</span>
-                                    </div>
-                                    <div className="comment-list__item--contents">{comment.contents}</div>
-                                    <div className="comment-list__item--button">
-                                        <button>답글</button>
-                                        {comment.isAuthor ? (
-                                            <>
-                                                <button>수정</button>
-                                                <button>삭제</button>
-                                            </>
-                                        ) : (
-                                            <button>신고</button>
-                                        )}
-                                        {props.isRecommend && (
-                                            <span className="only-pc">
-                                                <button>추천</button>
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            {props.isRecommend && (
-                                <div className="not-pc">
-                                    <button>
+class CommentList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            recommentId: '',
+            reAnonymous: false,
+            reText: '',
+            isAnonymous: false,
+            commentText: '',
+            commentImg: null,
+            reImg: null,
+            previewURL: '',
+            rePreview: '',
+        };
+    }
+    handleComment = (e) => {
+        if (e.target.id === 'comment') this.setState({ commentText: e.target.value });
+        else this.setState({ reText: e.target.value });
+    };
+
+    handleAnonymous = (e) => {
+        if (e.target.id === 'comment') this.setState({ isAnonymous: e.target.checked });
+        else this.setState({ reAnonymous: e.target.checked });
+    };
+
+    setImage = (type, file) => {
+        if (type === 'comment') this.setState({ commentImg: file });
+        else this.setState({ reImg: file });
+    };
+    setPreview = (type, url) => {
+        if (type === 'comment') this.setState({ previewURL: url });
+        else this.setState({ rePreview: url });
+    };
+
+    deleteImg = (e) => {
+        if (e.target.id === 'comment') this.setState({ commentImg: null, previewURL: '' });
+        else this.setState({ reImg: null, rePreview: '' });
+    };
+
+    openRecomment = (e) => {
+        //답글 새로 열 때마다 상태 초기화: 익명, 내용, 사진
+        this.setState({ recommentId: e.currentTarget.id, reAnonymous: false, reText: '', reImg: null, rePreview: '' });
+    };
+
+    closeRecomment = (e) => {
+        this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
+    };
+
+    render() {
+        return (
+            <div className="comment-list">
+                <CommentInput
+                    type="comment"
+                    handleAnonymous={this.handleAnonymous}
+                    isAnonymous={this.state.isAnonymous}
+                    handleComment={this.handleComment}
+                    commentText={this.state.commentText}
+                    setImage={this.setImage}
+                    setPreview={this.setPreview}
+                    commentImg={this.state.commentImg}
+                    previewURL={this.state.previewURL}
+                    deleteImg={this.deleteImg}
+                />
+                {this.props.commentList.map((comment) => {
+                    return (
+                        <div key={comment.id}>
+                            <div className="comment-list__item">
+                                <div className="comment-list__item--left">
+                                    <div className="not-pc">
                                         <img
-                                            className="comment-list__item__button--heart"
-                                            src={comment.isRecommended ? heartFilled : heart}
-                                            alt="heart"
+                                            className="comment-list__item--user-default"
+                                            src={comment.userImg ?? userDefault}
+                                            alt="userImg"
                                         />
-                                    </button>
+                                    </div>
+                                    <div className="comment-list__item--main">
+                                        <div className="comment-list__item--detail">
+                                            <span className="comment-list__item--username">{comment.username}</span>
+                                            <span>{comment.time}</span>
+                                            <span>{this.props.isRecommend && `추천 ${comment.recommend}`}</span>
+                                        </div>
+                                        {comment.image && (
+                                            <div>
+                                                <img src={comment.image} alt="comment" />
+                                            </div>
+                                        )}
+                                        <div className="comment-list__item--contents">{comment.contents}</div>
+                                        <div className="comment-list__item--button">
+                                            <button
+                                                id={comment.id}
+                                                onClick={
+                                                    Number(this.state.recommentId) === comment.id
+                                                        ? this.closeRecomment
+                                                        : this.openRecomment
+                                                }
+                                            >
+                                                답글
+                                            </button>
+                                            {comment.isAuthor ? (
+                                                <>
+                                                    <button>수정</button>
+                                                    <button>삭제</button>
+                                                </>
+                                            ) : (
+                                                <button>신고</button>
+                                            )}
+                                            {this.props.isRecommend && (
+                                                <span className="only-pc">
+                                                    <button>추천</button>
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                        <div>
+                                {this.props.isRecommend && (
+                                    <div className="not-pc">
+                                        <button>
+                                            <img
+                                                className="comment-list__item__button--heart"
+                                                src={comment.isRecommended ? heartFilled : heart}
+                                                alt="heart"
+                                            />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+
                             {comment.reCommentList &&
                                 comment.reCommentList.map((reComment) => {
                                     return (
@@ -83,14 +158,18 @@ const CommentList = (props) => {
                                                         </span>
                                                         <span>{reComment.time}</span>
                                                         <span>
-                                                            {props.isRecommend && `추천 ${reComment.recommend}`}
+                                                            {this.props.isRecommend && `추천 ${reComment.recommend}`}
                                                         </span>
                                                     </div>
+                                                    {reComment.image && (
+                                                        <div>
+                                                            <img src={reComment.image} alt="comment" />
+                                                        </div>
+                                                    )}
                                                     <div className="comment-list__item--contents">
                                                         {reComment.contents}
                                                     </div>
                                                     <div className="comment-list__item--button">
-                                                        <button>답글</button>
                                                         {reComment.isAuthor ? (
                                                             <>
                                                                 <button>수정</button>
@@ -99,7 +178,7 @@ const CommentList = (props) => {
                                                         ) : (
                                                             <button>신고</button>
                                                         )}
-                                                        {props.isRecommend && (
+                                                        {this.props.isRecommend && (
                                                             <span className="only-pc">
                                                                 <button>추천</button>
                                                             </span>
@@ -107,7 +186,7 @@ const CommentList = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {props.isRecommend && (
+                                            {this.props.isRecommend && (
                                                 <div className="not-pc">
                                                     <button>
                                                         <img
@@ -121,12 +200,46 @@ const CommentList = (props) => {
                                         </div>
                                     );
                                 })}
+                            {Number(this.state.recommentId) === comment.id && (
+                                <div className="comment-list__item comment-list__item--recomment">
+                                    <div className="comment-list__item--left">
+                                        <div className="comment-list__item--recomment-mark" />
+                                        <div className="comment-list__item--main">
+                                            <CommentInput
+                                                type="recomment"
+                                                handleAnonymous={this.handleAnonymous}
+                                                isAnonymous={this.state.reAnonymous}
+                                                handleComment={this.handleComment}
+                                                commentText={this.state.reText}
+                                                setImage={this.setImage}
+                                                setPreview={this.setPreview}
+                                                commentImg={this.state.reImg}
+                                                previewURL={this.state.rePreview}
+                                                deleteImg={this.deleteImg}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
-};
+                    );
+                })}
+
+                <CommentInput
+                    type="comment"
+                    handleAnonymous={this.handleAnonymous}
+                    isAnonymous={this.state.isAnonymous}
+                    handleComment={this.handleComment}
+                    commentText={this.state.commentText}
+                    setImage={this.setImage}
+                    setPreview={this.setPreview}
+                    commentImg={this.state.commentImg}
+                    previewURL={this.state.previewURL}
+                    deleteImg={this.deleteImg}
+                />
+            </div>
+        );
+    }
+}
 
 export default CommentList;
