@@ -2,13 +2,81 @@
 
 
 //pc, 기본
-.comment-input{
+.comment-input{ 
+    margin-bottom:32px;
+    width: 1193px;
+    border-top: 10px solid #f2f2f2;
+    padding-top:21.1px;
+    font-family: Noto Sans KR;
+    .comment-input__preview{
+        @include flex(row,flex-start,center);
+        margin-bottom: 20px;
+        width:inherit;
+        height:150px;
+        .comment-input__preview--background{
+            position:absolute; 
+            width:inherit;
+            height:150px;
+            background: #000000;
+            opacity: 0.13;
+        }
+        img{ 
+            margin-left: 20px; 
+            height:119px;
+        }
+        button{
+            margin-left:3px;
+            margin-top:10px;
+            align-self: flex-start;
+            color:#fff;
+            z-index:10;
+        }
+    }
+    .comment-input__input{
+        font-family: Noto Sans KR;
+        width: 1193px;
+        height: 120px;
+        font-size: 20px;
+        resize:none;
+        &::placeholder{
+            color:#dedede;
+        }
+    }
+    .comment-input--bottom{
+        @include flex(row,space-between, center);
+        margin-top:14px;
+        span{
+            margin-right:20px;
+        }
+        img{
+            margin-right:3px;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        .comment-input__button--submit{
+            width:80px;
+            height:28px;
+            background: #dadada;
+        }
+    }
 }
 
 
 //태블릿
 @media screen and (max-width: $tablet-max) { 
-    .comment-input{ 
+    .comment-input{  
+        width: 768px;  
+        .comment-input__input{ 
+            width: 726px;
+            height: 123px;  
+        }
+        .comment-input--bottom{  
+            width: 726px; 
+            .comment-input__button--submit{ 
+            }
+        }
     }
 }
 
@@ -17,5 +85,17 @@
 //모바일
 @media screen and (max-width:$mobile-max){
     .comment-input{ 
+        width: 360px;  
+        .comment-input__input{ 
+            width: 320px;
+            height: 101px;  
+            font-size: 15px;
+        }
+        .comment-input--bottom{  
+            width: 320px;  
+            font-size: 11px;
+            .comment-input__button--submit{ 
+            }
+        }
     }
 }

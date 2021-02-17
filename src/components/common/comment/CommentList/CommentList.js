@@ -11,8 +11,8 @@ const CommentList = (props) => {
         <div className="comment-list">
             {props.commentList.map((comment) => {
                 return (
-                    <>
-                        <div className="comment-list__item" key={comment.id}>
+                    <div key={comment.id}>
+                        <div className="comment-list__item">
                             <div className="comment-list__item--left">
                                 <div className="not-pc">
                                     <img
@@ -122,7 +122,7 @@ const CommentList = (props) => {
                                     );
                                 })}
                         </div>
-                    </>
+                    </div>
                 );
             })}
         </div>

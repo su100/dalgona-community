@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PostList from 'components/common/PostList';
 import CommentInput from 'components/common/comment/CommentInput';
 import CommentList from 'components/common/comment/CommentList';
 import './Home.scss';
@@ -70,8 +71,10 @@ class Home extends Component {
                         'https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png',
                 },
             ],
+            isAnonymous: false,
             commentText: '',
             commentImg: null,
+            previewURL: '',
             commentList: [
                 {
                     id: 1,
@@ -130,15 +133,54 @@ class Home extends Component {
             ],
         };
     }
+    handleComment = (e) => {
+        this.setState({ commentText: e.target.value });
+    };
+
+    handleAnonymous = (e) => {
+        this.setState({ isAnonymous: e.target.checked });
+    };
+
+    setImage = (file) => {
+        this.setState({ commentImg: file });
+    };
+    setPreview = (url) => {
+        this.setState({ previewURL: url });
+    };
+
+    deleteImg = () => {
+        this.setState({ commentImg: null, previewURL: '' });
+    };
 
     render() {
         return (
             <div className="home">
-                <CommentInput />
+                <PostList postList={this.state.postList} />
+                <CommentInput
+                    handleAnonymous={this.handleAnonymous}
+                    isAnonymous={this.state.isAnonymous}
+                    handleComment={this.handleComment}
+                    commentText={this.state.commentText}
+                    setImage={this.setImage}
+                    setPreview={this.setPreview}
+                    commentImg={this.state.commentImg}
+                    previewURL={this.state.previewURL}
+                    deleteImg={this.deleteImg}
+                />
 
                 <CommentList commentList={this.state.commentList} isRecommend />
 
-                <CommentInput />
+                <CommentInput
+                    handleAnonymous={this.handleAnonymous}
+                    isAnonymous={this.state.isAnonymous}
+                    handleComment={this.handleComment}
+                    commentText={this.state.commentText}
+                    setImage={this.setImage}
+                    setPreview={this.setPreview}
+                    commentImg={this.state.commentImg}
+                    previewURL={this.state.previewURL}
+                    deleteImg={this.deleteImg}
+                />
             </div>
         );
     }
