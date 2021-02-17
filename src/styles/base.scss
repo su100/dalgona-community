@@ -21,3 +21,42 @@ $tablet-max: 1023px;
     justify-content: $horizontal;
     align-items: $vertical;
 }
+
+
+.only-pc{
+    display:block;
+}
+
+span.only-pc{
+    display:inline;
+}
+
+.not-pc{
+    display:none;
+}
+
+
+//태블릿
+@media screen and (max-width: $tablet-max) {   
+    .only-pc{
+        display:none;
+    }
+    
+    span.only-pc{
+        display:none;
+    }
+
+    .not-pc{
+        display:block;
+        
+    } 
+    span.not-pc{
+        display:inline;
+    }
+}
+
+
+
+//모바일
+@media screen and (max-width:$mobile-max){ 
+}

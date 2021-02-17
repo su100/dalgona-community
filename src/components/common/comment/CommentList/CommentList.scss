@@ -1,0 +1,214 @@
+@import 'styles/base.scss';
+
+
+//pc, 기본
+.comment-list{
+    width:1194px;
+    .comment-list__item{
+        @include flex(row, space-between, center);
+        padding: 28px 8px;  
+        border-bottom: 1px solid rgba(131, 131, 131,0.5);
+        box-sizing: border-box;
+        .comment-list__item--left{  
+            @include flex(row, flex-start, center);
+        }
+        .comment-list__item--main{
+            height: inherit; 
+            color:#838383; 
+            font-family: Roboto; 
+            .comment-list__item--detail{
+                font-size: 11px;
+                span{
+                    margin-right:9px;
+                    padding-right:9px;
+                    border-right:1px solid rgba(131, 131, 131,0.5);
+                    &:last-child{
+                        border-right: none;
+                    }
+                }
+                .comment-list__item--username{ 
+                    margin-right:25px;
+                    border-right: none;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+            }
+            .comment-list__item--contents{  
+                margin: 25px 0; 
+                font-size: 14px;
+            }
+            .comment-list__item--button{
+                button{
+                    margin-right: 6px;
+                    width:33px;
+                    height:24px;
+                    border-radius: 4px;
+                    background:#E6E6E6;
+                    color:#838383;
+                    font-family: Roboto; 
+                    font-weight: bold;
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+    .comment-list__item--recomment{ 
+        padding-left:39px;
+        .comment-list__item--recomment-mark{ 
+            align-self: flex-start;
+            margin-top:-17px;
+            margin-right:16px;
+            width: 28.5px;
+            height: 25.5px;
+            border-left: 1px solid rgba(131, 131, 131,0.5);
+            border-bottom: 1px solid rgba(131, 131, 131,0.5);
+        }
+        .comment-list__item--main{ 
+            //디자인 나오면 폭 수정
+            width: 1194px - 25.5px - 16px - 39px; //전체 폭에서 recomment-mark의 너비와 padding-left, margin-right 제외
+        }
+    }
+}
+
+
+//태블릿
+@media screen and (max-width: $tablet-max) { 
+    .comment-list{ 
+        width:768px;
+        .comment-list__item{ 
+            padding:22px;   
+            .comment-list__item--user-default{
+                margin-right: 29px;
+                width:61.1px;
+                height:61.1px;
+            }
+            
+            .comment-list__item--main{
+                //디자인 나오면 폭 수정
+                width: 768px - 23.6px - 22px*3 - 61.1px - 29px;
+                color:#3b3b3b;
+                font-family: Noto Sans KR; 
+                .comment-list__item--detail{
+                    font-size: 17px; 
+                    span{
+                        margin-right:7px;
+                        padding-right:7px;
+                        border-right:1px solid #3b3b3b; 
+                        &:last-child{
+                            border-right: none;
+                        }
+                    }
+                    .comment-list__item--username{
+                        margin-right:7px;
+                        border-right:1px solid #3b3b3b;
+                        font-weight: normal;
+                        font-size: 17px;
+                    }
+                } 
+                .comment-list__item--contents{ 
+                    font-size: 19px;  
+                    color: #000000;  
+                }
+                
+                .comment-list__item--button{
+                    button{
+                        margin-left: 6px;
+                        padding-left: 6px;
+                        margin-right:0;
+                        border-left: 1px solid #b7b7b7;
+                        width:auto;
+                        height:auto; 
+                        background:none;
+                        color: #B7B7B7;
+                        font-family: Noto Sans KR;
+                        font-weight: normal;
+                        font-size: 14px; 
+                        &:first-child{
+                            margin-left:0;
+                            padding-left:0;
+                            border-left: 0
+                        } 
+                    } 
+                }
+            } 
+            .comment-list__item__button--heart{
+                width:23.6px;
+            }
+        }
+        .comment-list__item--recomment{
+            padding-left:39px;
+            .comment-list__item--recomment-mark{ 
+                align-self: center; 
+                margin-top:0;
+                margin-right:28px;
+                width: 60px;
+                height: 60px;
+                border-left: 1px solid #000;
+                border-bottom: 1px solid #000;
+            }
+            .comment-list__item--main{  
+                //디자인 나오면 구체적인 수치로 수정
+                width: 768px - 60px - 28px - 39px -29px -61.1px -23.6px -22px*2; //전체 폭에서 recomment-mark, user-default, recommend 제외
+            }
+        }
+    }
+}
+
+
+
+//모바일
+@media screen and (max-width:$mobile-max){
+    .comment-list{ 
+        width:360px;
+        .comment-list__item{ 
+            padding:20px;   
+            .comment-list__item--user-default{
+                margin-right: 16px;
+                width:40px;
+                height:40px;
+            } 
+            .comment-list__item--main{
+                width: 360px - 20px*3 - 40px - 16px - 19px;
+                .comment-list__item--detail{
+                    font-size: 12px; 
+                    span{
+                        margin-right:4px;
+                        padding-right:4px; 
+                        &:last-child{
+                            border-right: none;
+                        }
+                    }
+                    .comment-list__item--username{
+                        margin-right:4px; 
+                        font-size: 12px;
+                    }
+                }  
+                .comment-list__item--contents{  
+                    font-size:16px;
+                }
+                .comment-list__item--button{
+                    button{ 
+                        margin-left: 3px;
+                        padding-left: 3px;  
+                        font-size: 10px; 
+                    }
+                }
+            } 
+            .comment-list__item__button--heart{ 
+                width:19px;
+            }
+        }
+        .comment-list__item--recomment{
+            padding-left:39px;
+            .comment-list__item--recomment-mark{
+                margin-right:18px;
+                width: 33px;
+                height: 33px; 
+            } 
+            .comment-list__item--main{  
+                //디자인 나오면 구체적인 수치로 수정 
+                width: 360px - 20px*3 - 40px - 16px - 19px - 40px - 16px; //전체 폭에서 recomment-mark, user-default, recommend 제외
+            }
+        }
+    }
+}
