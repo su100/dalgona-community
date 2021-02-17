@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from 'images/logo.png';
+import unclick from 'images/unclick.png';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
@@ -15,21 +16,21 @@ class Login extends Component {
                     <img src={logo}></img>
                 </div>
                 <div className="login__input">
-                    <input></input>
-                    <input></input>
-                    <div>
-                        <select></select>
+                    <input className="login__input-id"></input>
+                    <input className="login__input-password"></input>
+                    <div className="login__input-selectbox">
+                        <img src={unclick}></img>
                         <span>자동 로그인</span>
                     </div>
                 </div>
                 <div className="login__searchandsignup">
-                    <div>
+                    <div className="login__searchandsignup-id">
                         <Link to="/find/id">아이디 찾기</Link>
                     </div>
-                    <div>
+                    <div className="login__searchandsignup-password">
                         <Link to="/find/pw">비밀번호 찾기</Link>
                     </div>
-                    <div>
+                    <div className="login__searchandsignup-signup">
                         <Link to="signup">회원가입</Link>
                     </div>
                 </div>
