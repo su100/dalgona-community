@@ -3,6 +3,9 @@
 
 //pc, 기본
 .login{
+    @include flex(column, center, center);
+    width : 100%;
+    height: calc(90vh - 289px);
 }
 
 
