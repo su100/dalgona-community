@@ -14,7 +14,7 @@ const Footer = () => (
             <img src={facebook}></img>
             <img src={youtube}></img>
         </div>
-        <div claassName="footer-content">
+        <div className="footer-content">
             <span>회사소개|이용약관|개인정보취급정책</span>
         </div>
         <div className="footer-information">

@@ -7,8 +7,21 @@ import './Login.scss';
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            id: '',
+            password: '',
+            checked: false,
+        };
     }
-
+    handleForm = (name) => (e) => {
+        this.setState({ [name]: e.target.value });
+        console.log(e.target.value);
+    };
+    // handleKeyPress = (e) => {
+    //     if (e.key === 'Enter') {
+    //         this.signIn();
+    //     }
+    // };
     render() {
         return (
             <div className="login">
@@ -16,8 +29,18 @@ class Login extends Component {
                     <img src={logo}></img>
                 </div>
                 <div className="login__input">
-                    <input className="login__input-id"></input>
-                    <input className="login__input-password"></input>
+                    <input
+                        className="login__input-id"
+                        type="text"
+                        onChange={this.handleForm('id')}
+                        onKeyPress={this.handleKeyPress}
+                    ></input>
+                    <input
+                        className="login__input-password"
+                        type="password"
+                        onChange={this.handleForm('password')}
+                        onKeyPress={this.handleKeyPress}
+                    ></input>
                     <div className="login__input-selectbox">
                         <img src={unclick}></img>
                         <span>자동 로그인</span>

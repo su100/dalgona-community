@@ -40,7 +40,6 @@ class Header extends Component {
     setSize = () => {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
         this.checkIsPc();
-        console.log(window.innerWidth);
     };
 
     checkIsPc = () => {

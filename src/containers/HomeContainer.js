@@ -6,7 +6,6 @@ import Home from 'components/Home';
 
 class HomeContainer extends Component {
     render() {
-        console.log('home container');
         return (
             <Fragment>
                 <Home />
