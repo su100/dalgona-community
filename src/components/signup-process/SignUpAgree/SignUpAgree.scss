@@ -7,6 +7,74 @@
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .signupagree {
+        @include flex(column, space-around, center);
+        width: 100%;
+        height: 1062.45px;
+        font-family: Noto Sans KR;
+        font-size: 18px;
+        line-height: 26.06px;
+        &__title {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+        &__button {
+            button {
+                &.click {
+                    background: #f7c95f;
+                }
+                &.noclick {
+                    background: #d5d5d5;
+                }
+                height: 49.899993896484375px;
+                width: 728px;
+                border-radius: 0px;
+                font-style: normal;
+                font-weight: normal;
+                align-items: center;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+
+        &__content {
+            &-agree {
+                @include flex(row, space-between, center);
+                width: 728px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 17px;
+                line-height: 24.62px;
+                color: #000000;
+                padding-bottom: 7px;
+                &-check {
+                    img {
+                        height: 14px;
+                        width: 14px;
+                    }
+                    &.box {
+                        font-size: 15px;
+                        line-height: 21.72px;
+                    }
+                }
+            }
+            input {
+                height: 215.89999389648438px;
+                width: 728px;
+            }
+            &-impossible {
+                width: 728px;
+                text-align: left;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+                line-height: 18.82px;
+                color: #6e6e6e;
+            }
+        }
     }
 }
 
@@ -26,6 +94,10 @@
             line-height: 20px;
             letter-spacing: 0em;
             text-align: center;
+        }
+        img {
+            width: 245px;
+            height: 30px;
         }
         &__button {
             button {
