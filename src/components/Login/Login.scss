@@ -31,12 +31,6 @@
         &-selectbox {
             @include flex(row, flex-start, flex-start);
             width: 701px;
-            &.pc {
-                display: inline;
-            }
-            &.mobile {
-                display: none;
-            }
             img {
                 width: 18px;
                 height: 18px;
@@ -76,12 +70,6 @@
     }
     &__button {
         padding-bottom: 250px;
-        &.pc {
-            display: inline;
-        }
-        &.mobile {
-            display: none;
-        }
         button {
             width: 454px;
             height: 103px;
@@ -102,7 +90,8 @@
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .login {
         @include flex(column, center, center);
-        height: calc(100vh - 70.79px- 114.9px);
+        height: calc(100vh - 119.79px);
+        background: #f2f2f2;
         &__logo {
             padding-top: 0px;
             padding-bottom: 76px;
@@ -114,8 +103,11 @@
         &__input {
             @include flex(column, center, center);
             input {
+                border-radius: 0px;
                 width: 728px;
                 height: 49.9px;
+                background: white;
+                border: 1px solid #a7a7a7;
             }
             &-id {
                 margin-bottom: 6px;
@@ -126,16 +118,14 @@
             &-selectbox {
                 @include flex(row, flex-start, flex-start);
                 width: 728px;
-                &.mobile {
-                    display: inline;
-                    padding-bottom: 26px;
-                }
-                &.pc {
-                    display: none;
-                }
+                padding-bottom: 16.49px;
                 img {
-                    width: 18px;
-                    height: 18px;
+                    height: 13px;
+                    width: 13px;
+                }
+                span {
+                    font-size: 11px;
+                    line-height: 15px;
                 }
             }
         }
@@ -162,13 +152,8 @@
         }
         &__button {
             padding-bottom: 0px;
-            &.mobile {
-                display: inline;
-            }
-            &.pc {
-                display: none;
-            }
             button {
+                border-radius: 0px;
                 width: 728px;
                 height: 49.9px;
                 font-family: Noto Sans KR;
@@ -185,7 +170,8 @@
 @media screen and (max-width: $mobile-max) {
     .login {
         @include flex(column, center, center);
-        height: calc(100vh - 83px - 56px);
+        height: calc(100vh - 83px);
+        background: #f2f2f2;
         &__logo {
             padding-top: 0px;
             padding-bottom: 50px;
@@ -197,8 +183,11 @@
         &__input {
             @include flex(column, center, center);
             input {
+                border-radius: 0px;
                 width: 320px;
                 height: 32px;
+                background: white;
+                border: 1px solid #a7a7a7;
             }
             &-id {
                 margin-bottom: 6px;
@@ -209,20 +198,14 @@
             &-selectbox {
                 @include flex(row, flex-start, flex-start);
                 width: 320px;
+                padding-bottom: 12px;
                 span {
                     font-size: 11px;
-                    line-height: 16px;
-                }
-                &.mobile {
-                    display: inline;
-                    padding-bottom: 12px;
-                }
-                &.pc {
-                    display: none;
+                    line-height: 11px;
                 }
                 img {
-                    width: 18px;
-                    height: 18px;
+                    height: 8.39px;
+                    width: 8.39px;
                 }
             }
         }
@@ -230,28 +213,30 @@
             @include flex(row, center, center);
             padding-top: 15px;
             &-id {
+                border-right: 1px solid #838383;
+                height: 15px;
+                line-height: 15px;
                 padding: 0 3px;
             }
             &-password {
+                border-right: 1px solid #838383;
+                height: 15px;
+                line-height: 15px;
                 padding: 0 3px;
             }
             &-signup {
+                height: 15px;
                 padding: 0 3px;
+                line-height: 15px;
             }
             a {
                 font-size: 11px;
-                line-height: 11px;
             }
         }
         &__button {
             padding-bottom: 0px;
-            &.mobile {
-                display: inline;
-            }
-            &.pc {
-                display: none;
-            }
             button {
+                border-radius: 0px;
                 width: 320px;
                 height: 32px;
                 font-size: 14px;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from 'images/logo.png';
-import unclick from 'images/unclick.png';
+import checkbox from 'images/checkbox.png';
+import mobilecheckbox from 'images/mobile-checkbox.png';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
@@ -38,16 +39,17 @@ class Login extends Component {
     //     }
     // };
     render() {
-        const { isPc } = this.state;
         return (
             <div className="login">
                 <div className="login__logo">
                     <img src={logo}></img>
                 </div>
                 <div className="login__input">
-                    <div className="login__input-selectbox mobile">
-                        <img src={unclick}></img>
-                        <span>자동 로그인</span>
+                    <div className="not-pc">
+                        <div className="login__input-selectbox">
+                            <img src={mobilecheckbox}></img>
+                            <span>자동 로그인</span>
+                        </div>
                     </div>
                     <input
                         className="login__input-id"
@@ -61,13 +63,17 @@ class Login extends Component {
                         onChange={this.handleForm('password')}
                         onKeyPress={this.handleKeyPress}
                     ></input>
-                    <div className="login__input-selectbox pc">
-                        <img src={unclick}></img>
-                        <span>자동 로그인</span>
+                    <div className="only-pc">
+                        <div className="login__input-selectbox">
+                            <img src={checkbox}></img>
+                            <span>자동 로그인</span>
+                        </div>
                     </div>
                 </div>
-                <div className="login__button mobile">
-                    <button>로그인</button>
+                <div className="not-pc">
+                    <div className="login__button">
+                        <button>로그인</button>
+                    </div>
                 </div>
                 <div className="login__searchandsignup">
                     <div className="login__searchandsignup-id">
@@ -80,8 +86,10 @@ class Login extends Component {
                         <Link to="signup">회원가입</Link>
                     </div>
                 </div>
-                <div className="login__button pc">
-                    <button>로그인</button>
+                <div className="only-pc">
+                    <div className="login__button">
+                        <button>로그인</button>
+                    </div>
                 </div>
             </div>
         );
