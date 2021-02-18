@@ -1,0 +1,247 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.login {
+    @include flex(column, center, center);
+    width: 100%;
+    height: 100vh;
+    &__logo {
+        padding-top: 243px;
+        padding-bottom: 76px;
+        img {
+            height: 71.33126831054688px;
+            width: 159px;
+        }
+    }
+    &__input {
+        @include flex(column, center, center);
+        input {
+            width: 701px;
+            height: 76px;
+            background: #dadada;
+            border-radius: 8px;
+            border: none;
+        }
+        &-id {
+            margin-bottom: 17px;
+        }
+        &-password {
+            margin-bottom: 30px;
+        }
+        &-selectbox {
+            @include flex(row, flex-start, flex-start);
+            width: 701px;
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+    &__searchandsignup {
+        @include flex(row, center, center);
+        padding-top: 77px;
+        padding-bottom: 74.5px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        line-height: 22px;
+        color: #838383;
+        &-id {
+            border-right: 1px solid #838383;
+            padding: 0 9px;
+        }
+        &-password {
+            border-right: 1px solid #838383;
+            padding: 0 9px;
+        }
+        &-signup {
+            padding: 0 9px;
+        }
+        a {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 22px;
+            color: #838383;
+            text-decoration: none;
+        }
+    }
+    &__button {
+        padding-bottom: 250px;
+        button {
+            width: 454px;
+            height: 103px;
+            background: #f7c95f;
+            border-radius: 8px;
+            border: none;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 34px;
+            line-height: 41px;
+            color: #1f1f1f;
+        }
+    }
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .login {
+        @include flex(column, center, center);
+        height: calc(100vh - 119.79px);
+        background: #f2f2f2;
+        &__logo {
+            padding-top: 0px;
+            padding-bottom: 76px;
+            img {
+                height: 79.429px;
+                width: 273.87px;
+            }
+        }
+        &__input {
+            @include flex(column, center, center);
+            input {
+                border-radius: 0px;
+                width: 728px;
+                height: 49.9px;
+                background: white;
+                border: 1px solid #a7a7a7;
+            }
+            &-id {
+                margin-bottom: 6px;
+            }
+            &-password {
+                margin-bottom: 6px;
+            }
+            &-selectbox {
+                @include flex(row, flex-start, flex-start);
+                width: 728px;
+                padding-bottom: 16.49px;
+                img {
+                    height: 13px;
+                    width: 13px;
+                }
+                span {
+                    font-size: 11px;
+                    line-height: 15px;
+                }
+            }
+        }
+        &__searchandsignup {
+            @include flex(row, center, center);
+            padding-top: 45.61px;
+            &-id {
+                padding: 0 9px;
+            }
+            &-password {
+                padding: 0 9px;
+            }
+            &-signup {
+                padding: 0 9px;
+            }
+            a {
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 25px;
+                color: #5d5d5d;
+            }
+        }
+        &__button {
+            padding-bottom: 0px;
+            button {
+                border-radius: 0px;
+                width: 728px;
+                height: 49.9px;
+                font-family: Noto Sans KR;
+                font-size: 20px;
+                font-style: normal;
+                line-height: 29px;
+                letter-spacing: 0em;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .login {
+        @include flex(column, center, center);
+        height: calc(100vh - 83px);
+        background: #f2f2f2;
+        &__logo {
+            padding-top: 0px;
+            padding-bottom: 50px;
+            img {
+                height: 40px;
+                width: 150px;
+            }
+        }
+        &__input {
+            @include flex(column, center, center);
+            input {
+                border-radius: 0px;
+                width: 320px;
+                height: 32px;
+                background: white;
+                border: 1px solid #a7a7a7;
+            }
+            &-id {
+                margin-bottom: 6px;
+            }
+            &-password {
+                margin-bottom: 6px;
+            }
+            &-selectbox {
+                @include flex(row, flex-start, flex-start);
+                width: 320px;
+                padding-bottom: 12px;
+                span {
+                    font-size: 11px;
+                    line-height: 11px;
+                }
+                img {
+                    height: 8.39px;
+                    width: 8.39px;
+                }
+            }
+        }
+        &__searchandsignup {
+            @include flex(row, center, center);
+            padding-top: 15px;
+            &-id {
+                border-right: 1px solid #838383;
+                height: 15px;
+                line-height: 15px;
+                padding: 0 3px;
+            }
+            &-password {
+                border-right: 1px solid #838383;
+                height: 15px;
+                line-height: 15px;
+                padding: 0 3px;
+            }
+            &-signup {
+                height: 15px;
+                padding: 0 3px;
+                line-height: 15px;
+            }
+            a {
+                font-size: 11px;
+            }
+        }
+        &__button {
+            padding-bottom: 0px;
+            button {
+                border-radius: 0px;
+                width: 320px;
+                height: 32px;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}

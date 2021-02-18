@@ -5,7 +5,10 @@ import './Home.scss';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            count: 20,
+            page: 1,
+        };
     }
     render() {
         return (
