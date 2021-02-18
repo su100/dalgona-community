@@ -84,22 +84,24 @@ class SignUpInfo extends Component {
                 <div className="not-pc">
                     <img src={step3}></img>
                 </div>
-                <div className="signupinfo__img">
-                    <div className="signupinfo__img-title">
-                        <span>대표사진</span>
+                <div className="not-pc">
+                    <div className="signupinfo__img">
+                        <div className="signupinfo__img-title">
+                            <span>대표사진</span>
+                        </div>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref={this.fileInput}
+                            onChange={this.selectImg}
+                            onClick={(event) => {
+                                event.target.value = null;
+                            }}
+                        />
+                        <button className="" onClick={this.onClickSelect}>
+                            <img src={photoIcon} alt="photoIcon" />
+                        </button>
                     </div>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        ref={this.fileInput}
-                        onChange={this.selectImg}
-                        onClick={(event) => {
-                            event.target.value = null;
-                        }}
-                    />
-                    <button className="" onClick={this.onClickSelect}>
-                        <img src={photoIcon} alt="photoIcon" />
-                    </button>
                 </div>
                 <div className="signupinfo__content">
                     {Object.keys(keyObject).map((value, index) => (

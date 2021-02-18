@@ -2,8 +2,67 @@
 
 //pc, 기본
 .signupinfo {
-}
+    @include flex(column, center, center);
+    width: 100%;
+    height: 591px;
+    &__title {
+        width: 824px;
+        padding-bottom: 82px;
+        font-family: Roboto;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 41px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    img {
+        padding-top: 9px;
+        width: 234px;
+        height: 30px;
+    }
 
+    &__content {
+        @include flex(column, center, center);
+        &-form {
+            @include flex(row, flex-start, center);
+            width: 824px;
+            padding-bottom: 55px;
+            span {
+                width: 200px;
+                font-family: Roboto;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 17px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            &-input {
+                @include flex(row, flex-start, center);
+                input {
+                    width: 309px;
+                    height: 32px;
+                    background: rgba(196, 196, 196, 0.5);
+                    border: 0px;
+                }
+                button {
+                    text-align: center;
+                    width: 75px;
+                    height: 32px;
+                    margin-left: 14px;
+                    background: #c4c4c4;
+                }
+                &.click {
+                    background: #f7c95f;
+                }
+                &.noclick {
+                    background: #d5d5d5;
+                }
+            }
+        }
+    }
+}
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .signupinfo {
