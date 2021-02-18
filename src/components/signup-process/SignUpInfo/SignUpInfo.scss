@@ -1,0 +1,174 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.signupinfo {
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .signupinfo {
+        @include flex(column, flex-start, center);
+        width: 100%;
+        height: 1179.45px;
+        font-family: Noto Sans KR;
+        font-style: normal;
+        &__title {
+            padding-top: 23.97px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 26px;
+            color: #000000;
+        }
+        img {
+            padding-top: 20px;
+        }
+        &__img {
+            @include flex(column, center, center);
+            &-title {
+                @include flex(row, flex-start, center);
+                width: 728px;
+                padding-top: 78.99px;
+                padding-bottom: 24px;
+            }
+            input[type='file'] {
+                display: none;
+            }
+            button {
+                width: 194px;
+                height: 194px;
+                border: 1px solid black;
+                border-radius: 1940px;
+            }
+        }
+        &__content {
+            @include flex(column, center, center);
+            &-form {
+                @include flex(column, center, flex-start);
+                width: 728px;
+                span {
+                    padding-top: 29.61px;
+                    padding-bottom: 16.49px;
+                    font-family: Noto Sans KR;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 25px;
+                    letter-spacing: 0em;
+                }
+                &-input {
+                    @include flex(row, flex-start, center);
+                    input {
+                        height: 50px;
+                        width: 600px;
+                        border: 1px solid #a7a7a7;
+                        border-right: none;
+                        &.password {
+                            border-right: 1px solid #a7a7a7;
+                            width: 728px;
+                        }
+                    }
+                    button {
+                        height: 54px;
+                        width: 128px;
+                        font-size: 20px;
+                        line-height: 29px;
+                        color: #ffffff;
+                        background: #d5d5d5;
+                        border: 1px solid #a7a7a7;
+                        border-left: none;
+                    }
+                    &.click {
+                        background: #f7c95f;
+                    }
+                    &.noclick {
+                        background: #d5d5d5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .signupinfo {
+        @include flex(column, flex-start, center);
+        width: 100%;
+        height: 669px;
+        &__title {
+            padding-top: 15px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        img {
+            padding-top: 9px;
+            width: 234px;
+            height: 30px;
+        }
+        &__img {
+            @include flex(column, center, center);
+            &-title {
+                @include flex(row, flex-start, center);
+                width: 320px;
+                padding-top: 46px;
+                padding-bottom: 0px;
+                font-size: 12px;
+                line-height: 17px;
+            }
+            input[type='file'] {
+                display: none;
+            }
+            button {
+                width: 92px;
+                height: 92px;
+                border: 1px solid black;
+                border-radius: 1940px;
+                img {
+                    height: 11.969504356384277px;
+                    width: 14.961897850036621px;
+                }
+            }
+        }
+        &__content {
+            @include flex(column, center, center);
+            &-form {
+                @include flex(column, center, flex-start);
+                width: 320px;
+                span {
+                    padding-top: 20px;
+                    padding-bottom: 7px;
+                    font-size: 12px;
+                    line-height: 17px;
+                }
+                &-input {
+                    @include flex(row, flex-start, center);
+                    input {
+                        height: 32px;
+                        width: 247px;
+                        border: 1px solid #a7a7a7;
+                        border-right: none;
+                        &.password {
+                            border-right: 1px solid #a7a7a7;
+                            width: 320px;
+                        }
+                    }
+                    button {
+                        height: 36px;
+                        width: 74px;
+                        font-size: 15px;
+                        line-height: 21.72px;
+                        color: #ffffff;
+                        text-align: center;
+                        background: #d5d5d5;
+                    }
+                    &.click {
+                        background: #f7c95f;
+                    }
+                    &.noclick {
+                        background: #d5d5d5;
+                    }
+                }
+            }
+        }
+    }
+}
