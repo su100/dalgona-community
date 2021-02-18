@@ -1,0 +1,85 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.signupagree {
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .signupagree {
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .signupagree {
+        @include flex(column, space-around, center);
+        width: 100%;
+        height: 487px;
+        font-family: Noto Sans KR;
+        font-size: 14px;
+        line-height: 20px;
+        &__title {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+        &__button {
+            button {
+                &.click {
+                    background: #f7c95f;
+                }
+                &.noclick {
+                    background: #d5d5d5;
+                }
+                height: 32px;
+                width: 320px;
+                border-radius: 0px;
+                font-style: normal;
+                font-weight: normal;
+                align-items: center;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+
+        &__content {
+            &-agree {
+                @include flex(row, space-between, center);
+                width: 320px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 17px;
+                color: #000000;
+                padding-bottom: 7px;
+                &-check {
+                    img {
+                        height: 6.523194789886475px;
+                        width: 6.523194789886475px;
+                    }
+                    &.box {
+                        font-size: 11px;
+                        line-height: 15.93px;
+                    }
+                }
+            }
+            input {
+                height: 101px;
+                width: 320px;
+            }
+            &-impossible {
+                width: 320px;
+                text-align: left;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 11px;
+                line-height: 16px;
+                color: #6e6e6e;
+            }
+        }
+    }
+}
