@@ -14,10 +14,12 @@ class SignUp extends Component {
     render() {
         return (
             <div className="signup">
-                <SignUpAgree />
-                <SignUpConfirm />
-                <SignUpInfo />
-                <SignUpFinish />
+                <div className="only-pc">
+                    <SignUpAgree />
+                    <SignUpConfirm />
+                    <SignUpInfo />
+                    <SignUpFinish />
+                </div>
             </div>
         );
     }

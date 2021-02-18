@@ -86,7 +86,7 @@
         font-size: 18px;
         line-height: 26.06px;
         &__title {
-            font-size: 14px;
+            font-size: 18px;
             font-style: normal;
             font-weight: 500;
             line-height: 20px;
@@ -160,6 +160,8 @@
         font-size: 14px;
         line-height: 20px;
         &__title {
+            width: 100%;
+            padding-top: 15px;
             font-size: 14px;
             font-style: normal;
             font-weight: 500;
@@ -182,6 +184,7 @@
                 height: 32px;
                 width: 320px;
                 border-radius: 0px;
+                font-size: 14px;
                 font-style: normal;
                 font-weight: normal;
                 align-items: center;

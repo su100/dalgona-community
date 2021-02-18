@@ -14,8 +14,8 @@ const SignUpConfirm = () => {
             <div className="not-pc">
                 <img src={step2}></img>
             </div>
-            <div className="signupconfirm__content">
-                <div className="not-pc">
+            <div className="not-pc">
+                <div className="signupconfirm__content">
                     <span>회원가입을 위하여</span>
                     <span className="signupconfirm__content tablet">
                         고객님 명의의 휴대전화로 본인인증이 필요합니다.

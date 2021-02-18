@@ -48,6 +48,7 @@
             font-size: 18px;
             line-height: 26px;
             color: #000000;
+            text-align: center;
         }
         img {
             padding-top: 20px;
@@ -77,11 +78,13 @@
         width: 100%;
         height: 487px;
         &__title {
+            width: 100%;
             padding-top: 15px;
             font-weight: 500;
             font-size: 14px;
             line-height: 20.27px;
             color: #000000;
+            text-align: center;
         }
         img {
             width: 234px;
