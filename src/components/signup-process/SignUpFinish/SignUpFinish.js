@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import step4 from 'images/step4.png';
-import './SignUpConfirm.scss';
+import './SignUpFinish.scss';
 
 const SignUpFinish = () => {
     return (
@@ -10,7 +10,9 @@ const SignUpFinish = () => {
                 <span>04 </span>
                 <span>가입완료</span>
             </div>
-            <img src={step4}></img>
+            <div className="not-pc">
+                <img src={step4}></img>
+            </div>
             <div className="signupfinish__content">
                 <span>회원가입이 완료되었습니다.</span>
             </div>

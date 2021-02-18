@@ -78,10 +78,12 @@ class SignUpInfo extends Component {
         return (
             <div className="signupinfo">
                 <div className="signupinfo__title">
-                    <span>03 </span>
+                    <span className="not-pc">03 </span>
                     <span>회원정보입력</span>
                 </div>
-                <img src={step3}></img>
+                <div className="not-pc">
+                    <img src={step3}></img>
+                </div>
                 <div className="signupinfo__img">
                     <div className="signupinfo__img-title">
                         <span>대표사진</span>

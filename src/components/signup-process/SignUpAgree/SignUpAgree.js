@@ -31,10 +31,12 @@ const SignUpAgree = () => {
     return (
         <div className="signupagree">
             <div className="signupagree__title">
-                <span>01 </span>
+                <span className="not-pc">01 </span>
                 <span>약관동의</span>
             </div>
-            <img src={step1}></img>
+            <div className="not-pc">
+                <img src={step1}></img>
+            </div>
             <div className="signupagree__button">
                 <button
                     className={agree ? 'signupagree__button click' : 'signupagree__button noclick'}
