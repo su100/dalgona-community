@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Post from 'components/Post';
 import './Home.scss';
 
 class Home extends Component {
@@ -10,17 +10,12 @@ class Home extends Component {
             page: 1,
         };
     }
-
-    handlePage = (event) => {
-        // const { ordering } = this.state;
-        const value = event.target.value;
-        this.setState({ page: value });
-        //this.props.getUserList(value, ordering);
-    };
-
     render() {
-        const { count, page } = this.state;
-        return <div className="home"></div>;
+        return (
+            <div className="home">
+                <Post />
+            </div>
+        );
     }
 }
 
