@@ -69,7 +69,7 @@ class Header extends Component {
         const { isOpen, openMenu, isPC } = this.state;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
-
+        console.log(this.props.history);
         return (
             <div className="header">
                 <div className={isHome ? 'header-main' : 'header-main no'}>

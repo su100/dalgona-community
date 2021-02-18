@@ -6,7 +6,7 @@ import SignUpContainer from 'containers/SignUpContainer';
 const SignUpPage = ({ history, location }) => {
     return (
         <div>
-            <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
+            <PageTemplate header={<Header history={history} location={location} isHome={false} />} nofooter={true}>
                 <SignUpContainer />
             </PageTemplate>
         </div>
