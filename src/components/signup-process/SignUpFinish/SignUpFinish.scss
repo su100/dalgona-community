@@ -2,6 +2,48 @@
 
 //pc, 기본
 .signupfinish {
+    @include flex(column, center, center);
+    width: 100%;
+    height: 601px;
+    &__img {
+        width: 824px;
+        @include flex(row, center, center);
+    }
+    &__description {
+        width: 824px;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        span {
+            font-family: Roboto;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+    }
+    &__button {
+        @include flex(row, center, center);
+        &.button {
+            width: 351px;
+            height: 103px;
+            background: #f7c95f;
+            border-radius: 8px;
+            text-align: center;
+            a {
+                line-height: 103px;
+                font-family: Roboto;
+                font-size: 34px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 103px;
+                letter-spacing: 0em;
+                text-align: center;
+            }
+        }
+    }
 }
 
 //태블릿

@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 //pc, 기본
 .header {
@@ -72,7 +72,7 @@
             input {
                 background-position: 180px center;
                 background-repeat: no-repeat;
-                background-image: url("../../../images/search.png");
+                background-image: url('../../../images/search.png');
                 width: 207px;
                 height: 30px;
                 margin-right: 150px;
@@ -163,7 +163,7 @@
                     }
                     &-logoimg {
                         margin-right: 10px;
-                        width: 111px;
+                        width: 77px;
                         height: 21px;
                     }
                     &-search {
