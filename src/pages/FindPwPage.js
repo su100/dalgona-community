@@ -7,7 +7,7 @@ const FindPwPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
-                <FindPwContainer />
+                <FindPwContainer history={history} />
             </PageTemplate>
         </div>
     );
