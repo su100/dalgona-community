@@ -1,0 +1,145 @@
+@import 'styles/base.scss';
+
+.find-pw {
+    @include flex(column, center, center);
+    margin-bottom: 150px;
+    font-family: Noto Sans KR;
+    text-align: center;
+    h2 {
+        width: 800px;
+        text-align: left;
+    }
+    .find-id-pw__tab {
+        width: 1024px;
+        margin-top: 100px;
+        border-bottom: 1px solid #838383;
+        a {
+            display: inline-block;
+            padding: 9px 0;
+            font-size: 28px;
+            &.active {
+                border-bottom: 2px solid #000;
+                color: #1f1f1f;
+                font-weight: bold;
+            }
+            &:first-child {
+                margin-right: 130px;
+            }
+        }
+    }
+    .find-pw--next {
+        margin-top: 125px;
+        width: 292px;
+        p {
+            text-align: left;
+            font-weight: 500;
+            font-size: 17px;
+        }
+        input[type='password'] {
+            width: 292px;
+            height: 32px;
+            margin-bottom: 8px;
+        }
+        .find-pw__button--finish {
+            margin-top: 20px;
+            width: 300px;
+            height: 45px;
+            background: #d5d5d5;
+            color: #fff;
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .find-pw {
+        h2 {
+            margin: 0;
+            padding-left: 0;
+            line-height: 70px;
+            border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+            text-align: center;
+            font-weight: 500;
+            font-size: 21px;
+        }
+        .find-id-pw__tab {
+            margin-top: 0;
+            width: 728px;
+            border-bottom: 1px solid #afafaf;
+            a {
+                padding: 20.5px 0;
+                color: #b1b1b1;
+                font-size: 18px;
+                &:first-child {
+                    margin-right: 268px;
+                }
+            }
+        }
+
+        .find-pw--next {
+            width: 726px;
+            p {
+                font-size: 17px;
+            }
+            input[type='password'] {
+                width: 726px;
+                height: 50px;
+                margin-bottom: 10px;
+            }
+
+            .find-pw__button--finish {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                margin-bottom: 0;
+                width: 100vw;
+                height: 71.9px;
+                background: #d5d5d5;
+                color: #fff;
+                border-radius: 0;
+                font-weight: normal;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .find-pw {
+        h2 {
+            line-height: 47px;
+            font-size: 17px;
+        }
+        .find-id-pw__tab {
+            width: 320px;
+            a {
+                padding: 13px 0;
+                font-size: 14px;
+                &.active {
+                    border-bottom: 1px solid #000;
+                }
+                &:first-child {
+                    margin-right: 86px;
+                }
+            }
+        }
+
+        .find-pw--next {
+            width: 321px;
+            p {
+                font-size: 12px;
+            }
+            input[type='password'] {
+                width: 320px;
+                height: 32px;
+                margin-bottom: 6px;
+            }
+
+            .find-pw__button--finish {
+                height: 51px;
+                font-size: 17px;
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ const FindIdPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
-                <FindIdContainer />
+                <FindIdContainer history={history} />
             </PageTemplate>
         </div>
     );
