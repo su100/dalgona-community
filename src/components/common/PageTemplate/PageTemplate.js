@@ -3,13 +3,13 @@ import Footer from 'components/common/Footer';
 
 import './PageTemplate.scss';
 
-const PageTemplate = ({ header, children }) => {
+const PageTemplate = ({ header, children, nofooter }) => {
     return (
         <div className="page-template">
             <header>{header}</header>
             <main>{children}</main>
             <footer>
-                <Footer />
+                <Footer nofooter={nofooter} />
             </footer>
         </div>
     );

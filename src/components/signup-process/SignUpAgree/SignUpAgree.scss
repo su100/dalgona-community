@@ -1,0 +1,235 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.signupagree {
+    @include flex(column, space-around, center);
+    width: 100%;
+    height: 1062.45px;
+    font-family: Noto Sans KR;
+    font-size: 18px;
+    line-height: 26.06px;
+    &__title {
+        width: 824px;
+        padding-top: 214px;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    &__button {
+        button {
+            &.click {
+                background: #f7c95f;
+            }
+            &.noclick {
+                background: #d5d5d5;
+            }
+            width: 824px;
+            height: 103px;
+            background: #f7c95f;
+            border-radius: 8px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 34px;
+            line-height: 41px;
+            color: #1f1f1f;
+        }
+    }
+
+    &__content {
+        &-agree {
+            @include flex(row, space-between, center);
+            width: 824px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 24.62px;
+            color: #000000;
+            padding-bottom: 7px;
+            &-check {
+                img {
+                    height: 18px;
+                    width: 18px;
+                }
+                &.box {
+                    font-size: 17px;
+                    line-height: 22px;
+                }
+            }
+        }
+        input {
+            height: 215.89999389648438px;
+            width: 824px;
+        }
+        &-impossible {
+            width: 728px;
+            text-align: left;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 17px;
+            line-height: 18.82px;
+            color: #6e6e6e;
+        }
+    }
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .signupagree {
+        @include flex(column, space-around, center);
+        width: 100%;
+        height: 1062.45px;
+        font-family: Noto Sans KR;
+        font-size: 18px;
+        line-height: 26.06px;
+        &__title {
+            padding-top: 20px;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+        &__button {
+            button {
+                &.click {
+                    background: #f7c95f;
+                }
+                &.noclick {
+                    background: #d5d5d5;
+                }
+                height: 49.899993896484375px;
+                width: 728px;
+                border-radius: 0px;
+                font-style: normal;
+                font-weight: normal;
+                align-items: center;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+
+        &__content {
+            &-agree {
+                @include flex(row, space-between, center);
+                width: 728px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 17px;
+                line-height: 24.62px;
+                color: #000000;
+                padding-bottom: 7px;
+                &-check {
+                    img {
+                        height: 14px;
+                        width: 14px;
+                    }
+                    &.box {
+                        font-size: 15px;
+                        line-height: 21.72px;
+                    }
+                }
+            }
+            input {
+                height: 215.89999389648438px;
+                width: 728px;
+            }
+            &-impossible {
+                width: 728px;
+                text-align: left;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+                line-height: 18.82px;
+                color: #6e6e6e;
+                padding-bottom: 115.49px;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .signupagree {
+        @include flex(column, space-around, center);
+        width: 100%;
+        height: 487px;
+        font-family: Noto Sans KR;
+        font-size: 14px;
+        line-height: 20px;
+        &__title {
+            width: 100%;
+            padding-top: 15px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+        img {
+            width: 245px;
+            height: 30px;
+        }
+        &__button {
+            button {
+                &.click {
+                    background: #f7c95f;
+                }
+                &.noclick {
+                    background: #d5d5d5;
+                }
+                height: 32px;
+                width: 320px;
+                border-radius: 0px;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: normal;
+                align-items: center;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+
+        &__content {
+            &-agree {
+                @include flex(row, space-between, center);
+                width: 320px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 17px;
+                color: #000000;
+                padding-bottom: 7px;
+                &-check {
+                    img {
+                        height: 6.523194789886475px;
+                        width: 6.523194789886475px;
+                    }
+                    &.box {
+                        font-size: 11px;
+                        line-height: 15.93px;
+                    }
+                }
+            }
+            input {
+                height: 101px;
+                width: 320px;
+            }
+            &-impossible {
+                width: 320px;
+                text-align: left;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 11px;
+                line-height: 16px;
+                color: #6e6e6e;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}

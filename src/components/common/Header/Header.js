@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import searchIcon from 'images/search.png';
 import menuIcon from 'images/menu.png';
 import logo from 'images/logo.png';
+import biglogo from 'images/biglogo.png';
 import './Header.scss';
 
 class Header extends Component {
@@ -11,19 +12,18 @@ class Header extends Component {
         this.state = {
             isOpen: false,
             openMenu: 'home',
-            width: '',
-            height: '',
             isPC: true,
+            _ismounted: false,
         };
     }
 
     handleOver = (e) => {
         if (e.target.id === 'home') {
             this.setState({ isOpen: false, openMenu: e.target.id });
+            this.goHome();
         } else {
             this.setState({ isOpen: true, openMenu: e.target.id });
         }
-        console.log(e.target.id);
     };
 
     handleOnClick = (e) => {
@@ -32,14 +32,12 @@ class Header extends Component {
             this.setState({ isOpen: !isOpen, openMenu: e.target.id });
         } else if (e.target.id === 'home') {
             this.setState({ isOpen: false, openMenu: e.target.id });
+            this.goHome();
         } else {
             this.setState({ isOpen: true, openMenu: e.target.id });
         }
-    };
 
-    setSize = () => {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-        this.checkIsPc();
+        console.log(e.target.id);
     };
 
     checkIsPc = () => {
@@ -60,9 +58,9 @@ class Header extends Component {
     };
 
     componentDidMount() {
-        this.setSize();
+        this.checkIsPc();
         this.setOpenMenu();
-        window.addEventListener('resize', this.setSize);
+        window.addEventListener('resize', this.checkIsPc);
     }
 
     render() {
@@ -74,10 +72,15 @@ class Header extends Component {
             <div className="header">
                 <div className={isHome ? 'header-main' : 'header-main no'}>
                     <div className="header-main__logo">
-                        <img className="header-main__logo-menu" src={menuIcon}></img>
-                        <span>dalgona</span>
-                        <img className="header-main__logo-logoimg" src={logo} onClick={this.goHome}></img>
-                        <img className="header-main__logo-search" src={searchIcon}></img>
+                        <div className="not-pc">
+                            <img className="header-main__logo-menu" src={menuIcon}></img>
+                        </div>
+                        <div className="header-main__logo-logoimg" onClick={this.goHome}>
+                            <img src={isPC ? biglogo : logo}></img>
+                        </div>
+                        <div className="not-pc">
+                            <img className="header-main__logo-search" src={searchIcon}></img>
+                        </div>
                     </div>
                     <div className="header-main__login">
                         <Link to={{ pathname: '/login', path: 'login' }}>

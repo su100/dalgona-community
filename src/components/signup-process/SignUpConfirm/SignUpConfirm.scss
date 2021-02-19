@@ -1,0 +1,107 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.signupconfirm {
+    @include flex(column, center, center);
+    width: 100%;
+    height: 500px;
+    font-family: Noto Sans KR;
+    font-style: normal;
+    &__title {
+        width: 824px;
+        padding-bottom: 23px;
+        font-family: Roboto;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 41px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    &__button {
+        width: 824px;
+        height: 103px;
+        background: #dadada;
+        border-radius: 8px;
+        font-family: Roboto;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 41px;
+        letter-spacing: 0em;
+    }
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+    .signupconfirm {
+        @include flex(column, flex-start, center);
+        width: 100%;
+        height: 1062.45px;
+        font-family: Noto Sans KR;
+        font-style: normal;
+        &__title {
+            padding-top: 23.97px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 26px;
+            color: #000000;
+            text-align: center;
+        }
+        img {
+            padding-top: 20px;
+        }
+        &__content {
+            @include flex(column, center, center);
+            padding-top: 117.97px;
+            font-weight: normal;
+            font-size: 17px;
+            line-height: 25px;
+            color: #7c7c7c;
+            &.tablet {
+                padding: 0px;
+                display: inline;
+            }
+            &.mobile {
+                display: none;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .signupconfirm {
+        @include flex(column, flex-start, center);
+        width: 100%;
+        height: 487px;
+        &__title {
+            width: 100%;
+            padding-top: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20.27px;
+            color: #000000;
+            text-align: center;
+        }
+        img {
+            width: 234px;
+            height: 30px;
+            padding-top: 9px;
+        }
+        &__content {
+            @include flex(column, center, center);
+            padding-top: 85px;
+            font-size: 15px;
+            line-height: 27px;
+            color: #7c7c7c;
+            &.tablet {
+                display: none;
+            }
+            &.mobile {
+                padding: 0px;
+                display: inline;
+            }
+        }
+    }
+}
