@@ -10,7 +10,7 @@
         color: rgb(137, 137, 137);
         &__logo {
             @include flex(row, space-between, center);
-            width: 26%;
+            width: 8%;
             height: 70px;
             padding-left: 20%;
             span {
@@ -18,18 +18,25 @@
                 font-size: 30px;
             }
             &-menu {
+                display: none;
             }
             &-logoimg {
                 margin-right: 10px;
-                width: 111.80583953857422px;
-                height: 21.8803653717041px;
+                width: 140px;
+                height: 55px;
+                img {
+                    display: block;
+                    width: 140px;
+                    height: 55px;
+                }
             }
             &-search {
+                display: none;
             }
         }
         &__login {
             @include flex(row, center, center);
-            width: 18%;
+            width: 20%;
             height: 25px;
             padding-right: 60px;
             border-right: 1px solid #838383;
@@ -54,7 +61,7 @@
         &__menu {
             @include flex(row, space-between, center);
             line-height: 80px;
-            width: 62%;
+            width: 70%;
             padding-left: 70px;
             &-content {
                 &:hover {
@@ -74,9 +81,6 @@
                 border-radius: 40px;
             }
         }
-        img {
-            display: none;
-        }
     }
     &-hover {
         @include flex(row, center, center);
@@ -84,14 +88,14 @@
         height: 302px;
         background: #c2c2c2;
         &__border {
-            width: 70%;
+            width: 49%;
             height: 256px;
             margin-top: 15px;
             border-right: 1px solid #838383;
         }
         &__menu {
             @include flex(row, flex-start, center);
-            width: 26%;
+            width: 27.5%;
             height: 256px;
             padding-right: 20%;
             margin-top: 15px;
@@ -152,19 +156,22 @@
                 img {
                     display: inline;
                     margin: 0 20px;
-                    &-menu {
-                        width: 16px;
-                        height: 16px;
+                }
+                &-menu {
+                    width: 16px;
+                    height: 16px;
+                }
+                &-logoimg {
+                    margin-right: 10px;
+                    height: 31px;
+                    img {
+                        width: 110px;
+                        height: 31px;
                     }
-                    &-logoimg {
-                        margin-right: 10px;
-                        width: 77px;
-                        height: 21px;
-                    }
-                    &-search {
-                        width: 16px;
-                        height: 16px;
-                    }
+                }
+                &-search {
+                    width: 16px;
+                    height: 16px;
                 }
             }
             &__login {
@@ -173,7 +180,7 @@
             &__menu {
                 @include flex(row, space-around, center);
                 width: 100%;
-                height: 35px;
+                height: 50px;
                 padding-left: 0px;
                 &-content {
                     height: 30px;
@@ -198,7 +205,6 @@
             }
         }
         &-hover {
-            width: 100%;
             height: 42.150001525878906px;
             background: rgb(53, 53, 53);
             @include flex(row, center, center);
@@ -207,6 +213,8 @@
             }
             &__menu {
                 @include flex(row, space-around, center);
+                width: 100%;
+                height: 42px;
                 margin-top: 0px;
                 padding-right: 0px;
                 &-main,
@@ -215,6 +223,7 @@
                 &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
+                    height: inherit;
                     color: white;
                     font-family: Noto Sans KR;
                     font-size: 15px;
@@ -249,26 +258,30 @@
             &__logo {
                 @include flex(row, space-between, space-between);
                 width: 100%;
-                padding: 15.97px 0px 20px 0px;
+                padding: 15px 0px 15px 0px;
                 span {
                     display: none;
                 }
-                img {
-                    display: inline;
-                    margin: 0 20px;
-                    &-menu {
-                        width: 16px;
-                        height: 16px;
-                    }
-                    &-logoimg {
+                &-menu {
+                    width: 16px;
+                    height: 16px;
+                }
+                &-logoimg {
+                    width: 86.82999420166016px;
+                    height: 25.177528381347656px;
+                    img {
                         width: 86.82999420166016px;
                         height: 25.177528381347656px;
                         padding-right: 10px;
                     }
-                    &-search {
-                        width: 16px;
-                        height: 16px;
-                    }
+                }
+                &-search {
+                    width: 16px;
+                    height: 16px;
+                }
+                img {
+                    display: inline;
+                    margin: 0 20px;
                 }
             }
             &__login {
@@ -277,7 +290,7 @@
             &__menu {
                 @include flex(row, space-around, center);
                 width: 100%;
-                height: 30px;
+                height: 40px;
                 padding-left: 0px;
                 &-content {
                     height: 30px;
@@ -311,6 +324,8 @@
             }
             &__menu {
                 @include flex(row, space-around, center);
+                width: 100%;
+                height: inherit;
                 margin-top: 0px;
                 padding-right: 0px;
                 &-main,
@@ -319,6 +334,7 @@
                 &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
+                    height: inherit;
                     color: white;
                     font-family: Noto Sans KR;
                     font-size: 12px;
