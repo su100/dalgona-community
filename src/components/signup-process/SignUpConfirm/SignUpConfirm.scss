@@ -18,19 +18,17 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    &__content {
-        button {
-            width: 824px;
-            height: 103px;
-            background: #dadada;
-            border-radius: 8px;
-            font-family: Roboto;
-            font-size: 34px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 41px;
-            letter-spacing: 0em;
-        }
+    &__button {
+        width: 824px;
+        height: 103px;
+        background: #dadada;
+        border-radius: 8px;
+        font-family: Roboto;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 41px;
+        letter-spacing: 0em;
     }
 }
 

@@ -7,7 +7,7 @@ const SignUpPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Header history={history} location={location} isHome={false} />} nofooter={true}>
-                <SignUpContainer />
+                <SignUpContainer history={history} location={location} />
             </PageTemplate>
         </div>
     );

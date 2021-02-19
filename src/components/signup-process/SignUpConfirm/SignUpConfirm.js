@@ -23,9 +23,9 @@ const SignUpConfirm = () => {
                     <span className="signupconfirm__content mobile">고객님 명의의 휴대전화로</span>
                     <span className="signupconfirm__content mobile">본인인증이 필요합니다.</span>
                 </div>
-                <div className="only-pc">
-                    <button>휴대폰으로 본인확인 하기</button>
-                </div>
+            </div>
+            <div className="only-pc">
+                <button className="signupconfirm__button">휴대폰으로 본인확인 하기</button>
             </div>
         </div>
     );

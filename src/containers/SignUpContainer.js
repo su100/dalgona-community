@@ -8,7 +8,7 @@ class SignUpContainer extends Component {
     render() {
         return (
             <Fragment>
-                <SignUp />
+                <SignUp history={this.props.history} location={this.props.location} />
             </Fragment>
         );
     }

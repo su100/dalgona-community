@@ -11,9 +11,8 @@ class Header extends Component {
         this.state = {
             isOpen: false,
             openMenu: 'home',
-            width: '',
-            height: '',
             isPC: true,
+            _ismounted: false,
         };
     }
 
@@ -37,11 +36,6 @@ class Header extends Component {
         }
     };
 
-    setSize = () => {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-        this.checkIsPc();
-    };
-
     checkIsPc = () => {
         if (window.innerWidth > 1024) {
             this.setState({ isPC: true });
@@ -60,16 +54,21 @@ class Header extends Component {
     };
 
     componentDidMount() {
-        this.setSize();
         this.setOpenMenu();
+        this.checkIsPc();
+        this._ismounted = true;
         window.addEventListener('resize', this.setSize);
+    }
+
+    componentWillUnmount() {
+        this._ismounted = false;
     }
 
     render() {
         const { isOpen, openMenu, isPC } = this.state;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
-        console.log(this.props.history);
+
         return (
             <div className="header">
                 <div className={isHome ? 'header-main' : 'header-main no'}>
