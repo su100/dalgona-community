@@ -40,7 +40,7 @@ const Pagination = ({ countList, currentPage, handlePage, isReply }) => {
                 </button>
             );
         }
-        if (currentPage !== lastPage && currentPage < lastPage - 5) {
+        if (currentPage !== lastPage && currentPage < lastPage) {
             //마지막페이지 아닐 때
             console.log(currentPage);
             tmp.push(
@@ -49,7 +49,7 @@ const Pagination = ({ countList, currentPage, handlePage, isReply }) => {
                 </button>
             );
         }
-        result.push(<div>{tmp}</div>);
+        result.push(<div key={1}>{tmp}</div>);
         return result;
     };
     return <div className="pagination"> {pageRenderer(countList)} </div>;
