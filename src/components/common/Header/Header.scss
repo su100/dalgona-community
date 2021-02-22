@@ -264,17 +264,21 @@
                 span {
                     display: none;
                 }
+                img {
+                    display: inline;
+                    margin: 0 5px;
+                }
                 &-menu {
                     width: 16px;
                     height: 16px;
                 }
                 &-logoimg {
-                    width: 86.82999420166016px;
-                    height: 25.177528381347656px;
+                    width: 120px;
+                    margin-right: 0px;
+                    height: 26px;
                     img {
                         width: 86.82999420166016px;
                         height: 25.177528381347656px;
-                        padding-right: 10px;
                     }
                 }
                 &-search {
