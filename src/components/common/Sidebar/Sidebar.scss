@@ -1,0 +1,154 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.sidebar {
+    display: none;
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .sidebar {
+        display: block;
+        height: 1024px;
+        background: white;
+        width: 469px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        &__header {
+            @include flex(row, center, center);
+            height: 74.79000091552734px;
+            width: 469px;
+            background: #2d2d2d;
+        }
+        &__profile {
+            @include flex(row, flex-start, center);
+            width: 469px;
+            height: 110px;
+            border-bottom: 0.5px solid #e2e2e2;
+            &-img {
+                margin-left: 21px;
+            }
+            &-myinformation {
+                @include flex(column, center, flex-start);
+                &-nickname {
+                    span {
+                        font-family: Roboto;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 28px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                    }
+                }
+                &-description {
+                    span {
+                        font-family: Noto Sans KR;
+                        font-size: 15px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 22px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+        &__link {
+            @include flex(column, center, center);
+            &-content {
+                width: 429px;
+                height: 54px;
+                border-bottom: 0.5px solid #e2e2e2;
+                a {
+                    line-height: 54px;
+                    text-decoration: none;
+                    font-family: Roboto;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .sidebar {
+        display: block;
+        height: 617.8933715820312px;
+        width: 283px;
+        background: white;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        &__header {
+            @include flex(row, center, center);
+            height: 45px;
+            width: 283px;
+            background: #2d2d2d;
+            img {
+                height: 19.260292053222656px;
+                width: 66.4175033569336px;
+            }
+        }
+        &__profile {
+            @include flex(row, flex-start, center);
+            width: 246px;
+            height: 72px;
+            border-bottom: 0.5px solid #e2e2e2;
+            &-img {
+                margin-left: 21px;
+            }
+            &-myinformation {
+                @include flex(column, center, flex-start);
+                &-nickname {
+                    span {
+                        font-family: Roboto;
+                        font-size: 17px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 28px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                    }
+                }
+                &-description {
+                    span {
+                        font-family: Noto Sans KR;
+                        font-size: 11px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 22px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+        &__link {
+            @include flex(column, center, center);
+            &-content {
+                width: 246px;
+                height: 41px;
+                border-bottom: 0.5px solid #e2e2e2;
+                a {
+                    line-height: 54px;
+                    text-decoration: none;
+                    font-family: Roboto;
+                    font-size: 17px;
+                    font-style: normal;
+                    font-weight: 400;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    color: black;
+                }
+            }
+        }
+    }
+}

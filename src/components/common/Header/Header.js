@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Sidebar from 'components/common/Sidebar';
 import searchIcon from 'images/search.png';
 import menuIcon from 'images/menu.png';
 import logo from 'images/logo.png';
@@ -14,6 +15,8 @@ class Header extends Component {
             openMenu: 'home',
             isPC: true,
             _ismounted: false,
+            openSidebar: false,
+            isLogin: false,
         };
     }
 
@@ -57,6 +60,11 @@ class Header extends Component {
         this.setState({ openMenu: path });
     };
 
+    handleSidebar = () => {
+        const { openSidebar } = this.state;
+        this.setState({ openSidebar: !openSidebar });
+    };
+
     componentDidMount() {
         this.checkIsPc();
         this.setOpenMenu();
@@ -64,16 +72,21 @@ class Header extends Component {
     }
 
     render() {
-        const { isOpen, openMenu, isPC } = this.state;
+        const { isOpen, openMenu, isPC, openSidebar, isLogin } = this.state;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
 
         return (
-            <div className="header">
+            <div className={!openSidebar ? 'header' : 'header sidebaropen'}>
+                {openSidebar && (
+                    <div className="header sidebaropen sidebar">
+                        <Sidebar handleSidebar={this.handleSidebar} isLogin={isLogin} />
+                    </div>
+                )}
                 <div className={isHome ? 'header-main' : 'header-main no'}>
                     <div className="header-main__logo">
                         <div className="not-pc">
-                            <img className="header-main__logo-menu" src={menuIcon}></img>
+                            <img className="header-main__logo-menu" src={menuIcon} onClick={this.handleSidebar}></img>
                         </div>
                         <div className="header-main__logo-logoimg" onClick={this.goHome}>
                             <img src={isPC ? biglogo : logo}></img>
