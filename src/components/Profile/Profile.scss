@@ -12,8 +12,8 @@
             display: none;
         }
         button {
-            width: 194px;
-            height: 194px;
+            width: 208px;
+            height: 208px;
             border: 1px solid black;
             border-radius: 194px;
         }
@@ -22,6 +22,7 @@
         @include flex(column, center, center);
         padding-left: 39px;
         span {
+            width: 228px;
             font-family: Roboto;
             font-size: 22px;
             font-style: normal;
@@ -29,14 +30,13 @@
             line-height: 17px;
             letter-spacing: 0em;
             text-align: left;
-            padding-right: 62px;
+            padding-right: 20px;
         }
         &-nickname {
             @include flex(row, flex-start, flex-start);
             width: 490px;
             input {
-                margin-left: 20px;
-                width: 163px;
+                width: 162px;
                 height: 32px;
                 background: rgba(196, 196, 196, 0.5);
                 border: none;
@@ -58,6 +58,9 @@
             @include flex(row, flex-start, flex-start);
             padding-top: 42px;
             width: 490px;
+            span {
+                width: 162px;
+            }
             input {
                 width: 330px;
                 height: 120px;

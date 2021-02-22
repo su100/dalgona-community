@@ -45,9 +45,11 @@ class Profile extends Component {
                         <input></input>
                     </div>
                 </div>
-                <div className="profile__button">
-                    <button className="profile__button-modify">수정</button>
-                    <button className="profile__button-secession">탈퇴</button>
+                <div className="not-pc">
+                    <div className="profile__button">
+                        <button className="profile__button-modify">수정</button>
+                        <button className="profile__button-secession">탈퇴</button>
+                    </div>
                 </div>
             </div>
         );
