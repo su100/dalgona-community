@@ -6,7 +6,7 @@ import ProfileContainer from 'containers/ProfileContainer';
 const ProfilePage = ({ history, location }) => {
     return (
         <div>
-            <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
+            <PageTemplate header={<Header history={history} location={location} isHome={false} />} nofooter={true}>
                 <ProfileContainer />
             </PageTemplate>
         </div>

@@ -1,0 +1,277 @@
+@import 'styles/base.scss';
+
+.profile {
+    @include flex(row, center, center);
+    width: 100%;
+    height: 100%;
+    padding-top: 86px;
+    &__img {
+        margin-top: 38px;
+        margin-bottom: 64px;
+        input[type='file'] {
+            display: none;
+        }
+        button {
+            width: 208px;
+            height: 208px;
+            border: 1px solid black;
+            border-radius: 194px;
+        }
+    }
+    &__content {
+        @include flex(column, center, center);
+        padding-left: 39px;
+        span {
+            width: 228px;
+            font-family: Roboto;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 17px;
+            letter-spacing: 0em;
+            text-align: left;
+            padding-right: 20px;
+        }
+        &-nickname {
+            @include flex(row, flex-start, flex-start);
+            width: 490px;
+            input {
+                width: 162px;
+                height: 32px;
+                background: rgba(196, 196, 196, 0.5);
+                border: none;
+            }
+            button {
+                width: 75px;
+                height: 32px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 22px;
+                background: #c4c4c4;
+                color: #1f1f1f;
+                margin-left: 9px;
+            }
+        }
+        &-introduce {
+            @include flex(row, flex-start, flex-start);
+            padding-top: 42px;
+            width: 490px;
+            span {
+                width: 162px;
+            }
+            input {
+                width: 330px;
+                height: 120px;
+                background: rgba(196, 196, 196, 0.5);
+                border: none;
+            }
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .profile {
+        @include flex(column, center, center);
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        &__header {
+            @include flex(row, center, center);
+            width: 100%;
+            height: 69px;
+            border-bottom: 0.487px solid #afafaf;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 30px;
+                letter-spacing: 0em;
+            }
+        }
+        &__img {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            input[type='file'] {
+                display: none;
+            }
+            button {
+                width: 194px;
+                height: 194px;
+                border: 1px solid black;
+                border-radius: 194px;
+            }
+        }
+        &__content {
+            @include flex(column, center, center);
+            padding-left: 0px;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 25px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            &-nickname {
+                @include flex(column, center, flex-start);
+                width: 100%;
+                span {
+                    padding-bottom: 18px;
+                }
+                &.button {
+                    @include flex(row, center, center);
+                    input {
+                        margin-left: 0px;
+                        height: 49.899993896484375px;
+                        width: 600px;
+                        background: white;
+                        border: 1px solid #cbcbcb;
+                    }
+                    button {
+                        width: 128px;
+                        height: 54px;
+                        border-left: none;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 20px;
+                        line-height: 29px;
+                        color: #ffffff;
+                        margin-left: 0px;
+                    }
+                }
+            }
+            &-introduce {
+                @include flex(column, center, flex-start);
+                padding-top: 28px;
+                width: 100%;
+                span {
+                    padding-bottom: 18px;
+                }
+                input {
+                    height: 122.9000244140625px;
+                    width: 728px;
+                    border: 1px solid #cbcbcb;
+                    background: white;
+                }
+            }
+        }
+        &__button {
+            @include flex(column, center, center);
+            margin-top: 21px;
+            margin-bottom: 100px;
+            button {
+                margin: 2px 0;
+                height: 49.9000244140625px;
+                width: 728px;
+                background: #f7f7f7;
+                font-family: Noto Sans KR;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 29px;
+                letter-spacing: 0em;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .profile {
+        @include flex(column, center, center);
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        &__header {
+            @include flex(row, center, center);
+            width: 100%;
+            height: 47px;
+            border-bottom: 0.487px solid #afafaf;
+            span {
+                font-size: 17px;
+                line-height: 25px;
+            }
+        }
+        &__img {
+            input[type='file'] {
+                display: none;
+            }
+            button {
+                width: 92px;
+                height: 92px;
+                border: 1px solid black;
+                border-radius: 194px;
+            }
+        }
+        &__content {
+            @include flex(column, center, center);
+            padding-left: 0px;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 25px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            &-nickname {
+                @include flex(column, center, flex-start);
+                width: 100%;
+                span {
+                    padding-bottom: 7px;
+                }
+                &.button {
+                    @include flex(row, center, center);
+                    input {
+                        height: 32px;
+                        width: 246px;
+                    }
+                    button {
+                        width: 74px;
+                        height: 36px;
+                        font-size: 15px;
+                        line-height: 22px;
+                    }
+                }
+            }
+            &-introduce {
+                @include flex(column, center, flex-start);
+                padding-top: 20px;
+                width: 100%;
+                span {
+                    padding-bottom: 7px;
+                }
+                input {
+                    height: 108px;
+                    width: 320px;
+                }
+            }
+        }
+        &__button {
+            @include flex(column, center, center);
+            margin-top: 21px;
+            margin-bottom: 100px;
+            button {
+                margin: 2px 0;
+                height: 32px;
+                width: 320px;
+                font-family: Noto Sans KR;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 22px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: white;
+                background: #dadada;
+            }
+        }
+    }
+}
