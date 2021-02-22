@@ -2,6 +2,8 @@
 
 //pc, 기본
 .header {
+    &.sidebaropen {
+    }
     &-main {
         @include flex(row, center, center);
         width: 100%;
