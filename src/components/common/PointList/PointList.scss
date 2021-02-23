@@ -1,0 +1,164 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.point-list {
+    width: 1141px;
+    &__date {
+        height: 36px;
+        background: #c4c4c4;
+        span {
+            padding-left: 33px;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 36px;
+            letter-spacing: 0.16px;
+            color: #4f4f4f;
+        }
+    }
+    &__activity {
+        @include flex(row, flex-start, center);
+        width: 1141px;
+        height: 72px;
+        border-bottom: 0.5px solid #c4c4c4;
+        &-info {
+            @include flex(column, center, center);
+            padding-left: 20px;
+            &-title {
+                width: 1018px;
+            }
+            &-luna {
+                width: 1018px;
+            }
+        }
+        &-point {
+            width: 84px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 28px;
+
+            color: #1f1f1f;
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .point-list {
+        width: 100%;
+        &__date {
+            height: 28.9px;
+            background: #f6f6f6;
+            span {
+                padding-left: 20px;
+                font-family: Noto Sans KR;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &__activity {
+            @include flex(row, space-between, center);
+            width: inherit;
+            height: 97px;
+            border-bottom: 0.467px solid #e2e2e2;
+            &-info {
+                @include flex(column, center, center);
+                padding-left: 20px;
+                &-title {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-size: 23px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 33px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    padding-bottom: 6px;
+                }
+                &-luna {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 17px;
+                    line-height: 25px;
+                    color: #a8a8a8;
+                    text-align: left;
+                }
+            }
+            &-point {
+                &.mobile {
+                    @include flex(row, center, center);
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 29px;
+                    color: #000000;
+                }
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .point-list {
+        width: 100%;
+        &__date {
+            height: 22px;
+            span {
+                padding-left: 20px;
+                font-family: Noto Sans KR;
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 14px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &__activity {
+            @include flex(row, space-between, center);
+            width: inherit;
+            height: 80px;
+            border-bottom: 0.467px solid #e2e2e2;
+            &-info {
+                @include flex(column, center, center);
+                padding-left: 20px;
+                &-title {
+                    width: 200px;
+                    font-size: 17px;
+                    padding-bottom: 11px;
+                }
+                &-luna {
+                    width: 200px;
+                    font-size: 12px;
+                    line-height: 17px;
+                }
+            }
+            &-reply {
+                &.mobile {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 17px;
+                    line-height: 25px;
+                    color: #000000;
+
+                    img {
+                        height: 16px;
+                        width: 17px;
+                    }
+                }
+            }
+        }
+    }
+}
