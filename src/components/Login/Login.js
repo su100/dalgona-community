@@ -12,26 +12,12 @@ class Login extends Component {
             id: '',
             password: '',
             checked: false,
-            isPC: true,
         };
     }
     handleForm = (name) => (e) => {
         this.setState({ [name]: e.target.value });
         console.log(e.target.value);
     };
-
-    checkIsPc = () => {
-        if (window.innerWidth > 1024) {
-            this.setState({ isPC: true });
-        } else {
-            this.setState({ isPC: false });
-        }
-    };
-
-    componentDidMount() {
-        this.checkIsPc();
-        window.addEventListener('resize', this.setSize);
-    }
 
     // handleKeyPress = (e) => {
     //     if (e.key === 'Enter') {
@@ -44,7 +30,7 @@ class Login extends Component {
                 <div className="login__logo">
                     <img src={logo}></img>
                 </div>
-                <div className="login__input">
+                <form className="login__input">
                     <div className="not-pc">
                         <div className="login__input-selectbox">
                             <img src={mobilecheckbox}></img>
@@ -60,6 +46,7 @@ class Login extends Component {
                     <input
                         className="login__input-password"
                         type="password"
+                        autoComplete="on"
                         onChange={this.handleForm('password')}
                         onKeyPress={this.handleKeyPress}
                     ></input>
@@ -69,7 +56,7 @@ class Login extends Component {
                             <span>자동 로그인</span>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div className="not-pc">
                     <div className="login__button">
                         <button>로그인</button>

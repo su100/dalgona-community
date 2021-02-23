@@ -35,6 +35,9 @@
         &-nickname {
             @include flex(row, flex-start, flex-start);
             width: 490px;
+            span {
+                width: 183px;
+            }
             input {
                 width: 162px;
                 height: 32px;
@@ -66,6 +69,18 @@
                 height: 120px;
                 background: rgba(196, 196, 196, 0.5);
                 border: none;
+            }
+            button {
+                width: 75px;
+                height: 32px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 22px;
+                background: #c4c4c4;
+                color: #1f1f1f;
+                margin-left: 9px;
             }
         }
     }
