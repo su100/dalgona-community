@@ -8,12 +8,12 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .point {
-        width: 100vw;
+        @include flex(column, center, center);
+        width: 100%;
         &__header {
             @include flex(row, center, center);
             width: 100vw;
             height: 69px;
-            border-bottom: 0.487px solid #afafaf;
             span {
                 font-family: Noto Sans KR;
                 font-size: 21px;
@@ -22,6 +22,35 @@
                 line-height: 69px;
                 letter-spacing: 0em;
             }
+        }
+        &__mypoint {
+            @include flex(row, space-between, center);
+            margin: 0px auto;
+            width: 728px;
+            height: 49.9px;
+            border: 1px solid #cbcbcb;
+            span {
+                padding-left: 21px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                line-height: 29px;
+                color: #000000;
+            }
+            &-star {
+                @include flex(row, row, center);
+            }
+        }
+        &__select {
+            @include flex(row, space-around, center);
+            height: 59.58px;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 19px;
+            line-height: 28px;
+            color: #898989;
         }
     }
 }
@@ -34,6 +63,29 @@
             span {
                 font-size: 17px;
             }
+        }
+        &__mypoint {
+            @include flex(row, space-between, center);
+            margin: 0px auto;
+            width: 320px;
+            height: 32px;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 25px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            &-star {
+            }
+        }
+        &__select {
+            @include flex(row, space-around, center);
+            height: 35px;
+            font-size: 14px;
+            line-height: 20px;
         }
     }
 }
