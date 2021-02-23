@@ -2,7 +2,7 @@
 
 //pc, 기본
 .activity-list {
-    width: 1194px;
+    width: 1141px;
     &__date {
         height: 36px;
         background: #c4c4c4;
@@ -25,11 +25,14 @@
         &-img {
             width: 90px;
         }
-        &-title {
-            width: 885px;
-        }
-        &-luna {
-            width: 78px;
+        &-info {
+            @include flex(row, center, center);
+            &-title {
+                width: 885px;
+            }
+            &-luna {
+                width: 78px;
+            }
         }
         &-reply {
             width: 84px;
@@ -40,6 +43,64 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .activity-list {
+        width: 100%;
+        &__date {
+            height: 28.9px;
+            background: #f6f6f6;
+            span {
+                padding-left: 20px;
+                font-family: Noto Sans KR;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &__activity {
+            @include flex(row, space-between, center);
+            width: inherit;
+            height: 97px;
+            border-bottom: 0.467px solid #e2e2e2;
+            &-info {
+                @include flex(column, center, center);
+                width: 400px;
+                padding-left: 20px;
+                &-title {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-size: 23px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 33px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    padding-bottom: 6px;
+                }
+                &-luna {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 17px;
+                    line-height: 25px;
+                    color: #a8a8a8;
+                    text-align: left;
+                }
+            }
+            &-reply {
+                &.mobile {
+                    width: 42px;
+                    height: 42px;
+                    line-height: 42px;
+                    text-align: center;
+                    border-radius: 42px;
+                    border: 1px solid #e2e2e2;
+                    margin-right: 20px;
+                }
+            }
+        }
     }
 }
 
