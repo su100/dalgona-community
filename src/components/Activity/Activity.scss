@@ -2,16 +2,38 @@
 
 .activity {
     @include flex(column, center, center);
+    width: 100%;
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .activity {
+        width: 100vw;
+        &__header {
+            @include flex(row, center, center);
+            width: 100vw;
+            height: 69px;
+            border-bottom: 0.487px solid #afafaf;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 69px;
+                letter-spacing: 0em;
+            }
+        }
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
     .activity {
+        &__header {
+            height: 47px;
+            span {
+                font-size: 17px;
+            }
+        }
     }
 }

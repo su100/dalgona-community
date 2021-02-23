@@ -12,6 +12,11 @@ class Activity extends Component {
     render() {
         return (
             <div className="activity">
+                <div className="not-pc">
+                    <div className="activity__header">
+                        <span>활동내역</span>
+                    </div>
+                </div>
                 <ActivityList />
                 <ActivityList />
                 <ActivityList />
