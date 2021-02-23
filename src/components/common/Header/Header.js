@@ -17,37 +17,42 @@ class Header extends Component {
             _ismounted: false,
             openSidebar: false,
             isLogin: false,
+            path: '',
         };
     }
 
     handleOver = (e) => {
-        if (e.target.id === 'home') {
-            this.setState({ isOpen: false, openMenu: e.target.id });
-            this.goHome();
-        } else {
-            this.setState({ isOpen: true, openMenu: e.target.id });
+        if (this._isMounted) {
+            if (e.target.id === 'home') {
+                this.setState({ isOpen: false, openMenu: e.target.id });
+            } else {
+                this.setState({ isOpen: true, openMenu: e.target.id });
+            }
         }
     };
 
     handleOnClick = (e) => {
         const { openMenu, isOpen } = this.state;
-        if (e.target.id === openMenu) {
-            this.setState({ isOpen: !isOpen, openMenu: e.target.id });
-        } else if (e.target.id === 'home') {
-            this.setState({ isOpen: false, openMenu: e.target.id });
-            this.goHome();
-        } else {
-            this.setState({ isOpen: true, openMenu: e.target.id });
+        if (this._isMounted) {
+            if (e.target.id === openMenu) {
+                this.setState({ isOpen: !isOpen, openMenu: e.target.id });
+            } else if (e.target.id === 'home') {
+                this.setState({ isOpen: false, openMenu: e.target.id });
+                this.goHome();
+            } else {
+                this.setState({ isOpen: true, openMenu: e.target.id });
+            }
         }
-
         console.log(e.target.id);
     };
 
     checkIsPc = () => {
-        if (window.innerWidth > 1024) {
+        if (window.innerWidth > 1024 && this._isMounted) {
             this.setState({ isPC: true });
         } else {
-            this.setState({ isPC: false });
+            if (this._isMounted) {
+                this.setState({ isPC: false });
+            }
         }
     };
 
@@ -55,9 +60,9 @@ class Header extends Component {
         this.props.history.push('/');
     };
 
-    setOpenMenu = () => {
+    setPath = () => {
         let path = this.props.location.path;
-        this.setState({ openMenu: path });
+        this.setState({ path: path });
     };
 
     handleSidebar = () => {
@@ -66,13 +71,18 @@ class Header extends Component {
     };
 
     componentDidMount() {
+        this._isMounted = true;
         this.checkIsPc();
-        this.setOpenMenu();
+        this.setPath();
         window.addEventListener('resize', this.checkIsPc);
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     render() {
-        const { isOpen, openMenu, isPC, openSidebar, isLogin } = this.state;
+        const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
 
@@ -99,7 +109,7 @@ class Header extends Component {
                         <Link to={{ pathname: '/login', path: 'login' }}>
                             <span
                                 className={
-                                    openMenu === 'login' ? 'header-main__login-login click' : 'header-main__login-login'
+                                    path === 'login' ? 'header-main__login-login click' : 'header-main__login-login'
                                 }
                             >
                                 로그인
@@ -108,9 +118,7 @@ class Header extends Component {
                         <Link to={{ pathname: '/signup', path: 'signup' }}>
                             <span
                                 className={
-                                    openMenu === 'signup'
-                                        ? 'header-main__login-signup click'
-                                        : 'header-main__login-signup'
+                                    path === 'signup' ? 'header-main__login-signup click' : 'header-main__login-signup'
                                 }
                             >
                                 회원가입

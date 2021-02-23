@@ -31,7 +31,7 @@ const Sidebar = ({ handleSidebar, isLogin }) => {
                     <Link to="/my/point">별내역</Link>
                 </div>
                 <div className="sidebar__link-content">
-                    <Link>로그아웃</Link>
+                    <Link to="/">로그아웃</Link>
                 </div>
             </div>
         </div>

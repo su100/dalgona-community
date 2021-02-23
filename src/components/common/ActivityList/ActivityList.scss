@@ -1,0 +1,154 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.activity-list {
+    width: 1141px;
+    &__date {
+        height: 36px;
+        background: #c4c4c4;
+        span {
+            padding-left: 33px;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 36px;
+            letter-spacing: 0.16px;
+            color: #4f4f4f;
+        }
+    }
+    &__activity {
+        @include flex(row, flex-start, center);
+        width: 1141px;
+        height: 72px;
+        border-bottom: 0.5px solid #c4c4c4;
+        &-img {
+            width: 90px;
+        }
+        &-info {
+            @include flex(row, center, center);
+            &-title {
+                width: 885px;
+            }
+            &-luna {
+                width: 78px;
+            }
+        }
+        &-reply {
+            width: 84px;
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .activity-list {
+        width: 100%;
+        &__date {
+            height: 28.9px;
+            background: #f6f6f6;
+            span {
+                padding-left: 20px;
+                font-family: Noto Sans KR;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &__activity {
+            @include flex(row, space-between, center);
+            width: inherit;
+            height: 97px;
+            border-bottom: 0.467px solid #e2e2e2;
+            &-info {
+                @include flex(column, center, center);
+                padding-left: 20px;
+                &-title {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-size: 23px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 33px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    padding-bottom: 6px;
+                }
+                &-luna {
+                    width: 400px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 17px;
+                    line-height: 25px;
+                    color: #a8a8a8;
+                    text-align: left;
+                }
+            }
+            &-reply {
+                &.mobile {
+                    width: 42px;
+                    height: 42px;
+                    line-height: 42px;
+                    text-align: center;
+                    border-radius: 42px;
+                    border: 1px solid #e2e2e2;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .activity-list {
+        width: 100%;
+        &__date {
+            height: 22px;
+            span {
+                padding-left: 20px;
+                font-family: Noto Sans KR;
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 14px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &__activity {
+            @include flex(row, space-between, center);
+            width: inherit;
+            height: 80px;
+            border-bottom: 0.467px solid #e2e2e2;
+            &-info {
+                @include flex(column, center, center);
+                padding-left: 20px;
+                &-title {
+                    width: 200px;
+                    font-size: 17px;
+                    padding-bottom: 11px;
+                }
+                &-luna {
+                    width: 200px;
+                    font-size: 12px;
+                    line-height: 17px;
+                }
+            }
+            &-reply {
+                &.mobile {
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
+                    text-align: center;
+                    border-radius: 32px;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}

@@ -43,6 +43,9 @@ class Profile extends Component {
                     <div className="profile__content-introduce">
                         <span>자기소개</span>
                         <input></input>
+                        <div className="only-pc">
+                            <button>수정</button>
+                        </div>
                     </div>
                 </div>
                 <div className="not-pc">
