@@ -17,7 +17,7 @@ const LoginPage = ({ history, location }) => {
     useEffect(() => {
         checkIsPc();
         window.addEventListener('resize', checkIsPc);
-        console.log(isPc);
+        return () => setIsPc(false);
     }, []);
 
     return (

@@ -1,0 +1,17 @@
+@import 'styles/base.scss';
+
+.activity {
+    @include flex(column, center, center);
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .activity {
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .activity {
+    }
+}

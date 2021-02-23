@@ -2,6 +2,39 @@
 
 //pc, 기본
 .activity-list {
+    width: 1194px;
+    &__date {
+        height: 36px;
+        background: #c4c4c4;
+        span {
+            padding-left: 33px;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 36px;
+            letter-spacing: 0.16px;
+            color: #4f4f4f;
+        }
+    }
+    &__activity {
+        @include flex(row, flex-start, center);
+        width: 1141px;
+        height: 72px;
+        border-bottom: 0.5px solid #c4c4c4;
+        &-img {
+            width: 90px;
+        }
+        &-title {
+            width: 885px;
+        }
+        &-luna {
+            width: 78px;
+        }
+        &-reply {
+            width: 84px;
+        }
+    }
 }
 
 //태블릿
