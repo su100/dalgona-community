@@ -12,10 +12,8 @@
         color: rgb(137, 137, 137);
         &__logo {
             @include flex(row, space-between, center);
-            width: 10%;
+            width: 40%;
             height: 70px;
-            padding-left: 349px;
-            padding-right: 259px;
             span {
                 color: #f7c95f;
                 font-size: 30px;
@@ -24,13 +22,14 @@
                 display: none;
             }
             &-logoimg {
-                margin-right: 10px;
                 width: 140px;
                 height: 55px;
                 img {
                     display: block;
                     width: 140px;
                     height: 55px;
+                    padding-left: 349px;
+                    padding-right: 295px;
                 }
             }
             &-search {
@@ -39,18 +38,17 @@
         }
         &__login {
             @include flex(row, center, center);
-            width: 280px;
+            width: 10%;
             height: 25px;
-            padding-right: 35px;
             border-right: 1px solid #838383;
             line-height: 80px;
+            padding-right: 60px;
             a {
                 text-decoration: none;
                 width: 100px;
             }
             &-login {
                 color: #838383;
-                padding-right: 20px;
                 &.click {
                     color: white;
                 }
@@ -65,8 +63,8 @@
         &__menu {
             @include flex(row, center, center);
             line-height: 80px;
-            width: 40%;
-            padding-left: 90px;
+            width: 48%;
+            padding-left: 60px;
             &-content {
                 width: 120px;
                 &:hover {
@@ -77,12 +75,11 @@
                 }
             }
             input {
-                background-position: 180px center;
+                background-position: 91% center;
                 background-repeat: no-repeat;
                 background-image: url('../../../images/search.png');
                 width: 207px;
                 height: 30px;
-                margin-right: 150px;
                 border-radius: 40px;
             }
         }
@@ -93,17 +90,17 @@
         height: 302px;
         background: #c2c2c2;
         &__border {
-            width: 900px;
+            width: 35%;
             height: 256px;
             margin-top: 15px;
-            padding-left: 500px;
+            padding-left: 22%;
             border-right: 1px solid #838383;
         }
         &__menu {
             @include flex(row, flex-start, center);
-            width: 40%;
+            width: 45%;
             height: 256px;
-            padding-right: 300px;
+            padding-right: 13%;
             margin-top: 15px;
             color: #838383;
             span {
@@ -115,26 +112,26 @@
             }
             &-main {
                 @include flex(column, flex-start, center);
-                width: 110px;
+                width: 100%;
                 height: 256px;
-                padding-left: 140px;
+                padding-left: 25%;
                 border-right: 1px solid #838383;
             }
             &-luna {
                 @include flex(column, flex-start, center);
-                width: 110px;
+                width: 100%;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
             &-free {
                 @include flex(column, flex-start, center);
-                width: 110px;
+                width: 100%;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
             &-dalgona {
                 @include flex(column, flex-start, center);
-                width: 110px;
+                width: 100%;
                 height: 256px;
             }
         }
@@ -170,6 +167,7 @@
                     margin-right: 10px;
                     height: 31px;
                     img {
+                        padding-left: 0px;
                         width: 110px;
                         height: 31px;
                     }
@@ -282,6 +280,7 @@
                     margin-right: 0px;
                     height: 26px;
                     img {
+                        padding-left: 0px;
                         width: 86.82999420166016px;
                         height: 25.177528381347656px;
                     }
