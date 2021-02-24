@@ -6,9 +6,9 @@ import facebook from 'images/facebook.png';
 import youtube from 'images/youtube.png';
 import './Footer.scss';
 
-const Footer = ({ nofooter }) =>
+const Footer = ({ nofooter, isLogin }) =>
     !nofooter && (
-        <div className="footer">
+        <div className={isLogin ? 'footer login' : 'footer'}>
             <div className="footer-icon">
                 <img src={instagram}></img>
                 <img src={twitter}></img>

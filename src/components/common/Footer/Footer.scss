@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 //pc, 기본
 .footer {
@@ -6,6 +6,11 @@
     width: 100%;
     height: 289px;
     background: #c2c2c2;
+    &.login {
+        width: 100%;
+        height: 289px;
+        background: #c2c2c2;
+    }
     &-icon {
         @include flex(row, space-around, center);
         width: 20%;
@@ -35,6 +40,11 @@
         width: 100%;
         height: 114.9px;
         background: #f2f2f2;
+        &.login {
+            width: 100%;
+            height: 114.9px;
+            background: #2d2d2d;
+        }
         &-icon {
             @include flex(row, space-around, center);
             width: 20%;
@@ -65,6 +75,11 @@
         width: 100%;
         height: 83.65px;
         background: #f2f2f2;
+        &.login {
+            width: 100%;
+            height: 83.65px;
+            background: #2d2d2d;
+        }
         &-icon {
             @include flex(row, space-around, center);
             width: 30%;

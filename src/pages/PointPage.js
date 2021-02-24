@@ -6,7 +6,7 @@ import PointContainer from 'containers/PointContainer';
 const PointPage = ({ history, location }) => {
     return (
         <div>
-            <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
+            <PageTemplate header={<Header history={history} location={location} isHome={false} />} nofooter={true}>
                 <PointContainer />
             </PageTemplate>
         </div>
