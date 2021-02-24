@@ -142,7 +142,9 @@ class Header extends Component {
                                     {Menu[value]}
                                 </div>
                             ))}
-                            <input></input>
+                            <div className="header-main__menu-input">
+                                <input></input>
+                            </div>
                         </div>
                     )}
                 </div>
