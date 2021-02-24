@@ -1,0 +1,42 @@
+@import 'styles/base.scss';
+
+.basic-slider {
+    background: #dadada;
+    margin-bottom: 25px;
+    .slick-dots {
+        background: #dadada;
+        padding-bottom: 25px;
+        li {
+            button {
+                color: white;
+                &:before {
+                    opacity: 1;
+                    color: white;
+                }
+            }
+        }
+        .slick-active {
+            button:before {
+                color: #838383;
+            }
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .basic-slider {
+        .slick-dots {
+            padding-bottom: 15.79px;
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .basic-slider {
+        .slick-dots {
+            padding-bottom: 8.93px;
+        }
+    }
+}
