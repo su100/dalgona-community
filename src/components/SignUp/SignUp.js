@@ -4,6 +4,7 @@ import SignUpAgree from 'components/signup-process/SignUpAgree';
 import SignUpConfirm from 'components/signup-process/SignUpConfirm';
 import SignUpInfo from 'components/signup-process/SignUpInfo';
 import SignUpFinish from 'components/signup-process/SignUpFinish';
+
 import './SignUp.scss';
 
 class SignUp extends Component {
