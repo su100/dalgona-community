@@ -8,11 +8,13 @@
         @include flex(row, center, center);
         width: 100%;
         height: 120px;
+        flex-shrink: 10;
         background: rgb(45, 45, 45);
         color: rgb(137, 137, 137);
         &__logo {
             @include flex(row, space-between, center);
-            width: 40%;
+            flex-shrink: 10;
+            width: 30%;
             height: 70px;
             span {
                 color: #f7c95f;
@@ -22,14 +24,13 @@
                 display: none;
             }
             &-logoimg {
-                width: 300px;
+                @include flex(row, center, center);
+                width: 100%;
                 height: 55px;
                 img {
                     display: block;
                     width: 140px;
                     height: 55px;
-                    padding-left: 80%;
-                    padding-right: 35%;
                 }
             }
             &-search {
@@ -38,11 +39,10 @@
         }
         &__login {
             @include flex(row, center, center);
-            width: 13%;
+            width: 15%;
             height: 25px;
             border-right: 1px solid #838383;
             line-height: 80px;
-            padding-right: 50px;
             a {
                 text-decoration: none;
                 width: 100px;
@@ -62,11 +62,12 @@
         }
         &__menu {
             @include flex(row, center, center);
+            flex-shrink: 0;
             line-height: 80px;
-            width: 48%;
-            padding-left: 60px;
+            width: 55%;
             &-content {
-                width: 120px;
+                width: 100%;
+                text-align: center;
                 &:hover {
                     color: #ffd278;
                 }
@@ -75,7 +76,9 @@
                 }
             }
             &-input {
-                padding-right: 20px;
+                width: 100%;
+                padding-left: 5%;
+                padding-right: 10%;
                 input {
                     background-position: 91% center;
                     background-repeat: no-repeat;
@@ -93,17 +96,17 @@
         height: 302px;
         background: #c2c2c2;
         &__border {
-            width: 39%;
+            flex-shrink: 10;
+            width: 45%;
             height: 256px;
             margin-top: 15px;
-            padding-left: 22%;
             border-right: 1px solid #838383;
         }
         &__menu {
             @include flex(row, flex-start, center);
-            width: 45%;
+            flex-shrink: 0;
+            width: 55%;
             height: 256px;
-            padding-right: 13%;
             margin-top: 15px;
             color: #838383;
             span {
@@ -113,11 +116,13 @@
             a {
                 text-decoration: none;
             }
+            &-home {
+                width: 100%;
+            }
             &-main {
                 @include flex(column, flex-start, center);
                 width: 100%;
                 height: 256px;
-                padding-left: 25%;
                 border-right: 1px solid #838383;
             }
             &-luna {
@@ -136,6 +141,11 @@
                 @include flex(column, flex-start, center);
                 width: 100%;
                 height: 256px;
+            }
+            &-dummy {
+                width: 100%;
+                padding-left: 15%;
+                padding-right: 10%;
             }
         }
     }

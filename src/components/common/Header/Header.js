@@ -152,6 +152,7 @@ class Header extends Component {
                     <div className="header-hover">
                         <div className="header-hover__border"></div>
                         <div className="header-hover__menu">
+                            {isPC && <div className="header-hover__menu-home"></div>}
                             {(isPC || openMenu === 'main') && (
                                 <div className="header-hover__menu-main">
                                     <Link to={{ pathname: '/article', path: 'main' }}>
@@ -191,6 +192,7 @@ class Header extends Component {
                                     </Link>
                                 </div>
                             )}
+                            {isPC && <div className="header-hover__menu-dummy"></div>}
                         </div>
                     </div>
                 )}
