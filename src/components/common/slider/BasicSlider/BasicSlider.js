@@ -4,18 +4,27 @@ import Slider from 'react-slick';
 import './BasicSlider.scss';
 
 const BasicSlider = (props) => {
-    const settings = {
+    let settings = {
         dots: true,
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 5000,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
         centerMode: false,
     };
+
+    if (props.autoplay) {
+        settings['autoplay'] = true;
+    }
+    if (props.speed) {
+        settings['autoplaySpeed'] = props.speed;
+    }
+
+    if (props.infinite) {
+        settings['infinite'] = true;
+    }
+
     return (
-        <Slider {...settings} className="basic-slider">
+        <Slider {...settings} className="basic-slider" style={{ background: props.background }}>
             {props.children}
         </Slider>
     );

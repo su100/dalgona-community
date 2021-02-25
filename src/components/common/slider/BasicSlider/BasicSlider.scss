@@ -1,17 +1,17 @@
 @import 'styles/base.scss';
 
 .basic-slider {
-    background: #dadada;
+    background: inherit;
     margin-bottom: 25px;
     .slick-dots {
-        background: #dadada;
+        background: inherit;
         padding-bottom: 25px;
         li {
             button {
-                color: white;
+                color: #ebebeb;
                 &:before {
                     opacity: 1;
-                    color: white;
+                    color: #ebebeb;
                 }
             }
         }
