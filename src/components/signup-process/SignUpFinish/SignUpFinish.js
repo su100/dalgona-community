@@ -8,6 +8,9 @@ const SignUpFinish = () => {
     return (
         <div className="signupfinish">
             <div className="only-pc">
+                <div className="signupfinish__title">
+                    <span className="only-pc">가입완료!</span>
+                </div>
                 <div className="signupfinish__img">
                     <img src={biglogo}></img>
                 </div>
@@ -27,7 +30,7 @@ const SignUpFinish = () => {
                     <span>04 </span>
                     <span>가입완료</span>
                 </div>
-                <div className="not-pc">
+                <div className="signupfinish__img">
                     <img src={step4}></img>
                 </div>
                 <div className="signupfinish__content">
