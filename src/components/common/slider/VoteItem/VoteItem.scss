@@ -3,22 +3,23 @@
 .vote-item {
     width: 100vw;
     max-width: 1438px;
-    height: 520px;
+    height: 470px;
     text-align: center;
     h2 {
-        font-size: 17px;
+        font-size: 35px;
     }
     h5 {
-        font-size: 10px;
+        font-size: 20px;
     }
     .vote-item__box--img {
         @include flex(row, center, center);
         img {
-            width: 72px;
-            height: 65px;
+            width: 267.9px;
+            background: #838383;
+            height: 241.7px;
         }
         span {
-            margin: 0 44px;
+            margin: 0 141px;
             color: #898989;
             font-size: 17px;
         }
@@ -29,13 +30,46 @@
 @media screen and (max-width: $tablet-max) {
     .vote-item {
         width: 100vw;
-        height: 376.79px;
+        height: 350px;
+        h2 {
+            margin: 40px 0;
+            font-size: 17px;
+        }
+        h5 {
+            margin-bottom: 34px;
+            font-size: 10px;
+        }
+        .vote-item__box--img {
+            img {
+                width: 178.2px;
+                height: 160.92px;
+            }
+            span {
+                margin: 0 94px;
+            }
+        }
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
     .vote-item {
-        height: 176.62px;
+        height: 162px;
+        h2 {
+            margin: 21px 0;
+            font-size: 17px;
+        }
+        h5 {
+            margin-bottom: 4px;
+        }
+        .vote-item__box--img {
+            img {
+                width: 72px;
+                height: 65px;
+            }
+            span {
+                margin: 0 40px;
+            }
+        }
     }
 }
