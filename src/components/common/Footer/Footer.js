@@ -16,7 +16,7 @@ const Footer = ({ nofooter, isLogin }) =>
                 <img src={youtube}></img>
             </div>
             <div className="footer-content">
-                <span>회사소개|이용약관|개인정보취급정책</span>
+                <span>회사소개 | 이용약관 | 개인정보취급정책</span>
             </div>
             <div className="footer-information">
                 <span>
