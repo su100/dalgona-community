@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from 'images/logo.png';
+import biglogo from 'images/biglogo.png';
+import loginlogo from 'images/login-tablet-logo.png';
 import checkbox from 'images/checkbox.png';
 import mobilecheckbox from 'images/mobile-checkbox.png';
 import { Link } from 'react-router-dom';
@@ -28,7 +29,12 @@ class Login extends Component {
         return (
             <div className="login">
                 <div className="login__logo">
-                    <img src={logo}></img>
+                    <div className="only-pc">
+                        <img src={biglogo}></img>
+                    </div>
+                    <div className="not-pc">
+                        <img src={loginlogo}></img>
+                    </div>
                 </div>
                 <form className="login__input">
                     <div className="not-pc">

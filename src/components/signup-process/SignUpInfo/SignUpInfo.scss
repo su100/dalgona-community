@@ -8,7 +8,7 @@
     &__title {
         width: 824px;
         padding-bottom: 82px;
-        font-family: Roboto;
+        font-family: Noto Sans KR;
         font-size: 34px;
         font-style: normal;
         font-weight: 700;
@@ -28,7 +28,7 @@
             padding-bottom: 55px;
             span {
                 width: 200px;
-                font-family: Roboto;
+                font-family: Noto Sans KR;
                 font-size: 22px;
                 font-style: normal;
                 font-weight: 700;
@@ -45,6 +45,7 @@
                     border: 0px;
                 }
                 button {
+                    @include flex(row, center, center);
                     text-align: center;
                     width: 75px;
                     height: 32px;

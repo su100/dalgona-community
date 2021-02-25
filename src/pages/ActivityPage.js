@@ -6,7 +6,10 @@ import ActivityContainer from 'containers/ActivityContainer';
 const ActivityPage = ({ history, location, match }) => {
     return (
         <div>
-            <PageTemplate header={<Header history={history} match={match} location={location} isHome={false} />}>
+            <PageTemplate
+                header={<Header history={history} match={match} location={location} isHome={false} />}
+                nofooter={true}
+            >
                 <ActivityContainer />
             </PageTemplate>
         </div>
