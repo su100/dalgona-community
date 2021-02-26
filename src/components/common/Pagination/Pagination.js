@@ -22,7 +22,12 @@ const Pagination = ({ countList, currentPage, handlePage, isReply }) => {
         if (currentPage !== 1 && currentPage > 5) {
             //첫페이지 아닐 때
             tmp.push(
-                <button id={currentPage} key="prev" onClick={handlePage} value={currentPage - 5}>
+                <button
+                    id={currentPage}
+                    key="prev"
+                    onClick={handlePage}
+                    value={(Math.floor((parseInt(currentPage) + 4) / 5) - 1) * 5}
+                >
                     {pre}
                 </button>
             );
@@ -44,7 +49,12 @@ const Pagination = ({ countList, currentPage, handlePage, isReply }) => {
             //마지막페이지 아닐 때
             console.log(currentPage);
             tmp.push(
-                <button key="next" id={currentPage} onClick={handlePage} value={parseInt(currentPage) + parseInt(5)}>
+                <button
+                    key="next"
+                    id={currentPage}
+                    onClick={handlePage}
+                    value={Math.floor((parseInt(currentPage) + 4) / 5) * 5 + 1}
+                >
                     {next}
                 </button>
             );
