@@ -299,7 +299,7 @@ class Home extends Component {
                         <p>게시판 상단의 ☆을 눌러 즐겨찾는 게시판으로 설정해보세요!</p>
                     )}
                 </section>
-                <div className="home__line not-pc" />
+                <div className="border_line not-pc" />
                 <section className="home__section--hot">
                     <div className="home__row--hot">
                         <h4>HOT 실시간 인기글</h4>
@@ -364,7 +364,7 @@ class Home extends Component {
                         <div className="home__container--hot">{this.hotPostRender(this.state.hotPostList)}</div>
                     </div>
                 </section>
-                <div className="home__line not-pc" />
+                <div className="border_line not-pc" />
                 <section className="home__section--news">
                     <div className="home__row--news">
                         <h4>

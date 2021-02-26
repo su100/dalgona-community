@@ -2,7 +2,7 @@
 $mobile-max: 767px;
 $tablet-max: 1023px;
 
-@mixin ellipsis($line-cnt, $line-height){
+@mixin ellipsis($line-cnt, $line-height) {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -11,52 +11,55 @@ $tablet-max: 1023px;
     word-wrap: break-word;
     word-break: break-all;
     line-height: $line-height;
-    height: $line-height * $line-cnt;
+    max-height: $line-height * $line-cnt;
 }
 
-
-@mixin flex($direction,$horizontal,$vertical){
-    display:flex;
+@mixin flex($direction, $horizontal, $vertical) {
+    display: flex;
     flex-direction: $direction;
     justify-content: $horizontal;
     align-items: $vertical;
 }
 
-
-.only-pc{
-    display:block;
+.only-pc {
+    display: block;
 }
 
-span.only-pc{
-    display:inline;
+span.only-pc {
+    display: inline;
 }
 
-.not-pc{
-    display:none;
+.not-pc {
+    display: none;
 }
-
 
 //태블릿
-@media screen and (max-width: $tablet-max) {   
-    .only-pc{
-        display:none;
-    }
-    
-    span.only-pc{
-        display:none;
+@media screen and (max-width: $tablet-max) {
+    .only-pc {
+        display: none;
     }
 
-    .not-pc{
-        display:block;
-        
-    } 
-    span.not-pc{
-        display:inline;
+    span.only-pc {
+        display: none;
+    }
+
+    .not-pc {
+        display: block;
+    }
+    span.not-pc {
+        display: inline;
+    }
+
+    .border_line {
+        width: 100%;
+        height: 10.9px;
+        background: #f2f2f2;
     }
 }
 
-
-
 //모바일
-@media screen and (max-width:$mobile-max){ 
+@media screen and (max-width: $mobile-max) {
+    .border_line {
+        height: 7px;
+    }
 }
