@@ -2,17 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
-import Home from 'components/Home';
+import ArticleList from 'components/ArticleList';
 
-class ArticleContainer extends Component {
+class ArticleListContainer extends Component {
     render() {
         console.log('home container');
         return (
             <Fragment>
-                <Home />
+                <ArticleList />
             </Fragment>
         );
     }
 }
 
-export default ArticleContainer;
+export default ArticleListContainer;

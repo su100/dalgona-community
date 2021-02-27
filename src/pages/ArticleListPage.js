@@ -1,16 +1,16 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
 import Header from 'components/common/Header';
-import ArticleContainer from 'containers/ArticleContainer';
+import ArticleListContainer from 'containers/ArticleListContainer';
 
-const ArticlePage = ({ history, location }) => {
+const ArticleListPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Header history={history} location={location} isHome={true} />}>
-                <ArticleContainer />
+                <ArticleListContainer />
             </PageTemplate>
         </div>
     );
 };
 
-export default ArticlePage;
+export default ArticleListPage;

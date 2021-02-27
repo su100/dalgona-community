@@ -1,0 +1,16 @@
+@import 'styles/base.scss';
+
+.article-list {
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .article-list {
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .article-list {
+    }
+}
