@@ -16,7 +16,7 @@ class Home extends Component {
                 { board_name: '청하', board_url: '/ch' },
                 { board_name: '비투비', board_url: '/bt' },
             ],
-            voteList: [
+            hotVote: [
                 {
                     id: 2,
                     title: '투표 제목',
@@ -281,8 +281,8 @@ class Home extends Component {
         return (
             <div className="home">
                 <BasicSlider autoplay speed={5000} infinite background="#dadada">
-                    {this.state.voteList.map((vote) => {
-                        return <VoteItem key={vote.id} id={vote.id} title={vote.title} item={vote.voteitem} />;
+                    {this.state.hotVote.map((vote) => {
+                        return <VoteItem key={vote.id} id={vote.id} title={vote.title} voteitem={vote.voteitem} />;
                     })}
                 </BasicSlider>
                 <section className="home__section--favboard">
