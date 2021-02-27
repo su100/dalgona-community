@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Pagination from 'components/common/Pagination';
-import searchIcon from 'images/searchIcon.png';
+import SearchInput from 'components/common/SearchInput';
 import './Search.scss';
 
 class Search extends Component {
@@ -73,6 +73,11 @@ class Search extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    getSearch = () => {
+        //this.state.searchWord, SearchType으로 getList해오기
+        console.log(this.state.searchType, '에서', this.state.searchWord, '검색');
+    };
+
     render() {
         const { page, searchType, searchWord, searchCount } = this.state;
         return (
@@ -88,19 +93,12 @@ class Search extends Component {
                         <option value="free">자유</option>
                         <option value="dalgona">달고나</option>
                     </select>
-                    <div className="search__input">
-                        <input
-                            type="search"
-                            name="q"
-                            placeholder="키워드"
-                            id="searchWord"
-                            value={searchWord}
-                            onChange={this.handleChange}
-                        />
-                        <button>
-                            <img src={searchIcon} alt="search" />
-                        </button>
-                    </div>
+                    <SearchInput
+                        searchWord={searchWord}
+                        handleChange={this.handleChange}
+                        placeholder="키워드"
+                        getSearch={this.getSearch}
+                    />
                 </div>
                 <div className="border_line" />
                 <h5 className="not-pc">{searchCount}건</h5>
