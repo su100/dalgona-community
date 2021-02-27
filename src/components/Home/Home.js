@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/ko';
+import ArticleList from 'components/common/ArticleList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import VoteItem from 'components/common/slider/VoteItem';
 import refreshIcon from 'images/refresh.png';
@@ -253,27 +254,9 @@ class Home extends Component {
     newsRender = (newsList) => {
         let result = [];
         //5개 단위로 나누기
-        let tmp = [];
-        for (let i = 0; i < newsList.length; i++) {
-            const news = newsList[i];
-            tmp.push(
-                <a href={news.link} target="_blank" rel="noreferrer" key={i} className="home__item--news">
-                    <img src={news.image} alt="news" />
-                    <div>
-                        <h6>{news.title}</h6>
-                        <p>{news.date}</p>
-                    </div>
-                </a>
-            );
-            if ((i + 1) % 5 === 0) {
-                //5개 담았을 때
-                result.push(
-                    <div key={i} className="home__container--news">
-                        {tmp}
-                    </div>
-                );
-                tmp = [];
-            }
+        const count = Math.ceil(newsList.length / 5);
+        for (let i = 0; i < count; i++) {
+            result.push(<ArticleList key={i} articleList={newsList.slice((i * 5, (i + 1) * 5))} />);
         }
         return result;
     };
@@ -389,25 +372,7 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="only-pc">
-                        <div className="home__container--news">
-                            {this.state.newsList.map((news, index) => {
-                                return (
-                                    <a
-                                        href={news.link}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        key={index}
-                                        className="home__item--news"
-                                    >
-                                        <img src={news.image} alt="news" />
-                                        <div>
-                                            <h6>{news.title}</h6>
-                                            <p>{news.date}</p>
-                                        </div>
-                                    </a>
-                                );
-                            })}
-                        </div>
+                        <ArticleList key="pc" articleList={this.state.newsList} />
                     </div>
                 </section>
                 <div className="not-pc home__slider--news">

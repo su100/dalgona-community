@@ -4,7 +4,7 @@ export { default as LoginPage } from './LoginPage';
 export { default as SignUpPage } from './SignUpPage';
 export { default as FindIdPage } from './FindIdPage';
 export { default as FindPwPage } from './FindPwPage';
-export { default as ArticleListPage } from './ArticleListPage';
+export { default as ArticlePage } from './ArticlePage';
 export { default as VoteListPage } from './VoteListPage';
 export { default as VotePage } from './VotePage';
 export { default as LunaBoardPage } from './LunaBoardPage';
