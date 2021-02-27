@@ -1,20 +1,24 @@
 @import 'styles/base.scss';
 
 //pc, 기본
-.page-template{ 
-}
-
-
-//태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) { 
-    .page-template{  
+.page-template {
+    main {
+        width: 1000px;
+        margin: 0 auto;
     }
 }
 
-
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .page-template {
+        main {
+            width: 100%;
+        }
+    }
+}
 
 //모바일
-@media screen and (max-width:$mobile-max){
-    .page-template{  
+@media screen and (max-width: $mobile-max) {
+    .page-template {
     }
 }
