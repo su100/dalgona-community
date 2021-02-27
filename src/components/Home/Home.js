@@ -12,9 +12,9 @@ class Home extends Component {
         super(props);
         this.state = {
             favBoard: [
-                { board_name: '아이유', board_url: '/iu' },
-                { board_name: '청하', board_url: '/ch' },
-                { board_name: '비투비', board_url: '/bt' },
+                { board_name: '아이유', board_url: 'iu' },
+                { board_name: '청하', board_url: 'ch' },
+                { board_name: '비투비', board_url: 'bt' },
             ],
             hotVote: [
                 {
@@ -290,7 +290,7 @@ class Home extends Component {
                     {this.state.favBoard ? (
                         this.state.favBoard.map((board) => {
                             return (
-                                <Link key={board.board_url} to={board.board_url}>
+                                <Link to={`/luna/${board.board_url}`} key={board.board_url}>
                                     {board.board_name}
                                 </Link>
                             );
