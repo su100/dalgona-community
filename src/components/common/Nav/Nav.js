@@ -84,7 +84,7 @@ class Nav extends Component {
     render() {
         const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
         const { isHome } = this.props;
-        const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
+        const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
 
         return (
             <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
