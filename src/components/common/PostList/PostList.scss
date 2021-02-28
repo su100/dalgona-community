@@ -10,6 +10,12 @@
         &:first-child {
             border-top: 1px solid rgba(226, 226, 226, 0.5);
         }
+        &.no-border {
+            border-bottom: 0;
+            &:first-child {
+                border-top: 0;
+            }
+        }
         .post-list__img {
             display: none;
         }
@@ -71,6 +77,10 @@
             margin: 0 20px;
             height: 101px;
             justify-content: space-between;
+
+            &.no-border {
+                margin-bottom: 20px;
+            }
             .post-list__item--left {
                 @include flex(row, flex-start, center);
             }
@@ -143,6 +153,9 @@
     .post-list {
         .post-list__item {
             height: 80px;
+            &.no-border {
+                margin-bottom: 5px;
+            }
             .post-list__img {
                 img {
                     width: 40px;

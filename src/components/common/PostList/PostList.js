@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ postList }) => {
+const PostList = ({ postList, noBorder }) => {
     return (
         <div className="post-list">
             {postList.map((post, index) => {
                 return (
-                    <Link to="/" className="post-list__item" key={index}>
+                    <Link to="/" className={noBorder ? 'post-list__item no-border' : 'post-list__item'} key={index}>
                         <div className="post-list__item--left">
                             {post.image && (
                                 <div className="post-list__img">
