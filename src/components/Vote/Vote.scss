@@ -187,6 +187,9 @@
         }
         &__info {
             width: 100%;
+            span {
+                padding-left: 20px;
+            }
             &-date {
                 padding-top: 19px;
                 padding-bottom: 10px;
@@ -263,6 +266,11 @@
                 }
             }
             &-ratio {
+                width: 728px;
+                height: 15px;
+                border-radius: 0px;
+                margin-top: 0px;
+                margin-bottom: 136px;
             }
             &-description {
                 padding-top: 17px;
@@ -275,5 +283,72 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .vote {
+        @include flex(column, center, center);
+        width: 100%;
+        &__info {
+            &-date {
+                padding-top: 17px;
+                padding-bottom: 6px;
+                font-size: 12px;
+            }
+            &-maininfo {
+                padding-bottom: 11px;
+                &-title {
+                    font-size: 17px;
+                }
+                &-count {
+                }
+            }
+        }
+        &__main {
+            width: 100%;
+            &__content {
+                &-first {
+                    height: 152px;
+                    width: 152px;
+                    &-circle {
+                        display: none;
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+                &-area {
+                    position: relative;
+                    left: -80px;
+                    width: 16px;
+                    &-vs {
+                        width: 200px;
+                        background: none;
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+                &-second {
+                    height: 152px;
+                    width: 152px;
+                    &-circle {
+                        display: none;
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+            }
+            &-ratio {
+                width: 319px;
+                height: 11px;
+                margin-top: 0px;
+                margin-bottom: 16px;
+            }
+            &-description {
+                width: 322px;
+                padding-top: 17px;
+                padding-bottom: 16px;
+            }
+        }
     }
 }
