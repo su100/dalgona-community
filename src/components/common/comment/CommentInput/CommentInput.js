@@ -44,15 +44,6 @@ const CommentInput = (props) => {
             </div>
             <div className="comment-input--bottom">
                 <div>
-                    <span>
-                        <input
-                            id={props.type}
-                            type="checkbox"
-                            checked={props.isAnonymous}
-                            onChange={props.handleAnonymous}
-                        />
-                        익명
-                    </span>
                     <input
                         type="file"
                         accept="image/*"
@@ -68,7 +59,16 @@ const CommentInput = (props) => {
                     </button>
                 </div>
                 <div>
-                    <button className="comment-input__button--submit">등록하기</button>
+                    <span>
+                        <input
+                            id={props.type}
+                            type="checkbox"
+                            checked={props.isAnonymous}
+                            onChange={props.handleAnonymous}
+                        />
+                        익명
+                    </span>
+                    <button className="comment-input__button--submit">등록</button>
                 </div>
             </div>
         </div>

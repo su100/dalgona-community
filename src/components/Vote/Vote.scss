@@ -2,6 +2,179 @@
 
 //pc, 기본
 .vote {
+    @include flex(column, center, center);
+    &__detail {
+        @include flex(row, flex-start, center);
+        width: 1400px;
+        padding-top: 65px;
+        padding-bottom: 70px;
+        font-family: Roboto;
+        font-size: 27px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 34px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    &__info {
+        @include flex(column, center, flex-start);
+        &-date {
+            font-family: Noto Sans KR;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 19px;
+            letter-spacing: 0.1599999964237213px;
+            text-align: left;
+            padding-bottom: 23px;
+        }
+        &-maininfo {
+            @include flex(row, space-between, center);
+            padding-bottom: 108px;
+            padding-right: 200px;
+            width: 950px;
+            &-title {
+                font-family: Roboto;
+                font-size: 34px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 41px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            &-count {
+                @include flex(row, center, center);
+                height: 32px;
+                width: 83px;
+                border-radius: 50px;
+                font-family: Noto Sans KR;
+                font-size: 27px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 32px;
+                letter-spacing: 0.1599999964237213px;
+                text-align: right;
+                background: #ffd278;
+                color: #ffffff;
+            }
+        }
+    }
+    &__main {
+        @include flex(column, center, center);
+        width: 950px;
+        &__content {
+            @include flex(row, center, center);
+            &-first {
+                @include flex(column, center, center);
+                height: 462px;
+                width: 334px;
+                border-radius: 4px;
+                background: #ffd278;
+                &-circle {
+                    height: 176px;
+                    width: 176px;
+                    background: #898989;
+                    border-radius: 176px;
+                }
+                &-title {
+                    padding-top: 32px;
+                    padding-bottom: 25px;
+                    font-family: Noto Sans KR;
+                    font-size: 27px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 34px;
+                    letter-spacing: 0.1599999964237213px;
+                    text-align: left;
+                }
+                &-description {
+                    font-family: Noto Sans KR;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 19px;
+                    letter-spacing: 0.1599999964237213px;
+                    text-align: center;
+                }
+            }
+            &-area {
+                position: relative;
+                top: 0;
+                left: -23px;
+                width: 70px;
+                &-vs {
+                    @include flex(row, center, center);
+                    height: 57px;
+                    width: 112px;
+                    border-radius: 50px;
+                    background: #e2e2e2;
+                    span {
+                        font-family: Noto Sans KR;
+                        font-size: 27px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 57px;
+                        letter-spacing: 0.1599999964237213px;
+                        text-align: center;
+                        color: #838383;
+                    }
+                }
+            }
+            &-second {
+                @include flex(column, center, center);
+                height: 462px;
+                width: 335px;
+                border-radius: 4px;
+                background: #ab3af2;
+                &-circle {
+                    height: 176px;
+                    width: 176px;
+                    background: #898989;
+                    border-radius: 176px;
+                }
+                &-title {
+                    padding-top: 32px;
+                    padding-bottom: 25px;
+                    font-family: Noto Sans KR;
+                    font-size: 27px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 34px;
+                    letter-spacing: 0.1599999964237213px;
+                    text-align: left;
+                    color: #ffffff;
+                }
+                &-description {
+                    font-family: Noto Sans KR;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 19px;
+                    letter-spacing: 0.1599999964237213px;
+                    text-align: center;
+                    color: #ffffff;
+                }
+            }
+        }
+        &-ratio {
+            margin-top: 30px;
+            margin-bottom: 63px;
+            height: 33px;
+            width: 706px;
+            border-radius: 50px;
+            background: #ffd278;
+        }
+        &-description {
+            font-family: Noto Sans KR;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 19px;
+            letter-spacing: 0.1599999964237213px;
+            text-align: left;
+            padding-bottom: 201px;
+        }
+    }
 }
 
 //태블릿
