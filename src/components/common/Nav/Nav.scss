@@ -1,7 +1,7 @@
 @import 'styles/base.scss';
 
 //pc, 기본
-.header {
+.nav {
     &.sidebaropen {
     }
     &-main {
@@ -16,10 +16,6 @@
             flex-shrink: 10;
             width: 30%;
             height: 70px;
-            span {
-                color: #f7c95f;
-                font-size: 30px;
-            }
             &-menu {
                 display: none;
             }
@@ -55,6 +51,10 @@
             }
             &-signup {
                 color: #838383;
+                padding-right: 30px;
+                span {
+                    min-width: 300px;
+                }
                 &.click {
                     color: white;
                 }
@@ -110,6 +110,7 @@
             margin-top: 15px;
             color: #838383;
             span {
+                font-size: 13px;
                 color: #838383;
                 padding: 9px 0;
             }
@@ -153,7 +154,7 @@
 
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
-    .header {
+    .nav {
         &-main {
             @include flex(column, space-between, space-between);
             width: 100%;
@@ -196,13 +197,14 @@
                 display: none;
             }
             &__menu {
-                @include flex(row, space-around, center);
+                @include flex(row, center, center);
                 width: 100%;
-                height: 50px;
+                height: 40px;
                 padding-left: 0px;
+                flex-shrink: none;
                 &-content {
                     width: 20%;
-                    height: 30px;
+                    height: 40px;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -219,8 +221,9 @@
                         border-bottom: 1px solid #ffd278;
                     }
                 }
-                input {
+                &-input {
                     display: none;
+                    padding: 0;
                 }
             }
         }
@@ -267,7 +270,7 @@
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .header {
+    .nav {
         &-main {
             @include flex(column, space-between, space-between);
             width: 100%;
@@ -318,7 +321,7 @@
                 height: 40px;
                 padding-left: 0px;
                 &-content {
-                    width: 20%;
+                    width: 500%;
                     height: 30px;
                     font-family: Noto Sans KR;
                     font-size: 14px;
@@ -336,8 +339,9 @@
                         border-bottom: 1px solid #ffd278;
                     }
                 }
-                input {
+                &-input {
                     display: none;
+                    padding: 0;
                 }
             }
         }

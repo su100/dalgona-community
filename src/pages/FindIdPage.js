@@ -1,12 +1,12 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import Header from 'components/common/Header';
+import Nav from 'components/common/Nav';
 import FindIdContainer from 'containers/FindIdContainer';
 
 const FindIdPage = ({ history, location }) => {
     return (
         <div>
-            <PageTemplate header={<Header history={history} location={location} isHome={false} />}>
+            <PageTemplate header={<Nav history={history} location={location} isHome={false} />}>
                 <FindIdContainer history={history} />
             </PageTemplate>
         </div>

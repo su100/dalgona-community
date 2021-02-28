@@ -1,0 +1,299 @@
+@import 'styles/base.scss';
+
+//pc, 기본
+.vote {
+    @include flex(column, center, center);
+    width: 100%;
+    &__detail {
+        @include flex(row, flex-start, center);
+        width: 100%;
+        padding-top: 65px;
+        padding-bottom: 70px;
+        font-family: Roboto;
+        font-size: 27px;
+        font-weight: 400;
+        letter-spacing: 0em;
+        span {
+            padding-left: 10%;
+        }
+    }
+    &__info {
+        @include flex(column, center, flex-start);
+        &-date {
+            font-family: Noto Sans KR;
+            font-size: 14px;
+            font-weight: 700;
+            padding-bottom: 23px;
+        }
+        &-maininfo {
+            @include flex(row, space-between, center);
+            padding-bottom: 108px;
+            padding-right: 200px;
+            width: 950px;
+            &-title {
+                font-family: Roboto;
+                font-size: 34px;
+                font-weight: 700;
+            }
+            &-count {
+                @include flex(row, center, center);
+                height: 32px;
+                width: 83px;
+                border-radius: 50px;
+                font-family: Noto Sans KR;
+                font-size: 27px;
+                font-weight: 700;
+                background: #ffd278;
+                color: #ffffff;
+            }
+        }
+    }
+    &__main {
+        @include flex(column, center, center);
+        width: 950px;
+        font-family: Noto Sans KR;
+        &__content {
+            @include flex(row, center, center);
+            &-first {
+                @include flex(column, center, center);
+                height: 462px;
+                width: 334px;
+                border-radius: 4px;
+                background: #ffd278;
+                &-circle {
+                    height: 176px;
+                    width: 176px;
+                    background: #898989;
+                    border-radius: 176px;
+                }
+                &-title {
+                    padding-top: 32px;
+                    padding-bottom: 25px;
+                    font-size: 27px;
+                    font-weight: 700;
+                }
+                &-description {
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+            }
+            &-area {
+                position: relative;
+                top: 0;
+                left: -23px;
+                width: 70px;
+                &-vs {
+                    @include flex(row, center, center);
+                    height: 57px;
+                    width: 112px;
+                    border-radius: 50px;
+                    background: #e2e2e2;
+                    span {
+                        font-size: 27px;
+                        font-weight: 700;
+                        color: #838383;
+                    }
+                }
+            }
+            &-second {
+                @include flex(column, center, center);
+                height: 462px;
+                width: 335px;
+                border-radius: 4px;
+                background: #ab3af2;
+                &-circle {
+                    height: 176px;
+                    width: 176px;
+                    background: #898989;
+                    border-radius: 176px;
+                }
+                &-title {
+                    padding-top: 32px;
+                    padding-bottom: 25px;
+                    font-size: 27px;
+                    font-weight: 700;
+                    color: #ffffff;
+                }
+                &-description {
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #ffffff;
+                }
+            }
+        }
+        &-ratio {
+            margin-top: 30px;
+            margin-bottom: 63px;
+            height: 33px;
+            width: 706px;
+            border-radius: 50px;
+            background: #ffd278;
+        }
+        &-description {
+            font-size: 14px;
+            font-weight: 400;
+            padding-bottom: 201px;
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .vote {
+        @include flex(column, center, center);
+        width: 100%;
+        &__detail {
+            display: none;
+        }
+        &__info {
+            width: 100%;
+            span {
+                padding-left: 20px;
+            }
+            &-date {
+                padding-top: 19px;
+                padding-bottom: 10px;
+                color: #a8a8a8;
+                font-size: 14px;
+                font-weight: 400;
+            }
+            &-maininfo {
+                width: 100%;
+                padding-right: 0px;
+                padding-bottom: 17px;
+                &-title {
+                    font-size: 23px;
+                    font-weight: 400;
+                }
+                &-count {
+                    display: none;
+                }
+            }
+        }
+        &__main {
+            width: 100%;
+            &__content {
+                &-first {
+                    height: 354.67999267578125px;
+                    width: 356px;
+                    border-radius: 0px;
+                    &-circle {
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+                &-area {
+                    position: relative;
+                    left: -80px;
+                    width: 16px;
+                    &-vs {
+                        width: 200px;
+                        background: none;
+                        span {
+                            font-size: 23px;
+                            font-style: normal;
+                            color: black;
+                        }
+                    }
+                }
+                &-second {
+                    height: 354.67999267578125px;
+                    width: 356px;
+                    border-radius: 0px;
+                    &-circle {
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+            }
+            &-ratio {
+                width: 728px;
+                height: 15px;
+                border-radius: 0px;
+                margin-top: 0px;
+                margin-bottom: 136px;
+            }
+            &-description {
+                padding-top: 17px;
+                padding-bottom: 54px;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .vote {
+        @include flex(column, center, center);
+        width: 100%;
+        &__info {
+            &-date {
+                padding-top: 17px;
+                padding-bottom: 6px;
+                font-size: 12px;
+            }
+            &-maininfo {
+                padding-bottom: 11px;
+                &-title {
+                    font-size: 17px;
+                }
+                &-count {
+                }
+            }
+        }
+        &__main {
+            width: 100%;
+            &__content {
+                &-first {
+                    height: 152px;
+                    width: 152px;
+                    &-circle {
+                        display: none;
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+                &-area {
+                    position: relative;
+                    left: -80px;
+                    width: 16px;
+                    &-vs {
+                        width: 200px;
+                        background: none;
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+                &-second {
+                    height: 152px;
+                    width: 152px;
+                    &-circle {
+                        display: none;
+                    }
+                    &-title {
+                    }
+                    &-description {
+                    }
+                }
+            }
+            &-ratio {
+                width: 319px;
+                height: 11px;
+                margin-top: 0px;
+                margin-bottom: 16px;
+            }
+            &-description {
+                width: 322px;
+                padding-top: 17px;
+                padding-bottom: 16px;
+            }
+        }
+    }
+}

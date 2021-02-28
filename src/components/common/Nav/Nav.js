@@ -5,9 +5,9 @@ import searchIcon from 'images/search.png';
 import menuIcon from 'images/menu.png';
 import logo from 'images/logo.png';
 import biglogo from 'images/biglogo.png';
-import './Header.scss';
+import './Nav.scss';
 
-class Header extends Component {
+class Nav extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -84,33 +84,31 @@ class Header extends Component {
     render() {
         const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
         const { isHome } = this.props;
-        const Menu = { home: '홈', main: '메인', Luna: '루나', free: '자유', dalgona: '달고나' };
+        const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
 
         return (
-            <div className={!openSidebar ? 'header' : 'header sidebaropen'}>
+            <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
                 {openSidebar && (
-                    <div className="header sidebaropen sidebar">
+                    <div className="nav sidebaropen sidebar">
                         <Sidebar handleSidebar={this.handleSidebar} isLogin={isLogin} />
                     </div>
                 )}
-                <div className={isHome ? 'header-main' : 'header-main no'}>
-                    <div className="header-main__logo">
+                <div className={isHome ? 'nav-main' : 'nav-main no'}>
+                    <div className="nav-main__logo">
                         <div className="not-pc">
-                            <img className="header-main__logo-menu" src={menuIcon} onClick={this.handleSidebar}></img>
+                            <img className="nav-main__logo-menu" src={menuIcon} onClick={this.handleSidebar}></img>
                         </div>
-                        <div className="header-main__logo-logoimg" onClick={this.goHome}>
+                        <div className="nav-main__logo-logoimg" onClick={this.goHome}>
                             <img src={isPC ? biglogo : logo}></img>
                         </div>
                         <div className="not-pc">
-                            <img className="header-main__logo-search" src={searchIcon}></img>
+                            <img className="nav-main__logo-search" src={searchIcon}></img>
                         </div>
                     </div>
-                    <div className="header-main__login">
+                    <div className="nav-main__login">
                         <Link to={{ pathname: '/login', path: 'login' }}>
                             <span
-                                className={
-                                    path === 'login' ? 'header-main__login-login click' : 'header-main__login-login'
-                                }
+                                className={path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'}
                             >
                                 로그인
                             </span>
@@ -118,7 +116,7 @@ class Header extends Component {
                         <Link to={{ pathname: '/signup', path: 'signup' }}>
                             <span
                                 className={
-                                    path === 'signup' ? 'header-main__login-signup click' : 'header-main__login-signup'
+                                    path === 'signup' ? 'nav-main__login-signup click' : 'nav-main__login-signup'
                                 }
                             >
                                 회원가입
@@ -126,13 +124,11 @@ class Header extends Component {
                         </Link>
                     </div>
                     {(isHome || isPC) && (
-                        <div className="header-main__menu">
+                        <div className="nav-main__menu">
                             {Object.keys(Menu).map((value, index) => (
                                 <div
                                     className={
-                                        openMenu === value
-                                            ? 'header-main__menu-content click'
-                                            : 'header-main__menu-content'
+                                        openMenu === value ? 'nav-main__menu-content click' : 'nav-main__menu-content'
                                     }
                                     id={value}
                                     key={index}
@@ -142,19 +138,19 @@ class Header extends Component {
                                     {Menu[value]}
                                 </div>
                             ))}
-                            <div className="header-main__menu-input">
+                            <div className="nav-main__menu-input">
                                 <input></input>
                             </div>
                         </div>
                     )}
                 </div>
                 {isOpen && (
-                    <div className="header-hover">
-                        <div className="header-hover__border"></div>
-                        <div className="header-hover__menu">
-                            {isPC && <div className="header-hover__menu-home"></div>}
+                    <div className="nav-hover">
+                        <div className="nav-hover__border"></div>
+                        <div className="nav-hover__menu">
+                            {isPC && <div className="nav-hover__menu-home"></div>}
                             {(isPC || openMenu === 'main') && (
-                                <div className="header-hover__menu-main">
+                                <div className="nav-hover__menu-main">
                                     <Link to={{ pathname: '/article', path: 'main' }}>
                                         <span> 기사</span>
                                     </Link>
@@ -164,7 +160,7 @@ class Header extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'Luna') && (
-                                <div className="header-hover__menu-luna">
+                                <div className="nav-hover__menu-luna">
                                     <Link to={{ pathname: '/luna/1', path: 'Luna' }}>
                                         <span> 비투비</span>
                                     </Link>
@@ -173,7 +169,7 @@ class Header extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'free') && (
-                                <div className="header-hover__menu-free">
+                                <div className="nav-hover__menu-free">
                                     <Link to={{ pathname: '/free/1', path: 'free' }}>
                                         <span> 일상 / 잡담</span>
                                     </Link>
@@ -183,7 +179,7 @@ class Header extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'dalgona') && (
-                                <div className="header-hover__menu-dalgona">
+                                <div className="nav-hover__menu-dalgona">
                                     <Link to={{ pathname: '/notice', path: 'dalgona' }}>
                                         <span> 공지사항</span>
                                     </Link>
@@ -192,7 +188,7 @@ class Header extends Component {
                                     </Link>
                                 </div>
                             )}
-                            {isPC && <div className="header-hover__menu-dummy"></div>}
+                            {isPC && <div className="nav-hover__menu-dummy"></div>}
                         </div>
                     </div>
                 )}
@@ -201,4 +197,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default Nav;

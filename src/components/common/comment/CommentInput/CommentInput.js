@@ -68,7 +68,7 @@ const CommentInput = (props) => {
                     </button>
                 </div>
                 <div>
-                    <button className="comment-input__button--submit">등록하기</button>
+                    <button className="comment-input__button--submit">등록</button>
                 </div>
             </div>
         </div>
