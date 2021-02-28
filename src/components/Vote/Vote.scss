@@ -3,16 +3,19 @@
 //pc, 기본
 .vote {
     @include flex(column, center, center);
+    width: 100%;
     &__detail {
         @include flex(row, flex-start, center);
         width: 100%;
         padding-top: 65px;
         padding-bottom: 70px;
-        padding-left: 20%;
         font-family: Roboto;
         font-size: 27px;
         font-weight: 400;
         letter-spacing: 0em;
+        span {
+            padding-left: 10%;
+        }
     }
     &__info {
         @include flex(column, center, flex-start);

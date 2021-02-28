@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import CommentList from 'components/common/comment/CommentList';
+import VoteModal from 'components/common/VoteModal';
 import './Vote.scss';
 
 class Vote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Vote: [],
+            vote: [],
+            selectVote: '',
+            showModal: false,
             commentList: [
                 {
                     id: 1,
@@ -70,7 +73,18 @@ class Vote extends Component {
         };
     }
 
+    onClickVote = (e) => {
+        this.setState({ selectVote: e.target.id });
+        this.handleShowModal();
+    };
+
+    handleShowModal = (e) => {
+        const { showModal } = this.state;
+        this.setState({ showModal: !showModal });
+    };
+
     render() {
+        const { showModal, selectVote } = this.state;
         return (
             <div className="vote">
                 <div className="vote__detail">
@@ -87,7 +101,8 @@ class Vote extends Component {
                 </div>
                 <div className="vote__main">
                     <div className="vote__main__content">
-                        <div className="vote__main__content-first">
+                        {showModal && <VoteModal voteDuplicate={selectVote} handleShowModal={this.handleShowModal} />}
+                        <div className="vote__main__content-first" onClick={this.onClickVote} id="first">
                             <div className="vote__main__content-first-circle"></div>
                             <span className="vote__main__content-first-title">LUNA</span>
                             <span className="vote__main__content-first-description">LUNALUNALUNALUNA</span>
@@ -104,7 +119,7 @@ class Vote extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="vote__main__content-second">
+                        <div className="vote__main__content-second" onClick={this.onClickVote} id="second">
                             <div className="vote__main__content-second-circle"></div>
                             <span className="vote__main__content-second-title">LUNA</span>
                             <span className="vote__main__content-second-description">LUNALUNALUNALUNA</span>
