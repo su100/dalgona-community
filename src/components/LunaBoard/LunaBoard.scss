@@ -1,0 +1,81 @@
+@import 'styles/base.scss';
+
+.luna-board {
+    padding-bottom: 150px;
+    section {
+        h4 {
+            font-size: 1.55rem;
+        }
+        .luna-board__item--hot {
+            padding-bottom: 25px;
+            .image {
+                background: #dadada;
+                height: 220px;
+                line-height: 220px;
+                color: #838383;
+                text-align: center;
+                font-weight: 500;
+                font-size: 16px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            p {
+                margin-top: 28px;
+                margin-bottom: 0;
+                font-weight: bold;
+                font-size: 22px;
+                color: #1f1f1f;
+            }
+            span {
+                margin-right: 21px;
+                font-size: 11px;
+                color: #838383;
+            }
+        }
+    }
+    .luna-board__container--btn {
+        text-align: right;
+        margin: 48px 0 50px;
+        a {
+            text-align: center;
+            display: inline-block;
+            width: 80px;
+            height: 43px;
+            line-height: 43px;
+            background: #ffd278;
+            color: #fff;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 17px;
+        }
+    }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .luna-board {
+        padding-bottom: 40.5px;
+        section {
+            h4 {
+                margin: 17px 20px 0;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .luna-board {
+        padding-bottom: 71px;
+        section {
+            h4 {
+                margin: 14px 19px 0;
+                font-size: 14px;
+            }
+        }
+    }
+}

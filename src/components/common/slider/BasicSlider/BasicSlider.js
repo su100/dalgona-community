@@ -1,31 +1,61 @@
 import React from 'react';
 import Slider from 'react-slick';
-
+import nextArrow from 'images/next-arrow.png';
+import prevArrow from 'images/prev-arrow.png';
 import './BasicSlider.scss';
 
-const BasicSlider = (props) => {
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <img
+            src={prevArrow}
+            className={className}
+            style={{ ...style, width: '22px', height: '62px', marginLeft: '-20px' }}
+            onClick={onClick}
+            alt="prev"
+        />
+    );
+}
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <img
+            src={nextArrow}
+            className={className}
+            style={{ ...style, width: '22px', height: '62px', marginRight: '-20px' }}
+            onClick={onClick}
+            alt="next"
+        />
+    );
+}
+const BasicSlider = ({
+    children,
+    background,
+    autoplay = false,
+    autoplaySpeed = 5000,
+    infinite = false,
+    slidesToShow = 1,
+    slidesToScroll = 1,
+    arrows = false,
+}) => {
     let settings = {
         dots: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
+        autoplay: autoplay,
+        autoplaySpeed: autoplaySpeed,
+        infinite: infinite,
+        slidesToShow: slidesToShow,
+        slidesToScroll: slidesToScroll,
+        swipeToSlide: true,
+        arrows: arrows,
         centerMode: false,
+        pauseOnHover: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
     };
 
-    if (props.autoplay) {
-        settings['autoplay'] = true;
-    }
-    if (props.speed) {
-        settings['autoplaySpeed'] = props.speed;
-    }
-
-    if (props.infinite) {
-        settings['infinite'] = true;
-    }
-
     return (
-        <Slider {...settings} className="basic-slider" style={{ background: props.background }}>
-            {props.children}
+        <Slider {...settings} className="basic-slider" style={{ background: background }}>
+            {children}
         </Slider>
     );
 };
