@@ -2,11 +2,10 @@
 
 //pc, 기본
 .post-list {
-    width: 1436px;
+    width: 100%;
     .post-list__item {
-        padding-left: 135px;
+        @include flex(row, center, center);
         height: 71px;
-        @include flex(row, space-between, center);
         border-bottom: 1px solid rgba(226, 226, 226, 0.5);
         &:first-child {
             border-top: 1px solid rgba(226, 226, 226, 0.5);
@@ -18,10 +17,8 @@
             @include flex(row, space-between, center);
             .post-list__item--title {
                 @include flex(row, flex-start, center);
-                width: 800px;
-                font-family: Noto Sans KR;
-                font-weight: bold;
-                font-size: 14px;
+                width: 530px;
+                padding-right: 40px;
                 .post-list__img--pc {
                     display: block;
                     img {
@@ -29,17 +26,32 @@
                         height: 60px;
                     }
                 }
+                p {
+                    margin: 0;
+                    font-family: Noto Sans KR;
+                    font-weight: bold;
+                    font-size: 14px;
+                    @include ellipsis(3, 14px);
+                }
             }
             .post-list__item--detail {
                 @include flex(row, center, center);
                 color: #4f4f4f;
                 font-family: Noto Sans KR;
                 font-size: 11px;
-                div {
-                    margin-right: 35px;
+                span {
+                    width: 90px;
+                    margin-right: 10px;
                     &:last-child {
+                        width: 80px;
                         margin-right: 0;
                     }
+                }
+                .post-list__item--date {
+                    margin-left: 10px;
+                    margin-right: 50px;
+                    width: 40px;
+                    text-align: center;
                 }
                 .post-list__item--comment--pc {
                     display: block;
@@ -55,9 +67,8 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .post-list {
-        width: 728px;
         .post-list__item {
-            padding-left: 0;
+            margin: 0 20px;
             height: 101px;
             justify-content: space-between;
             .post-list__item--left {
@@ -72,28 +83,37 @@
                 }
             }
             .post-list__item--main {
-                height: 101px;
                 @include flex(column, space-around, flex-start);
+                height: 101px;
                 .post-list__item--title {
-                    width: auto;
-                    font-family: Noto Sans KR;
-                    font-weight: normal;
-                    font-size: 17px;
+                    width: fill;
+                    padding-right: 10%;
                     .post-list__img--pc {
                         display: none;
+                    }
+                    p {
+                        font-weight: normal;
+                        font-size: 17px;
+                        @include ellipsis(2, 17px);
                     }
                 }
                 .post-list__item--detail {
                     color: #a8a8a8;
                     font-family: Noto Sans KR;
                     font-size: 14px;
-                    div {
+                    span {
+                        width: max-content;
                         margin-right: 5px;
                         padding-right: 5px;
                         border-right: 1px solid #a8a8a8;
                         &:last-child {
                             border-right: none;
                         }
+                    }
+                    .post-list__item--date {
+                        margin-left: 0;
+                        margin-right: 5px;
+                        width: max-content;
                     }
                     .post-list__item--comment--pc {
                         display: none;
@@ -104,6 +124,7 @@
                 padding: none;
                 display: block;
                 width: 42px;
+                min-width: 42px;
                 height: 42px;
                 border: 1px solid #e2e2e2;
                 border-radius: 50%;
@@ -120,7 +141,6 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .post-list {
-        width: 320px;
         .post-list__item {
             height: 80px;
             .post-list__img {
@@ -132,10 +152,8 @@
             .post-list__item--main {
                 height: 80px;
                 .post-list__item--title {
-                    font-family: Noto Sans KR;
                 }
                 .post-list__item--detail {
-                    font-family: Noto Sans KR;
                     font-size: 12px;
                     div {
                         margin-right: 4px;
@@ -145,6 +163,7 @@
             }
             .post-list__item--comment {
                 width: 33.45px;
+                min-width: 33.45px;
                 height: 33.45px;
                 line-height: 33.45px;
                 font-family: Noto Sans KR;
