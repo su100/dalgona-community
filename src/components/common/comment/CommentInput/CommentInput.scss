@@ -45,22 +45,7 @@
     .comment-input--bottom {
         @include flex(row, space-between, center);
         margin-top: 14px;
-        button {
-            height: 43px;
-            width: 93px;
-            background: #dadada;
-            border-radius: 4px;
-            color: black;
-        }
         span {
-            font-family: Roboto;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 19px;
-            letter-spacing: 0em;
-            text-align: left;
-            color: #838383;
             margin-right: 20px;
         }
         img {
@@ -95,6 +80,7 @@
             height: 123px;
         }
         .comment-input--bottom {
+            width: 768px;
             .comment-input__button--submit {
             }
         }

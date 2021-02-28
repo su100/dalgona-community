@@ -93,8 +93,15 @@ class Vote extends Component {
                             <span className="vote__main__content-first-description">LUNALUNALUNALUNA</span>
                         </div>
                         <div className="vote__main__content-area">
-                            <div className="vote__main__content-area-vs">
-                                <span>vs</span>
+                            <div className="only-pc">
+                                <div className="vote__main__content-area-vs">
+                                    <span>vs</span>
+                                </div>
+                            </div>
+                            <div className="not-pc">
+                                <div className="vote__main__content-area-vs">
+                                    <span>현재 184표 차이</span>
+                                </div>
                             </div>
                         </div>
                         <div className="vote__main__content-second">
@@ -103,14 +110,19 @@ class Vote extends Component {
                             <span className="vote__main__content-second-description">LUNALUNALUNALUNA</span>
                         </div>
                     </div>
+                    <div className="not-pc">
+                        <div className="vote__main-description">
+                            설면ㄴㅇ리ㅏㄴ어라ㅣㅇ너ㅏㅣㄴ어ㅣㅏㅇ너ㅣ나ㅓ라ㅣㅇ너라ㅣㄴ얼
+                        </div>
+                    </div>
                     <div className="vote__main-ratio"></div>
-                    <div className="vote__main-description">
-                        설면ㄴㅇ리ㅏㄴ어라ㅣㅇ너ㅏㅣㄴ어ㅣㅏㅇ너ㅣ나ㅓ라ㅣㅇ너라ㅣㄴ얼
+                    <div className="only-pc">
+                        <div className="vote__main-description">
+                            설면ㄴㅇ리ㅏㄴ어라ㅣㅇ너ㅏㅣㄴ어ㅣㅏㅇ너ㅣ나ㅓ라ㅣㅇ너라ㅣㄴ얼
+                        </div>
                     </div>
                 </div>
-                <div className="vote__comment">
-                    <div className="vote__comment-count">댓글 123</div>
-                </div>
+                <div className="vote__comment"></div>
                 <CommentList commentList={this.state.commentList} isRecommend />
             </div>
         );
