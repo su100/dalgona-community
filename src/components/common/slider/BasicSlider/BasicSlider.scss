@@ -6,6 +6,15 @@
     div {
         outline: none;
     }
+    .slick-list {
+        margin: 0 -20px;
+    }
+    .slick-slide > div {
+        padding: 0 20px;
+    }
+    .slick-arrow {
+        margin-top: -40px;
+    }
     .slick-dots {
         background: inherit;
         padding-bottom: 25px;

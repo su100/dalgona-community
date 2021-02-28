@@ -10,7 +10,7 @@ function PrevArrow(props) {
         <img
             src={prevArrow}
             className={className}
-            style={{ ...style, width: '40px', height: '160px' }}
+            style={{ ...style, width: '22px', height: '62px', marginLeft: '-20px' }}
             onClick={onClick}
             alt="prev"
         />
@@ -22,7 +22,7 @@ function NextArrow(props) {
         <img
             src={nextArrow}
             className={className}
-            style={{ ...style, width: '40px', height: '160px' }}
+            style={{ ...style, width: '22px', height: '62px', marginRight: '-20px' }}
             onClick={onClick}
             alt="next"
         />
