@@ -3,6 +3,9 @@
 .basic-slider {
     background: inherit;
     margin-bottom: 25px;
+    div {
+        outline: none;
+    }
     .slick-dots {
         background: inherit;
         padding-bottom: 25px;
