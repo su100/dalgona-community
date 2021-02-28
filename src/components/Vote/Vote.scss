@@ -5,27 +5,21 @@
     @include flex(column, center, center);
     &__detail {
         @include flex(row, flex-start, center);
-        width: 1400px;
+        width: 100%;
         padding-top: 65px;
         padding-bottom: 70px;
+        padding-left: 20%;
         font-family: Roboto;
         font-size: 27px;
-        font-style: normal;
         font-weight: 400;
-        line-height: 34px;
         letter-spacing: 0em;
-        text-align: left;
     }
     &__info {
         @include flex(column, center, flex-start);
         &-date {
             font-family: Noto Sans KR;
             font-size: 14px;
-            font-style: normal;
             font-weight: 700;
-            line-height: 19px;
-            letter-spacing: 0.1599999964237213px;
-            text-align: left;
             padding-bottom: 23px;
         }
         &-maininfo {
@@ -36,11 +30,7 @@
             &-title {
                 font-family: Roboto;
                 font-size: 34px;
-                font-style: normal;
                 font-weight: 700;
-                line-height: 41px;
-                letter-spacing: 0em;
-                text-align: left;
             }
             &-count {
                 @include flex(row, center, center);
@@ -49,11 +39,7 @@
                 border-radius: 50px;
                 font-family: Noto Sans KR;
                 font-size: 27px;
-                font-style: normal;
                 font-weight: 700;
-                line-height: 32px;
-                letter-spacing: 0.1599999964237213px;
-                text-align: right;
                 background: #ffd278;
                 color: #ffffff;
             }
@@ -62,6 +48,7 @@
     &__main {
         @include flex(column, center, center);
         width: 950px;
+        font-family: Noto Sans KR;
         &__content {
             @include flex(row, center, center);
             &-first {
@@ -79,22 +66,12 @@
                 &-title {
                     padding-top: 32px;
                     padding-bottom: 25px;
-                    font-family: Noto Sans KR;
                     font-size: 27px;
-                    font-style: normal;
                     font-weight: 700;
-                    line-height: 34px;
-                    letter-spacing: 0.1599999964237213px;
-                    text-align: left;
                 }
                 &-description {
-                    font-family: Noto Sans KR;
                     font-size: 14px;
-                    font-style: normal;
                     font-weight: 400;
-                    line-height: 19px;
-                    letter-spacing: 0.1599999964237213px;
-                    text-align: center;
                 }
             }
             &-area {
@@ -109,13 +86,8 @@
                     border-radius: 50px;
                     background: #e2e2e2;
                     span {
-                        font-family: Noto Sans KR;
                         font-size: 27px;
-                        font-style: normal;
                         font-weight: 700;
-                        line-height: 57px;
-                        letter-spacing: 0.1599999964237213px;
-                        text-align: center;
                         color: #838383;
                     }
                 }
@@ -135,23 +107,13 @@
                 &-title {
                     padding-top: 32px;
                     padding-bottom: 25px;
-                    font-family: Noto Sans KR;
                     font-size: 27px;
-                    font-style: normal;
                     font-weight: 700;
-                    line-height: 34px;
-                    letter-spacing: 0.1599999964237213px;
-                    text-align: left;
                     color: #ffffff;
                 }
                 &-description {
-                    font-family: Noto Sans KR;
                     font-size: 14px;
-                    font-style: normal;
                     font-weight: 400;
-                    line-height: 19px;
-                    letter-spacing: 0.1599999964237213px;
-                    text-align: center;
                     color: #ffffff;
                 }
             }
@@ -165,13 +127,8 @@
             background: #ffd278;
         }
         &-description {
-            font-family: Noto Sans KR;
             font-size: 14px;
-            font-style: normal;
             font-weight: 400;
-            line-height: 19px;
-            letter-spacing: 0.1599999964237213px;
-            text-align: left;
             padding-bottom: 201px;
         }
     }
@@ -194,26 +151,16 @@
                 padding-top: 19px;
                 padding-bottom: 10px;
                 color: #a8a8a8;
-                font-family: Roboto;
                 font-size: 14px;
-                font-style: normal;
                 font-weight: 400;
-                line-height: 16px;
-                letter-spacing: 0em;
-                text-align: left;
             }
             &-maininfo {
                 width: 100%;
                 padding-right: 0px;
                 padding-bottom: 17px;
                 &-title {
-                    font-family: Roboto;
                     font-size: 23px;
-                    font-style: normal;
                     font-weight: 400;
-                    line-height: 27px;
-                    letter-spacing: 0em;
-                    text-align: left;
                 }
                 &-count {
                     display: none;
@@ -242,13 +189,8 @@
                         width: 200px;
                         background: none;
                         span {
-                            font-family: Roboto;
                             font-size: 23px;
                             font-style: normal;
-                            font-weight: 400;
-                            line-height: 27px;
-                            letter-spacing: 0em;
-                            text-align: left;
                             color: black;
                         }
                     }
