@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-
+import Header from 'components/common/Header';
 import Pagination from 'components/common/Pagination';
-import SearchInput from 'components/common/SearchInput';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import VoteItem from 'components/common/slider/VoteItem';
 
@@ -173,19 +172,14 @@ class VoteList extends Component {
     render() {
         return (
             <div className="vote-list">
-                <div className="vote-list__header">
-                    <div className="vote-list__header--title">
-                        <h4>투표</h4>
-                        <button>☆</button>
-                    </div>
-                    <hr className="not-pc" />
-                    <SearchInput
-                        searchWord={this.state.searchWord}
-                        handleChange={this.handleChange}
-                        placeholder="투표 제목을 검색하세요"
-                        getSearch={this.getSearch}
-                    />
-                </div>
+                <Header
+                    title="투표"
+                    searchWord={this.state.searchWord}
+                    handleChange={this.handleChange}
+                    placeholder="투표 제목을 검색하세요"
+                    getSearch={this.getSearch}
+                />
+
                 <section>
                     <BasicSlider autoplay speed={5000} infinite background="#dadada">
                         {this.state.hotVote.map((vote) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Header from 'components/common/Header';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
@@ -9,6 +10,7 @@ class LunaBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchWord: '',
             hotPostList: [
                 {
                     id: 1,
@@ -185,10 +187,25 @@ class LunaBoard extends Component {
     handlePage = (e) => {
         this.setState({ page: e.target.value });
     };
+    handleChange = (e) => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    getSearch = () => {
+        //this.state.searchWord로 getList해오기
+        console.log(this.state.searchWord, '검색');
+    };
     render() {
         return (
             <div className="luna-board">
-                <div>header</div>
+                <Header
+                    title="루나이름"
+                    hasWrite
+                    searchWord={this.state.searchWord}
+                    handleChange={this.handleChange}
+                    placeholder="글 제목을 검색하세요"
+                    getSearch={this.getSearch}
+                />
                 <section>
                     <h4>인기글</h4>
                     <div className="only-pc">
