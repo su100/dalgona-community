@@ -217,6 +217,32 @@
                     width: 14.961897850036621px;
                 }
             }
+            &-preview {
+                @include flex(row, center, center);
+                width: inherit;
+                height: 110px;
+                &-background {
+                    position: absolute;
+                    width: inherit;
+                    height: 25px;
+                    background: #000000;
+                    opacity: 0.13;
+                }
+                img {
+                    width: 92px;
+                    height: 92px;
+                    margin-bottom: 20px;
+                }
+                button {
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 5px;
+                    margin-bottom: 10px;
+                    align-self: flex-start;
+                    color: black;
+                    z-index: 10;
+                }
+            }
         }
         &__content {
             @include flex(column, center, center);
