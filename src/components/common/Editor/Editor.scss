@@ -1,0 +1,105 @@
+@import 'styles/base.scss';
+
+.editor {
+    font-size: 20px;
+    .editor-photo-btn {
+        margin-top: 14px;
+        span {
+            margin-right: 20px;
+        }
+        img {
+            margin-right: 3px;
+        }
+
+        input[type='file'] {
+            display: none;
+        }
+    }
+    .ql-container {
+        width: 579px;
+        min-height: 289px;
+        background: #fff;
+        img {
+            max-width: 500px;
+        }
+        &.ql-disabled {
+            background: inherit;
+        }
+    }
+    &.read-only {
+        .ql-container {
+            min-height: 100px;
+        }
+    }
+}
+
+//태블릿, 모바일 공통
+@media screen and (max-width: $tablet-max) {
+    .editor {
+        .editor-photo-btn {
+            margin-top: 14px;
+            span {
+                margin-right: 20px;
+            }
+            img {
+                margin-right: 3px;
+            }
+
+            input[type='file'] {
+                display: none;
+            }
+        }
+        .ql-container {
+            width: 579px;
+            min-height: 289px;
+            background: #fff;
+            img {
+                max-width: 500px;
+            }
+            &.ql-disabled {
+                background: inherit;
+            }
+        }
+        &.read-only {
+            .ql-container {
+                min-height: 100px;
+            }
+        }
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .editor {
+        font-size: 20px;
+        .editor-photo-btn {
+            margin-top: 14px;
+            span {
+                margin-right: 20px;
+            }
+            img {
+                margin-right: 3px;
+            }
+
+            input[type='file'] {
+                display: none;
+            }
+        }
+        .ql-container {
+            width: 579px;
+            min-height: 289px;
+            background: #fff;
+            img {
+                max-width: 500px;
+            }
+            &.ql-disabled {
+                background: inherit;
+            }
+        }
+        &.read-only {
+            .ql-container {
+                min-height: 100px;
+            }
+        }
+    }
+}

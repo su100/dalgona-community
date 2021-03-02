@@ -9,6 +9,7 @@ export { default as VoteListPage } from './VoteListPage';
 export { default as VotePage } from './VotePage';
 export { default as LunaBoardPage } from './LunaBoardPage';
 export { default as LunaPostPage } from './LunaPostPage';
+export { default as WritePage } from './WritePage';
 export { default as FreeBoardPage } from './FreeBoardPage';
 export { default as FreePostPage } from './FreePostPage';
 export { default as NoticeBoardPage } from './NoticeBoardPage';
