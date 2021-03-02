@@ -1,16 +1,16 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
 import Nav from 'components/common/Nav';
-import VoteListContainer from 'containers/VoteListContainer';
+import VoteBoardContainer from 'containers/VoteBoardContainer';
 
-const VoteListPage = ({ history, location }) => {
+const VoteBoardPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Nav history={history} location={location} isHome={true} />}>
-                <VoteListContainer />
+                <VoteBoardContainer />
             </PageTemplate>
         </div>
     );
 };
 
-export default VoteListPage;
+export default VoteBoardPage;

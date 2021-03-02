@@ -7,9 +7,9 @@ import BasicSlider from 'components/common/slider/BasicSlider';
 import VoteItem from 'components/common/slider/VoteItem';
 
 import refreshIcon from 'images/refresh.png';
-import './VoteList.scss';
+import './VoteBoard.scss';
 
-class VoteList extends Component {
+class VoteBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -171,7 +171,7 @@ class VoteList extends Component {
 
     render() {
         return (
-            <div className="vote-list">
+            <div className="vote-board">
                 <Header
                     title="투표"
                     searchWord={this.state.searchWord}
@@ -187,7 +187,7 @@ class VoteList extends Component {
                         })}
                     </BasicSlider>
                 </section>
-                <section className="vote-list__container">
+                <section className="vote-board__container">
                     <h4 className="not-pc">
                         진행중인 투표
                         <button>
@@ -197,20 +197,20 @@ class VoteList extends Component {
                     </h4>
                     {this.state.voteList.map((vote) => {
                         return (
-                            <Link to={`/vote/${vote.id}`} key={vote.id} className="vote-list__item">
-                                <div className="vote-list__item--left">
+                            <Link to={`/vote/${vote.id}`} key={vote.id} className="vote-board__item">
+                                <div className="vote-board__item--left">
                                     <img src={vote.board_image} alt="vote" />
-                                    <div className="vote-list__item--info">
+                                    <div className="vote-board__item--info">
                                         <h6>{vote.title}</h6>
                                         <div>
                                             <span>마감 D-{vote.deadline}</span>
                                             <span>{moment(vote.created_at).format('HH:mm')}</span>
                                             <span>투표수 {vote.vote_count}</span>
                                         </div>
-                                        <p className="vote-list__item--content">{vote.content}</p>
+                                        <p className="vote-board__item--content">{vote.content}</p>
                                     </div>
                                 </div>
-                                <div className="not-pc vote-list__item--reply">{vote.reply_count}</div>
+                                <div className="not-pc vote-board__item--reply">{vote.reply_count}</div>
                             </Link>
                         );
                     })}
@@ -225,4 +225,4 @@ class VoteList extends Component {
     }
 }
 
-export default VoteList;
+export default VoteBoard;

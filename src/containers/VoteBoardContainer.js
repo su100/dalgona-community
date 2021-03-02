@@ -2,17 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
-import VoteList from 'components/VoteList';
+import VoteBoard from 'components/VoteBoard';
 
-class VoteListContainer extends Component {
+class VoteBoardContainer extends Component {
     render() {
         console.log('home container');
         return (
             <Fragment>
-                <VoteList />
+                <VoteBoard />
             </Fragment>
         );
     }
 }
 
-export default VoteListContainer;
+export default VoteBoardContainer;

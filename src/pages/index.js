@@ -5,7 +5,7 @@ export { default as SignUpPage } from './SignUpPage';
 export { default as FindIdPage } from './FindIdPage';
 export { default as FindPwPage } from './FindPwPage';
 export { default as ArticlePage } from './ArticlePage';
-export { default as VoteListPage } from './VoteListPage';
+export { default as VoteBoardPage } from './VoteBoardPage';
 export { default as VotePage } from './VotePage';
 export { default as LunaBoardPage } from './LunaBoardPage';
 export { default as LunaPostPage } from './LunaPostPage';
