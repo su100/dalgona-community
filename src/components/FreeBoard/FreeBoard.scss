@@ -1,6 +1,6 @@
 @import 'styles/base.scss';
 
-.luna-board {
+.free-board {
     padding-bottom: 150px;
     section {
         h4 {
@@ -8,10 +8,9 @@
             font-size: 1.55rem;
         }
     }
-
-    .luna-board__container--hot {
+    .free-board__container--hot {
         margin-bottom: 40px;
-        .luna-board__item--hot {
+        .free-board__item--hot {
             padding-bottom: 25px;
             .image {
                 background: #dadada;
@@ -41,7 +40,7 @@
             }
         }
     }
-    .luna-board__container--btn {
+    .free-board__container--btn {
         text-align: right;
         margin: 48px 0 50px;
         a {
@@ -61,26 +60,12 @@
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .luna-board {
-        padding-bottom: 40.5px;
-        section {
-            h4 {
-                margin: 17px 20px 0;
-                font-size: 18px;
-            }
-        }
+    .free-board {
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .luna-board {
-        padding-bottom: 71px;
-        section {
-            h4 {
-                margin: 14px 19px 0;
-                font-size: 14px;
-            }
-        }
+    .free-board {
     }
 }
