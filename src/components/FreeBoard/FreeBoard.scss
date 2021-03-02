@@ -8,38 +8,6 @@
             font-size: 1.55rem;
         }
     }
-    .free-board__container--hot {
-        margin-bottom: 40px;
-        .free-board__item--hot {
-            padding-bottom: 25px;
-            .image {
-                background: #dadada;
-                height: 220px;
-                line-height: 220px;
-                color: #838383;
-                text-align: center;
-                font-weight: 500;
-                font-size: 16px;
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-            p {
-                margin-top: 28px;
-                margin-bottom: 0;
-                font-weight: bold;
-                font-size: 1.2rem;
-                color: #1f1f1f;
-            }
-            span {
-                margin-right: 21px;
-                font-size: 11px;
-                color: #838383;
-            }
-        }
-    }
     .free-board__container--btn {
         text-align: right;
         margin: 48px 0 50px;
@@ -61,11 +29,25 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .free-board {
+        padding-bottom: 40.5px;
+        section {
+            h4 {
+                margin: 17px 20px 0;
+                font-size: 18px;
+            }
+        }
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
     .free-board {
+        padding-bottom: 71px;
+        section {
+            h4 {
+                margin: 14px 19px 0;
+                font-size: 14px;
+            }
+        }
     }
 }

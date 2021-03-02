@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from 'components/common/Header';
+import BoardHotList from 'components/common/BoardHotList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
@@ -210,24 +211,7 @@ class LunaBoard extends Component {
                 <section className="luna-board__container--hot">
                     <h4>인기글</h4>
                     <div className="only-pc">
-                        <BasicSlider slidesToShow={3} arrows dots={false}>
-                            {this.state.hotPostList.map((post) => {
-                                const image = post.id % 2 == 0 ? '' : 'http://unsplash.it/300/300?image=122';
-                                return (
-                                    <Link
-                                        to={`/luna/board_url/${post.id}`}
-                                        key={post.id}
-                                        className="luna-board__item--hot"
-                                    >
-                                        <div className="image">{image ? <img src={image} alt="post" /> : '더보기'}</div>
-                                        <p>{post.title}</p>
-                                        <span>조회수 {post.views}</span>
-                                        <span>{post.created_at}</span>
-                                        <span>추천 {post.recommend_count}</span>
-                                    </Link>
-                                );
-                            })}
-                        </BasicSlider>
+                        <BoardHotList link={`/luna/board_url`} hotPostList={this.state.hotPostList} />
                     </div>
                     <div className="not-pc">
                         <BasicSlider>
