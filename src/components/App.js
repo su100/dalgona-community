@@ -9,7 +9,7 @@ import {
     FindIdPage,
     FindPwPage,
     ArticlePage,
-    VoteListPage,
+    VoteBoardPage,
     VotePage,
     LunaBoardPage,
     LunaPostPage,
@@ -38,7 +38,7 @@ function App() {
                 <Route exact path="/find/id" component={FindIdPage} />
                 <Route exact path="/find/pw" component={FindPwPage} />
                 <Route exact path="/article" component={ArticlePage} />
-                <Route exact path="/vote" component={VoteListPage} />
+                <Route exact path="/vote" component={VoteBoardPage} />
                 <Route exact path="/vote/:voteid" component={VotePage} />
                 <Route exact path="/luna/:lunaid" component={LunaBoardPage} />
                 <Route exact path="/luna/:lunaid/:postid" component={LunaPostPage} />

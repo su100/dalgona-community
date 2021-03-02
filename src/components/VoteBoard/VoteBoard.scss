@@ -1,34 +1,14 @@
 @import 'styles/base.scss';
 
-.vote-list {
+.vote-board {
     padding-bottom: 100px;
-    &__header {
-        @include flex(row, space-between, center);
-        margin: 0 auto;
-        width: 1000px;
-        .vote-list__header--title {
-            @include flex(row, flex-start, center);
-            h4 {
-                display: inline-block;
-                margin: 60px 0;
-                margin-right: 7px;
-                font-weight: bold;
-                font-size: 34px;
-            }
-            button {
-                width: 26px;
-                height: 24px;
-                background: #ffd278;
-                border: 0.5px solid #ffd278;
-            }
-        }
-    }
-    .vote-list__container {
+
+    .vote-board__container {
         @include flex(row, center, center);
         margin-top: 167px;
         margin-bottom: 150px - 20px - 23px; //23px: pagination margin top
         flex-wrap: wrap;
-        .vote-list__item {
+        .vote-board__item {
             margin-bottom: 20px;
             padding-right: 20px;
             width: 490px;
@@ -37,7 +17,7 @@
             &:nth-child(2n + 1) {
                 margin-right: 20px;
             }
-            .vote-list__item--left {
+            .vote-board__item--left {
                 @include flex(row, flex-start, flex-start);
                 color: #a8a8a8;
                 img {
@@ -47,7 +27,7 @@
                     height: 150px;
                     background: #838383;
                 }
-                .vote-list__item--info {
+                .vote-board__item--info {
                     h6 {
                         margin: 25px 0 5px;
                         color: #000;
@@ -60,7 +40,7 @@
                         font-size: 11px;
                         margin-right: 34px;
                     }
-                    .vote-list__item--content {
+                    .vote-board__item--content {
                         margin: 22px 0 0;
                         font-size: 13px;
                         @include ellipsis(3, 13px);
@@ -73,38 +53,11 @@
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .vote-list {
+    .vote-board {
         width: 100%;
         padding-bottom: 73.18px;
-        &__header {
-            //태블릿 아직 안나와서 모바일 설정임
-            width: calc(100% - 18.5px);
-            @include flex(column, center, center);
-            .vote-list__header--title {
-                @include flex(row, space-between, center);
-                width: 100%;
-                height: 46.17px;
-                h4 {
-                    margin: 13.8px 0;
-                    margin-right: 0;
-                    font-weight: 500;
-                    font-size: 14px;
-                }
-                button {
-                    width: 14px;
-                    height: 13px;
-                }
-            }
-            hr {
-                width: 100%;
-                margin: 0;
-                margin-bottom: 7px;
-                border: none;
-                border-bottom: 1px solid rgba(226, 226, 226, 0.5);
-            }
-        }
 
-        .vote-list__container {
+        .vote-board__container {
             @include flex(column, center, center);
             margin-top: 0;
             margin-bottom: 56.78px; //23px: pagination margin top
@@ -125,7 +78,7 @@
                     }
                 }
             }
-            .vote-list__item {
+            .vote-board__item {
                 @include flex(row, space-between, center);
                 margin-bottom: 0;
                 padding-right: 0;
@@ -135,13 +88,13 @@
                 &:nth-child(2n + 1) {
                     margin-right: 0;
                 }
-                .vote-list__item--left {
+                .vote-board__item--left {
                     img {
                         min-width: 77px;
                         width: 77px;
                         height: 77px;
                     }
-                    .vote-list__item--info {
+                    .vote-board__item--info {
                         @include flex(column, space-between, flex-start);
                         padding: 3px 0;
                         height: 77px;
@@ -161,12 +114,12 @@
                                 border-right: 0;
                             }
                         }
-                        .vote-list__item--content {
+                        .vote-board__item--content {
                             display: none;
                         }
                     }
                 }
-                .vote-list__item--reply {
+                .vote-board__item--reply {
                     width: 42px;
                     min-width: 42px;
                     height: 42px;
@@ -184,29 +137,10 @@
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .vote-list {
+    .vote-board {
         padding-bottom: 84px;
-        &__header {
-            width: calc(100% - 18.5px);
-            .vote-list__header--title {
-                height: 46.17px;
-                h4 {
-                    margin: 13.8px 0;
-                    margin-right: 0;
-                    font-weight: 500;
-                    font-size: 14px;
-                }
-                button {
-                    width: 14px;
-                    height: 13px;
-                }
-            }
-            hr {
-                margin-bottom: 7px;
-            }
-        }
 
-        .vote-list__container {
+        .vote-board__container {
             margin-bottom: 18px; //23px: pagination margin top
             h4 {
                 padding: 13.8px 19px;
@@ -223,16 +157,16 @@
                     }
                 }
             }
-            .vote-list__item {
+            .vote-board__item {
                 width: calc(100% - 20px);
                 height: 84px;
-                .vote-list__item--left {
+                .vote-board__item--left {
                     img {
                         min-width: 56px;
                         width: 56px;
                         height: 56px;
                     }
-                    .vote-list__item--info {
+                    .vote-board__item--info {
                         height: 56px;
                         h6 {
                             font-size: 17px;
@@ -245,7 +179,7 @@
                         }
                     }
                 }
-                .vote-list__item--reply {
+                .vote-board__item--reply {
                     width: 33.45px;
                     min-width: 33.45px;
                     height: 33.45px;

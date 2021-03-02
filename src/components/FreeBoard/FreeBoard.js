@@ -5,9 +5,10 @@ import BoardHotList from 'components/common/BoardHotList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
-import './LunaBoard.scss';
 
-class LunaBoard extends Component {
+import './FreeBoard.scss';
+
+class FreeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -199,16 +200,16 @@ class LunaBoard extends Component {
 
     render() {
         return (
-            <div className="luna-board">
+            <div className="free-board">
                 <Header
-                    title="루나이름"
+                    title="일상/잡담"
                     hasWrite
                     searchWord={this.state.searchWord}
                     handleChange={this.handleChange}
                     placeholder="글 제목을 검색하세요"
                     getSearch={this.getSearch}
                 />
-                <section className="luna-board__container--hot">
+                <section className="free-board__container--hot">
                     <h4>인기글</h4>
                     <div className="only-pc">
                         <BoardHotList link={`/luna/board_url`} hotPostList={this.state.hotPostList} />
@@ -223,8 +224,8 @@ class LunaBoard extends Component {
                 </section>
                 <div className="border_line" />
                 <PostList hasGrid postList={this.state.postList} />
-                <section className="only-pc luna-board__container--btn">
-                    <Link to={`/luna/board_url/write`}>글쓰기</Link>
+                <section className="only-pc free-board__container--btn">
+                    <Link to={`/free/board_url/write`}>글쓰기</Link>
                 </section>
                 <Pagination
                     countList={this.state.postCount}
@@ -236,4 +237,4 @@ class LunaBoard extends Component {
     }
 }
 
-export default LunaBoard;
+export default FreeBoard;

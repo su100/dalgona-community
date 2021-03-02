@@ -1,6 +1,6 @@
 @import 'styles/base.scss';
 
-.luna-board {
+.free-board {
     padding-bottom: 150px;
     section {
         h4 {
@@ -8,8 +8,7 @@
             font-size: 1.55rem;
         }
     }
-
-    .luna-board__container--btn {
+    .free-board__container--btn {
         text-align: right;
         margin: 48px 0 50px;
         a {
@@ -29,7 +28,7 @@
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .luna-board {
+    .free-board {
         padding-bottom: 40.5px;
         section {
             h4 {
@@ -42,7 +41,7 @@
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .luna-board {
+    .free-board {
         padding-bottom: 71px;
         section {
             h4 {

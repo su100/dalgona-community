@@ -31,6 +31,7 @@ function NextArrow(props) {
 const BasicSlider = ({
     children,
     background,
+    dots = true,
     autoplay = false,
     autoplaySpeed = 5000,
     infinite = false,
@@ -39,7 +40,7 @@ const BasicSlider = ({
     arrows = false,
 }) => {
     let settings = {
-        dots: true,
+        dots: dots,
         autoplay: autoplay,
         autoplaySpeed: autoplaySpeed,
         infinite: infinite,
