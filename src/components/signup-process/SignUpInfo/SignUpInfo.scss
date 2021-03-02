@@ -98,6 +98,31 @@
                 border: 1px solid black;
                 border-radius: 194px;
             }
+            &-preview {
+                @include flex(row, center, center);
+                width: inherit;
+                height: 194px;
+                &-background {
+                    position: absolute;
+                    width: inherit;
+                    height: 194px;
+                    background: #000000;
+                    opacity: 0.13;
+                }
+                img {
+                    width: 194px;
+                    height: 194px;
+                }
+                button {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 5px;
+                    margin-bottom: 15px;
+                    align-self: flex-start;
+                    color: black;
+                    z-index: 10;
+                }
+            }
         }
         &__content {
             @include flex(column, center, center);

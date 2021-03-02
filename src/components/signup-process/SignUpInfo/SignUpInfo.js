@@ -10,6 +10,7 @@ class SignUpInfo extends Component {
         this.state = {
             Id: '',
             password: '',
+            type: '',
             passwordConfirm: '',
             nickName: '',
             email: '',
@@ -22,16 +23,15 @@ class SignUpInfo extends Component {
         };
         this.fileInput = React.createRef();
     }
-    setImage = (type, file) => {
+    setImage = (file) => {
         this.setState({ Img: file });
     };
-    setPreview = (type, url) => {
+    setPreview = (url) => {
         this.setState({ previewURL: url });
     };
     selectImg = (e) => {
         let reader = new FileReader();
         let file = e.target.files[0];
-
         reader.onloadend = () => {
             this.setImage(file);
             this.setPreview(reader.result);
@@ -39,7 +39,7 @@ class SignUpInfo extends Component {
         reader.readAsDataURL(file);
     };
     deleteImg = (e) => {
-        this.setState({ Img: null, rePreview: '' });
+        this.setState({ Img: null, previewURL: '' });
     };
     onClickSelect = () => {
         this.fileInput.current.click();
@@ -74,7 +74,7 @@ class SignUpInfo extends Component {
             nickName: '한글/영문/숫자 1~20자',
             email: '이메일 주소 입력',
         };
-        const { duplicate } = this.state;
+        const { duplicate, previewURL } = this.state;
         return (
             <div className="signupinfo">
                 <div className="signupinfo__title">
@@ -98,9 +98,20 @@ class SignUpInfo extends Component {
                                 event.target.value = null;
                             }}
                         />
-                        <button className="" onClick={this.onClickSelect}>
-                            <img src={photoIcon} alt="photoIcon" />
-                        </button>
+                        {!previewURL && (
+                            <button className="" onClick={this.onClickSelect}>
+                                <img src={photoIcon} alt="photoIcon" />
+                            </button>
+                        )}
+                        {previewURL && (
+                            <div className="signupinfo__img-preview">
+                                <div className="signupinfo__img-preview-background" />
+                                <img src={previewURL} alt="preview" />
+                                <button id={this.type} onClick={this.deleteImg}>
+                                    X
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="signupinfo__content">
