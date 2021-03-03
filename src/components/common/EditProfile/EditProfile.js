@@ -36,7 +36,17 @@ class EditProfile extends Component {
     onClickSelect = () => {
         this.fileInput.current.click();
     };
+    deleteImg = (e) => {
+        this.setState({ Img: null, previewURL: '' });
+    };
+    setPreview = (url) => {
+        this.setState({ previewURL: url });
+    };
+    setImage = (file) => {
+        this.setState({ Img: file });
+    };
     render() {
+        const { previewURL } = this.state;
         return (
             <div className="editprofile">
                 <div className="editprofile__header">
@@ -54,9 +64,20 @@ class EditProfile extends Component {
                             event.target.value = null;
                         }}
                     />
-                    <button className="" onClick={this.onClickSelect}>
-                        <img src={photoIcon} alt="photoIcon" />
-                    </button>
+                    {!previewURL && (
+                        <button className="" onClick={this.onClickSelect}>
+                            <img src={photoIcon} alt="photoIcon" />
+                        </button>
+                    )}
+                    {previewURL && (
+                        <div className="editprofile__img-preview">
+                            <div className="editprofile__img-preview-background" />
+                            <img src={previewURL} alt="preview" />
+                            <button id={this.type} onClick={this.deleteImg}>
+                                X
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <div className="editprofile__content">
                     <div className="editprofile__content-nickname">

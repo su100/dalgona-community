@@ -13,6 +13,7 @@ import {
     VotePage,
     LunaBoardPage,
     LunaPostPage,
+    WritePage,
     FreeBoardPage,
     FreePostPage,
     NoticeBoardPage,
@@ -42,6 +43,7 @@ function App() {
                 <Route exact path="/vote/:voteid" component={VotePage} />
                 <Route exact path="/luna/:lunaid" component={LunaBoardPage} />
                 <Route exact path="/luna/:lunaid/:postid" component={LunaPostPage} />
+                <Route exact path="/write" component={WritePage} />
                 <Route exact path="/free/:category" component={FreeBoardPage} />
                 <Route exact path="/free/:category/:postid" component={FreePostPage} />
                 <Route exact path="/notice" component={NoticeBoardPage} />

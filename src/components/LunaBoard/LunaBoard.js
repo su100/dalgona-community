@@ -224,7 +224,7 @@ class LunaBoard extends Component {
                 <div className="border_line" />
                 <PostList hasGrid postList={this.state.postList} />
                 <section className="only-pc luna-board__container--btn">
-                    <Link to={`/luna/board_url/write`}>글쓰기</Link>
+                    <Link to={`/write`}>글쓰기</Link>
                 </section>
                 <Pagination
                     countList={this.state.postCount}
