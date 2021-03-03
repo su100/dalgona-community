@@ -1,0 +1,19 @@
+@import 'styles/base.scss';
+
+.event-board {
+    padding-bottom: 150px;
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .event-board {
+        padding-bottom: 40.5px;
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .event-board {
+        padding-bottom: 71px;
+    }
+}
