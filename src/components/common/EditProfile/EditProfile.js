@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import profile from 'images/profile.png';
-import photoIcon from 'images/photo.png';
+import photoIcon from 'images/photo.svg';
 
 import './EditProfile.scss';
 

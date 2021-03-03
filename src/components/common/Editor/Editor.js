@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
-import photoIcon from 'images/photo.png';
+import photoIcon from 'images/photo.svg';
 import './Editor.scss';
 
 const Editor = ({ readOnly, QuillChange, contents, addPostImage }) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import step3 from 'images/step3.png';
-import photoIcon from 'images/photo.png';
+import photoIcon from 'images/photo.svg';
 import './SignUpInfo.scss';
 
 class SignUpInfo extends Component {

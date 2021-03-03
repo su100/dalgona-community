@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import photoIcon from 'images/photo.png';
+import photoIcon from 'images/photo.svg';
 import Editor from 'components/common/Editor';
 import arrowIcon from 'images/arrowIcon.png';
 import './Write.scss';

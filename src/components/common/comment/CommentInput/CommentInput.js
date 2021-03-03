@@ -1,6 +1,6 @@
 import React from 'react';
 
-import photoIcon from 'images/photo.png';
+import photoIcon from 'images/photo.svg';
 
 import './CommentInput.scss';
 

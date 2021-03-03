@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EditProfile from 'components/common/EditProfile';
 import ActivityList from 'components/common/ActivityList';
 import PointList from 'components/common/PointList';
-import star from 'images/star.png';
+import star from 'images/star_filled.png';
 
 import './Point.scss';
 

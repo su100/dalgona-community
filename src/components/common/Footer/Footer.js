@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import instagram from 'images/instagram.png';
-import twitter from 'images/twitter.png';
-import facebook from 'images/facebook.png';
-import youtube from 'images/youtube.png';
+import instagram from 'images/instagram.svg';
+import twitter from 'images/twitter.svg';
+import facebook from 'images/facebook.svg';
+import youtube from 'images/youtube.svg';
 import './Footer.scss';
 
 const Footer = ({ nofooter, isLogin }) =>
