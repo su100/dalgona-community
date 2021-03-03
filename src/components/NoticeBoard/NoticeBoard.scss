@@ -1,0 +1,19 @@
+@import 'styles/base.scss';
+
+.notice-board {
+    padding-bottom: 150px;
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .notice-board {
+        padding-bottom: 40.5px;
+    }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+    .notice-board {
+        padding-bottom: 71px;
+    }
+}
