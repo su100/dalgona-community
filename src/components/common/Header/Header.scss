@@ -15,10 +15,10 @@
                 font-size: 34px;
             }
             button {
-                width: 26px;
-                height: 24px;
-                background: #ffd278;
-                border: 0.5px solid #ffd278;
+                img {
+                    width: 26px;
+                    height: 24px;
+                }
             }
         }
         .header__btn--write {
@@ -47,8 +47,10 @@
                     font-size: 23px;
                 }
                 button {
-                    width: 20px;
-                    height: 19px;
+                    img {
+                        width: 20px;
+                        height: 19px;
+                    }
                 }
             }
             .header__btn--write {
@@ -84,8 +86,10 @@
                     font-size: 14px;
                 }
                 button {
-                    width: 14px;
-                    height: 13px;
+                    img {
+                        width: 14px;
+                        height: 13px;
+                    }
                 }
             }
             hr {
