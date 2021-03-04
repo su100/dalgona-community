@@ -75,9 +75,13 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .header {
+        @include flex(column, center, center);
+        width: 100%;
         .header__row {
+            width: 100%;
             padding: 0 18.5px;
             .header__title {
+                width: 100%;
                 height: 46.17px;
                 h4 {
                     margin: 13.8px 0;

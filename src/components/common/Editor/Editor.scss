@@ -1,9 +1,17 @@
 @import 'styles/base.scss';
 
 .editor {
+    @include flex(column, center, center);
     font-size: 20px;
     .editor-photo-btn {
         margin-top: 14px;
+        .ql-tooltip {
+            display: none;
+        }
+        .editor-photo-btn-div{
+            @include flex(row, space-between, center);
+            width: 100%;
+        }
         span {
             margin-right: 20px;
         }
@@ -14,10 +22,36 @@
         input[type='file'] {
             display: none;
         }
+        button {
+            img {
+                height: 15.609999656677246px;
+                width: 19.510000228881836px;
+            }
+        }
+        .editor-title {
+            margin-bottom: 5px;
+            input {
+                height: 48px;
+                width: 990px;
+            }
+        }
+    }
+    .write__contents {
+        .ql-editor {
+            min-height: 800px;
+            background: #fff;
+            border: 1px solid #a7a7a7;
+            img {
+                max-width: 500px;
+            }
+            &.ql-disabled {
+                background: inherit;
+            }
+        }
     }
     .ql-container {
-        width: 579px;
-        min-height: 289px;
+        width: 1000px;
+        min-height: 800px;
         background: #fff;
         img {
             max-width: 500px;
@@ -48,9 +82,22 @@
             input[type='file'] {
                 display: none;
             }
+            .editor-title {
+                margin-bottom: 5px;
+                input {
+                    height: 49px;
+                    width: 720px;
+                }
+            }
+        }
+        .write__contents {
+            .ql-editor {
+                min-height: 300px;
+            }
         }
         .ql-container {
-            width: 579px;
+            width: 728px;
+            height: 318px;
             min-height: 289px;
             background: #fff;
             img {
@@ -71,12 +118,17 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .editor {
+        @include flex(column, center, center);
         font-size: 20px;
         .editor-photo-btn {
             margin-top: 14px;
-            span {
-                margin-right: 20px;
-            }
+            font-family: Noto Sans KR;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 16px;
+            letter-spacing: 0em;
+            text-align: left;
             img {
                 margin-right: 3px;
             }
@@ -84,9 +136,22 @@
             input[type='file'] {
                 display: none;
             }
+            .editor-title {
+                margin-bottom: 5px;
+                input {
+                    height: 32px;
+                    width: 320px;
+                }
+            }
+        }
+        .write__contents {
+            @include flex(row, center, center);
+            .ql-editor {
+                min-height: 230px;
+            }
         }
         .ql-container {
-            width: 579px;
+            width: 328px;
             min-height: 289px;
             background: #fff;
             img {

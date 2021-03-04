@@ -4,7 +4,7 @@ import 'quill/dist/quill.bubble.css';
 import photoIcon from 'images/photo.svg';
 import './Editor.scss';
 
-const Editor = ({ readOnly, QuillChange, contents, addPostImage }) => {
+const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, handleAnonymous }) => {
     const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
     const quillInstance = useRef(null); // Quill 인스턴스를 설정 설정
 
@@ -21,7 +21,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage }) => {
 
             formData.append('image', file);
 
-            addPostImage(formData, onAddImage);
+            onAddImage();
         };
     };
 
@@ -87,7 +87,31 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage }) => {
 
     return (
         <div className={readOnly ? 'read-only editor' : 'editor'}>
-            <div ref={quillElement} onClick={setFocus} />
+            {!readOnly && (
+                <div className="editor-photo-btn">
+                    <div className="editor-photo-btn-div">
+                        <div className="write__info-type">비투비</div>
+                        <div className="editor-photo-btn">
+                            <input type="checkbox" onChange={handleAnonymous} /> 익명
+                            <button className="btn-photo" onClick={onClickImageBtn}>
+                                <img src={photoIcon} alt="add-pic" /> 파일선택
+                            </button>
+                        </div>
+                    </div>
+                    <div className="editor-title">
+                        <input
+                            // value={title}
+                            onChange={handleForm}
+                            className="post-editor-title"
+                            type="text"
+                            placeholder="제목을 입력해주세요"
+                        />
+                    </div>
+                </div>
+            )}
+            <div className="write__contents">
+                <div ref={quillElement} onClick={setFocus} />
+            </div>
         </div>
     );
 };

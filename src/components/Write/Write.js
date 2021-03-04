@@ -104,7 +104,6 @@ class Write extends Component {
                     </div>
                 </div>
                 <div className="write__info">
-                    <div className="write__info-type">비투비</div>
                     <select
                         onChange={this.handleForm('categoryId')}
                         value={categoryId}
@@ -118,23 +117,6 @@ class Write extends Component {
                             );
                         })}
                     </select>
-                    <div className="write__info-select">
-                        <span>
-                            <input type="checkbox" checked={isAnonymous} onChange={this.handleAnonymous} /> 익명
-                        </span>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            ref={this.fileInput}
-                            onChange={this.selectImg}
-                            onClick={(event) => {
-                                event.target.value = null;
-                            }}
-                        />
-                        <button onClick={this.onClickSelect}>
-                            <img src={photoIcon} alt="photoIcon" /> 파일선택
-                        </button>
-                    </div>
                 </div>
                 {previewURL && (
                     <div className="signupinfo__img-preview">
@@ -145,21 +127,13 @@ class Write extends Component {
                         </button>
                     </div>
                 )}
-                <div className="write__title">
-                    <input
-                        value={title}
-                        onChange={this.handleForm('title')}
-                        className="post-editor-title"
-                        type="text"
-                        placeholder="제목을 입력해주세요"
-                    />
-                </div>
-                <div className="write__contents">
-                    <Editor
-                        contents={''}
-                        QuillChange={this.handleChange} // addPostImage={this.props.addPostImage}
-                    />
-                </div>
+                <Editor
+                    contents={''}
+                    QuillChange={this.handleChange}
+                    addPostImage={this.props.addPostImage}
+                    handleForm={this.handleForm('title')}
+                    handleAnonymous={this.handleAnonymous}
+                />
                 <div className="write__btn">
                     <button onClick={this.props.history.goBack} className="write__btn-cancel">
                         취소
