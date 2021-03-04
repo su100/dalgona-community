@@ -83,9 +83,10 @@ class Nav extends Component {
 
     render() {
         const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
+        const { isAuthenticated, profile } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
-
+        console.log(profile);
         return (
             <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
                 {openSidebar && (
@@ -105,24 +106,30 @@ class Nav extends Component {
                             <img className="nav-main__logo-search" src={searchIcon}></img>
                         </div>
                     </div>
-                    <div className="nav-main__login">
-                        <Link to={{ pathname: '/login', path: 'login' }}>
-                            <span
-                                className={path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'}
-                            >
-                                로그인
-                            </span>
-                        </Link>
-                        <Link to={{ pathname: '/signup', path: 'signup' }}>
-                            <span
-                                className={
-                                    path === 'signup' ? 'nav-main__login-signup click' : 'nav-main__login-signup'
-                                }
-                            >
-                                회원가입
-                            </span>
-                        </Link>
-                    </div>
+                    {isAuthenticated ? (
+                        <div className="nav-main__login">{profile.get('nickname')}님</div>
+                    ) : (
+                        <div className="nav-main__login">
+                            <Link to={{ pathname: '/login', path: 'login' }}>
+                                <span
+                                    className={
+                                        path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'
+                                    }
+                                >
+                                    로그인
+                                </span>
+                            </Link>
+                            <Link to={{ pathname: '/signup', path: 'signup' }}>
+                                <span
+                                    className={
+                                        path === 'signup' ? 'nav-main__login-signup click' : 'nav-main__login-signup'
+                                    }
+                                >
+                                    회원가입
+                                </span>
+                            </Link>
+                        </div>
+                    )}
                     {(isHome || isPC) && (
                         <div className="nav-main__menu">
                             {Object.keys(Menu).map((value, index) => (
