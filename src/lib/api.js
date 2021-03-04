@@ -30,3 +30,8 @@ export const signIn = (username, password) =>
         username,
         password,
     });
+
+export const getProfile = () =>
+    axios.get(`${API_BASE_URL}/accounts/profile`, {
+        headers: { Authorization: getAccesesToken() },
+    });

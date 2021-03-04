@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import Nav from 'components/common/Nav';
+import NavContainer from 'containers/NavContainer';
 import LoginContainer from 'containers/LoginContainer';
 
 const LoginPage = ({ history, location }) => {
@@ -23,7 +23,7 @@ const LoginPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate
-                header={isPc && <Nav history={history} location={location} isHome={false} isLogin={true} />}
+                header={isPc && <NavContainer history={history} location={location} isHome={false} isLogin={true} />}
                 isLogin={true}
             >
                 <LoginContainer history={history} />

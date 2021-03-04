@@ -1,6 +1,6 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import Nav from 'components/common/Nav';
+import NavContainer from 'containers/NavContainer';
 
 const NotFoundPage = ({ history, location }) => {
     return (
