@@ -26,7 +26,7 @@ const LoginPage = ({ history, location }) => {
                 header={isPc && <Nav history={history} location={location} isHome={false} isLogin={true} />}
                 isLogin={true}
             >
-                <LoginContainer />
+                <LoginContainer history={history} />
             </PageTemplate>
         </div>
     );

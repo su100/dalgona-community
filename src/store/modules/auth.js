@@ -10,13 +10,14 @@ export const SIGN_UP = 'auth/SIGN_UP'; //회원가입
 export const SIGN_IN = 'auth/SIGN_IN'; //로그인
 export const SET_REMEMBER = 'auth/SET_REMEMBER'; //자동로그인 여부
 export const SIGN_OUT = 'auth/SIGN_OUT'; //로그아웃
+export const SET_USERNAME = 'auth/SET_USERNAME'; //로그인 후 이메일 인증 안 됐을 때 재인증에 사용할 아이디
 
 /* 액션 생성자 */
 export const signUp = createAction(SIGN_UP, api.signUp);
 export const signIn = createAction(SIGN_IN, api.signIn);
 export const setRemember = createAction(SET_REMEMBER);
 export const signOut = createAction(SIGN_OUT);
-
+export const setUsername = createAction(SET_USERNAME);
 /* 초기 상태 정의 */
 const initialState = Map({
     isAuthenticated: false,
@@ -40,6 +41,16 @@ export default handleActions(
             //로그인 여부 false, profile 빈 값
             return state.set('isAuthenticated', false).set('profile', Map({}));
         },
+        [SET_REMEMBER]: (state, action) => {
+            if (api.isUserLoggedIn()) {
+                //로그인  여부 store에 재저장
+                return state.set('isAuthenticated', true);
+            }
+            return state;
+        },
+        [SET_USERNAME]: (state, action) => {
+            return state.set('username', action.payload);
+        },
         ...pender({
             type: SIGN_IN,
             onSuccess: (state, action) => {
@@ -60,12 +71,48 @@ export default handleActions(
                 if (data.non_field_errors) {
                     if (data.non_field_errors.includes('Unable to log in with provided credentials.'))
                         alert('존재하지 않는 아이디이거나 잘못된 패스워드입니다.');
-                    else if (data.non_field_errors.includes('E-mail is not verified.'))
+                    else if (data.non_field_errors.includes('E-mail is not verified.')) {
                         return state.set('isEmailNotCertified', true);
+                    }
                 } else {
                     alert('로그인 에러');
                 }
                 return state.set('isAuthenticated', false);
+            },
+        }),
+        ...pender({
+            type: SIGN_UP,
+            onSuccess: (state, action) => {
+                return state
+                    .set('email', action.payload.data.email)
+                    .set('userNameUnique', false)
+                    .set('emailUnique', false)
+                    .set('nicknameUnique', false)
+                    .set('isEmailNotCertified', false);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                if (data.password1) {
+                    if (data.password1.includes('This password is too common.')) alert('패스워드가 너무 단순합니다');
+                    else if (
+                        data.password1.includes('This password is too short. It must contain at least 8 characters.')
+                    )
+                        alert('패스워드는 8글자 이상입니다.');
+                    else if (data.password1.includes('This password is entirely numeric.'))
+                        alert('패스워드는 숫자만으로 설정할 수 없습니다.');
+                } else if (data.profile_image) {
+                    if (
+                        data.profile_image.includes(
+                            'The submitted data was not a file. Check the encoding type on the form.'
+                        )
+                    )
+                        alert('프로필 사진이 file형태가 아닙니다');
+                } else {
+                    console.log(data);
+                    alert('회원가입 에러');
+                }
+                return state.set('userNameUnique', false).set('emailUnique', false).set('nicknameUnique', false);
             },
         }),
     },

@@ -10,7 +10,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
+            username: '',
             password: '',
             checked: false,
         };
@@ -19,12 +19,23 @@ class Login extends Component {
         this.setState({ [name]: e.target.value });
         console.log(e.target.value);
     };
-
-    // handleKeyPress = (e) => {
-    //     if (e.key === 'Enter') {
-    //         this.signIn();
-    //     }
-    // };
+    signIn = () => {
+        const { username, password } = this.state;
+        //각 항목이 모두 비어있지 않을 때
+        if (username === '') {
+            alert('아이디를 입력해주세요');
+        } else if (password === '') {
+            alert('비밀번호를 입력해주세요');
+        } else {
+            this.props.signIn(username, password);
+        }
+    };
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.signIn();
+            console.log(this.state.username);
+        }
+    };
     render() {
         return (
             <div className="login">
@@ -46,7 +57,7 @@ class Login extends Component {
                     <input
                         className="login__input-id"
                         type="text"
-                        onChange={this.handleForm('id')}
+                        onChange={this.handleForm('username')}
                         onKeyPress={this.handleKeyPress}
                     ></input>
                     <input
@@ -81,7 +92,7 @@ class Login extends Component {
                 </div>
                 <div className="only-pc">
                     <div className="login__button">
-                        <button>로그인</button>
+                        <button onClick={this.signIn}>로그인</button>
                     </div>
                 </div>
             </div>
