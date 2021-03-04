@@ -32,24 +32,16 @@ class SignUp extends Component {
         const { currentPage } = this.state;
         return (
             <div className="signup">
-                <div className="only-pc">
-                    <SignUpAgree />
-                    <SignUpConfirm />
-                    <SignUpInfo />
-                    <SignUpFinish />
-                </div>
                 <div className="not-pc">
-                    <div className="signup-notpc">
-                        <div className="signup-notpc__title">회원가입</div>
-                        {currentPage === 'agree' && <SignUpAgree />}
-                        {currentPage === 'confirm' && <SignUpConfirm />}
-                        {currentPage === 'info' && <SignUpInfo />}
-                        {currentPage === 'finish' && <SignUpFinish />}
-                        <button className="signup-notpc__button" onClick={this.onClickNext}>
-                            다음
-                        </button>
-                    </div>
+                    <div className="signup__title">회원가입</div>
                 </div>
+                {currentPage === 'agree' && <SignUpAgree />}
+                {currentPage === 'confirm' && <SignUpConfirm />}
+                {currentPage === 'info' && <SignUpInfo />}
+                {currentPage === 'finish' && <SignUpFinish />}
+                <button className="signup__button" onClick={this.onClickNext}>
+                    다음
+                </button>
             </div>
         );
     }
