@@ -1,12 +1,12 @@
 @import 'styles/base.scss';
 
 //pc, 기본
-.view {
+.noticepost {
     @include flex(column, center, center);
     width: 100%;
     &__detail {
         @include flex(row, flex-start, center);
-        width: 1200px;
+        width: 1600px;
         span {
             font-family: Roboto;
             font-size: 27px;
@@ -22,8 +22,6 @@
     &__title {
         @include flex(row, flex-start, center);
         width: 1200px;
-        height: 77px;
-        border-bottom: 0.5px solid #c4c4c4;
         font-family: Roboto;
         font-size: 34px;
         font-style: normal;
@@ -31,6 +29,7 @@
         line-height: 41px;
         letter-spacing: 0em;
         text-align: left;
+        padding-top: 112px;
     }
     &__info {
         @include flex(row, flex-start, center);
@@ -57,11 +56,40 @@
     &__post {
         padding-top: 40px;
     }
+    &__postcount {
+        @include flex(row, flex-start, center);
+        width: 1200px;
+        padding-bottom: 230px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #838383;
+
+        &-recommend {
+            height: 30px;
+            width: 84px;
+            border-radius: 4px;
+            background: #ffd278;
+            margin-right: 5px;
+        }
+        &-reply {
+            height: 30px;
+            width: 84px;
+            left: nullpx;
+            top: nullpx;
+            border-radius: 4px;
+            background: #c2c2c2;
+        }
+    }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .view {
+    .noticepost {
         @include flex(column, center, center);
         width: 100%;
         font-family: Noto Sans KR;
@@ -71,11 +99,9 @@
         &__title {
             @include flex(row, flex-start, center);
             width: 728px;
-            height: 52px;
             font-size: 23px;
             font-style: normal;
             padding-top: 9px;
-            border-bottom: none;
         }
         &__info {
             @include flex(row, flex-start, center);
@@ -101,12 +127,19 @@
             padding-top: 40px;
             padding-bottom: 33px;
         }
+        &__postcount {
+            @include flex(column, center, center);
+            padding-bottom: 68px;
+            span {
+                padding-top: 7px;
+            }
+        }
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .view {
+    .noticepost {
         @include flex(column, center, center);
         width: 100%;
         font-family: Noto Sans KR;
@@ -116,7 +149,6 @@
         &__title {
             @include flex(row, flex-start, center);
             width: 320px;
-            height: 25px;
             font-size: 17px;
             padding-top: 16px;
         }

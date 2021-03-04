@@ -3,6 +3,51 @@
 //pc, 기본
 .comment-list {
     width: 1194px;
+    .comment-list__count {
+        @include flex(row, flex-start, center);
+        width: 1200px;
+        padding-bottom: 60px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #838383;
+
+        &-recommend {
+            @include flex(row, center, center);
+            height: 30px;
+            width: 84px;
+            border-radius: 4px;
+            background: #ffd278;
+            margin-right: 5px;
+            span {
+                padding-left: 5px;
+                &.border {
+                    padding-right: 5px;
+                    border-right: 0.5px solid #ffffff;
+                }
+                color: white;
+            }
+        }
+        &-reply {
+            @include flex(row, center, center);
+            height: 30px;
+            width: 84px;
+            border-radius: 4px;
+            background: #c2c2c2;
+            span {
+                padding-left: 5px;
+                &.border {
+                    padding-right: 5px;
+                    border-right: 0.5px solid #838383;
+                }
+                color: #838383;
+            }
+        }
+    }
     .comment-list__item {
         @include flex(row, space-between, center);
         padding: 28px 8px;
@@ -73,8 +118,32 @@
 @media screen and (max-width: $tablet-max) {
     .comment-list {
         width: 768px;
+        .comment-list__count {
+            @include flex(column, center, center);
+            width: 768px;
+            padding-bottom: 68px;
+            img {
+                width: 32px;
+                height: 28px;
+            }
+            span {
+                padding-top: 7px;
+            }
+        }
+        .comment-list__reply {
+            span {
+                font-family: Noto Sans KR;
+                font-size: 19px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 28px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
         .comment-list__item {
             padding: 22px;
+            width: 743px;
             .comment-list__item--user-default {
                 margin-right: 29px;
                 width: 61.1px;
@@ -155,9 +224,35 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .comment-list {
+        @include flex(column, center, center);
         width: 360px;
+        .comment-list__count {
+            @include flex(column, center, center);
+            width: 360px;
+            padding-bottom: 38px;
+            img {
+                width: 25px;
+                height: 22px;
+            }
+            span {
+                padding-top: 7px;
+            }
+        }
+        .comment-list__reply {
+            width: 354px;
+            span {
+                font-family: Noto Sans KR;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 28px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
         .comment-list__item {
             padding: 20px;
+            width: 345px;
             .comment-list__item--user-default {
                 margin-right: 16px;
                 width: 40px;

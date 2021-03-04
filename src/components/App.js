@@ -42,7 +42,7 @@ function App() {
                 <Route exact path="/vote" component={VoteBoardPage} />
                 <Route exact path="/vote/:voteid" component={VotePage} />
                 <Route exact path="/luna/:lunaid" component={LunaBoardPage} />
-                <Route exact path="/luna/:lunaid/:postid" component={LunaPostPage} />
+                <Route exact path="/luna/board_url/:postid" component={LunaPostPage} />
                 <Route exact path="/write" component={WritePage} />
                 <Route exact path="/free/:category" component={FreeBoardPage} />
                 <Route exact path="/free/:category/:postid" component={FreePostPage} />

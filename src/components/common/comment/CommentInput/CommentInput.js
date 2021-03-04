@@ -43,7 +43,7 @@ const CommentInput = (props) => {
                 />
             </div>
             <div className="comment-input--bottom">
-                <div>
+                <div className="comment-input--bottom-file">
                     <span>
                         <input
                             id={props.type}
@@ -68,7 +68,10 @@ const CommentInput = (props) => {
                     </button>
                 </div>
                 <div>
-                    <button className="comment-input__button--submit">등록</button>
+                    <button className="comment-input__button--submit">
+                        <span className="only-pc">등록</span>
+                        <span className="not-pc">등록하기</span>
+                    </button>
                 </div>
             </div>
         </div>

@@ -150,7 +150,7 @@ class NoticeBoard extends Component {
                     getSearch={this.getSearch}
                 />
                 <div className="border_line" />
-                <PostList postList={this.state.postList} />
+                <PostList link={`notice`} postList={this.state.postList} />
                 <Pagination
                     countList={this.state.postCount}
                     handlePage={this.handlePage}

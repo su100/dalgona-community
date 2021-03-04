@@ -7,7 +7,7 @@ const LunaPostPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<Nav history={history} location={location} isHome={true} />}>
-                <LunaPostContainer />
+                <LunaPostContainer history={history} />
             </PageTemplate>
         </div>
     );
