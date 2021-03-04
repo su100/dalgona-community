@@ -56,6 +56,7 @@ class CommentList extends Component {
     };
 
     render() {
+        const { vote } = this.props;
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -70,12 +71,14 @@ class CommentList extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="not-pc">
-                    <div className="comment-list__count">
-                        <img src={heart}></img>
-                        <span>추천 6</span>
+                {!vote && (
+                    <div className="not-pc">
+                        <div className="comment-list__count">
+                            <img src={heart}></img>
+                            <span>추천 6</span>
+                        </div>
                     </div>
-                </div>
+                )}
                 <CommentInput
                     type="comment"
                     handleAnonymous={this.handleAnonymous}
