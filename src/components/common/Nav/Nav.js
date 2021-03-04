@@ -70,6 +70,10 @@ class Nav extends Component {
         this.setState({ openSidebar: !openSidebar });
     };
 
+    signOut = () => {
+        if (window.confirm('로그아웃 하시겠습니까?')) this.props.signOut();
+    };
+
     componentDidMount() {
         this._isMounted = true;
         this.checkIsPc();
@@ -107,7 +111,9 @@ class Nav extends Component {
                         </div>
                     </div>
                     {isAuthenticated ? (
-                        <div className="nav-main__login">{profile.get('nickname')}님</div>
+                        <div className="nav-main__login" onMouseOver={this.handleOver}>
+                            {profile.get('nickname')}님
+                        </div>
                     ) : (
                         <div className="nav-main__login">
                             <Link to={{ pathname: '/login', path: 'login' }}>
@@ -153,7 +159,24 @@ class Nav extends Component {
                 </div>
                 {isOpen && (
                     <div className="nav-hover">
-                        <div className="nav-hover__border"></div>
+                        <div className="nav-hover__border">
+                            {isAuthenticated && (
+                                <div className="nav-hover__border-authenticated">
+                                    <Link to={'/my/profile'}>
+                                        <span>프로필 수정</span>
+                                    </Link>
+                                    <Link to={'/my/activity'}>
+                                        <span>활동내역</span>
+                                    </Link>
+                                    <Link to={'/my/point'}>
+                                        <span>별 내역</span>
+                                    </Link>
+                                    <button onClick={isAuthenticated ? this.signOut : () => {}}>
+                                        <span>로그아웃</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                         <div className="nav-hover__menu">
                             {isPC && <div className="nav-hover__menu-home"></div>}
                             {(isPC || openMenu === 'main') && (
