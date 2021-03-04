@@ -107,13 +107,26 @@
         height: 302px;
         background: #c2c2c2;
         &__border {
+            @include flex(row, flex-end, center);
             flex-shrink: 10;
             width: 43%;
             min-width: 150px;
             height: 256px;
             margin-top: 15px;
-            padding-right: 260px;
+            padding-left: 260px;
             border-right: 1px solid #838383;
+            &-authenticated {
+                @include flex(column, flex-start, center);
+                width: 13%;
+                min-width: 100px;
+                height: 256px;
+                span {
+                    font-size: 13px;
+                    color: #838383;
+                    padding: 9px 0;
+                }
+                padding-right:20%;
+            }
         }
         &__menu {
             @include flex(row, flex-start, center);

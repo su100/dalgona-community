@@ -70,6 +70,10 @@ class Nav extends Component {
         this.setState({ openSidebar: !openSidebar });
     };
 
+    signOut = () => {
+        if (window.confirm('로그아웃 하시겠습니까?')) this.props.signOut();
+    };
+
     componentDidMount() {
         this._isMounted = true;
         this.checkIsPc();
@@ -83,9 +87,10 @@ class Nav extends Component {
 
     render() {
         const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
+        const { isAuthenticated, profile } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
-
+        console.log(profile);
         return (
             <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
                 {openSidebar && (
@@ -105,24 +110,32 @@ class Nav extends Component {
                             <img className="nav-main__logo-search" src={searchIcon}></img>
                         </div>
                     </div>
-                    <div className="nav-main__login">
-                        <Link to={{ pathname: '/login', path: 'login' }}>
-                            <span
-                                className={path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'}
-                            >
-                                로그인
-                            </span>
-                        </Link>
-                        <Link to={{ pathname: '/signup', path: 'signup' }}>
-                            <span
-                                className={
-                                    path === 'signup' ? 'nav-main__login-signup click' : 'nav-main__login-signup'
-                                }
-                            >
-                                회원가입
-                            </span>
-                        </Link>
-                    </div>
+                    {isAuthenticated ? (
+                        <div className="nav-main__login" onMouseOver={this.handleOver}>
+                            {profile.get('nickname')}님
+                        </div>
+                    ) : (
+                        <div className="nav-main__login">
+                            <Link to={{ pathname: '/login', path: 'login' }}>
+                                <span
+                                    className={
+                                        path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'
+                                    }
+                                >
+                                    로그인
+                                </span>
+                            </Link>
+                            <Link to={{ pathname: '/signup', path: 'signup' }}>
+                                <span
+                                    className={
+                                        path === 'signup' ? 'nav-main__login-signup click' : 'nav-main__login-signup'
+                                    }
+                                >
+                                    회원가입
+                                </span>
+                            </Link>
+                        </div>
+                    )}
                     {(isHome || isPC) && (
                         <div className="nav-main__menu">
                             {Object.keys(Menu).map((value, index) => (
@@ -146,7 +159,24 @@ class Nav extends Component {
                 </div>
                 {isOpen && (
                     <div className="nav-hover">
-                        <div className="nav-hover__border"></div>
+                        <div className="nav-hover__border">
+                            {isAuthenticated && (
+                                <div className="nav-hover__border-authenticated">
+                                    <Link to={'/my/profile'}>
+                                        <span>프로필 수정</span>
+                                    </Link>
+                                    <Link to={'/my/activity'}>
+                                        <span>활동내역</span>
+                                    </Link>
+                                    <Link to={'/my/point'}>
+                                        <span>별 내역</span>
+                                    </Link>
+                                    <button onClick={isAuthenticated ? this.signOut : () => {}}>
+                                        <span>로그아웃</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                         <div className="nav-hover__menu">
                             {isPC && <div className="nav-hover__menu-home"></div>}
                             {(isPC || openMenu === 'main') && (
