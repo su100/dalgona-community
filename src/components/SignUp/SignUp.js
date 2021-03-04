@@ -12,36 +12,60 @@ class SignUp extends Component {
         super(props);
         this.state = {
             currentPage: 'agree',
+            agreeConfirm: false,
         };
     }
-
     onClickNext = () => {
-        const { currentPage } = this.state;
+        const { currentPage, agreeConfirm } = this.state;
         if (currentPage === 'agree') {
-            this.setState({ currentPage: 'confirm' });
+            if (agreeConfirm) this.setState({ currentPage: 'confirm' });
+            else alert('동의가 필요합니다');
         } else if (currentPage === 'confirm') {
             this.setState({ currentPage: 'info' });
         } else if (currentPage === 'info') {
+            this.props.signUp();
             this.setState({ currentPage: 'finish' });
         } else {
             this.props.history.push('/');
         }
     };
 
+    handleAgreeConfirm = () => {
+        const { agreeConfirm } = this.state;
+        this.setState({ agreeConfirm: !agreeConfirm });
+    };
+
     render() {
-        const { currentPage } = this.state;
+        const { currentPage, agreeConfirm } = this.state;
+        const { userNameUnique, emailUnique, nicknameUnique, setUnique } = this.props;
         return (
             <div className="signup">
                 <div className="not-pc">
                     <div className="signup__title">회원가입</div>
                 </div>
-                {currentPage === 'agree' && <SignUpAgree />}
+                {currentPage === 'agree' && (
+                    <SignUpAgree handleAgreeConfirm={this.handleAgreeConfirm} agreeConfirm={agreeConfirm} />
+                )}
                 {currentPage === 'confirm' && <SignUpConfirm />}
-                {currentPage === 'info' && <SignUpInfo />}
+                {currentPage === 'info' && (
+                    <SignUpInfo
+                        userNameUnique={userNameUnique}
+                        emailUnique={emailUnique}
+                        nicknameUnique={nicknameUnique}
+                        signUp={this.props.signUp}
+                        checkUsername={this.props.checkUsername}
+                        checkEmail={this.props.checkEmail}
+                        checkNickname={this.props.checkNickname}
+                        setUnique={setUnique}
+                        onClickNext={this.onClickNext}
+                    />
+                )}
                 {currentPage === 'finish' && <SignUpFinish />}
-                <button className="signup__button" onClick={this.onClickNext}>
-                    다음
-                </button>
+                {currentPage !== 'info' && (
+                    <button className="signup__button" onClick={this.onClickNext}>
+                        다음
+                    </button>
+                )}
             </div>
         );
     }

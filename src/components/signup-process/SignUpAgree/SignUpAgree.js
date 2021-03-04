@@ -5,7 +5,7 @@ import clickMobileCheckBox from 'images/click-mobile-checkbox.png';
 import step1 from 'images/step1.png';
 import './SignUpAgree.scss';
 
-const SignUpAgree = () => {
+const SignUpAgree = ({ handleAgreeConfirm }) => {
     const [agree, setAgree] = useState(false);
     const [checkAgreeOne, setCheckAgreeOne] = useState(false);
     const [checkAgreeTwo, setCheckAgreeTwo] = useState(false);
@@ -16,16 +16,29 @@ const SignUpAgree = () => {
         setCheckAgreeOne(!agree);
         setCheckAgreeTwo(!agree);
         setCheckAgreeThree(!agree);
+        handleAgreeConfirm();
     };
 
     const onClickCheckAgreeOne = () => {
         setCheckAgreeOne(!checkAgreeOne);
+        if (agree || (checkAgreeTwo && checkAgreeThree)) {
+            setAgree(!agree);
+            handleAgreeConfirm();
+        }
     };
     const onClickCheckAgreeTwo = () => {
         setCheckAgreeTwo(!checkAgreeTwo);
+        if (agree || (checkAgreeOne && checkAgreeThree)) {
+            setAgree(!agree);
+            handleAgreeConfirm();
+        }
     };
     const onClickCheckAgreeThree = () => {
         setCheckAgreeThree(!checkAgreeThree);
+        if (agree || (checkAgreeTwo && checkAgreeOne)) {
+            setAgree(!agree);
+            handleAgreeConfirm();
+        }
     };
 
     return (
