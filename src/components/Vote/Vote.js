@@ -130,7 +130,10 @@ class Vote extends Component {
                             설면ㄴㅇ리ㅏㄴ어라ㅣㅇ너ㅏㅣㄴ어ㅣㅏㅇ너ㅣ나ㅓ라ㅣㅇ너라ㅣㄴ얼
                         </div>
                     </div>
-                    <div className="vote__main-ratio"></div>
+                    <div className="vote__main-ratio">
+                        <div className="vote__main-ratio left"></div>
+                        <div className="vote__main-ratio right"></div>
+                    </div>
                     <div className="only-pc">
                         <div className="vote__main-description">
                             설면ㄴㅇ리ㅏㄴ어라ㅣㅇ너ㅏㅣㄴ어ㅣㅏㅇ너ㅣ나ㅓ라ㅣㅇ너라ㅣㄴ얼
@@ -138,7 +141,7 @@ class Vote extends Component {
                     </div>
                 </div>
                 <div className="vote__comment"></div>
-                <CommentList commentList={this.state.commentList} isRecommend />
+                <CommentList vote={true} commentList={this.state.commentList} isRecommend />
             </div>
         );
     }

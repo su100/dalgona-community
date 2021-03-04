@@ -16,6 +16,7 @@
             flex-shrink: 10;
             width: 30%;
             height: 70px;
+            min-width: 250px;
             &-menu {
                 display: none;
             }
@@ -23,7 +24,7 @@
                 @include flex(row, center, center);
                 width: 80%;
                 height: 55px;
-                padding-left: 120px;
+                padding-left: 10%;
                 padding-right: 10%;
                 img {
                     display: block;
@@ -39,6 +40,7 @@
             @include flex(row, center, center);
             width: 13%;
             height: 25px;
+            min-width: 150px;
             border-right: 1px solid #838383;
             line-height: 80px;
             padding-right: 40px;
@@ -67,9 +69,11 @@
             flex-shrink: 0;
             line-height: 80px;
             width: 55%;
+            min-width: 800px;
             padding-left: 40px;
             &-content {
                 width: 100%;
+                min-width: 100px;
                 text-align: center;
                 &:hover {
                     color: #ffd278;
@@ -84,11 +88,12 @@
             &-input {
                 width: 100%;
                 padding-left: 5%;
-                padding-right: 10%;
+                padding-right: 5%;
                 input {
                     background-position: 91% center;
                     background-repeat: no-repeat;
                     background-image: url('../../../images/search.png');
+                    background-size: 10%;
                     width: 207px;
                     height: 30px;
                     border-radius: 40px;
@@ -104,6 +109,7 @@
         &__border {
             flex-shrink: 10;
             width: 43%;
+            min-width: 150px;
             height: 256px;
             margin-top: 15px;
             padding-right: 260px;
@@ -113,6 +119,7 @@
             @include flex(row, flex-start, center);
             flex-shrink: 0;
             width: 55%;
+            min-width: 800px;
             height: 256px;
             margin-top: 15px;
             padding-left: 40px;
@@ -127,28 +134,33 @@
             }
             &-home {
                 width: 100%;
+                min-width: 100px;
             }
             &-main {
                 @include flex(column, flex-start, center);
                 width: 100%;
+                min-width: 100px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
             &-luna {
                 @include flex(column, flex-start, center);
                 width: 100%;
+                min-width: 100px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
             &-free {
                 @include flex(column, flex-start, center);
                 width: 100%;
+                min-width: 100px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
             &-dalgona {
                 @include flex(column, flex-start, center);
                 width: 100%;
+                min-width: 100px;
                 height: 256px;
             }
             &-dummy {
@@ -213,6 +225,7 @@
                 &-content {
                     width: 20%;
                     height: 40px;
+                    min-width: 0px;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -254,6 +267,7 @@
                 &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
+                    min-width: 0px;
                     height: inherit;
                     color: white;
                     font-family: Noto Sans KR;
@@ -331,8 +345,9 @@
                 height: 40px;
                 padding-left: 0px;
                 &-content {
-                    width: 500%;
+                    width: 20%;
                     height: 30px;
+                    min-width: 0;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -375,6 +390,7 @@
                 &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
+                    min-width: 0px;
                     height: inherit;
                     color: white;
                     font-family: Noto Sans KR;

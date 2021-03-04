@@ -9,7 +9,7 @@ class LunaPostContainer extends Component {
         console.log('home container');
         return (
             <Fragment>
-                <LunaPost />
+                <LunaPost history={history} />
             </Fragment>
         );
     }

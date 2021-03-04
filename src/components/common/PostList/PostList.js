@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ postList, hasGrid, noBorder }) => {
+const PostList = ({ postList, hasGrid, noBorder, link }) => {
     const [type, setType] = useState('list');
 
     const handleType = (e) => {
@@ -30,7 +30,7 @@ const PostList = ({ postList, hasGrid, noBorder }) => {
                     {postList.map((post, index) => {
                         return (
                             <Link
-                                to="/"
+                                to={`/${link}/${post.id}`}
                                 className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                 key={index}
                             >

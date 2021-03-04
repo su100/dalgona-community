@@ -122,12 +122,19 @@
             }
         }
         &-ratio {
+            @include flex(row, center, center);
             margin-top: 30px;
             margin-bottom: 63px;
+            width: 750px;
             height: 33px;
-            width: 706px;
-            border-radius: 50px;
-            background: #ffd278;
+            &.left {
+                border-radius: 50px 0 0 50px;
+                background: #ffd278;
+            }
+            &.right {
+                border-radius: 0 50px 50px 0;
+                background: #ab3af2;
+            }
         }
         &-description {
             font-size: 14px;
@@ -215,9 +222,16 @@
                 height: 15px;
                 border-radius: 0px;
                 margin-top: 0px;
-                margin-bottom: 136px;
+                margin-bottom: 80px;
+                &.left {
+                    border-radius: 0;
+                }
+                &.right {
+                    border-radius: 0;
+                }
             }
             &-description {
+                min-height: 100px;
                 padding-top: 17px;
                 padding-bottom: 54px;
             }
@@ -291,6 +305,7 @@
             }
             &-description {
                 width: 322px;
+                min-height: 50px;
                 padding-top: 17px;
                 padding-bottom: 16px;
             }

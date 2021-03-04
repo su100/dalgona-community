@@ -56,8 +56,29 @@ class CommentList extends Component {
     };
 
     render() {
+        const { vote } = this.props;
         return (
             <div className="comment-list">
+                <div className="only-pc">
+                    <div className="comment-list__count">
+                        <div className="comment-list__count-recommend">
+                            <span className="border">추천</span>
+                            <span>123</span>
+                        </div>
+                        <div className="comment-list__count-reply">
+                            <span className="border">댓글</span>
+                            <span>123</span>
+                        </div>
+                    </div>
+                </div>
+                {!vote && (
+                    <div className="not-pc">
+                        <div className="comment-list__count">
+                            <img src={heart}></img>
+                            <span>추천 6</span>
+                        </div>
+                    </div>
+                )}
                 <CommentInput
                     type="comment"
                     handleAnonymous={this.handleAnonymous}
@@ -70,6 +91,11 @@ class CommentList extends Component {
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
                 />
+                <div className="not-pc">
+                    <div className="comment-list__reply">
+                        <span>댓글 123개</span>
+                    </div>
+                </div>
                 {this.props.commentList.map((comment) => {
                     return (
                         <div key={comment.id}>
