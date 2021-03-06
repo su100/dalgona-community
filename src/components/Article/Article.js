@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from 'components/common/Header';
 import ArticleList from 'components/common/ArticleList';
 import Pagination from 'components/common/Pagination';
 import './Article.scss';
@@ -79,6 +80,9 @@ class Article extends Component {
     handlePage = (e) => {
         this.setState({ page: e.target.value });
     };
+    handleChange = (e) => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
 
     searchKeyword = (e) => {
         const word = e.target.value;
@@ -86,10 +90,21 @@ class Article extends Component {
         console.log(word, '로 검색한 리스트 가져오기');
     };
 
+    getSearch = () => {
+        //검색하기
+    };
+
     render() {
         return (
             <div className="article">
-                <div>헤더</div>
+                <Header
+                    title="기사"
+                    isBookmarked={false}
+                    placeholder="기사 제목을 검색하세요"
+                    searchWord={this.state.searchWord}
+                    handleChange={this.handleChange}
+                    getSearch={this.getSearch}
+                />
                 <div className="border_line" />
                 <div className="article__keyword">
                     <h4>인기키워드</h4>
