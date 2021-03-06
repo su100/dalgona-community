@@ -62,6 +62,13 @@ export const getUserInfo = () =>
         headers: { Authorization: getAccesesToken() },
     });
 
+/*home+issue*/
 //실시간 연예뉴스 목록 가져오기  params: searchType,searchWord,page
-export const getNewsList = (searchType, searchWord, page) =>
-    axios.get(`${API_BASE_URL}/news/list`, { params: { searchType, searchWord, page } });
+export const getNewsList = (params) =>
+    axios.get(`${API_BASE_URL}/news/list`, {
+        params: params,
+    });
+
+/*issue*/
+//기사 인기 키워드
+export const getNewsKeyword = () => axios.get(`${API_BASE_URL}/news/popular-keyword`);
