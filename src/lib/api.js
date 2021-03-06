@@ -50,9 +50,6 @@ export const getProfile = () =>
     });
 
 /* home */
-//실시간 인기 투표 가져오기
-export const getHotVoteList = () => axios.get(`${API_BASE_URL}/battle/vote/best`);
-
 //실시간 인기글 6개 가져오기
 export const getHotPostList = (type) => axios.get(`${API_BASE_URL}/board/hot${type ? '/' + type : ''}`);
 
@@ -63,6 +60,9 @@ export const getUserInfo = () =>
     });
 
 /*home+issue*/
+//실시간 인기 투표 가져오기
+export const getHotVoteList = () => axios.get(`${API_BASE_URL}/battle/vote/best`);
+
 //실시간 연예뉴스 목록 가져오기  params: searchType,searchWord,page
 export const getNewsList = (params) =>
     axios.get(`${API_BASE_URL}/news/list`, {
@@ -72,3 +72,9 @@ export const getNewsList = (params) =>
 /*issue*/
 //기사 인기 키워드
 export const getNewsKeyword = () => axios.get(`${API_BASE_URL}/news/popular-keyword`);
+
+//투표 목록 가져오기 params: searchType,searchWord,page,ordering
+export const getVoteList = (params) =>
+    axios.get(`${API_BASE_URL}/battle/vote/board`, {
+        params: params,
+    });
