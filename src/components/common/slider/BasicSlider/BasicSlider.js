@@ -55,9 +55,11 @@ const BasicSlider = ({
     };
 
     return (
-        <Slider {...settings} className="basic-slider" style={{ background: background }}>
-            {children}
-        </Slider>
+        <div style={{ background: background }}>
+            <Slider {...settings} className="basic-slider">
+                {children}
+            </Slider>
+        </div>
     );
 };
 
