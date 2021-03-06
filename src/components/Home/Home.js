@@ -17,9 +17,9 @@ class Home extends Component {
                 { board_name: '청하', board_url: 'ch' },
                 { board_name: '비투비', board_url: 'bt' },
             ],
-            hotVote: [
+            hotVoteList: [
                 {
-                    id: 2,
+                    id: 0,
                     title: '투표 제목',
                     voteitem: [
                         {
@@ -32,96 +32,9 @@ class Home extends Component {
                         },
                     ],
                 },
-                {
-                    id: 5,
-                    title: '투표 제목2',
-                    voteitem: [
-                        {
-                            id: 8,
-                            item_image: null,
-                        },
-                        {
-                            id: 9,
-                            item_image: null,
-                        },
-                    ],
-                },
             ],
-            hotboardType: 'all', //'luna' 'free'
-            hotPostList: [
-                {
-                    id: 2,
-                    title: '첫글',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-                {
-                    id: 4,
-                    title: '글제목2',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-                {
-                    id: 5,
-                    title: '3',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-                {
-                    id: 6,
-                    title: '4',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-                {
-                    id: 7,
-                    title: '글제목5',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-                {
-                    id: 8,
-                    title: '글제목6',
-                    board_url: {
-                        board_url: 'test',
-                        board_name: 'test_board',
-                    },
-                    views: 11,
-                    created_at: '08:13',
-                    recommend_count: 2,
-                    body: '',
-                },
-            ],
+            hotboardType: '', //'luna' 'free'
+
             newsCount: 10,
             newsList: [
                 {
@@ -196,7 +109,13 @@ class Home extends Component {
     }
 
     setBoardType = (e) => {
-        this.setState({ hotboardType: e.target.id });
+        //HOT 실시간 인기글 type 설정: 전체(), 루나(luna), 자유(free)
+        this.setState({ hotboardType: e.target.id }, this.getHotPostList);
+    };
+
+    getHotPostList = () => {
+        //HOT 실시간 인기글 목록 가져오기
+        this.props.getHotPostList(this.state.hotboardType);
     };
 
     hotPostRender = (postList) => {
@@ -220,7 +139,11 @@ class Home extends Component {
                     </Link>
                 );
             }
-            rows.push(<div className="home__row--hotpost">{cols}</div>);
+            rows.push(
+                <div className="home__row--hotpost" key="1">
+                    {cols}
+                </div>
+            );
         } else {
             for (let row = 0; row < 2; row++) {
                 let cols = [];
@@ -251,27 +174,43 @@ class Home extends Component {
         return rows;
     };
 
+    updateNews = () => {
+        //실시간 연예뉴스 업데이트: 업데이트 시간 기록, 목록 가져오기
+        this.setState({ newsTime: moment().format('HH:mm') }, this.props.getNewsList);
+    };
+
     newsRender = (newsList) => {
         let result = [];
+        let tmp = newsList.slice();
         //5개 단위로 나누기
-        const count = Math.ceil(newsList.length / 5);
+        const count = Math.ceil(tmp.length / 5);
         for (let i = 0; i < count; i++) {
-            result.push(<ArticleList key={i} articleList={newsList.slice((i * 5, (i + 1) * 5))} />);
+            const article = tmp.splice(0, 5);
+            result.push(<ArticleList key={i} articleList={article} />);
         }
         return result;
     };
+
     render() {
+        const { bookmarkList, hotPostList, newsList } = this.props;
+        let hotVoteList;
+        if (this.props.hotVoteList.length > 0) {
+            hotVoteList = this.props.hotVoteList;
+        } else {
+            hotVoteList = this.state.hotVoteList;
+        }
+
         return (
             <div className="home">
                 <BasicSlider autoplay speed={5000} infinite background="#dadada">
-                    {this.state.hotVote.map((vote) => {
+                    {hotVoteList.map((vote) => {
                         return <VoteItem key={vote.id} id={vote.id} title={vote.title} voteitem={vote.voteitem} />;
                     })}
                 </BasicSlider>
                 <section className="home__section--favboard">
                     <h4>즐겨찾는 게시판</h4>
-                    {this.state.favBoard ? (
-                        this.state.favBoard.map((board) => {
+                    {bookmarkList.length > 0 ? (
+                        bookmarkList.map((board) => {
                             return (
                                 <Link to={`/luna/${board.board_url}`} key={board.board_url}>
                                     {board.board_name}
@@ -288,9 +227,9 @@ class Home extends Component {
                         <h4>HOT 실시간 인기글</h4>
                         <div className="home__box--hot-type">
                             <button
-                                id="all"
+                                id=""
                                 onClick={this.setBoardType}
-                                className={this.state.hotboardType === 'all' ? 'active' : ''}
+                                className={this.state.hotboardType === '' ? 'active' : ''}
                             >
                                 전체
                             </button>
@@ -312,7 +251,7 @@ class Home extends Component {
                     </div>
                     <div className="only-pc">
                         <div className="home__container--hot">
-                            {this.state.hotPostList.map((post, index) => {
+                            {hotPostList.map((post, index) => {
                                 return (
                                     <Link to={`/luna/${post.board_url.board_url}/${post.id}`} key={post.id}>
                                         <div className="home__item--hotpost--pc">
@@ -344,7 +283,7 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="not-pc">
-                        <div className="home__container--hot">{this.hotPostRender(this.state.hotPostList)}</div>
+                        <div className="home__container--hot">{this.hotPostRender(hotPostList)}</div>
                     </div>
                 </section>
                 <div className="border_line not-pc" />
@@ -361,7 +300,7 @@ class Home extends Component {
                         </h4>
                         <div>
                             <span className="only-pc">
-                                <button>
+                                <button onClick={this.updateNews}>
                                     <img src={refreshIcon} alt="refresh" />
                                     {this.state.newsTime}업데이트
                                 </button>
@@ -372,11 +311,11 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="only-pc">
-                        <ArticleList key="pc" articleList={this.state.newsList} />
+                        <ArticleList key="pc" articleList={newsList} />
                     </div>
                 </section>
                 <div className="not-pc home__slider--news">
-                    <BasicSlider>{this.newsRender(this.state.newsList)}</BasicSlider>
+                    <BasicSlider>{this.newsRender(newsList)}</BasicSlider>
                 </div>
             </div>
         );
