@@ -48,3 +48,20 @@ export const getProfile = () =>
     axios.get(`${API_BASE_URL}/accounts/profile`, {
         headers: { Authorization: getAccesesToken() },
     });
+
+/* home */
+//실시간 인기 투표 가져오기
+export const getHotVoteList = () => axios.get(`${API_BASE_URL}/battle/vote/best`);
+
+//실시간 인기글 6개 가져오기
+export const getHotPostList = (type) => axios.get(`${API_BASE_URL}/board/hot${type ? '/' + type : ''}`);
+
+//사용자 정보 전부 가져오기: username, email, nickname, introduction, profile_image,bookmark,points,level
+export const getUserInfo = () =>
+    axios.get(`${API_BASE_URL}/accounts/user`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
+//실시간 연예뉴스 목록 가져오기  params: searchType,searchWord,page
+export const getNewsList = (searchType, searchWord, page) =>
+    axios.get(`${API_BASE_URL}/news/list`, { params: { searchType, searchWord, page } });

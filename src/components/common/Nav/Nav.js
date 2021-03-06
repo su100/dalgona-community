@@ -90,7 +90,6 @@ class Nav extends Component {
         const { isAuthenticated, profile } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
-        console.log(profile);
         return (
             <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
                 {openSidebar && (
