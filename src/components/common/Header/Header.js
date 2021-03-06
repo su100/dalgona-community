@@ -4,7 +4,7 @@ import StarIcon from 'images/star.png';
 import StarFilledIcon from 'images/star_filled.png';
 import './Header.scss';
 
-const Header = ({ title, hasWrite, isBookmarked }) => {
+const Header = ({ title, hasWrite, isBookmarked, placeholder, searchWord, getSearch, handleChange }) => {
     return (
         <div className="header">
             <div className="header__row">
@@ -18,7 +18,12 @@ const Header = ({ title, hasWrite, isBookmarked }) => {
             </div>
             <hr className="not-pc" />
             <div className="header__row">
-                <SearchInput />
+                <SearchInput
+                    placeholder={placeholder}
+                    searchWord={searchWord}
+                    handleChange={handleChange}
+                    getSearch={getSearch}
+                />
             </div>
         </div>
     );
