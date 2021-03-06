@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 import moment from 'moment';
 import Header from 'components/common/Header';
 import Pagination from 'components/common/Pagination';
@@ -14,150 +15,21 @@ class VoteBoard extends Component {
         super(props);
         this.state = {
             searchWord: '',
-            hotVote: [
-                {
-                    id: 2,
-                    title: '투표 제목',
-                    voteitem: [
-                        {
-                            id: 8,
-                            item_image: null,
-                        },
-                        {
-                            id: 9,
-                            item_image: null,
-                        },
-                    ],
-                },
-                {
-                    id: 5,
-                    title: '투표 제목2',
-                    voteitem: [
-                        {
-                            id: 8,
-                            item_image: null,
-                        },
-                        {
-                            id: 9,
-                            item_image: null,
-                        },
-                    ],
-                },
-            ],
-            page: 1,
-            voteCount: 8,
-            voteList: [
-                {
-                    reply_count: 3,
-                    id: 5,
-                    title: '투표 게시판 테스트투표 게시판 테스트투표 게시판 테스트투표 게시판 테스트',
-                    content:
-                        '투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.투표에 대한 설명입니다.',
-                    board_image: 'http://127.0.0.1:8000/media/voteboard_image/Toystory05_FFLtXD2.jpg',
-                    start_datetime: '2021-01-31T21:42:00',
-                    end_datetime: '2021-02-05T21:42:00',
-                    vote_count: 0,
-                    is_voted: false,
-                    deadline: 2,
-                    created_at: '2021-02-03T02:55:12.218685',
-                },
-                {
-                    reply_count: 3,
-                    id: 2,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-                {
-                    reply_count: 3,
-                    id: 1,
-                    title: '투표 게시판 테스트',
-                    content: '투표에 대한 설명입니다.',
-                    board_image: 'http://127.0.0.1:8000/media/voteboard_image/Toystory05_FFLtXD2.jpg',
-                    start_datetime: '2021-01-31T21:42:00',
-                    end_datetime: '2021-02-05T21:42:00',
-                    vote_count: 0,
-                    is_voted: false,
-                    deadline: 2,
-                    created_at: '2021-02-03T02:55:12.218685',
-                },
-                {
-                    reply_count: 3,
-                    id: 4,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-                {
-                    reply_count: 3,
-                    id: 14,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-                {
-                    reply_count: 3,
-                    id: 24,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-                {
-                    reply_count: 3,
-                    id: 44,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-                {
-                    reply_count: 3,
-                    id: 46,
-                    title: '두번째 투표',
-                    content: '내용~~~~~~',
-                    board_image: null,
-                    start_datetime: '2021-01-18T21:42:00',
-                    end_datetime: '2021-02-03T21:42:00',
-                    vote_count: 1,
-                    is_voted: true,
-                    deadline: 0,
-                    created_at: '2021-01-18T21:42:30.072607',
-                },
-            ],
         };
     }
 
     handlePage = (e) => {
-        this.setState({ page: e.target.value });
+        const { history, location } = this.props;
+        const query = queryString.parse(location.search);
+        const page = e.target.value;
+
+        //searchType:title, searchWord, page
+        if (query.search) {
+            //url에서 searchWord있는지 판별
+            history.push(`/vote?page=${page}&search=${query.search}`);
+        } else {
+            history.push(`/vote?page=${page}`);
+        }
     };
 
     handleChange = (e) => {
@@ -165,11 +37,20 @@ class VoteBoard extends Component {
     };
 
     getSearch = () => {
-        //this.state.searchWord로 getList해오기
-        console.log(this.state.searchWord, '검색');
+        //검색하기
+        const { searchWord } = this.state;
+        if (searchWord.trim() === '') {
+            alert('검색어를 입력해주세요.');
+        } else {
+            this.props.history.push(`/vote?page=1&search=${searchWord}`);
+        }
     };
 
     render() {
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+        const { hotVoteList, voteCount, voteList } = this.props;
+
         return (
             <div className="vote-board">
                 <Header
@@ -182,7 +63,7 @@ class VoteBoard extends Component {
 
                 <section>
                     <BasicSlider autoplay speed={5000} infinite background="#dadada">
-                        {this.state.hotVote.map((vote) => {
+                        {hotVoteList.map((vote) => {
                             return <VoteItem key={vote.id} id={vote.id} title={vote.title} voteitem={vote.voteitem} />;
                         })}
                     </BasicSlider>
@@ -195,7 +76,7 @@ class VoteBoard extends Component {
                             <span>{moment().format('HH:mm')} 업데이트</span>
                         </button>
                     </h4>
-                    {this.state.voteList.map((vote) => {
+                    {voteList.map((vote) => {
                         return (
                             <Link to={`/vote/${vote.id}`} key={vote.id} className="vote-board__item">
                                 <div className="vote-board__item--left">
@@ -215,11 +96,7 @@ class VoteBoard extends Component {
                         );
                     })}
                 </section>
-                <Pagination
-                    countList={this.state.voteCount}
-                    currentPage={this.state.page}
-                    handlePage={this.handlePage}
-                />
+                <Pagination countList={voteCount} currentPage={currentPage} handlePage={this.handlePage} />
             </div>
         );
     }
