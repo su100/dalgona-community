@@ -78,3 +78,16 @@ export const getVoteList = (params) =>
     axios.get(`${API_BASE_URL}/battle/vote/board`, {
         params: params,
     });
+
+/* Board: luna, free, dalgona*/
+//특정 게시판 정보 가져오기
+export const getBoardInfo = (boardUrl) => axios.get(`${API_BASE_URL}/boardlist/${boardUrl}`);
+
+//특정 게시판 인기글 가져오기
+export const getBestPostList = (boardUrl) => axios.get(`${API_BASE_URL}/board/${boardUrl}/best`);
+
+//글목록 가져오기: 루나
+export const getPostList = (boardUrl, params) =>
+    axios.get(`${API_BASE_URL}/board/${boardUrl}`, {
+        params: params,
+    });
