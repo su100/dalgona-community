@@ -7,7 +7,7 @@ const FreeBoardPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<NavContainer history={history} location={location} isHome={true} />}>
-                <FreeBoardContainer />
+                <FreeBoardContainer history={history} location={location} />
             </PageTemplate>
         </div>
     );
