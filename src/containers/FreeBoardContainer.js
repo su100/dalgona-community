@@ -79,6 +79,7 @@ class FreeBoardContainer extends Component {
         this.getBestPostList(); //실시간 인기글 가져오기
         this.getPostList(); //글 목록 가져오기
     }
+
     render() {
         const { history, location, boardInfo, bestPostList, postCount, postList } = this.props;
         return (
