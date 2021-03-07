@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 
 import Header from 'components/common/Header';
 import PostList from 'components/common/PostList';
@@ -10,136 +11,42 @@ class NoticeBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 1,
             searchWord: '',
-            postCount: 23,
-            postList: [
-                {
-                    reply_count: 2,
-                    id: 10,
-                    title: 'ads',
-                    body: 'zzzzzzzzzzzzzzzzzzzzzzzzzzz',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '18:28',
-                },
-                {
-                    reply_count: 2,
-                    id: 9,
-                    title: 'ads',
-                    body: 'zzzzzzzzzzzzzzzzzzzzzzzzzzz',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '01:50',
-                },
-                {
-                    reply_count: 2,
-                    id: 8,
-                    title:
-                        '루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?루나 그게 뭔데?',
-                    body: '제가 루나 만들어볼께요!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '01:48',
-                },
-                {
-                    reply_count: 2,
-                    id: 7,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '01:38',
-                },
-                {
-                    reply_count: 2,
-                    id: 6,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '01:38',
-                },
-                {
-                    reply_count: 2,
-                    id: 5,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '01:36',
-                },
-                {
-                    reply_count: 2,
-                    id: 4,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/11',
-                },
-                {
-                    reply_count: 2,
-                    id: 3,
-                    title: '오늘 뭐하징?',
-                    body: 'ㅈㄱㄴ',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/03',
-                },
-                {
-                    reply_count: 2,
-                    id: 2,
-                    title: '테스트 3차 진행',
-                    body: '테스트 차원에서 내용 수정 다시 한 번 할께요!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/03',
-                },
-            ],
         };
     }
 
     handlePage = (e) => {
-        this.setState({ page: e.target.value });
+        const { history, location } = this.props;
+        const query = queryString.parse(location.search);
+        const page = e.target.value;
+
+        //searchType:title, searchWord, page
+        if (query.search) {
+            //url에서 searchWord있는지 판별
+            history.push(`/notice?page=${page}&search=${query.search}`);
+        } else {
+            history.push(`/notice?page=${page}`);
+        }
     };
+
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
     };
 
     getSearch = () => {
-        //this.state.searchWord로 getList해오기
-        console.log(this.state.searchWord, '검색');
+        //검색하기
+        const { searchWord } = this.state;
+        if (searchWord.trim() === '') {
+            alert('검색어를 입력해주세요.');
+        } else {
+            this.props.history.push(`/notice?page=1&search=${searchWord}`);
+        }
     };
 
     render() {
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+        const { postList, postCount } = this.props;
         return (
             <div className="notice-board">
                 <Header
@@ -150,12 +57,8 @@ class NoticeBoard extends Component {
                     getSearch={this.getSearch}
                 />
                 <div className="border_line" />
-                <PostList link={`notice`} postList={this.state.postList} />
-                <Pagination
-                    countList={this.state.postCount}
-                    handlePage={this.handlePage}
-                    currentPage={this.state.page}
-                />
+                <PostList postList={postList} />
+                <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );
     }
