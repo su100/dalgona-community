@@ -16,6 +16,10 @@
             height: 208px;
             border: 1px solid black;
             border-radius: 194px;
+            img {
+                height: 25.24004364013672px;
+                width: 31.55008888244629px;
+            }
         }
     }
     &__content {
@@ -247,6 +251,10 @@
                 height: 92px;
                 border: 1px solid black;
                 border-radius: 194px;
+                img {
+                    height: 11.969504356384277px;
+                    width: 14.961897850036621px;
+                }
             }
             &-preview {
                 @include flex(row, center, center);
