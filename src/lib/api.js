@@ -154,3 +154,13 @@ export const getPostList = (boardUrl, params) =>
     axios.get(`${API_BASE_URL}/board/${boardUrl}`, {
         params: params,
     });
+//글 내용 가져오기: 루나
+export const getPostInfo = (boardUrl, postId) =>
+    axios.get(`${API_BASE_URL}/board/${boardUrl}/${postId}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+// 댓글 목록 가져오기: 게시글
+export const getPostReply = (postId) =>
+    axios.get(`${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=1`, {
+        headers: { Authorization: getAccesesToken() },
+    });

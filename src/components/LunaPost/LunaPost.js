@@ -72,10 +72,18 @@ class LunaPost extends Component {
     }
 
     render() {
+        const { postReplyList } = this.props;
+        console.log(postReplyList);
         return (
             <div className="lunapost">
-                <View />
-                <CommentList commentList={this.state.commentList} isRecommend />
+                <View
+                    type="luna"
+                    history={history}
+                    postid={this.props.postid}
+                    getPostInfo={this.props.getPostInfo}
+                    postInfo={this.props.postInfo}
+                />
+                <CommentList vote={false} commentList={postReplyList} postid={this.props.postid} isRecommend />
             </div>
         );
     }

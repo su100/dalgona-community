@@ -147,7 +147,9 @@ class CommentList extends Component {
                                                 <img src={comment.author.profile_image} alt="comment" />
                                             </div>
                                         )}
-                                        <div className="comment-list__item--contents">{comment.content}</div>
+                                        <div className="comment-list__item--contents">
+                                            {!vote ? comment.body : comment.content}
+                                        </div>
                                         <div className="comment-list__item--button">
                                             <button
                                                 id={comment.id}
