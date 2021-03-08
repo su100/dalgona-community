@@ -79,11 +79,51 @@ export const getVoteList = (params) =>
         params: params,
     });
 
+// 투표 정보 가져오기
 export const getVoteInfo = (boardUrl) =>
     axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}`, {
         headers: { Authorization: getAccesesToken() },
     });
 
+// 투표 게시판 전체 댓글 가져오기
+export const getVoteReply = (boardUrl) => axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=1`);
+
+// 투표 게시판 댓글 작성
+export const postVoteReply = (formdata) => {
+    axios.post(`${API_BASE_URL}/battle/vote/board/reply`, formdata);
+};
+//투표 게시판 댓글 수정
+export const updateVoteReply = (formdata, replyUrl) => {
+    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata);
+};
+//특정 게시판의 댓글 삭제
+export const deleteVoteReply = (replyUrl) => {
+    axios.delete(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`);
+};
+//특정 댓글의 대댓글 작성
+export const postVoteRereply = (formdata) => {
+    axios.post(`${API_BASE_URL}/battle/vote/board/rereply`, formdata);
+};
+//특정 댓글의 대댓글 수정
+export const updateVoteRereply = (formdata, replyUrl) => {
+    axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata);
+};
+//특정 댓글의 대댓글 삭제
+export const deleteVoteRereply = (reReplyUrl) => {
+    axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`);
+};
+//댓글 추천 추가 및 취소
+export const replyRecommend = (replyUrl) => {
+    axios.post(`${API_BASE_URL}/battle/vote/board/reply/recommend`, {
+        voteboardreply_id: replyUrl,
+    });
+};
+//대댓글 추천 추가 및 취소
+export const reReplyRecommend = (reReplyUrl) => {
+    axios.post(`${API_BASE_URL}/battle/vote/board/rereply/recommend`, {
+        voteboardrereply_id: reReplyUrl,
+    });
+};
 /* Board: luna, free, dalgona*/
 //특정 게시판 정보 가져오기
 export const getBoardInfo = (boardUrl) => axios.get(`${API_BASE_URL}/boardlist/${boardUrl}`);
