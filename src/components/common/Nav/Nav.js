@@ -16,7 +16,6 @@ class Nav extends Component {
             isPC: true,
             _ismounted: false,
             openSidebar: false,
-            isLogin: false,
             path: '',
         };
     }
@@ -86,7 +85,7 @@ class Nav extends Component {
     }
 
     render() {
-        const { isOpen, openMenu, isPC, openSidebar, isLogin, path } = this.state;
+        const { isOpen, openMenu, isPC, openSidebar, path } = this.state;
         const { isAuthenticated, profile } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
@@ -94,7 +93,12 @@ class Nav extends Component {
             <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
                 {openSidebar && (
                     <div className="nav sidebaropen sidebar">
-                        <Sidebar handleSidebar={this.handleSidebar} isLogin={isLogin} />
+                        <Sidebar
+                            handleSidebar={this.handleSidebar}
+                            isAuthenticated={isAuthenticated}
+                            profile={profile}
+                            signOut={this.signOut}
+                        />
                     </div>
                 )}
                 <div className={isHome ? 'nav-main' : 'nav-main no'}>
