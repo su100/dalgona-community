@@ -79,6 +79,11 @@ export const getVoteList = (params) =>
         params: params,
     });
 
+export const getVoteInfo = (boardUrl) =>
+    axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 /* Board: luna, free, dalgona*/
 //특정 게시판 정보 가져오기
 export const getBoardInfo = (boardUrl) => axios.get(`${API_BASE_URL}/boardlist/${boardUrl}`);
