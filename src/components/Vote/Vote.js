@@ -11,66 +11,6 @@ class Vote extends Component {
             vote: [],
             selectVote: '',
             showModal: false,
-            commentList: [
-                {
-                    id: 1,
-                    userImg: null,
-                    username: '닉네임',
-                    time: '03:13',
-                    recommend: 3,
-                    contents:
-                        '댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 ',
-                    isAuthor: true,
-                    isRecommended: false,
-                },
-                {
-                    id: 2,
-                    userImg: null,
-                    username: '닉네임2',
-                    time: '03:13',
-                    recommend: 3,
-                    contents: '댓글 내용',
-                    isAuthor: false,
-                    isRecommended: true,
-                    image:
-                        'https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png',
-                },
-                {
-                    id: 3,
-                    userImg: null,
-                    username: '닉네임3',
-                    time: '03:13',
-                    recommend: 3,
-                    contents: '댓글 내용',
-                    isAuthor: false,
-                    isRecommended: false,
-                    reCommentList: [
-                        {
-                            id: 1,
-                            userImg: null,
-                            username: '대댓단사람1',
-                            time: '03:13',
-                            recommend: 3,
-                            contents: '대댓글 내용',
-                            isAuthor: false,
-                            isRecommended: false,
-                            image:
-                                'https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png',
-                        },
-                        {
-                            id: 2,
-                            userImg: null,
-                            username: '대댓사람2',
-                            time: '03:13',
-                            recommend: 3,
-                            contents:
-                                '댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 ',
-                            isAuthor: true,
-                            isRecommended: true,
-                        },
-                    ],
-                },
-            ],
         };
     }
 
@@ -86,7 +26,7 @@ class Vote extends Component {
 
     render() {
         const { showModal, selectVote } = this.state;
-        const { voteInfo } = this.props;
+        const { voteInfo, voteReplyList } = this.props;
         console.log(voteInfo);
         return (
             <div className="vote">
@@ -111,9 +51,11 @@ class Vote extends Component {
                         {showModal && <VoteModal voteDuplicate={selectVote} handleShowModal={this.handleShowModal} />}
                         <div className="vote__main__content-first" onClick={this.onClickVote} id="first">
                             <div className="vote__main__content-first-circle"></div>
-                            <span className="vote__main__content-first-title">{voteInfo.voteitem[0].item_name}</span>
+                            <span className="vote__main__content-first-title">
+                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_name}
+                            </span>
                             <span className="vote__main__content-first-description">
-                                {voteInfo.voteitem[0].item_content}
+                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_content}
                             </span>
                         </div>
                         <div className="vote__main__content-area">
@@ -129,10 +71,16 @@ class Vote extends Component {
                             </div>
                         </div>
                         <div className="vote__main__content-second" onClick={this.onClickVote} id="second">
-                            <div className="vote__main__content-second-circle"></div>
-                            <span className="vote__main__content-second-title">{voteInfo.voteitem[1].item_name}</span>
+                            {voteInfo.board_image === null ? (
+                                <div className="vote__main__content-second-circle"></div>
+                            ) : (
+                                <img src={voteInfo.board_image}></img>
+                            )}
+                            <span className="vote__main__content-second-title">
+                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_name}
+                            </span>
                             <span className="vote__main__content-second-description">
-                                {voteInfo.voteitem[1].item_content}
+                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_content}
                             </span>
                         </div>
                     </div>
@@ -148,7 +96,7 @@ class Vote extends Component {
                     </div>
                 </div>
                 <div className="vote__comment"></div>
-                <CommentList vote={true} commentList={this.state.commentList} isRecommend />
+                {voteReplyList !== undefined && <CommentList vote={true} commentList={voteReplyList} isRecommend />}
             </div>
         );
     }

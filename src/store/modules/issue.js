@@ -12,12 +12,32 @@ export const LIST_HOT_VOTE = 'issue/LIST_HOT_VOTE'; //실시간 인기 투표 �
 export const LIST_VOTE = 'issue/LIST_VOTE'; //투표 목록 가져오기
 export const VOTE_INFO = 'issue/VOTE_INFO'; //투표 정보 가져오기
 
+export const GET_VOTE_REPLY = 'issue/GET_VOTE_REPLY'; //투표 게시판 댓글 GET
+export const POST_VOTE_REPLY = 'issue/POST_VOTE_REPLY'; //투표 게시판 댓글 POST
+export const UPDATE_VOTE_REPLY = 'issue/UPDATE_VOTE_REPLY'; //투표 게시판 댓글 PUT
+export const DELETE_VOTE_REPLY = 'issue/DELETE_VOTE_REPLY'; //투표 게시판 댓글 DELETE
+export const POST_VOTE_REREPLY = 'issue/POST_VOTE_REREPLY'; //투표 게시판 대댓글 POST
+export const UPDATE_VOTE_REREPLY = 'issue/UPDATE_VOTE_REREPLY'; //특정 댓글의 대댓글 UPDATE
+export const DELETE_VOTE_REREPLY = 'issue/DELETE_VOTE_REREPLY'; //특성 댓글의 대댓글 DELETE
+export const REPLY_RECOMMEND = 'issue/REPLY_RECOMMEND'; //댓글 추천 추가 및 취소
+export const REREPLY_RECOMMEND = 'issue/REREPLY_RECOMMEND'; //대댓글 추천 추가 및 취소
+
 /* 액션 생성자 */
 export const getNewsList = createAction(LIST_NEWS, api.getNewsList);
 export const getNewsKeyword = createAction(LIST_KEYWORD, api.getNewsKeyword);
 export const getHotVoteList = createAction(LIST_HOT_VOTE, api.getHotVoteList);
 export const getVoteList = createAction(LIST_VOTE, api.getVoteList);
 export const getVoteInfo = createAction(VOTE_INFO, api.getVoteInfo);
+
+export const getVoteReply = createAction(GET_VOTE_REPLY, api.getVoteReply);
+export const postVoteReply = createAction(POST_VOTE_REPLY, api.postVoteReply);
+export const updateVoteReply = createAction(UPDATE_VOTE_REPLY, api.updateVoteReply);
+export const deleteVoteReply = createAction(DELETE_VOTE_REPLY, api.deleteVoteReply);
+export const postVoteRereply = createAction(POST_VOTE_REREPLY, api.postVoteRereply);
+export const updateVoteRereply = createAction(UPDATE_VOTE_REREPLY, api.updateVoteRereply);
+export const deleteVoteRereply = createAction(DELETE_VOTE_REREPLY, api.deleteVoteRereply);
+export const replyRecommend = createAction(REPLY_RECOMMEND, api.replyRecommend);
+export const reReplyRecommend = createAction(REREPLY_RECOMMEND, api.reReplyRecommend);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -28,6 +48,7 @@ const initialState = Map({
     voteCount: 0,
     voteList: [],
     voteInfo: [],
+    voteReplyList: [],
 });
 
 /* reducer + pender */
@@ -82,7 +103,20 @@ export default handleActions(
         ...pender({
             type: VOTE_INFO,
             onSuccess: (state, action) => {
+                console.log(action.payload.data);
                 return state.set('voteInfo', action.payload.data);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: GET_VOTE_REPLY,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data.results);
+                return state.set('voteReplyList', action.payload.data.results);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

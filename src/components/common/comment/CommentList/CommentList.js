@@ -56,7 +56,7 @@ class CommentList extends Component {
     };
 
     render() {
-        const { vote } = this.props;
+        const { vote, commentList } = this.props;
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -67,7 +67,7 @@ class CommentList extends Component {
                         </div>
                         <div className="comment-list__count-reply">
                             <span className="border">댓글</span>
-                            <span>123</span>
+                            <span>{commentList.length}</span>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ class CommentList extends Component {
                 />
                 <div className="not-pc">
                     <div className="comment-list__reply">
-                        <span>댓글 123개</span>
+                        <span>댓글 {this.props.commentList.length}개</span>
                     </div>
                 </div>
                 {this.props.commentList.map((comment) => {
@@ -110,16 +110,18 @@ class CommentList extends Component {
                                     </div>
                                     <div className="comment-list__item--main">
                                         <div className="comment-list__item--detail">
-                                            <span className="comment-list__item--username">{comment.username}</span>
-                                            <span>{comment.time}</span>
-                                            <span>{this.props.isRecommend && `추천 ${comment.recommend}`}</span>
+                                            <span className="comment-list__item--username">
+                                                {comment.author.nickname}
+                                            </span>
+                                            <span>{comment.created_at}</span>
+                                            <span>{this.props.isRecommend && `추천 ${comment.recommend_count}`}</span>
                                         </div>
-                                        {comment.image && (
+                                        {comment.author.profile_image && (
                                             <div>
-                                                <img src={comment.image} alt="comment" />
+                                                <img src={comment.author.profile_image} alt="comment" />
                                             </div>
                                         )}
-                                        <div className="comment-list__item--contents">{comment.contents}</div>
+                                        <div className="comment-list__item--contents">{comment.content}</div>
                                         <div className="comment-list__item--button">
                                             <button
                                                 id={comment.id}
@@ -147,12 +149,12 @@ class CommentList extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                {this.props.isRecommend && (
+                                {this.props.recommended && (
                                     <div className="not-pc">
                                         <button>
                                             <img
                                                 className="comment-list__item__button--heart"
-                                                src={comment.isRecommended ? heartFilled : heart}
+                                                src={comment.recommended ? heartFilled : heart}
                                                 alt="heart"
                                             />
                                         </button>
@@ -160,8 +162,8 @@ class CommentList extends Component {
                                 )}
                             </div>
 
-                            {comment.reCommentList &&
-                                comment.reCommentList.map((reComment) => {
+                            {comment.voteboardrereply &&
+                                comment.voteboardrereply.map((reComment) => {
                                     return (
                                         <div
                                             key={reComment.id}
@@ -172,7 +174,7 @@ class CommentList extends Component {
                                                 <div className="not-pc">
                                                     <img
                                                         className="comment-list__item--user-default"
-                                                        src={reComment.userImg ?? userDefault}
+                                                        src={userDefault}
                                                         alt="userImg"
                                                     />
                                                 </div>
@@ -180,23 +182,31 @@ class CommentList extends Component {
                                                 <div className="comment-list__item--main">
                                                     <div className="comment-list__item--detail">
                                                         <span className="comment-list__item--username">
-                                                            {reComment.username}
+                                                            {reComment.anonymous ? '익명' : reComment.author.nickname}
                                                         </span>
-                                                        <span>{reComment.time}</span>
+                                                        <span>{reComment.created_at}</span>
                                                         <span>
-                                                            {this.props.isRecommend && `추천 ${reComment.recommend}`}
+                                                            {this.props.isRecommend &&
+                                                                `추천 ${reComment.recommend_count}`}
                                                         </span>
                                                     </div>
                                                     {reComment.image && (
                                                         <div>
-                                                            <img src={reComment.image} alt="comment" />
+                                                            <img
+                                                                src={
+                                                                    !reComment.anonymous &&
+                                                                    reComment.author.profile_image !== null &&
+                                                                    reComment.author.profile_image
+                                                                }
+                                                                alt="comment"
+                                                            />
                                                         </div>
                                                     )}
                                                     <div className="comment-list__item--contents">
-                                                        {reComment.contents}
+                                                        {reComment.content}
                                                     </div>
                                                     <div className="comment-list__item--button">
-                                                        {reComment.isAuthor ? (
+                                                        {reComment.is_author ? (
                                                             <>
                                                                 <button>수정</button>
                                                                 <button>삭제</button>
