@@ -20,8 +20,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
             const formData = new FormData();
 
             formData.append('image', file);
-
-            onAddImage();
+            addPostImage(formData, onAddImage);
         };
     };
 
@@ -30,7 +29,6 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
         // Range {index: 48, length: 0} 꼴
         const range = quillInstance.current.getSelection(true);
         console.log(range);
-
         quillInstance.current.insertEmbed(range.index, 'image', url);
         quillInstance.current.setSelection(range.index + 1);
     };
@@ -58,8 +56,6 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
 
             // 퀼 인스턴스를 편하게 쓰기 위해 변수 설정
             const quill = quillInstance.current;
-            quill.setText('내용을 입력하세요.');
-            quill.formatText(0, 10, 'color', '#a7a7a7');
             if (!readOnly) {
                 // 텍스트를 쳤을 때 state에 담기
                 quill.on('text-change', (delta, oldDelta, source) => {
