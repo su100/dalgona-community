@@ -357,10 +357,11 @@
                 width: 100%;
                 height: 40px;
                 padding-left: 0px;
+                min-width: 0px;
                 &-content {
                     width: 20%;
                     height: 30px;
-                    min-width: 0;
+                    min-width: 0px;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -387,8 +388,10 @@
             width: 100%;
             height: 25.62px;
             background: rgb(53, 53, 53);
+            min-width:0px;
             @include flex(row, center, center);
             &__border {
+                  min-width:0px;
                 display: none;
             }
             &__menu {
