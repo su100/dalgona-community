@@ -96,7 +96,22 @@ class Vote extends Component {
                     </div>
                 </div>
                 <div className="vote__comment"></div>
-                {voteReplyList !== undefined && <CommentList vote={true} commentList={voteReplyList} isRecommend />}
+                {voteReplyList !== undefined && (
+                    <CommentList
+                        vote={true}
+                        commentList={voteReplyList}
+                        voteid={this.props.voteid}
+                        postVoteReply={this.props.postVoteReply}
+                        updateVoteReply={this.props.updateVoteReply}
+                        deleteVoteReply={this.props.deleteVoteReply}
+                        postVoteRereply={this.props.postVoteRereply}
+                        updateVoteRereply={this.props.updateVoteRereply}
+                        deleteVoteRereply={this.props.deleteVoteRereply}
+                        replyRecommend={this.props.replyRecommend}
+                        reReplyRecommend={this.props.reReplyRecommend}
+                        isRecommend
+                    />
+                )}
             </div>
         );
     }

@@ -54,6 +54,11 @@ class CommentList extends Component {
     closeRecomment = (e) => {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
+    postVoteReply = (e) => {
+        const voteid = this.props.voteid;
+        const { reText, reImg, commentText, commentImg, isAnonymous } = this.state;
+        this.props.postVoteReply(voteid, commentText, commentImg, isAnonymous);
+    };
 
     render() {
         const { vote, commentList } = this.props;
@@ -90,6 +95,7 @@ class CommentList extends Component {
                     commentImg={this.state.commentImg}
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
+                    postVoteReply={this.postVoteReply}
                 />
                 <div className="not-pc">
                     <div className="comment-list__reply">

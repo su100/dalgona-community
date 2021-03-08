@@ -22,6 +22,10 @@ const CommentInput = (props) => {
         fileInput.current.click();
     };
 
+    const onClickPost = (e) => {
+        props.postVoteReply(e);
+    };
+
     return (
         <div className={`comment-input ${props.type}`}>
             {props.previewURL && (
@@ -69,8 +73,12 @@ const CommentInput = (props) => {
                 </div>
                 <div>
                     <button className="comment-input__button--submit">
-                        <span className="only-pc">등록</span>
-                        <span className="not-pc">등록하기</span>
+                        <span className="only-pc" onClick={onClickPost}>
+                            등록
+                        </span>
+                        <span className="not-pc" onClick={onClickPost}>
+                            등록하기
+                        </span>
                     </button>
                 </div>
             </div>

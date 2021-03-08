@@ -89,8 +89,14 @@ export const getVoteInfo = (boardUrl) =>
 export const getVoteReply = (boardUrl) => axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=1`);
 
 // 투표 게시판 댓글 작성
-export const postVoteReply = (formdata) => {
-    axios.post(`${API_BASE_URL}/battle/vote/board/reply`, formdata);
+export const postVoteReply = (voteboard_id, content, votereply_image, anonymous) => {
+    axios.post(
+        `${API_BASE_URL}/battle/vote/board/reply`,
+        { voteboard_id, content, votereply_image, anonymous },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 };
 //투표 게시판 댓글 수정
 export const updateVoteReply = (formdata, replyUrl) => {
