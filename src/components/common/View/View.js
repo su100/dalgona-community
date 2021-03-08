@@ -17,7 +17,10 @@ class View extends Component {
                 <div className="view__detail">
                     <span>
                         홈{'>'}
-                        {type === `luna` ? `루나>${postInfo.board_url}` : `달고나>공지사항`}
+                        {type === `luna` && `루나>${postInfo.board_url}`}
+                        {type === `free` && `자유>${postInfo.board_url}`}
+                        {type === `notice` && `달고나>공지사항`}
+                        {type === `event` && `달고나>이벤트`}
                     </span>
                 </div>
                 <div className="view__title">
@@ -27,7 +30,7 @@ class View extends Component {
                     <div className="only-pc">
                         <span>{!postInfo.anonymous && postInfo.author && postInfo.author.nickname}</span>
                         <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
-                        <span>조회수 100</span>
+                        <span>조회수 {postInfo.views}</span>
                     </div>
                     <span className="not-pc">조회수 {postInfo.views} | 21:20 | 추천 50</span>
                 </div>

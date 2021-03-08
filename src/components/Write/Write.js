@@ -19,31 +19,8 @@ class Write extends Component {
             isAnonymous: false,
             editorState: '',
         };
-        this.fileInput = React.createRef();
         this.handleChange = this.handleChange.bind(this);
     }
-
-    setImage = (file) => {
-        this.setState({ Img: file });
-    };
-    setPreview = (url) => {
-        this.setState({ previewURL: url });
-    };
-    selectImg = (e) => {
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        reader.onloadend = () => {
-            this.setImage(file);
-            this.setPreview(reader.result);
-        };
-        reader.readAsDataURL(file);
-    };
-    deleteImg = (e) => {
-        this.setState({ Img: null, previewURL: '' });
-    };
-    onClickSelect = () => {
-        this.fileInput.current.click();
-    };
 
     handleChange(html) {
         this.setState({ editorState: html });
@@ -55,8 +32,7 @@ class Write extends Component {
     };
 
     handleAnonymous = (e) => {
-        if (e.target.id === 'comment') this.setState({ isAnonymous: e.target.checked });
-        else this.setState({ reAnonymous: e.target.checked });
+        this.setState({ isAnonymous: e.target.checked });
     };
 
     isEmpty = (htmlString) => {

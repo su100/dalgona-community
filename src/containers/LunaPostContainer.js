@@ -6,6 +6,15 @@ import * as lunaActions from 'store/modules/luna';
 import LunaPost from 'components/LunaPost';
 
 class LunaPostContainer extends Component {
+    addPostImage = async (formdata, func) => {
+        const { FreeActions } = this.props;
+        try {
+            await FreeActions.addPostImage(formdata);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        func(this.props.imageURL);
+    };
     getPostInfo = async (postId) => {
         const { location, LunaActions } = this.props;
         const tmp = location.pathname.split('/');
@@ -29,7 +38,6 @@ class LunaPostContainer extends Component {
         //console.log(this.props.match.params.postid);
         this.getPostInfo(postid);
         this.getPostReply(postid);
-        console.log(this.props.postReplyList, 'ggggs');
     }
 
     render() {
@@ -39,6 +47,7 @@ class LunaPostContainer extends Component {
                 <LunaPost
                     history={history}
                     postid={this.props.match.params.postid}
+                    addPostImage={this.addPostImage}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
@@ -49,6 +58,7 @@ class LunaPostContainer extends Component {
 }
 export default connect(
     (state) => ({
+        imageURL: state.luna.get('imageURL'),
         postInfo: state.luna.get('postInfo'),
         postReplyList: state.luna.get('postReplyList'),
     }),

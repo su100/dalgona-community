@@ -3,11 +3,11 @@ import PageTemplate from 'components/common/PageTemplate';
 import NavContainer from 'containers/NavContainer';
 import NoticePostContainer from 'containers/NoticePostContainer';
 
-const NoticePostPage = ({ history, location }) => {
+const NoticePostPage = ({ history, location, match }) => {
     return (
         <div>
             <PageTemplate header={<NavContainer history={history} location={location} isHome={true} />}>
-                <NoticePostContainer />
+                <NoticePostContainer history={history} location={location} match={match} />
             </PageTemplate>
         </div>
     );
