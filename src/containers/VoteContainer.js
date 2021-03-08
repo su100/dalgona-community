@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import queryString from 'query-string';
 import * as authActions from 'store/modules/auth';
 import * as issueActions from 'store/modules/issue';
 import Vote from 'components/Vote';
@@ -22,10 +23,10 @@ class VoteContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    postVoteReply = async (id, commentText, commentImg, isAnonymous) => {
+    postVoteReply = async (voteboard_id, content, votereply_image, anonymous) => {
         const { IssueActions } = this.props;
         try {
-            await IssueActions.postVoteReply(id, commentText, commentImg, isAnonymous);
+            await IssueActions.postVoteReply(voteboard_id, content, votereply_image, anonymous);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -46,10 +47,10 @@ class VoteContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    postVoteRereply = async (formdata) => {
+    postVoteRereply = async (voteboardreply_id, content, voterereply_image, anonymous) => {
         const { IssueActions } = this.props;
         try {
-            await IssueActions.postVoteRereply(formdata);
+            await IssueActions.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
         } catch (e) {
             console.log('error log:' + e);
         }

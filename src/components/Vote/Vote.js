@@ -23,6 +23,10 @@ class Vote extends Component {
         const { showModal } = this.state;
         this.setState({ showModal: !showModal });
     };
+    replyRecommend = (e) => {
+        const voteid = this.props.voteid;
+        this.props.replyRecommend(voteid);
+    };
 
     render() {
         const { showModal, selectVote } = this.state;
@@ -107,7 +111,7 @@ class Vote extends Component {
                         postVoteRereply={this.props.postVoteRereply}
                         updateVoteRereply={this.props.updateVoteRereply}
                         deleteVoteRereply={this.props.deleteVoteRereply}
-                        replyRecommend={this.props.replyRecommend}
+                        replyRecommend={this.replyRecommend}
                         reReplyRecommend={this.props.reReplyRecommend}
                         isRecommend
                     />

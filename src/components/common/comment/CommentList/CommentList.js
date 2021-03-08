@@ -56,8 +56,28 @@ class CommentList extends Component {
     };
     postVoteReply = (e) => {
         const voteid = this.props.voteid;
-        const { reText, reImg, commentText, commentImg, isAnonymous } = this.state;
-        this.props.postVoteReply(voteid, commentText, commentImg, isAnonymous);
+        const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
+        /*const formData = new FormData();
+        formData.append('voteboard_id', voteid);
+        formData.append('content', commentText);
+        formData.append('votereply_image', commentImg);
+        formData.append('anonymous', isAnonymous);
+        */
+        if (e.target.id === 'comment') {
+            let voteboard_id = voteid;
+            let content = commentText;
+            let votereply_image = commentImg;
+            let anonymous = isAnonymous;
+            this.props.postVoteReply(voteboard_id, content, votereply_image, anonymous);
+        } else {
+            let voteboardreply_id = voteid;
+            let content = commentText;
+            let voterereply_image = commentImg;
+            let anonymous = isAnonymous;
+            console.log(voteboardreply_id, content, voterereply_image, anonymous);
+            console.log(e.target.id);
+            // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
+        }
     };
 
     render() {
@@ -117,12 +137,12 @@ class CommentList extends Component {
                                     <div className="comment-list__item--main">
                                         <div className="comment-list__item--detail">
                                             <span className="comment-list__item--username">
-                                                {comment.author.nickname}
+                                                {!comment.anonymous ? comment.author.nickname : '익명'}
                                             </span>
                                             <span>{comment.created_at}</span>
-                                            <span>{this.props.isRecommend && `추천 ${comment.recommend_count}`}</span>
+                                            <span>{`추천 ${comment.recommend_count}`}</span>
                                         </div>
-                                        {comment.author.profile_image && (
+                                        {!comment.anonymous && comment.author.profile_image && (
                                             <div>
                                                 <img src={comment.author.profile_image} alt="comment" />
                                             </div>
@@ -139,7 +159,7 @@ class CommentList extends Component {
                                             >
                                                 답글
                                             </button>
-                                            {comment.isAuthor ? (
+                                            {comment.is_author ? (
                                                 <>
                                                     <button>수정</button>
                                                     <button>삭제</button>
@@ -149,7 +169,7 @@ class CommentList extends Component {
                                             )}
                                             {this.props.isRecommend && (
                                                 <span className="only-pc">
-                                                    <button>추천</button>
+                                                    <button onClick={this.props.replyRecommend}>추천</button>
                                                 </span>
                                             )}
                                         </div>
@@ -258,6 +278,7 @@ class CommentList extends Component {
                                                 commentImg={this.state.reImg}
                                                 previewURL={this.state.rePreview}
                                                 deleteImg={this.deleteImg}
+                                                postVoteReply={this.postVoteReply}
                                             />
                                         </div>
                                     </div>
@@ -278,6 +299,7 @@ class CommentList extends Component {
                     commentImg={this.state.commentImg}
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
+                    postVoteReply={this.postVoteReply}
                 />
             </div>
         );
