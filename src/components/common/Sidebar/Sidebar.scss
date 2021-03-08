@@ -15,11 +15,16 @@
         position: absolute;
         top: 0px;
         left: 0px;
+        z-index: 1;
         &__header {
             @include flex(row, center, center);
             height: 74.79000091552734px;
             width: 469px;
             background: #2d2d2d;
+            img {
+                height: 31.91900062561035px;
+                width: 110.06999206542969px;
+            }
         }
         &__profile {
             @include flex(row, flex-start, center);
