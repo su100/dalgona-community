@@ -89,16 +89,11 @@ export const getVoteInfo = (boardUrl) =>
 export const getVoteReply = (boardUrl) => axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=1`);
 
 // 투표 게시판 댓글 작성
-export const postVoteReply = (voteboard_id, content, votereply_image, anonymous) => {
-    console.log(voteboard_id, content, votereply_image, anonymous);
-    axios.post(
-        `${API_BASE_URL}/battle/vote/board/reply`,
-        { voteboard_id, content, votereply_image, anonymous },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
-};
+export const postVoteReply = (formdata) =>
+    axios.post(`${API_BASE_URL}/battle/vote/board/reply`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 댓글 수정
 export const updateVoteReply = (formdata, replyUrl) => {
     axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata);
@@ -148,6 +143,12 @@ export const getBoardInfo = (boardUrl) => axios.get(`${API_BASE_URL}/boardlist/$
 
 //특정 게시판 인기글 가져오기
 export const getBestPostList = (boardUrl) => axios.get(`${API_BASE_URL}/board/${boardUrl}/best`);
+
+//게시글 내 들어갈 이미지 업로드
+export const addPostImage = (formdata) =>
+    axios.post(`${API_BASE_URL}/images/post`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
 
 //글목록 가져오기: 루나
 export const getPostList = (boardUrl, params) =>

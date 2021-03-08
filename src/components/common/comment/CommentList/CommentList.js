@@ -57,25 +57,14 @@ class CommentList extends Component {
     postVoteReply = (e) => {
         const voteid = this.props.voteid;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
-        /*const formData = new FormData();
+        const formData = new FormData();
         formData.append('voteboard_id', voteid);
         formData.append('content', commentText);
         formData.append('votereply_image', commentImg);
         formData.append('anonymous', isAnonymous);
-        */
         if (e.target.id === 'comment') {
-            let voteboard_id = voteid;
-            let content = commentText;
-            let votereply_image = commentImg;
-            let anonymous = isAnonymous;
-            this.props.postVoteReply(voteboard_id, content, votereply_image, anonymous);
+            this.props.postVoteReply(formData);
         } else {
-            let voteboardreply_id = voteid;
-            let content = commentText;
-            let voterereply_image = commentImg;
-            let anonymous = isAnonymous;
-            console.log(voteboardreply_id, content, voterereply_image, anonymous);
-            console.log(e.target.id);
             // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
         }
     };
@@ -142,9 +131,9 @@ class CommentList extends Component {
                                             <span>{comment.created_at}</span>
                                             <span>{`추천 ${comment.recommend_count}`}</span>
                                         </div>
-                                        {!comment.anonymous && comment.author.profile_image && (
+                                        {comment.votereply_image && (
                                             <div>
-                                                <img src={comment.author.profile_image} alt="comment" />
+                                                <img src={comment.votereply_image} alt="comment" />
                                             </div>
                                         )}
                                         <div className="comment-list__item--contents">
