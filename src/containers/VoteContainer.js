@@ -88,6 +88,15 @@ class VoteContainer extends Component {
         }
     };
 
+    userVote = async (voteitem) => {
+        const { IssueActions } = this.props;
+        try {
+            await IssueActions.userVote(voteitem);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     voteReply = (boardUrl, page) => {
         let params = {};
         params['page'] = page;
@@ -113,6 +122,7 @@ class VoteContainer extends Component {
             voteReplyCount,
             reply_success,
             isAuthenticated,
+            isVote,
         } = this.props;
         return (
             <Fragment>
@@ -124,9 +134,11 @@ class VoteContainer extends Component {
                     isAuthenticated={isAuthenticated}
                     reply_success={reply_success}
                     voteReplyCount={voteReplyCount}
+                    isVote={isVote}
                     voteid={this.props.match.params.voteid}
                     getVoteInfo={this.getVoteInfo}
                     voteReply={this.voteReply}
+                    userVote={this.userVote}
                     postVoteReply={this.postVoteReply}
                     updateVoteReply={this.updateVoteReply}
                     deleteVoteReply={this.deleteVoteReply}
@@ -147,6 +159,7 @@ export default connect(
         voteInfo: state.issue.get('voteInfo'),
         voteReplyList: state.issue.get('voteReplyList'),
         voteReplyCount: state.issue.get('voteReplyCount'),
+        isVote: state.issue.get('isVote'),
         info_loading: state.pender.pending['issue/VOTE_INFO'],
         reply_loading: state.pender.pending['issue/GET_VOTE_REPLY'],
         info_success: state.pender.success['issue/VOTE_INFO'],

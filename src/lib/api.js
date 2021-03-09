@@ -134,11 +134,24 @@ export const replyRecommend = (replyUrl) =>
     );
 
 //대댓글 추천 추가 및 취소
-export const reReplyRecommend = (reReplyUrl) => {
-    axios.post(`${API_BASE_URL}/battle/vote/board/rereply/recommend`, {
-        voteboardrereply_id: reReplyUrl,
-    });
-};
+export const reReplyRecommend = (reReplyUrl) =>
+    axios.post(
+        `${API_BASE_URL}/battle/vote/board/reply/recommend`,
+        { voteboardrereply_id: reReplyUrl },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+//유저 투표하기
+export const userVote = (voteitem) =>
+    axios.post(
+        `${API_BASE_URL}/battle/vote`,
+        { voteitem_id: voteitem },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+
 /* Board: luna, free, dalgona*/
 //특정 게시판 정보 가져오기
 export const getBoardInfo = (boardUrl) => axios.get(`${API_BASE_URL}/boardlist/${boardUrl}`);

@@ -147,7 +147,7 @@ class CommentList extends Component {
                 />
                 <div className="not-pc">
                     <div className="comment-list__reply">
-                        <span>댓글 {this.props.commentList.length}개</span>
+                        <span>댓글 {voteReplyCount}개</span>
                     </div>
                 </div>
                 {this.props.commentList.map((comment) => {
@@ -272,7 +272,12 @@ class CommentList extends Component {
                                                         )}
                                                         {this.props.isRecommend && (
                                                             <span className="only-pc">
-                                                                <button>추천</button>
+                                                                <button
+                                                                    id={reComment.id}
+                                                                    onClick={this.props.reReplyRecommend}
+                                                                >
+                                                                    추천
+                                                                </button>
                                                             </span>
                                                         )}
                                                     </div>

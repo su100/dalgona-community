@@ -22,8 +22,9 @@
         text-align: left;
         padding-bottom: 38px;
     }
-    div {
-        @include flex(row, center, center);
+    &__button {
+        @include flex(row, space-between, center);
+        width: 330px;
         button {
             height: 40px;
             width: 157px;
@@ -32,10 +33,10 @@
             color: #fff;
             font-size: 22px;
         }
-    }
-    &.cancel {
-        background: #e6e6e6;
-        color: #838383;
+        &.cancel {
+            background: #e6e6e6;
+            color: #838383;
+        }
     }
 }
 

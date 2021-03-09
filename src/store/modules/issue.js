@@ -21,6 +21,7 @@ export const UPDATE_VOTE_REREPLY = 'issue/UPDATE_VOTE_REREPLY'; //특정 댓글�
 export const DELETE_VOTE_REREPLY = 'issue/DELETE_VOTE_REREPLY'; //특성 댓글의 대댓글 DELETE
 export const REPLY_RECOMMEND = 'issue/REPLY_RECOMMEND'; //댓글 추천 추가 및 취소
 export const REREPLY_RECOMMEND = 'issue/REREPLY_RECOMMEND'; //대댓글 추천 추가 및 취소
+export const USER_VOTE = 'issue/USER_VOTE'; //유저 투표하기
 
 /* 액션 생성자 */
 export const getNewsList = createAction(LIST_NEWS, api.getNewsList);
@@ -38,6 +39,7 @@ export const updateVoteRereply = createAction(UPDATE_VOTE_REREPLY, api.updateVot
 export const deleteVoteRereply = createAction(DELETE_VOTE_REREPLY, api.deleteVoteRereply);
 export const replyRecommend = createAction(REPLY_RECOMMEND, api.replyRecommend);
 export const reReplyRecommend = createAction(REREPLY_RECOMMEND, api.reReplyRecommend);
+export const userVote = createAction(USER_VOTE, api.userVote);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -50,6 +52,7 @@ const initialState = Map({
     voteInfo: [],
     voteReplyList: [],
     voteReplyCount: 0,
+    isVote: false,
 });
 
 /* reducer + pender */
@@ -153,6 +156,41 @@ export default handleActions(
                 console.log(data);
                 if (data.result.includes('recommend deleted')) {
                     alert('추천취소');
+                }
+                return state;
+            },
+        }),
+        ...pender({
+            type: REREPLY_RECOMMEND,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                const data = action.payload.response.data;
+                if (data.result.includes('recommend created')) {
+                    alert('추천완료');
+                }
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                if (data.result.includes('recommend deleted')) {
+                    alert('추천취소');
+                }
+                return state;
+            },
+        }),
+        ...pender({
+            type: USER_VOTE,
+            onSuccess: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                if (data.result.includes('이미 참여한 투표입니다.')) {
+                    return state.set('isVote', true);
                 }
                 return state;
             },

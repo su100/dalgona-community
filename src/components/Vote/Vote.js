@@ -15,8 +15,9 @@ class Vote extends Component {
     }
 
     onClickVote = (e) => {
-        this.setState({ selectVote: e.target.id });
+        this.props.userVote(e.target.id);
         this.handleShowModal();
+        console.log(this.props.isVote);
     };
 
     handleShowModal = (e) => {
@@ -27,10 +28,14 @@ class Vote extends Component {
         const voteid = this.props.voteid;
         this.props.replyRecommend(voteid);
     };
+    reReplyRecommend = (e) => {
+        const replyid = e.target.id;
+        this.props.replyRecommend(replyid);
+    };
 
     render() {
         const { showModal, selectVote } = this.state;
-        const { history, voteInfo, reply_success, voteReplyList, isAuthenticated, voteReplyCount } = this.props;
+        const { history, voteInfo, reply_success, voteReplyList, isAuthenticated, voteReplyCount, isVote } = this.props;
         console.log(voteInfo);
         return (
             <div className="vote">
@@ -52,9 +57,20 @@ class Vote extends Component {
                 </div>
                 <div className="vote__main">
                     <div className="vote__main__content">
-                        {showModal && <VoteModal voteDuplicate={selectVote} handleShowModal={this.handleShowModal} />}
-                        <div className="vote__main__content-first" onClick={this.onClickVote} id="first">
-                            <div className="vote__main__content-first-circle"></div>
+                        {showModal && (
+                            <VoteModal
+                                voteDuplicate={selectVote}
+                                isVote={isVote}
+                                handleShowModal={this.handleShowModal}
+                                userVote={this.props.userVote}
+                            />
+                        )}
+                        <div className="vote__main__content-first">
+                            <button
+                                onClick={this.onClickVote}
+                                id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].id}
+                                className="vote__main__content-first-circle"
+                            ></button>
                             <span className="vote__main__content-first-title">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_name}
                             </span>
@@ -74,9 +90,13 @@ class Vote extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="vote__main__content-second" onClick={this.onClickVote} id="second">
+                        <div className="vote__main__content-second">
                             {voteInfo.board_image === null ? (
-                                <div className="vote__main__content-second-circle"></div>
+                                <button
+                                    className="vote__main__content-second-circle"
+                                    onClick={this.onClickVote}
+                                    id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].id}
+                                ></button>
                             ) : (
                                 <img src={voteInfo.board_image}></img>
                             )}
@@ -119,7 +139,7 @@ class Vote extends Component {
                         updateVoteRereply={this.props.updateVoteRereply}
                         deleteVoteRereply={this.props.deleteVoteRereply}
                         replyRecommend={this.replyRecommend}
-                        reReplyRecommend={this.props.reReplyRecommend}
+                        reReplyRecommend={this.reReplyRecommend}
                         isRecommend
                     />
                 )}
