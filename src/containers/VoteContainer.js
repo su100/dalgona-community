@@ -15,10 +15,10 @@ class VoteContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getVoteReply = async (boardUrl) => {
+    getVoteReply = async (boardUrl, params) => {
         const { IssueActions } = this.props;
         try {
-            await IssueActions.getVoteReply(boardUrl);
+            await IssueActions.getVoteReply(boardUrl, params);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -88,21 +88,42 @@ class VoteContainer extends Component {
         }
     };
 
+    voteReply = (boardUrl, page) => {
+        let params = {};
+        params['page'] = page;
+        this.getVoteReply(boardUrl, params);
+    };
+
     componentDidMount() {
         const voteid = this.props.match.params.voteid;
         this.getVoteInfo(voteid);
-        this.getVoteReply(voteid);
+        this.voteReply(voteid, 1);
     }
     render() {
-        const { voteInfo, voteReplyList } = this.props;
+        const {
+            history,
+            voteInfo,
+            info_loading,
+            reply_loading,
+            info_success,
+            post_delete_success,
+            voteReplyList,
+            reply_list_success,
+            reply_success,
+            isAuthenticated,
+        } = this.props;
         return (
             <Fragment>
                 <Vote
+                    history={history}
+                    location={location}
                     voteInfo={voteInfo}
                     voteReplyList={voteReplyList}
+                    isAuthenticated={isAuthenticated}
+                    reply_success={reply_success}
                     voteid={this.props.match.params.voteid}
                     getVoteInfo={this.getVoteInfo}
-                    getVoteReply={this.getVoteReply}
+                    voteReply={this.voteReply}
                     postVoteReply={this.postVoteReply}
                     updateVoteReply={this.updateVoteReply}
                     deleteVoteReply={this.deleteVoteReply}
@@ -119,10 +140,17 @@ class VoteContainer extends Component {
 
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         voteInfo: state.issue.get('voteInfo'),
         voteReplyList: state.issue.get('voteReplyList'),
+        info_loading: state.pender.pending['issue/VOTE_INFO'],
+        reply_loading: state.pender.pending['issue/GET_VOTE_REPLY'],
+        info_success: state.pender.success['issue/VOTE_INFO'],
+        reply_list_success: state.pender.success['issue/GET_VOTE_REPLY'],
+        reply_success: state.pender.success['issue/POST_VOTE_REPLY'],
     }),
     (dispatch) => ({
+        AuthActions: bindActionCreators(authActions, dispatch),
         IssueActions: bindActionCreators(issueActions, dispatch),
     })
 )(VoteContainer);

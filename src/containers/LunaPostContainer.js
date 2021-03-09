@@ -58,11 +58,13 @@ class LunaPostContainer extends Component {
 }
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         imageURL: state.luna.get('imageURL'),
         postInfo: state.luna.get('postInfo'),
         postReplyList: state.luna.get('postReplyList'),
     }),
     (dispatch) => ({
+        AuthActions: bindActionCreators(authActions, dispatch),
         LunaActions: bindActionCreators(lunaActions, dispatch),
     })
 )(LunaPostContainer);

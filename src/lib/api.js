@@ -86,7 +86,10 @@ export const getVoteInfo = (boardUrl) =>
     });
 
 // 투표 게시판 전체 댓글 가져오기
-export const getVoteReply = (boardUrl) => axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=1`);
+export const getVoteReply = (boardUrl, params) =>
+    axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply`, {
+        params: params,
+    });
 
 // 투표 게시판 댓글 작성
 export const postVoteReply = (formdata) =>

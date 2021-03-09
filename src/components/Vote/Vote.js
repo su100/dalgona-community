@@ -30,7 +30,7 @@ class Vote extends Component {
 
     render() {
         const { showModal, selectVote } = this.state;
-        const { voteInfo, voteReplyList } = this.props;
+        const { history, voteInfo, reply_success, voteReplyList, isAuthenticated } = this.props;
         console.log(voteInfo);
         return (
             <div className="vote">
@@ -102,9 +102,15 @@ class Vote extends Component {
                 <div className="vote__comment"></div>
                 {voteReplyList !== undefined && (
                     <CommentList
+                        history={history}
+                        location={location}
                         vote={true}
                         commentList={voteReplyList}
+                        reply_success={reply_success}
+                        isAuthenticated={isAuthenticated}
                         voteid={this.props.voteid}
+                        getVoteInfo={this.props.getVoteInfo}
+                        voteReply={this.props.voteReply}
                         postVoteReply={this.props.postVoteReply}
                         updateVoteReply={this.props.updateVoteReply}
                         deleteVoteReply={this.props.deleteVoteReply}

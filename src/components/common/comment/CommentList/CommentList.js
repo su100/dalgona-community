@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import CommentInput from 'components/common/comment/CommentInput';
-
+import Pagination from 'components/common/Pagination';
 import userDefault from 'images/user-default.png';
 import heartFilled from 'images/heart_filled.png';
 import heart from 'images/heart.png';
@@ -22,6 +23,35 @@ class CommentList extends Component {
             rePreview: '',
         };
     }
+    handlePage = (e) => {
+        const page = e.target.value;
+        console.log(page);
+        this.props.voteReply(this.props.voteid, page);
+    };
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
+            //댓글 작성 성공했을 때
+            return 'reply';
+        } else if (prevProps.rereply_success !== this.props.rereply_success && this.props.rereply_success) {
+            //대댓글 작성 성공했을 때
+            return 'rereply';
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        //댓글 대댓글 입력 초기화
+        if (snapshot === 'reply') {
+            this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
+        } else if (snapshot === 'rereply')
+            this.setState({
+                isRereplyOpen: false,
+                replyOpenId: 0,
+                reReplyText: '',
+                reAnonymous: false,
+            });
+    }
+
     handleComment = (e) => {
         if (e.target.id === 'comment') this.setState({ commentText: e.target.value });
         else this.setState({ reText: e.target.value });
@@ -55,21 +85,30 @@ class CommentList extends Component {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
     postVoteReply = (e) => {
-        const voteid = this.props.voteid;
+        const { voteid, isAuthenticated, vote } = this.props;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
-        const formData = new FormData();
-        formData.append('voteboard_id', voteid);
-        formData.append('content', commentText);
-        formData.append('votereply_image', commentImg);
-        formData.append('anonymous', isAnonymous);
-        if (e.target.id === 'comment') {
-            this.props.postVoteReply(formData);
+        if (!isAuthenticated) {
+            alert('로그인이 필요합니다');
+            this.props.history.push('/login');
         } else {
-            // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
+            const formData = new FormData();
+            console.log(voteid, e.target.id);
+            formData.append('voteboard_id', voteid);
+            formData.append('content', commentText);
+            if (commentImg !== null) formData.append('votereply_image', commentImg);
+            formData.append('anonymous', isAnonymous);
+            if (vote) {
+                console.log('gg');
+                this.props.postVoteReply(formData);
+            } else {
+                // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
+            }
         }
     };
 
     render() {
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
         const { vote, commentList } = this.props;
         return (
             <div className="comment-list">
@@ -278,7 +317,7 @@ class CommentList extends Component {
                         </div>
                     );
                 })}
-
+                <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
                 <CommentInput
                     type="comment"
                     handleAnonymous={this.handleAnonymous}
