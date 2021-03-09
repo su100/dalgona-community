@@ -96,6 +96,7 @@ class VoteContainer extends Component {
 
     componentDidMount() {
         const voteid = this.props.match.params.voteid;
+        console.log(voteid);
         this.getVoteInfo(voteid);
         this.voteReply(voteid, 1);
     }
@@ -109,6 +110,7 @@ class VoteContainer extends Component {
             post_delete_success,
             voteReplyList,
             reply_list_success,
+            voteReplyCount,
             reply_success,
             isAuthenticated,
         } = this.props;
@@ -121,6 +123,7 @@ class VoteContainer extends Component {
                     voteReplyList={voteReplyList}
                     isAuthenticated={isAuthenticated}
                     reply_success={reply_success}
+                    voteReplyCount={voteReplyCount}
                     voteid={this.props.match.params.voteid}
                     getVoteInfo={this.getVoteInfo}
                     voteReply={this.voteReply}
@@ -143,6 +146,7 @@ export default connect(
         isAuthenticated: state.auth.get('isAuthenticated'),
         voteInfo: state.issue.get('voteInfo'),
         voteReplyList: state.issue.get('voteReplyList'),
+        voteReplyCount: state.issue.get('voteReplyCount'),
         info_loading: state.pender.pending['issue/VOTE_INFO'],
         reply_loading: state.pender.pending['issue/GET_VOTE_REPLY'],
         info_success: state.pender.success['issue/VOTE_INFO'],

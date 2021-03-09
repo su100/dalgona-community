@@ -124,16 +124,15 @@ export const deleteVoteRereply = (reReplyUrl) => {
     axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`);
 };
 //댓글 추천 추가 및 취소
-export const replyRecommend = (replyUrl) => {
-    console.log(replyUrl);
+export const replyRecommend = (replyUrl) =>
     axios.post(
         `${API_BASE_URL}/battle/vote/board/reply/recommend`,
-        { replyUrl },
+        { voteboardreply_id: replyUrl },
         {
             headers: { Authorization: getAccesesToken() },
         }
     );
-};
+
 //대댓글 추천 추가 및 취소
 export const reReplyRecommend = (reReplyUrl) => {
     axios.post(`${API_BASE_URL}/battle/vote/board/rereply/recommend`, {

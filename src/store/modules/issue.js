@@ -49,6 +49,7 @@ const initialState = Map({
     voteList: [],
     voteInfo: [],
     voteReplyList: [],
+    voteReplyCount: 0,
 });
 
 /* reducer + pender */
@@ -115,8 +116,10 @@ export default handleActions(
         ...pender({
             type: GET_VOTE_REPLY,
             onSuccess: (state, action) => {
-                console.log(action.payload.data.results);
-                return state.set('voteReplyList', action.payload.data.results);
+                console.log(action.payload.data);
+                return state
+                    .set('voteReplyList', action.payload.data.results)
+                    .set('voteReplyCount', action.payload.data.count);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
@@ -133,6 +136,24 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: REPLY_RECOMMEND,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                if (action.payload.data.result.includes('recommend created')) {
+                    alert('추천완료');
+                }
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                if (data.result.includes('recommend deleted')) {
+                    alert('추천취소');
+                }
                 return state;
             },
         }),

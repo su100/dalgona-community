@@ -109,7 +109,7 @@ class CommentList extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { vote, commentList } = this.props;
+        const { vote, commentList, voteReplyCount } = this.props;
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -120,7 +120,7 @@ class CommentList extends Component {
                         </div>
                         <div className="comment-list__count-reply">
                             <span className="border">댓글</span>
-                            <span>{commentList.length}</span>
+                            <span>{voteReplyCount}</span>
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ class Vote extends Component {
 
     render() {
         const { showModal, selectVote } = this.state;
-        const { history, voteInfo, reply_success, voteReplyList, isAuthenticated } = this.props;
+        const { history, voteInfo, reply_success, voteReplyList, isAuthenticated, voteReplyCount } = this.props;
         console.log(voteInfo);
         return (
             <div className="vote">
@@ -107,6 +107,7 @@ class Vote extends Component {
                         vote={true}
                         commentList={voteReplyList}
                         reply_success={reply_success}
+                        voteReplyCount={voteReplyCount}
                         isAuthenticated={isAuthenticated}
                         voteid={this.props.voteid}
                         getVoteInfo={this.props.getVoteInfo}
