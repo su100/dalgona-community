@@ -180,3 +180,14 @@ export const getPostReply = (postId) =>
     axios.get(`${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=1`, {
         headers: { Authorization: getAccesesToken() },
     });
+
+/*write*/
+//게시글 작성하기
+export const addPost = (title, body, boardUrl, anonymous) =>
+    axios.post(
+        `${API_BASE_URL}/board/${boardUrl}/posts`,
+        { title: title, body: body, board_url: boardUrl, anonymous: anonymous },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );

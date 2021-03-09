@@ -42,8 +42,8 @@ class Write extends Component {
     };
 
     addPost = () => {
-        const { match, addPost, updatePost, editPost } = this.props;
-        const { title, categoryId, anonymous, editorState } = this.state;
+        const { match, addPost, updatePost, editPost, isAuthenticated } = this.props;
+        const { title, categoryId, isAnonymous, editorState } = this.state;
         //빈 값 체크
         if (title === '') alert('제목을 입력해주세요.');
         else if (this.isEmpty(editorState)) alert('내용을 입력해주세요.');
@@ -59,15 +59,33 @@ class Write extends Component {
                      anonymous ? 1 : 0 //익명이 참일때 1, 익명이 아닐 때 0)
                  );
              } else*/
+            if (!isAuthenticated) {
+                alert('로그인이 필요합니다.');
+                this.props.history.push('/login');
+            }
             addPost(
-                match.params.board_url,
                 title,
                 JSON.stringify(editorState, null, 2),
-                categoryId === '0' ? null : categoryId, //카테고리 선택 안 하면 null
-                anonymous ? 1 : 0 //익명이 참일때 1, 익명이 아닐 때 0
+                'iu',
+                isAnonymous ? true : false //익명이 참일때 1, 익명이 아닐 때 0
             );
         }
     };
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.post_success !== this.props.post_success && this.props.post_success) {
+            //댓글 작성 성공했을 때
+            return 'post';
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        //댓글 대댓글 입력 초기화
+        if (snapshot === 'post') {
+            console.log('초기화');
+            this.setState({ title: null, editorState: null, isAnonymous: false });
+        }
+    }
 
     render() {
         const { title, categoryId, isAnonymous, previewURL } = this.state;
