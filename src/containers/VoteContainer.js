@@ -10,6 +10,7 @@ class VoteContainer extends Component {
     getVoteInfo = async (boardUrl) => {
         const { IssueActions } = this.props;
         try {
+            console.log(boardUrl);
             await IssueActions.getVoteInfo(boardUrl);
         } catch (e) {
             console.log('error log:' + e);

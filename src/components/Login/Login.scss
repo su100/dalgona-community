@@ -31,7 +31,7 @@
         &-selectbox {
             @include flex(row, flex-start, flex-start);
             width: 701px;
-            img {
+            .remember-check {
                 width: 18px;
                 height: 18px;
             }
@@ -120,7 +120,7 @@
                 @include flex(row, flex-start, flex-start);
                 width: 728px;
                 padding-bottom: 16.49px;
-                img {
+                .remember-check {
                     height: 13px;
                     width: 13px;
                 }
@@ -212,7 +212,7 @@
                     line-height: 11px;
                     color: white;
                 }
-                img {
+                .remember-check {
                     height: 8.39px;
                     width: 8.39px;
                 }

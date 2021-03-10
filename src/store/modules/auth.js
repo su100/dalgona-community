@@ -62,13 +62,6 @@ export default handleActions(
             //로그인 여부 false, profile 빈 값
             return state.set('isAuthenticated', false).set('profile', Map({}));
         },
-        [SET_REMEMBER]: (state, action) => {
-            if (api.isUserLoggedIn()) {
-                //로그인  여부 store에 재저장
-                return state.set('isAuthenticated', true);
-            }
-            return state;
-        },
         [SET_USERNAME]: (state, action) => {
             return state.set('username', action.payload);
         },

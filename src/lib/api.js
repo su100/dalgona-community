@@ -80,10 +80,12 @@ export const getVoteList = (params) =>
     });
 
 // 투표 정보 가져오기
-export const getVoteInfo = (boardUrl) =>
+export const getVoteInfo = (boardUrl) => {
+    console.log('api는 가는거?', boardUrl);
     axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}`, {
         headers: { Authorization: getAccesesToken() },
     });
+};
 
 // 투표 게시판 전체 댓글 가져오기
 export const getVoteReply = (boardUrl, params) =>

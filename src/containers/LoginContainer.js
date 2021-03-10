@@ -24,6 +24,7 @@ class LoginContainer extends Component {
         if (this.props.success) {
             //로그인 성공시 뒤로가기
             this.props.history.goBack();
+            console.log(this.props.rememberMe);
         } else if (this.props.failure && this.props.isEmailNotCertified) {
             //이메일 인증 안 된 경우 재인증 페이지
             AuthActions.setUsername(username);
@@ -34,7 +35,7 @@ class LoginContainer extends Component {
         console.log('home container');
         return (
             <Fragment>
-                <Login signIn={this.signIn} />
+                <Login signIn={this.signIn} setRemember={this.props.AuthActions.setRemember} />
             </Fragment>
         );
     }
@@ -44,6 +45,7 @@ export default connect(
     (state) => ({
         isEmailNotCertified: state.auth.get('isEmailNotCertified'),
         isAuthenticated: state.auth.get('isAuthenticated'),
+        rememberMe: state.auth.get('rememberMe'),
         success: state.pender.success['auth/SIGN_IN'],
         failure: state.pender.failure['auth/SIGN_IN'],
     }),
