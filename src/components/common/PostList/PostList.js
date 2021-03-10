@@ -73,7 +73,7 @@ const PostList = ({ postList, hasGrid, noBorder, link }) => {
                         if (type === 'list') {
                             return (
                                 <Link
-                                    to="/"
+                                    to={`${link}/${post.id}`}
                                     className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                     key={index}
                                 >

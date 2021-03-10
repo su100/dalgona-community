@@ -78,7 +78,7 @@ class FreeBoard extends Component {
                     </div>
                 </section>
                 <div className="border_line" />
-                <PostList hasGrid postList={postList} />
+                <PostList link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
                 <section className="only-pc free-board__container--btn">
                     <Link to={`/free/board_url/write`}>글쓰기</Link>
                 </section>
