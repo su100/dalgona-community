@@ -2,15 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
-import * as freeActions from 'store/modules/free';
 import * as writeActions from 'store/modules/write';
 import Write from 'components/Write';
 
 class WriteContainer extends Component {
     addPostImage = async (formdata, func) => {
-        const { FreeActions } = this.props;
+        const { WriteActions } = this.props;
         try {
-            await FreeActions.addPostImage(formdata);
+            await WriteActions.addPostImage(formdata);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -45,15 +44,14 @@ class WriteContainer extends Component {
 export default connect(
     (state) => ({
         isAuthenticated: state.auth.get('isAuthenticated'),
-        imageURL: state.free.get('imageURL'),
-        loading: state.pender.pending['free/ADD_POST_IMAGE'],
+        imageURL: state.write.get('imageURL'),
+        loading: state.pender.pending['write/ADD_POST_IMAGE'],
         post_loading: state.pender.pending['write/ADD_POST'],
-        img_success: state.pender.success['free/ADD_POST_IMAGE'],
+        img_success: state.pender.success['write/ADD_POST_IMAGE'],
         post_success: state.pender.success['write/ADD_POST'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
-        FreeActions: bindActionCreators(freeActions, dispatch),
         WriteActions: bindActionCreators(writeActions, dispatch),
     })
 )(WriteContainer);

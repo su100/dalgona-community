@@ -6,7 +6,7 @@ import * as api from 'lib/api';
 import { Storage } from 'lib/storage';
 
 /* 액션 타입 */
-export const ADD_POST_IMAGE = 'post/ADD_POST_IMAGE';
+export const ADD_POST_IMAGE = 'free/ADD_POST_IMAGE';
 export const VIEW_BOARD = 'free/VIEW_BOARD'; //게시판 정보 가져오기
 export const LIST_BEST = 'free/LIST_BEST'; //인기글 목록 가져오기
 export const LIST_POST = 'free/LIST_POST'; //글목록 가져오기

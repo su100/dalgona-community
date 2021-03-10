@@ -84,6 +84,7 @@ class Write extends Component {
         if (snapshot === 'post') {
             console.log('초기화');
             this.setState({ title: null, editorState: null, isAnonymous: false });
+            this.props.history.push('/luna/1');
         }
     }
 

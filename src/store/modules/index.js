@@ -5,4 +5,5 @@ export { default as home } from './home';
 export { default as issue } from './issue';
 export { default as luna } from './luna';
 export { default as search } from './search';
+export { default as write } from './write';
 export { penderReducer as pender } from 'redux-pender';
