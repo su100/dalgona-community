@@ -48,13 +48,16 @@ class LunaBoard extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { boardInfo, bestPostList, postCount, postList } = this.props;
+        const { boardInfo, bookmark, bestPostList, postCount, postList, updateBookmark } = this.props;
 
         return (
             <div className="luna-board">
                 <Header
                     title={boardInfo.board_name}
                     hasWrite
+                    hasBookmark
+                    isBookmarked
+                    updateBookmark={updateBookmark}
                     searchWord={this.state.searchWord}
                     handleChange={this.handleChange}
                     placeholder="글 제목을 검색하세요"

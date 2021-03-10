@@ -36,6 +36,16 @@ class LunaBoardContainer extends Component {
         }
     };
 
+    updateBookmark = async () => {
+        const { location, LunaActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await LunaActions.updateBookmark(tmp[2]);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         //게시판 바뀔 때
         if (prevProps.location.pathname !== this.props.location.pathname) {
@@ -81,16 +91,18 @@ class LunaBoardContainer extends Component {
     }
 
     render() {
-        const { history, location, boardInfo, bestPostList, postCount, postList } = this.props;
+        const { history, location, boardInfo, bestPostList, postCount, postList, bookmark } = this.props;
         return (
             <Fragment>
                 <LunaBoard
                     history={history}
                     location={location}
                     boardInfo={boardInfo}
+                    bookmark={bookmark}
                     bestPostList={bestPostList}
                     postCount={postCount}
                     postList={postList}
+                    updateBookmark={this.updateBookmark}
                 />
             </Fragment>
         );
@@ -103,6 +115,7 @@ export default connect(
         bestPostList: state.luna.get('bestPostList'),
         postCount: state.luna.get('postCount'),
         postList: state.luna.get('postList'),
+        bookmark: state.luna.get('bookmark'),
     }),
     (dispatch) => ({
         LunaActions: bindActionCreators(lunaActions, dispatch),

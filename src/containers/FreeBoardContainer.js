@@ -36,6 +36,16 @@ class FreeBoardContainer extends Component {
         }
     };
 
+    updateBookmark = async () => {
+        const { location, FreeActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await FreeActions.updateBookmark(tmp[2]);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         //게시판 바뀔 때
         if (prevProps.location.pathname !== this.props.location.pathname) {
@@ -81,16 +91,18 @@ class FreeBoardContainer extends Component {
     }
 
     render() {
-        const { history, location, boardInfo, bestPostList, postCount, postList } = this.props;
+        const { history, location, boardInfo, bestPostList, postCount, postList, bookmark } = this.props;
         return (
             <Fragment>
                 <FreeBoard
                     history={history}
                     location={location}
                     boardInfo={boardInfo}
+                    bookmark={bookmark}
                     bestPostList={bestPostList}
                     postCount={postCount}
                     postList={postList}
+                    updateBookmark={this.updateBookmark}
                 />
             </Fragment>
         );
@@ -103,6 +115,7 @@ export default connect(
         bestPostList: state.free.get('bestPostList'),
         postCount: state.free.get('postCount'),
         postList: state.free.get('postList'),
+        bookmark: state.free.get('bookmark'),
     }),
     (dispatch) => ({
         FreeActions: bindActionCreators(freeActions, dispatch),

@@ -9,11 +9,13 @@ import { Storage } from 'lib/storage';
 export const VIEW_BOARD = 'free/VIEW_BOARD'; //게시판 정보 가져오기
 export const LIST_BEST = 'free/LIST_BEST'; //인기글 목록 가져오기
 export const LIST_POST = 'free/LIST_POST'; //글목록 가져오기
+export const UPDATE_BOOKMARK = 'free/UPDATE_BOOKMARK'; //즐겨찾기 추가 및 삭제
 
 /* 액션 생성자 */
 export const getBoardInfo = createAction(VIEW_BOARD, api.getBoardInfo);
 export const getBestPostList = createAction(LIST_BEST, api.getBestPostList);
 export const getPostList = createAction(LIST_POST, api.getPostList);
+export const updateBookmark = createAction(UPDATE_BOOKMARK, api.updateBookmark);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -21,6 +23,7 @@ const initialState = Map({
     bestPostList: [],
     postCount: 0,
     postList: [],
+    bookmark: [],
 });
 
 /* reducer + pender */
@@ -53,6 +56,17 @@ export default handleActions(
             onSuccess: (state, action) => {
                 const { count, results } = action.payload.data;
                 return state.set('postCount', count).set('postList', results);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: UPDATE_BOOKMARK,
+            onSuccess: (state, action) => {
+                return state.set('bookmark', action.payload.data);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
