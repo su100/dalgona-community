@@ -6,8 +6,10 @@
     height: 100%;
     padding-bottom: 300px;
     &__listtype {
+        width: 1200px;
         padding-top: 150px;
         padding-bottom: 79px;
+          @include flex(row, space-between, center);
         button {
             font-family: Noto Sans KR;
             font-size: 22px;
