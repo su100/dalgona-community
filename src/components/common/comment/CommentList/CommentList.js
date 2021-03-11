@@ -25,8 +25,13 @@ class CommentList extends Component {
     }
     handlePage = (e) => {
         const page = e.target.value;
+        const { vote } = this.props;
         console.log(page);
-        this.props.voteReply(this.props.voteid, page);
+        if (vote) {
+            this.props.voteReply(this.props.voteid, page);
+        } else {
+            this.props.getReply(this.props.postid, page);
+        }
     };
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
@@ -84,23 +89,26 @@ class CommentList extends Component {
     closeRecomment = (e) => {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
-    postVoteReply = (e) => {
-        const { voteid, isAuthenticated, vote } = this.props;
+    addReply = (e) => {
+        const { voteid, isAuthenticated, vote, postid } = this.props;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
         if (!isAuthenticated) {
             alert('로그인이 필요합니다');
             this.props.history.push('/login');
         } else {
             const formData = new FormData();
-            console.log(voteid, e.target.id);
-            formData.append('voteboard_id', voteid);
-            formData.append('content', commentText);
-            if (commentImg !== null) formData.append('votereply_image', commentImg);
-            formData.append('anonymous', isAnonymous);
             if (vote) {
-                console.log('gg');
+                formData.append('voteboard_id', voteid);
+                formData.append('content', commentText);
+                if (commentImg !== null) formData.append('votereply_image', commentImg);
+                formData.append('anonymous', isAnonymous);
                 this.props.postVoteReply(formData);
             } else {
+                formData.append('board_post_id', postid);
+                formData.append('content', commentText);
+                if (commentImg !== null) formData.append('reply_image', commentImg);
+                formData.append('anonymous', isAnonymous);
+                this.props.addPostReply(formData);
                 // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
             }
         }
@@ -109,7 +117,7 @@ class CommentList extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { vote, commentList, voteReplyCount } = this.props;
+        const { vote, commentList, voteReplyCount, postReplyCount } = this.props;
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -120,7 +128,7 @@ class CommentList extends Component {
                         </div>
                         <div className="comment-list__count-reply">
                             <span className="border">댓글</span>
-                            <span>{voteReplyCount}</span>
+                            <span>{vote ? voteReplyCount : postReplyCount}</span>
                         </div>
                     </div>
                 </div>
@@ -143,11 +151,11 @@ class CommentList extends Component {
                     commentImg={this.state.commentImg}
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
-                    postVoteReply={this.postVoteReply}
+                    addReply={this.addReply}
                 />
                 <div className="not-pc">
                     <div className="comment-list__reply">
-                        <span>댓글 {voteReplyCount}개</span>
+                        <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
                     </div>
                 </div>
                 {this.props.commentList.map((comment) => {

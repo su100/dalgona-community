@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import * as lunaActions from 'store/modules/luna';
-import LunaPost from 'components/LunaPost';
+import * as writeActions from 'store/modules/write';
+import Post from 'components/Post';
 
 class LunaPostContainer extends Component {
     addPostImage = async (formdata, func) => {
-        const { FreeActions } = this.props;
+        const { WriteActions } = this.props;
         try {
-            await FreeActions.addPostImage(formdata);
+            await WriteActions.addPostImage(formdata);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -25,32 +26,51 @@ class LunaPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid) => {
+    getPostReply = async (postid, params) => {
         const { LunaActions } = this.props;
         try {
-            await LunaActions.getPostReply(postid);
+            await LunaActions.getPostReply(postid, params);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+    getReply = (boardUrl, page) => {
+        let params = {};
+        params['page'] = page;
+        console.log(params);
+        this.getPostReply(boardUrl, page);
+    };
+    addPostReply = async (formData) => {
+        const { WriteActions } = this.props;
+        try {
+            await WriteActions.addPostReply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
     };
     componentDidMount() {
         const postid = this.props.match.params.postid;
-        //console.log(this.props.match.params.postid);
         this.getPostInfo(postid);
-        this.getPostReply(postid);
+        this.getReply(postid, 1);
     }
 
     render() {
-        console.log('home container');
+        const { history, location, match, isAuthenticated } = this.props;
         return (
             <Fragment>
-                <LunaPost
+                <Post
+                    type="luna"
                     history={history}
-                    postid={this.props.match.params.postid}
+                    location={location}
+                    isAuthenticated={isAuthenticated}
+                    postid={match.params.postid}
+                    getReply={this.getReply}
+                    addPostReply={this.addPostReply}
                     addPostImage={this.addPostImage}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
+                    postReplyCount={this.props.postReplyCount}
                 />
             </Fragment>
         );
@@ -62,9 +82,11 @@ export default connect(
         imageURL: state.luna.get('imageURL'),
         postInfo: state.luna.get('postInfo'),
         postReplyList: state.luna.get('postReplyList'),
+        postReplyCount: state.luna.get('postReplyCount'),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
         LunaActions: bindActionCreators(lunaActions, dispatch),
+        WriteActions: bindActionCreators(writeActions, dispatch),
     })
 )(LunaPostContainer);

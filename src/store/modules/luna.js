@@ -29,6 +29,7 @@ const initialState = Map({
     postList: [],
     postInfo: [],
     postReplyList: [],
+    postReplyCount: 0,
 });
 
 /* reducer + pender */
@@ -93,7 +94,9 @@ export default handleActions(
         ...pender({
             type: GET_POST_REPLY,
             onSuccess: (state, action) => {
-                return state.set('postReplyList', action.payload.data.results);
+                return state
+                    .set('postReplyList', action.payload.data.results)
+                    .set('postReplyCount', action.payload.data.count);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

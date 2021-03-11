@@ -4,7 +4,7 @@ let url;
 if (process.env.NODE_ENV === 'production') {
     url = 'https://dalgonatest3.cafe24.com';
 } else {
-    url = 'http://dalgona-test-aqact.run.goorm.io';
+    url = 'http://3.34.199.19';
 }
 
 export const API_BASE_URL = url;

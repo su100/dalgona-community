@@ -112,7 +112,6 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                console.log(data);
                 return state;
             },
         }),

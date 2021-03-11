@@ -12,13 +12,15 @@ class View extends Component {
     render() {
         const { link, postInfo, type } = this.props;
         console.log(postInfo);
+        const { location } = this.props;
+        const path = location.pathname.split('/');
         return (
             <div className="view">
                 <div className="view__detail">
                     <span>
                         홈{'>'}
-                        {type === `luna` && `루나>${postInfo.board_url}`}
-                        {type === `free` && `자유>${postInfo.board_url}`}
+                        {type === `luna` && `루나>${path[2]}`}
+                        {type === `free` && `자유>${path[2]}`}
                         {type === `notice` && `달고나>공지사항`}
                         {type === `event` && `달고나>이벤트`}
                     </span>

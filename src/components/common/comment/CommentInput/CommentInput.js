@@ -23,7 +23,7 @@ const CommentInput = (props) => {
     };
 
     const onClickPost = (e) => {
-        props.postVoteReply(e);
+        props.addReply(e);
     };
 
     return (

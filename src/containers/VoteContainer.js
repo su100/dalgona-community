@@ -101,7 +101,7 @@ class VoteContainer extends Component {
     voteReply = (boardUrl, page) => {
         let params = {};
         params['page'] = page;
-        this.getVoteReply(boardUrl, params);
+        this.getVoteReply(boardUrl, page);
     };
 
     componentDidMount() {
