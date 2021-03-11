@@ -103,3 +103,9 @@ export const updateBookmark = (bookmark) =>
             headers: { Authorization: getAccesesToken() },
         }
     );
+
+//즐겨찾기 추가 및 삭제
+export const getBookmarkList = () =>
+    axios.get(`${API_BASE_URL}/accounts/profile/bookmark`, {
+        headers: { Authorization: getAccesesToken() },
+    });

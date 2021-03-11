@@ -36,6 +36,15 @@ class FreeBoardContainer extends Component {
         }
     };
 
+    getBookmarkList = async () => {
+        const { FreeActions } = this.props;
+        try {
+            await FreeActions.getBookmarkList();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     updateBookmark = async () => {
         const { location, FreeActions } = this.props;
         const tmp = location.pathname.split('/');
@@ -86,19 +95,30 @@ class FreeBoardContainer extends Component {
 
     componentDidMount() {
         this.getBoardInfo(); //게시판 정보 가져오기
+        this.getBookmarkList(); //즐겨찾기 가져오기
         this.getBestPostList(); //실시간 인기글 가져오기
         this.getPostList(); //글 목록 가져오기
     }
 
     render() {
-        const { history, location, boardInfo, bestPostList, postCount, postList, bookmark } = this.props;
+        const {
+            isAuthenticated,
+            history,
+            location,
+            boardInfo,
+            bestPostList,
+            postCount,
+            postList,
+            bookmarkList,
+        } = this.props;
         return (
             <Fragment>
                 <FreeBoard
+                    isAuthenticated={isAuthenticated}
                     history={history}
                     location={location}
                     boardInfo={boardInfo}
-                    bookmark={bookmark}
+                    bookmarkList={bookmarkList}
                     bestPostList={bestPostList}
                     postCount={postCount}
                     postList={postList}
@@ -111,11 +131,12 @@ class FreeBoardContainer extends Component {
 
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         boardInfo: state.free.get('boardInfo'),
         bestPostList: state.free.get('bestPostList'),
         postCount: state.free.get('postCount'),
         postList: state.free.get('postList'),
-        bookmark: state.free.get('bookmark'),
+        bookmarkList: state.free.get('bookmarkList'),
     }),
     (dispatch) => ({
         FreeActions: bindActionCreators(freeActions, dispatch),

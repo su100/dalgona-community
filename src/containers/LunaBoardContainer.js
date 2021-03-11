@@ -36,6 +36,15 @@ class LunaBoardContainer extends Component {
         }
     };
 
+    getBookmarkList = async () => {
+        const { LunaActions } = this.props;
+        try {
+            await LunaActions.getBookmarkList();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     updateBookmark = async () => {
         const { location, LunaActions } = this.props;
         const tmp = location.pathname.split('/');
@@ -86,19 +95,30 @@ class LunaBoardContainer extends Component {
 
     componentDidMount() {
         this.getBoardInfo(); //게시판 정보 가져오기
+        this.getBookmarkList(); //즐겨찾기 가져오기
         this.getBestPostList(); //실시간 인기글 가져오기
         this.getPostList(); //글 목록 가져오기
     }
 
     render() {
-        const { history, location, boardInfo, bestPostList, postCount, postList, bookmark } = this.props;
+        const {
+            isAuthenticated,
+            history,
+            location,
+            boardInfo,
+            bestPostList,
+            postCount,
+            postList,
+            bookmarkList,
+        } = this.props;
         return (
             <Fragment>
                 <LunaBoard
+                    isAuthenticated={isAuthenticated}
                     history={history}
                     location={location}
                     boardInfo={boardInfo}
-                    bookmark={bookmark}
+                    bookmarkList={bookmarkList}
                     bestPostList={bestPostList}
                     postCount={postCount}
                     postList={postList}
@@ -111,11 +131,12 @@ class LunaBoardContainer extends Component {
 
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         boardInfo: state.luna.get('boardInfo'),
         bestPostList: state.luna.get('bestPostList'),
         postCount: state.luna.get('postCount'),
         postList: state.luna.get('postList'),
-        bookmark: state.luna.get('bookmark'),
+        bookmarkList: state.luna.get('bookmarkList'),
     }),
     (dispatch) => ({
         LunaActions: bindActionCreators(lunaActions, dispatch),

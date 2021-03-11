@@ -111,7 +111,7 @@ const PostList = ({ postList, hasGrid, noBorder, link }) => {
                             );
                         } else {
                             return (
-                                <Link to="/" key={post.id} className="post-list__item">
+                                <Link to={`${link}/${post.id}`} key={post.id} className="post-list__item">
                                     {!post.image ? (
                                         <img src="http://unsplash.it/300/300?image=122" alt="post" />
                                     ) : (

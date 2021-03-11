@@ -46,10 +46,25 @@ class FreeBoard extends Component {
         }
     };
 
+    updateBookmark = () => {
+        //로그인 여부 확인
+        if (this.props.isAuthenticated) {
+            //로그인 되어있음
+            this.props.updateBookmark();
+        } else {
+            //로그인 안 됨
+            if (window.confirm('로그인이 필요합니다.')) {
+                this.props.history.push('/login');
+            }
+        }
+    };
+
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { boardInfo, bookmark, bestPostList, postCount, postList, updateBookmark } = this.props;
+        const { boardInfo, bookmarkList, bestPostList, postCount, postList } = this.props;
+
+        const isBookmarked = bookmarkList.some((board) => board.board_url === boardInfo.board_url);
 
         return (
             <div className="free-board">
@@ -57,8 +72,8 @@ class FreeBoard extends Component {
                     title={boardInfo.board_name}
                     hasWrite
                     hasBookmark
-                    isBookmarked
-                    updateBookmark={updateBookmark}
+                    isBookmarked={isBookmarked}
+                    updateBookmark={this.updateBookmark}
                     searchWord={this.state.searchWord}
                     handleChange={this.handleChange}
                     placeholder="글 제목을 검색하세요"
@@ -67,20 +82,27 @@ class FreeBoard extends Component {
                 <section className="free-board__container--hot">
                     <h4>인기글</h4>
                     <div className="only-pc">
-                        <BoardHotList link={`/luna/board_url`} hotPostList={bestPostList} />
+                        <BoardHotList link={`/free/${boardInfo.board_url}`} hotPostList={bestPostList} />
                     </div>
                     <div className="not-pc">
                         <BasicSlider>
                             {bestPostList.map((post) => {
-                                return <PostList key={post.id} postList={[post]} noBorder />;
+                                return (
+                                    <PostList
+                                        link={`/free/${boardInfo.board_url}`}
+                                        key={post.id}
+                                        postList={[post]}
+                                        noBorder
+                                    />
+                                );
                             })}
                         </BasicSlider>
                     </div>
                 </section>
                 <div className="border_line" />
-                <PostList link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <PostList history={history} link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
                 <section className="only-pc free-board__container--btn">
-                    <Link to={`/free/board_url/write`}>글쓰기</Link>
+                    <Link to={`/write`}>글쓰기</Link>
                 </section>
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
