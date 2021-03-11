@@ -103,7 +103,7 @@ export default handleActions(
             type: GET_MY_POINT,
             onSuccess: (state, action) => {
                 console.log(action.payload.data);
-                return state.set('mypoint', action.payload.data.results);
+                return state.set('myPoint', action.payload.data.results);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

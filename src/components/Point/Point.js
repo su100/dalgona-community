@@ -20,6 +20,8 @@ class Point extends Component {
 
     render() {
         const { type } = this.state;
+        const { myPoint } = this.props;
+        console.log(myPoint);
         return (
             <div className="point">
                 <div className="only-pc">
@@ -49,8 +51,7 @@ class Point extends Component {
                         <button>회수</button>
                     </div>
                 </div>
-                {type === 'activity' && <ActivityList />}
-                {type === 'point' && <PointList />}
+                <PointList myPoint={myPoint} />
             </div>
         );
     }
