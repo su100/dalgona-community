@@ -48,10 +48,10 @@ class VoteContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    postVoteRereply = async (voteboardreply_id, content, voterereply_image, anonymous) => {
+    postVoteRereply = async (formData) => {
         const { IssueActions } = this.props;
         try {
-            await IssueActions.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
+            await IssueActions.postVoteRereply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }

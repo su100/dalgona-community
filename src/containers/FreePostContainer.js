@@ -39,6 +39,14 @@ class FreePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    addPostRereply = async (formData) => {
+        const { WriteActions } = this.props;
+        try {
+            await WriteActions.addPostRereply(formData);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         //console.log(this.props.match.params.postid);
@@ -56,6 +64,8 @@ class FreePostContainer extends Component {
                     isAuthenticated={isAuthenticated}
                     postid={match.params.postid}
                     getReply={this.getReply}
+                    addPostReply={this.addPostReply}
+                    addPostRereply={this.addPostRereply}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}

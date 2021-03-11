@@ -48,6 +48,14 @@ class LunaPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    addPostRereply = async (formData) => {
+        const { WriteActions } = this.props;
+        try {
+            await WriteActions.addPostRereply(formData);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         this.getPostInfo(postid);
@@ -66,6 +74,7 @@ class LunaPostContainer extends Component {
                     postid={match.params.postid}
                     getReply={this.getReply}
                     addPostReply={this.addPostReply}
+                    addPostRereply={this.addPostRereply}
                     addPostImage={this.addPostImage}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}

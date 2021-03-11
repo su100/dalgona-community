@@ -45,6 +45,14 @@ class EventPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    addPostRereply = async (formData) => {
+        const { WriteActions } = this.props;
+        try {
+            await WriteActions.addPostRereply(formData);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const eventid = this.props.match.params.eventid;
         this.getPostInfo(eventid);
@@ -57,6 +65,8 @@ class EventPostContainer extends Component {
                     typd="event"
                     history={history}
                     postid={this.props.match.params.eventid}
+                    addPostReply={this.addPostReply}
+                    addPostRereply={this.addPostRereply}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}

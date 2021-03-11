@@ -45,6 +45,14 @@ class NoticePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    addPostRereply = async (formData) => {
+        const { WriteActions } = this.props;
+        try {
+            await WriteActions.addPostRereply(formData);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const noticeid = this.props.match.params.noticeid;
         this.getPostInfo(noticeid);
@@ -63,6 +71,7 @@ class NoticePostContainer extends Component {
                     getReply={this.getReply}
                     getPostInfo={this.getPostInfo}
                     addPostReply={this.addPostReply}
+                    addPostRereply={this.addPostRereply}
                     addPostImage={this.addPostImage}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}

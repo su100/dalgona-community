@@ -83,6 +83,7 @@ class CommentList extends Component {
 
     openRecomment = (e) => {
         //답글 새로 열 때마다 상태 초기화: 익명, 내용, 사진
+        console.log(e.currentTarget.id);
         this.setState({ recommentId: e.currentTarget.id, reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
 
@@ -92,6 +93,7 @@ class CommentList extends Component {
     addReply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
+        console.log(e);
         if (!isAuthenticated) {
             alert('로그인이 필요합니다');
             this.props.history.push('/login');
@@ -105,11 +107,35 @@ class CommentList extends Component {
                 this.props.postVoteReply(formData);
             } else {
                 formData.append('board_post_id', postid);
-                formData.append('content', commentText);
+                formData.append('body', commentText);
                 if (commentImg !== null) formData.append('reply_image', commentImg);
                 formData.append('anonymous', isAnonymous);
                 this.props.addPostReply(formData);
-                // this.props.postVoteRereply(voteboardreply_id, content, voterereply_image, anonymous);
+            }
+        }
+    };
+    addRereply = (e) => {
+        const { voteid, isAuthenticated, vote, postid } = this.props;
+        const { reAnonymous, reText, reImg, recommentId } = this.state;
+
+        if (!isAuthenticated) {
+            alert('로그인이 필요합니다');
+            this.props.history.push('/login');
+        } else {
+            const formData = new FormData();
+            if (vote) {
+                formData.append('voteboardreply_id', voteid);
+                formData.append('content', reText);
+                if (reImg !== null) formData.append('voterereply_image', reImg);
+                formData.append('anonymous', reAnonymous);
+                this.props.postVoteRereply(formData);
+            } else {
+                formData.append('board_post_id', postid);
+                formData.append('reply_id', recommentId);
+                formData.append('body', reText);
+                if (reImg !== null) formData.append('rereply_image', reImg);
+                formData.append('anonymous', reAnonymous);
+                this.props.addPostRereply(formData);
             }
         }
     };
@@ -152,6 +178,7 @@ class CommentList extends Component {
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
                     addReply={this.addReply}
+                    addRereply={this.addRereply}
                 />
                 <div className="not-pc">
                     <div className="comment-list__reply">
@@ -225,9 +252,8 @@ class CommentList extends Component {
                                     </div>
                                 )}
                             </div>
-
-                            {comment.voteboardrereply &&
-                                comment.voteboardrereply.map((reComment) => {
+                            {comment.rereply &&
+                                comment.rereply.map((reComment) => {
                                     return (
                                         <div
                                             key={reComment.id}
@@ -267,7 +293,7 @@ class CommentList extends Component {
                                                         </div>
                                                     )}
                                                     <div className="comment-list__item--contents">
-                                                        {reComment.content}
+                                                        {vote ? reComment.content : reComment.body}
                                                     </div>
                                                     <div className="comment-list__item--button">
                                                         {reComment.is_author ? (
@@ -321,7 +347,8 @@ class CommentList extends Component {
                                                 commentImg={this.state.reImg}
                                                 previewURL={this.state.rePreview}
                                                 deleteImg={this.deleteImg}
-                                                postVoteReply={this.postVoteReply}
+                                                addReply={this.addReply}
+                                                addRereply={this.addRereply}
                                             />
                                         </div>
                                     </div>
@@ -342,7 +369,8 @@ class CommentList extends Component {
                     commentImg={this.state.commentImg}
                     previewURL={this.state.previewURL}
                     deleteImg={this.deleteImg}
-                    postVoteReply={this.postVoteReply}
+                    addReply={this.addReply}
+                    addRereply={this.addRereply}
                 />
             </div>
         );

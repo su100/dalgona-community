@@ -33,6 +33,7 @@ class Post extends Component {
                     isAuthenticated={isAuthenticated}
                     postid={this.props.postid}
                     addPostReply={this.props.addPostReply}
+                    addPostRereply={this.props.addPostRereply}
                     isRecommend
                 />
             </div>
