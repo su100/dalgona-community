@@ -62,7 +62,7 @@ class EventPostContainer extends Component {
         return (
             <Fragment>
                 <Post
-                    typd="event"
+                    type="event"
                     history={history}
                     postid={this.props.match.params.eventid}
                     addPostReply={this.addPostReply}
@@ -70,6 +70,7 @@ class EventPostContainer extends Component {
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
+                    postReplyCount={this.props.postReplyCount}
                 />
             </Fragment>
         );

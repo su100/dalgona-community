@@ -171,18 +171,25 @@ export const getPostList = (boardUrl, params) =>
         params: params,
     });
 //글 내용 가져오기: 루나
-export const getPostInfo = (boardUrl, postId) => {
-    console.log(boardUrl, postId);
+export const getPostInfo = (boardUrl, postId) =>
     axios.get(`${API_BASE_URL}/board/${boardUrl}/${postId}`, {
         headers: { Authorization: getAccesesToken() },
     });
-};
 // 댓글 목록 가져오기: 게시글
 export const getPostReply = (postId, params) =>
     axios.get(`${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=${params}`, {
         params: params,
     });
-
+//내가 쓴 글 조회
+export const getMyPost = (params) =>
+    axios.get(`${API_BASE_URL}/accounts/profile/mypost?page=${params}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+//별 획득 내역 조회
+export const getMyPoint = (params) =>
+    axios.get(`${API_BASE_URL}/accounts/profile/mypoint/get?page=${params}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
 /*write*/
 //게시글 작성하기
 export const addPost = (title, body, boardUrl, anonymous) =>

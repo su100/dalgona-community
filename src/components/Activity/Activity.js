@@ -17,6 +17,8 @@ class Activity extends Component {
     };
     render() {
         const { type } = this.state;
+        const { myPost } = this.props;
+        console.log(this.props.myPost);
         return (
             <div className="activity">
                 <div className="only-pc">
@@ -35,7 +37,7 @@ class Activity extends Component {
                         <span>활동내역</span>
                     </div>
                 </div>
-                {type === 'activity' && <ActivityList />}
+                <ActivityList myPost={myPost} />
             </div>
         );
     }
