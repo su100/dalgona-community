@@ -51,7 +51,6 @@ class Article extends Component {
             <div className="article">
                 <Header
                     title="기사"
-                    isBookmarked={false}
                     placeholder="기사 제목을 검색하세요"
                     searchWord={this.state.searchWord}
                     handleChange={this.handleChange}

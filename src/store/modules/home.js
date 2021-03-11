@@ -8,13 +8,13 @@ import { Storage } from 'lib/storage';
 /* 액션 타입 */
 export const LIST_HOT_VOTE = 'home/LIST_HOT_VOTE'; //실시간 인기투표
 export const LIST_HOT_POST = 'home/LIST_HOT_POST'; //실시간 인기글
-export const LIST_BOOKMARK = 'home/LIST_BOOKMARK'; //사용자 정보 가져오기: bookmark
+export const LIST_BOOKMARK = 'home/LIST_BOOKMARK'; //즐겨찾기 가져오기
 export const LIST_NEWS = 'home/LIST_NEWS'; //실시간 연예뉴스 리스트 가져오기
 
 /* 액션 생성자 */
 export const getHotVoteList = createAction(LIST_HOT_VOTE, api.getHotVoteList);
 export const getHotPostList = createAction(LIST_HOT_POST, api.getHotPostList);
-export const getBookmarkList = createAction(LIST_BOOKMARK, api.getUserInfo);
+export const getBookmarkList = createAction(LIST_BOOKMARK, api.getBookmarkList);
 export const getNewsList = createAction(LIST_NEWS, api.getNewsList);
 
 /* 초기 상태 정의 */

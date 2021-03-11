@@ -91,3 +91,21 @@ export const getPostList = (boardUrl, params) =>
     axios.get(`${API_BASE_URL}/board/${boardUrl}`, {
         params: params,
     });
+
+//즐겨찾기 추가 및 삭제
+export const updateBookmark = (bookmark) =>
+    axios.post(
+        `${API_BASE_URL}/accounts/profile/bookmark`,
+        {
+            bookmark,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+
+//즐겨찾기 추가 및 삭제
+export const getBookmarkList = () =>
+    axios.get(`${API_BASE_URL}/accounts/profile/bookmark`, {
+        headers: { Authorization: getAccesesToken() },
+    });
