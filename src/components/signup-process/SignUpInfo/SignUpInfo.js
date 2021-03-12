@@ -192,6 +192,7 @@ class SignUpInfo extends Component {
                                         this.isPassword(value) ? 'signupinfo__content-form-input password' : undefined
                                     }
                                     id={value}
+                                    type={this.isPassword(value) && 'password'}
                                     label={keyObject[value]}
                                     value={this.state[value]}
                                     onChange={this.handleEditor}
