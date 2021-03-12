@@ -86,7 +86,7 @@ class SignUpInfo extends Component {
         const { img, username, email, password, passwordConfirm, nickname } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
 
-        const passwordRegex = /^[a-zA-Z0-9]{8,20}$/;
+        const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,20}$/;
         //항목 검사
         if (username === '') {
             alert('아이디를 입력해주세요');
@@ -135,7 +135,7 @@ class SignUpInfo extends Component {
         };
         const placeHolder = {
             username: '영문자(소), 숫자 조합 5~20자',
-            password: '영문자(소), 숫자 특수문자 조합 5~20자',
+            password: '영문자(소), 숫자 특수문자 조합 8~20자',
             passwordConfirm: '비밀번호 재입력',
             nickname: '한글/영문/숫자 1~20자',
             email: '이메일 주소 입력',

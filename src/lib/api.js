@@ -49,6 +49,18 @@ export const getProfile = () =>
         headers: { Authorization: getAccesesToken() },
     });
 
+//프로필 수정하기
+export const updateProfile = (formData) =>
+    axios.put(`${API_BASE_URL}/accounts/profile`, formData, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
+//회원탈퇴
+export const deleteUser = () =>
+    axios.delete(`${API_BASE_URL}/accounts/profile`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 /* home */
 //실시간 인기글 6개 가져오기
 export const getHotPostList = (type) => axios.get(`${API_BASE_URL}/board/hot${type ? '/' + type : ''}`);

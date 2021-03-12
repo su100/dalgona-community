@@ -12,10 +12,12 @@ export const SET_REMEMBER = 'auth/SET_REMEMBER'; //자동로그인 여부
 export const SIGN_OUT = 'auth/SIGN_OUT'; //로그아웃
 export const SET_USERNAME = 'auth/SET_USERNAME'; //로그인 후 이메일 인증 안 됐을 때 재인증에 사용할 아이디
 export const GET_PROFILE = 'auth/GET_PROFILE'; //사용자 프로필 보기
+export const UPDATE_PROFILE = 'auth/UPDATE_PROFILE'; //사용자 프로필 수정하기
 export const CHECK_USERNAME = 'auth/CHECK_USERNAME'; //username(id) 중복 체크
 export const CHECK_EMAIL = 'auth/CHECK_EMAIL'; //email 중복 체크
 export const CHECK_NICKNAME = 'auth/CHECK_NICKNAME'; //nickname 중복 체크
 export const CONFIRM_ACCOUNT = 'auth/CONFIRM_ACCOUNT'; //이메일 인증 확인
+export const DELETE_USER = 'auth/DELETE_USER'; //회원탈퇴
 export const SET_UNIQUE = 'auth/SET_UNIQUE'; //중복 체크 활성화
 export const SET_AUTH = 'auth/SET_AUTH'; //로그인 여부 설정
 
@@ -26,10 +28,12 @@ export const setRemember = createAction(SET_REMEMBER);
 export const signOut = createAction(SIGN_OUT);
 export const setUsername = createAction(SET_USERNAME);
 export const getProfile = createAction(GET_PROFILE, api.getProfile);
+export const updateProfile = createAction(UPDATE_PROFILE, api.updateProfile);
 export const checkUsername = createAction(CHECK_USERNAME, api.checkUsername);
 export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
 export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
 export const confirmAccount = createAction(CONFIRM_ACCOUNT, api.confirmAccount);
+export const deleteUser = createAction(DELETE_USER, api.deleteUser);
 export const setUnique = createAction(SET_UNIQUE);
 export const setAuth = createAction(SET_AUTH);
 
@@ -168,6 +172,36 @@ export default handleActions(
                     console.log(data);
                     alert('사용자 정보 가져오기 에러');
                 }
+                return state;
+            },
+        }),
+        ...pender({
+            type: UPDATE_PROFILE,
+            onSuccess: (state, action) => {
+                return state.set('profile', Map(action.payload.data));
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                if (data.nickname) {
+                    if (data.nickname.includes('This field may not be blank.')) alert('닉네임을 입력해주세요');
+                } else {
+                    console.log(data);
+                    alert('사용자 정보 가져오기 에러');
+                }
+                return state;
+            },
+        }),
+        ...pender({
+            type: DELETE_USER,
+            onSuccess: (state, action) => {
+                alert('성공적으로 탈퇴되었습니다.');
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                alert('회원탈퇴 에러');
                 return state;
             },
         }),
