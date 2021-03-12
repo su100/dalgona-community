@@ -98,13 +98,17 @@ export const postVoteReply = (formdata) =>
     });
 
 //투표 게시판 댓글 수정
-export const updateVoteReply = (formdata, replyUrl) => {
-    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata);
-};
+export const updateVoteReply = (formdata, replyUrl) =>
+    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판의 댓글 삭제
-export const deleteVoteReply = (replyUrl) => {
-    axios.delete(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`);
-};
+export const deleteVoteReply = (replyUrl) =>
+    axios.delete(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 작성
 export const postVoteRereply = (voteboardreply_id, content, voterereply_image, anonymous) => {
     axios.post(
@@ -116,13 +120,17 @@ export const postVoteRereply = (voteboardreply_id, content, voterereply_image, a
     );
 };
 //투표 게시판 특정 댓글의 대댓글 수정
-export const updateVoteRereply = (formdata, replyUrl) => {
-    axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata);
-};
+export const updateVoteRereply = (formdata, replyUrl) =>
+    axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 삭제
-export const deleteVoteRereply = (reReplyUrl) => {
-    axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`);
-};
+export const deleteVoteRereply = (reReplyUrl) =>
+    axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 댓글 추천 추가 및 취소
 export const replyRecommend = (replyUrl) =>
     axios.post(

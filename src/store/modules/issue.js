@@ -194,6 +194,30 @@ export default handleActions(
                 return state;
             },
         }),
+        ...pender({
+            type: UPDATE_VOTE_REPLY,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: DELETE_VOTE_REPLY,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
     },
     initialState
 );

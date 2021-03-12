@@ -25,11 +25,14 @@ class VoteContainer extends Component {
         }
     };
     postVoteReply = async (formData) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.postVoteReply(formData);
         } catch (e) {
             console.log('error log:' + e);
+        }
+        if (this.props.rereply_success) {
+            this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
         }
     };
     updateVoteReply = async (formdata, replyUrl) => {
@@ -41,12 +44,13 @@ class VoteContainer extends Component {
         }
     };
     deleteVoteReply = async (replyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.deleteVoteReply(replyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     postVoteRereply = async (formData) => {
         const { IssueActions } = this.props;
@@ -106,10 +110,8 @@ class VoteContainer extends Component {
 
     componentDidMount() {
         const voteid = this.props.match.params.voteid;
-        console.log(voteid);
         this.getVoteInfo(voteid);
         this.voteReply(voteid, 1);
-        console.log(this.props.isAuthenticated);
     }
     render() {
         const {

@@ -36,6 +36,7 @@ class CommentList extends Component {
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
             //댓글 작성 성공했을 때
+            console.log('댓글작성');
             return 'reply';
         } else if (prevProps.rereply_success !== this.props.rereply_success && this.props.rereply_success) {
             //대댓글 작성 성공했을 때
@@ -229,14 +230,18 @@ class CommentList extends Component {
                                             {comment.is_author ? (
                                                 <>
                                                     <button>수정</button>
-                                                    <button>삭제</button>
+                                                    <button id={comment.id} onClick={this.props.deleteReply}>
+                                                        삭제
+                                                    </button>
                                                 </>
                                             ) : (
                                                 <button>신고</button>
                                             )}
                                             {this.props.isRecommend && (
                                                 <span className="only-pc">
-                                                    <button onClick={this.props.replyRecommend}>추천</button>
+                                                    <button id={comment.id} onClick={this.props.replyRecommend}>
+                                                        추천
+                                                    </button>
                                                 </span>
                                             )}
                                         </div>
