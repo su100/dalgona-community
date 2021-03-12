@@ -133,8 +133,20 @@ class Vote extends Component {
                         <div className="vote__main-description">{voteInfo.content}</div>
                     </div>
                     <div className="vote__main-ratio">
-                        <div className="vote__main-ratio left"></div>
-                        <div className="vote__main-ratio right"></div>
+                        <div
+                            style={{
+                                width: `calc(${voteInfo.voteitem && voteInfo.voteitem[0].vote_count}/
+                                    ${voteInfo.vote_count}*100%)`,
+                            }}
+                            className="vote__main-ratio left"
+                        ></div>
+                        <div
+                            style={{
+                                width: `calc(${voteInfo.voteitem && voteInfo.voteitem[1].vote_count}/
+                                    ${voteInfo.vote_count}*100%)`,
+                            }}
+                            className="vote__main-ratio right"
+                        ></div>
                     </div>
                     <div className="only-pc">
                         <div className="vote__main-description">{voteInfo.content}</div>

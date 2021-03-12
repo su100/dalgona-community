@@ -109,7 +109,7 @@ class CommentList extends Component {
     closeUpdate = (e) => {
         this.setState({ isUpdate: false, updateId: '' });
     };
-    openUpdate = (comment) => {
+    openUpdate = (comment, id) => {
         const { isUpdate } = this.state;
         this.setState({
             isUpdate: !isUpdate,
@@ -118,6 +118,10 @@ class CommentList extends Component {
             updatePreview: comment.votereply_image,
             updateAnonymous: comment.anonymous,
         });
+        if (id) {
+            console.log(id);
+            this.setState({ updateReplyId: id });
+        }
     };
 
     addReply = (e) => {
@@ -198,7 +202,7 @@ class CommentList extends Component {
     };
     updateRereply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
-        const { updateId, updateAnonymous, updateText, updateImg } = this.state;
+        const { updateId, updateAnonymous, updateText, updateImg, updateReplyId } = this.state;
 
         if (!isAuthenticated) {
             alert('로그인이 필요합니다');
@@ -211,7 +215,7 @@ class CommentList extends Component {
                 formData.append('anonymous', updateAnonymous);
             } else {
                 formData.append('board_post_id', postid);
-                //formData.append('reply_id', d);
+                formData.append('reply_id', updateReplyId);
                 formData.append('body', updateText);
                 if (updateImg !== null) formData.append('rereply_image', updateImg);
                 formData.append('anonymous', updateAnonymous);
@@ -290,7 +294,11 @@ class CommentList extends Component {
                                         </div>
                                         {comment.votereply_image && (
                                             <div>
-                                                <img src={comment.votereply_image} alt="comment" />
+                                                <img
+                                                    className="comment-list__item--img"
+                                                    src={comment.votereply_image}
+                                                    alt="comment"
+                                                />
                                             </div>
                                         )}
                                         <div className="comment-list__item--contents">
@@ -408,7 +416,9 @@ class CommentList extends Component {
                                                             <>
                                                                 <button
                                                                     id={reComment.id}
-                                                                    onClick={() => this.openUpdate(reComment)}
+                                                                    onClick={() =>
+                                                                        this.openUpdate(reComment, comment.id)
+                                                                    }
                                                                 >
                                                                     수정
                                                                 </button>
