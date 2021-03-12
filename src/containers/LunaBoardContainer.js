@@ -36,6 +36,25 @@ class LunaBoardContainer extends Component {
         }
     };
 
+    getBookmarkList = async () => {
+        const { LunaActions } = this.props;
+        try {
+            await LunaActions.getBookmarkList();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
+    updateBookmark = async () => {
+        const { location, LunaActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await LunaActions.updateBookmark(tmp[2]);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         //게시판 바뀔 때
         if (prevProps.location.pathname !== this.props.location.pathname) {
@@ -76,21 +95,34 @@ class LunaBoardContainer extends Component {
 
     componentDidMount() {
         this.getBoardInfo(); //게시판 정보 가져오기
+        this.getBookmarkList(); //즐겨찾기 가져오기
         this.getBestPostList(); //실시간 인기글 가져오기
         this.getPostList(); //글 목록 가져오기
     }
 
     render() {
-        const { history, location, boardInfo, bestPostList, postCount, postList } = this.props;
+        const {
+            isAuthenticated,
+            history,
+            location,
+            boardInfo,
+            bestPostList,
+            postCount,
+            postList,
+            bookmarkList,
+        } = this.props;
         return (
             <Fragment>
                 <LunaBoard
+                    isAuthenticated={isAuthenticated}
                     history={history}
                     location={location}
                     boardInfo={boardInfo}
+                    bookmarkList={bookmarkList}
                     bestPostList={bestPostList}
                     postCount={postCount}
                     postList={postList}
+                    updateBookmark={this.updateBookmark}
                 />
             </Fragment>
         );
@@ -99,10 +131,12 @@ class LunaBoardContainer extends Component {
 
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         boardInfo: state.luna.get('boardInfo'),
         bestPostList: state.luna.get('bestPostList'),
         postCount: state.luna.get('postCount'),
         postList: state.luna.get('postList'),
+        bookmarkList: state.luna.get('bookmarkList'),
     }),
     (dispatch) => ({
         LunaActions: bindActionCreators(lunaActions, dispatch),

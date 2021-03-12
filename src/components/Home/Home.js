@@ -199,7 +199,6 @@ class Home extends Component {
         } else {
             hotVoteList = this.state.hotVoteList;
         }
-
         return (
             <div className="home">
                 <BasicSlider autoplay speed={5000} infinite background="#dadada">
@@ -212,7 +211,10 @@ class Home extends Component {
                     {bookmarkList.length > 0 ? (
                         bookmarkList.map((board) => {
                             return (
-                                <Link to={`/luna/${board.board_url}`} key={board.board_url}>
+                                <Link
+                                    to={`/${board.division === 2 ? 'luna' : 'free'}/${board.board_url}`}
+                                    key={board.board_url}
+                                >
                                     {board.board_name}
                                 </Link>
                             );
@@ -251,35 +253,27 @@ class Home extends Component {
                     </div>
                     <div className="only-pc">
                         <div className="home__container--hot">
-                            {hotPostList.map((post, index) => {
-                                return (
-                                    <Link to={`/luna/${post.board_url.board_url}/${post.id}`} key={post.id}>
-                                        <div className="home__item--hotpost--pc">
-                                            <div>
-                                                <img
-                                                    src="https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png"
-                                                    alt="post"
-                                                />
+                            {hotPostList.length > 0 &&
+                                hotPostList.map((post, index) => {
+                                    const image = post.body.includes('image:') ? post.body : '';
+                                    return (
+                                        <Link to={`/luna/${post.board_url.board_url}/${post.id}`} key={post.id}>
+                                            <div className="home__item--hotpost--pc">
+                                                <div>{image && <img src={image} alt="post" />}</div>
+                                                <div>
+                                                    <h3>0{index + 1}</h3>
+                                                    <h6>{post.title}</h6>
+                                                    <p className="home--hot--detail">
+                                                        <span>조회수 {post.views}</span>
+                                                        <span>{post.created_at}</span>
+                                                        <span>추천 {post.recommend_count}</span>
+                                                    </p>
+                                                    <p className="home--hot--contents">{post.contents}</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3>0{index + 1}</h3>
-                                                <h6>{post.title}</h6>
-                                                <p className="home--hot--detail">
-                                                    <span>조회수 {post.views}</span>
-                                                    <span>{post.created_at}</span>
-                                                    <span>추천 {post.recommend_count}</span>
-                                                </p>
-                                                <p className="home--hot--contents">
-                                                    게시글 내용게시글 내용게시글 내용게시글 내용게시글 내용게시글
-                                                    내용게시글 내용게시글 내용게시글 내용게시글 내용게시글 내용게시글
-                                                    내용게시글 내용게시글 내용게시글 내용게시글 내용게시글 내용게시글
-                                                    내용게시글 내용게시글 내용
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })}
+                                        </Link>
+                                    );
+                                })}
                         </div>
                     </div>
                     <div className="not-pc">

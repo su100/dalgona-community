@@ -11,6 +11,8 @@ export const LIST_BEST = 'luna/LIST_BEST'; //인기글 목록 가져오기
 export const LIST_POST = 'luna/LIST_POST'; //글목록 가져오기
 export const POST_INFO = 'luna/POST_INFO'; //글 정보 가져오기
 export const GET_POST_REPLY = 'luna/GET_POST_REPLY'; //댓글 리스트 가져오기
+export const LIST_BOOKMARK = 'luna/LIST_BOOKMARK'; //즐겨찾기 가져오기
+export const UPDATE_BOOKMARK = 'luna/UPDATE_BOOKMARK'; //즐겨찾기 추가 및 삭제
 
 /* 액션 생성자 */
 export const addPostImage = createAction(ADD_POST_IMAGE, api.addPostImage);
@@ -19,6 +21,8 @@ export const getBestPostList = createAction(LIST_BEST, api.getBestPostList);
 export const getPostList = createAction(LIST_POST, api.getPostList);
 export const getPostInfo = createAction(POST_INFO, api.getPostInfo);
 export const getPostReply = createAction(GET_POST_REPLY, api.getPostReply);
+export const getBookmarkList = createAction(LIST_BOOKMARK, api.getBookmarkList);
+export const updateBookmark = createAction(UPDATE_BOOKMARK, api.updateBookmark);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -30,6 +34,7 @@ const initialState = Map({
     postInfo: [],
     postReplyList: [],
     postReplyCount: 0,
+    bookmarkList: [],
 });
 
 /* reducer + pender */
@@ -73,6 +78,28 @@ export default handleActions(
             onSuccess: (state, action) => {
                 const { count, results } = action.payload.data;
                 return state.set('postCount', count).set('postList', results);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: LIST_BOOKMARK,
+            onSuccess: (state, action) => {
+                return state.set('bookmarkList', action.payload.data.bookmark);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: UPDATE_BOOKMARK,
+            onSuccess: (state, action) => {
+                return state.set('bookmarkList', action.payload.data);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

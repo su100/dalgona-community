@@ -200,6 +200,17 @@ export const addPost = (title, body, boardUrl, anonymous) =>
             headers: { Authorization: getAccesesToken() },
         }
     );
+//즐겨찾기 추가 및 삭제
+export const updateBookmark = (bookmark) =>
+    axios.post(
+        `${API_BASE_URL}/accounts/profile/bookmark`,
+        {
+            bookmark,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 //댓글 작성하기
 export const addPostReply = (formdata) =>
     axios.post(`${API_BASE_URL}/board/reply`, formdata, {
@@ -228,5 +239,10 @@ export const updatePostRereply = (postid) =>
 //대댓글 삭제하기
 export const deletePostRereply = (postid) =>
     axios.post(`${API_BASE_URL}/board/reply/${postid}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+//즐겨찾기 추가 및 삭제
+export const getBookmarkList = () =>
+    axios.get(`${API_BASE_URL}/accounts/profile/bookmark`, {
         headers: { Authorization: getAccesesToken() },
     });
