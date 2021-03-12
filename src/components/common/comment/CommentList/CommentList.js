@@ -144,6 +144,8 @@ class CommentList extends Component {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
         const { vote, commentList, voteReplyCount, postReplyCount } = this.props;
+        //     console.log(commentList[1].voteboardrereply);
+        const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -252,8 +254,8 @@ class CommentList extends Component {
                                     </div>
                                 )}
                             </div>
-                            {comment.rereply &&
-                                comment.rereply.map((reComment) => {
+                            {comment[rereplyList] &&
+                                comment[rereplyList].map((reComment) => {
                                     return (
                                         <div
                                             key={reComment.id}

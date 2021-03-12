@@ -109,6 +109,7 @@ class VoteContainer extends Component {
         console.log(voteid);
         this.getVoteInfo(voteid);
         this.voteReply(voteid, 1);
+        console.log(this.props.isAuthenticated);
     }
     render() {
         const {
