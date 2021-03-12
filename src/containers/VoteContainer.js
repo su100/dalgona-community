@@ -31,9 +31,7 @@ class VoteContainer extends Component {
         } catch (e) {
             console.log('error log:' + e);
         }
-        if (this.props.rereply_success) {
-            this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
-        }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     updateVoteReply = async (formdata, replyUrl) => {
         const { IssueActions } = this.props;
@@ -53,12 +51,13 @@ class VoteContainer extends Component {
         this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     postVoteRereply = async (formData) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.postVoteRereply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     updateVoteRereply = async (formdata, replyUrl) => {
         const { IssueActions } = this.props;
@@ -69,12 +68,13 @@ class VoteContainer extends Component {
         }
     };
     deleteVoteRereply = async (reReplyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.deleteVoteRereply(reReplyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     replyRecommend = async (replyUrl) => {
         const { IssueActions } = this.props;

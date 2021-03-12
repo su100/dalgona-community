@@ -23,7 +23,7 @@ const CommentInput = (props) => {
     };
 
     const onClickPost = (e) => {
-        if (e.target.id === 'comment') {
+        if (e.currentTarget.id === 'comment') {
             props.addReply(e);
         } else {
             props.addRereply(e);

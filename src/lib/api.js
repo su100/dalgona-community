@@ -110,15 +110,11 @@ export const deleteVoteReply = (replyUrl) =>
     });
 
 //투표 게시판 특정 댓글의 대댓글 작성
-export const postVoteRereply = (voteboardreply_id, content, voterereply_image, anonymous) => {
-    axios.post(
-        `${API_BASE_URL}/battle/vote/board/rereply`,
-        { voteboardreply_id, content, voterereply_image, anonymous },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
-};
+export const postVoteRereply = (formdata) =>
+    axios.post(`${API_BASE_URL}/battle/vote/board/rereply`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 수정
 export const updateVoteRereply = (formdata, replyUrl) =>
     axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata, {
@@ -144,7 +140,7 @@ export const replyRecommend = (replyUrl) =>
 //투표 게시판 대댓글 추천 추가 및 취소
 export const reReplyRecommend = (reReplyUrl) =>
     axios.post(
-        `${API_BASE_URL}/battle/vote/board/reply/recommend`,
+        `${API_BASE_URL}/battle/vote/board/rereply/recommend`,
         { voteboardrereply_id: reReplyUrl },
         {
             headers: { Authorization: getAccesesToken() },

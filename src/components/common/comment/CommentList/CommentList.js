@@ -21,6 +21,8 @@ class CommentList extends Component {
             reImg: null,
             previewURL: '',
             rePreview: '',
+            isUpdate: '',
+            updateId: '',
         };
     }
     handlePage = (e) => {
@@ -91,10 +93,28 @@ class CommentList extends Component {
     closeRecomment = (e) => {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
+    /*
+    openUpdate = (e) => {
+        const { isUpdate } = this.state;
+        console.log(e);
+        this.setState({
+            isUpdate: !isUpdate,
+            updateId: e.currentTarget.id,
+        });
+    };
+    setUpdate = (comment) => {
+        this.setState({
+            commentText: comment.content,
+            commentImg: comment.votereply_image,
+            previewURL: comment.votereply_image,
+            isAnonymous: comment.anonymous,
+        });
+    };
+    */
     addReply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
-        console.log(e);
+
         if (!isAuthenticated) {
             alert('로그인이 필요합니다');
             this.props.history.push('/login');
@@ -115,6 +135,7 @@ class CommentList extends Component {
             }
         }
     };
+
     addRereply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { reAnonymous, reText, reImg, recommentId } = this.state;
@@ -125,7 +146,8 @@ class CommentList extends Component {
         } else {
             const formData = new FormData();
             if (vote) {
-                formData.append('voteboardreply_id', voteid);
+                console.log(voteid, reText, reImg, reAnonymous);
+                formData.append('voteboardreply_id', recommentId);
                 formData.append('content', reText);
                 if (reImg !== null) formData.append('voterereply_image', reImg);
                 formData.append('anonymous', reAnonymous);
@@ -145,7 +167,7 @@ class CommentList extends Component {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
         const { vote, commentList, voteReplyCount, postReplyCount } = this.props;
-        //     console.log(commentList[1].voteboardrereply);
+        const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
             <div className="comment-list">
@@ -229,7 +251,7 @@ class CommentList extends Component {
                                             </button>
                                             {comment.is_author ? (
                                                 <>
-                                                    <button>수정</button>
+                                                    <button id={comment.id}>수정 </button>
                                                     <button id={comment.id} onClick={this.props.deleteReply}>
                                                         삭제
                                                     </button>
@@ -306,7 +328,12 @@ class CommentList extends Component {
                                                         {reComment.is_author ? (
                                                             <>
                                                                 <button>수정</button>
-                                                                <button>삭제</button>
+                                                                <button
+                                                                    id={reComment.id}
+                                                                    onClick={this.props.deleteRereply}
+                                                                >
+                                                                    삭제
+                                                                </button>
                                                             </>
                                                         ) : (
                                                             <button>신고</button>

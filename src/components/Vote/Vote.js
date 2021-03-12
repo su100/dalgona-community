@@ -40,6 +40,14 @@ class Vote extends Component {
         console.log(voteReplyId);
         this.props.replyRecommend(voteReplyId);
     };
+    updateRereply = (e) => {
+        const voteRereplyId = e.currentTarget.id;
+        this.props.updateVoteRereply(voteRereplyId);
+    };
+    deleteRereply = (e) => {
+        const voteRereplyId = e.currentTarget.id;
+        this.props.deleteVoteRereply(voteRereplyId);
+    };
     reReplyRecommend = (e) => {
         const voteRereplyId = e.currentTarget.id;
         this.props.reReplyRecommend(voteRereplyId);
@@ -158,9 +166,9 @@ class Vote extends Component {
                         getVoteInfo={this.props.getVoteInfo}
                         voteReply={this.props.voteReply}
                         postVoteReply={this.props.postVoteReply}
-                        updateVoteReply={this.props.updateVoteReply}
+                        updateReply={this.props.updateReply}
                         postVoteRereply={this.props.postVoteRereply}
-                        updateVoteRereply={this.props.updateVoteRereply}
+                        updateRereply={this.props.updateRereply}
                         isRecommend
                     />
                 )}

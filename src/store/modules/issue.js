@@ -218,6 +218,18 @@ export default handleActions(
                 return state;
             },
         }),
+        ...pender({
+            type: POST_VOTE_REREPLY,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
     },
     initialState
 );
