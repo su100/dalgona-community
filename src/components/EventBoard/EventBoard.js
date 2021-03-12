@@ -57,7 +57,7 @@ class EventBoard extends Component {
                     getSearch={this.getSearch}
                 />
                 <div className="border_line" />
-                <PostList postList={postList} />
+                <PostList postList={postList} link={'event'} />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );

@@ -16,7 +16,36 @@
             height: 208px;
             border: 1px solid black;
             border-radius: 194px;
+            img {
+                height: 25.24004364013672px;
+                width: 31.55008888244629px;
+            }
         }
+         &-preview {
+                @include flex(row, center, center);
+                width: inherit;
+                height: 194px;
+                &-background {
+                    position: absolute;
+                    width: inherit;
+                    height: 194px;
+                    background: #000000;
+                    opacity: 0.13;
+                }
+                img {
+                    width: 194px;
+                    height: 194px;
+                }
+                button {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 5px;
+                    margin-bottom: 15px;
+                    align-self: flex-start;
+                    color: black;
+                    z-index: 10;
+                }
+            }
     }
     &__content {
         @include flex(column, center, center);
@@ -247,6 +276,10 @@
                 height: 92px;
                 border: 1px solid black;
                 border-radius: 194px;
+                img {
+                    height: 11.969504356384277px;
+                    width: 14.961897850036621px;
+                }
             }
             &-preview {
                 @include flex(row, center, center);

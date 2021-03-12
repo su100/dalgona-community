@@ -18,8 +18,16 @@ const CommentInput = (props) => {
         reader.readAsDataURL(file);
     };
 
-    const onClickSelect = () => {
+    const onClickSelect = (e) => {
         fileInput.current.click();
+    };
+
+    const onClickPost = (e) => {
+        if (e.target.id === 'comment') {
+            props.addReply(e);
+        } else {
+            props.addRereply(e);
+        }
     };
 
     return (
@@ -68,9 +76,9 @@ const CommentInput = (props) => {
                     </button>
                 </div>
                 <div>
-                    <button className="comment-input__button--submit">
-                        <span className="only-pc">등록</span>
-                        <span className="not-pc">등록하기</span>
+                    <button id={props.type} className="comment-input__button--submit" onClick={onClickPost}>
+                        <span className="only-pc"> 등록 </span>
+                        <span className="not-pc"> 등록하기 </span>
                     </button>
                 </div>
             </div>

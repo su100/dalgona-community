@@ -1,21 +1,183 @@
 @import 'styles/base.scss';
- 
 
 //pc, 기본
-.post{
-}
+.post {
+    @include flex(column, center, center);
+    width: 100%;
+    &__detail {
+        @include flex(row, flex-start, center);
+        width: 1600px;
+        span {
+            font-family: Roboto;
+            font-size: 27px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 34px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #838383;
+        }
+        padding-top: 63px;
+    }
+    &__title {
+        @include flex(row, flex-start, center);
+        width: 1200px;
+        font-family: Roboto;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 41px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding-top: 112px;
+    }
+    &__info {
+        @include flex(row, flex-start, center);
+        width: 1200px;
+        padding-top: 21px;
+        padding-bottom: 101px;
+        span {
+            padding-right: 41px;
+            font-family: Noto Sans KR;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 400;
+            color: #4f4f4f;
+        }
+    }
+    &__content {
+        height: 431px;
+        width: 1194px;
+        left: 363px;
+        top: 518px;
+        border-radius: 0px;
+        background: #dadada;
+    }
+    &__post {
+        padding-top: 40px;
+    }
+    &__postcount {
+        @include flex(row, flex-start, center);
+        width: 1200px;
+        padding-bottom: 230px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #838383;
 
-
-//태블릿
-@media screen and (max-width: $tablet-max) { 
-    .post{ 
+        &-recommend {
+            height: 30px;
+            width: 84px;
+            border-radius: 4px;
+            background: #ffd278;
+            margin-right: 5px;
+        }
+        &-reply {
+            height: 30px;
+            width: 84px;
+            left: nullpx;
+            top: nullpx;
+            border-radius: 4px;
+            background: #c2c2c2;
+        }
     }
 }
 
-
+//태블릿
+@media screen and (max-width: $tablet-max) {
+    .post {
+        @include flex(column, center, center);
+        width: 100%;
+        font-family: Noto Sans KR;
+        &__detail {
+            display: none;
+        }
+        &__title {
+            @include flex(row, flex-start, center);
+            width: 728px;
+            font-size: 23px;
+            font-style: normal;
+            padding-top: 9px;
+        }
+        &__info {
+            @include flex(row, flex-start, center);
+            width: 728px;
+            padding-top: 4px;
+            padding-bottom: 17px;
+            span {
+                padding-right: 41px;
+                font-size: 15px;
+                font-style: normal;
+                color: #a8a8a8;
+            }
+        }
+        &__content {
+            height: 725.6800537109375px;
+            width: 728px;
+            left: 20px;
+            top: 212px;
+            border-radius: 0px;
+            background: #dadada;
+        }
+        &__post {
+            padding-top: 40px;
+            padding-bottom: 33px;
+        }
+        &__postcount {
+            @include flex(column, center, center);
+            padding-bottom: 68px;
+            span {
+                padding-top: 7px;
+            }
+        }
+    }
+}
 
 //모바일
-@media screen and (max-width:$mobile-max){
-    .post{ 
+@media screen and (max-width: $mobile-max) {
+    .post {
+        @include flex(column, center, center);
+        width: 100%;
+        font-family: Noto Sans KR;
+        &__detail {
+            display: none;
+        }
+        &__title {
+            @include flex(row, flex-start, center);
+            width: 320px;
+            font-size: 17px;
+            padding-top: 16px;
+        }
+        &__info {
+            @include flex(row, flex-start, center);
+            width: 320px;
+            padding-top: 4px;
+            padding-bottom: 17px;
+            span {
+                font-size: 12px;
+                color: #a8a8a8;
+            }
+        }
+        &__content {
+            height: 319px;
+            width: 320px;
+            background: #dadada;
+        }
+        &__post {
+            padding-top: 12px;
+            padding-bottom: 47px;
+        }
+        &__postcount {
+            @include flex(column, center, center);
+            width: 320px;
+            padding-bottom: 38px;
+            span {
+                padding-top: 7px;
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            checked: false,
+            remember: false,
         };
     }
     handleForm = (name) => (e) => {
@@ -20,7 +20,7 @@ class Login extends Component {
         console.log(e.target.value);
     };
     signIn = () => {
-        const { username, password } = this.state;
+        const { username, password, remember } = this.state;
         //각 항목이 모두 비어있지 않을 때
         if (username === '') {
             alert('아이디를 입력해주세요');
@@ -28,6 +28,9 @@ class Login extends Component {
             alert('비밀번호를 입력해주세요');
         } else {
             this.props.signIn(username, password);
+            if (remember) {
+                this.props.rememberLogin();
+            }
         }
     };
     handleKeyPress = (e) => {
@@ -35,6 +38,11 @@ class Login extends Component {
             this.signIn();
             console.log(this.state.username);
         }
+    };
+    handleForm = (name) => (e) => {
+        if (e.target.type === 'checkbox') {
+            this.props.setRemember(e.target.checked);
+        } else this.setState({ [name]: e.target.value });
     };
     render() {
         return (
@@ -50,7 +58,12 @@ class Login extends Component {
                 <form className="login__input">
                     <div className="not-pc">
                         <div className="login__input-selectbox">
-                            <img src={mobilecheckbox}></img>
+                            <input
+                                className="remember-check"
+                                type="checkbox"
+                                id="remember"
+                                onChange={this.handleForm('remember')}
+                            />
                             <span>자동 로그인</span>
                         </div>
                     </div>
@@ -69,7 +82,12 @@ class Login extends Component {
                     ></input>
                     <div className="only-pc">
                         <div className="login__input-selectbox">
-                            <img src={checkbox}></img>
+                            <input
+                                className="remember-check"
+                                type="checkbox"
+                                id="remember"
+                                onChange={this.handleForm('remember')}
+                            />
                             <span>자동 로그인</span>
                         </div>
                     </div>

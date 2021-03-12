@@ -17,10 +17,11 @@ class Activity extends Component {
     };
     render() {
         const { type } = this.state;
+        const { myPost } = this.props;
+        console.log(this.props.myPost);
         return (
             <div className="activity">
                 <div className="only-pc">
-                    <EditProfile />
                     <div className="activity__listtype">
                         <button
                             className={type === 'activity' ? 'profile__listtype click' : undefined}
@@ -29,13 +30,6 @@ class Activity extends Component {
                         >
                             활동내역
                         </button>
-                        <button
-                            className={type === 'point' ? 'profile__listtype click' : undefined}
-                            onClick={this.handleType}
-                            id="point"
-                        >
-                            별 내역
-                        </button>
                     </div>
                 </div>
                 <div className="not-pc">
@@ -43,8 +37,7 @@ class Activity extends Component {
                         <span>활동내역</span>
                     </div>
                 </div>
-                {type === 'activity' && <ActivityList />}
-                {type === 'point' && <PointList />}
+                <ActivityList myPost={myPost} />
             </div>
         );
     }

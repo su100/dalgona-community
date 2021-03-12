@@ -20,24 +20,17 @@ class Point extends Component {
 
     render() {
         const { type } = this.state;
+        const { myPoint } = this.props;
+        console.log(myPoint);
         return (
             <div className="point">
                 <div className="only-pc">
-                    <EditProfile />
                     <div className="activity__listtype">
-                        <button
-                            className={type === 'activity' ? 'profile__listtype click' : undefined}
-                            onClick={this.handleType}
-                            id="activity"
-                        >
-                            활동내역
-                        </button>
-                        <button
-                            className={type === 'point' ? 'profile__listtype click' : undefined}
-                            onClick={this.handleType}
-                            id="point"
-                        >
+                        <button className={'profile__listtype click'} onClick={this.handleType} id="point">
                             별 내역
+                        </button>
+                        <button className={'profile__listtype click'} onClick={this.handleType} id="point">
+                            현재 나의 별
                         </button>
                     </div>
                 </div>
@@ -58,8 +51,7 @@ class Point extends Component {
                         <button>회수</button>
                     </div>
                 </div>
-                {type === 'activity' && <ActivityList />}
-                {type === 'point' && <PointList />}
+                <PointList myPoint={myPoint} />
             </div>
         );
     }

@@ -17,6 +17,7 @@ export const CHECK_EMAIL = 'auth/CHECK_EMAIL'; //email 중복 체크
 export const CHECK_NICKNAME = 'auth/CHECK_NICKNAME'; //nickname 중복 체크
 export const CONFIRM_ACCOUNT = 'auth/CONFIRM_ACCOUNT'; //이메일 인증 확인
 export const SET_UNIQUE = 'auth/SET_UNIQUE'; //중복 체크 활성화
+export const SET_AUTH = 'auth/SET_AUTH'; //로그인 여부 설정
 
 /* 액션 생성자 */
 export const signUp = createAction(SIGN_UP, api.signUp);
@@ -30,6 +31,7 @@ export const checkEmail = createAction(CHECK_EMAIL, api.checkEmail);
 export const checkNickname = createAction(CHECK_NICKNAME, api.checkNickname);
 export const confirmAccount = createAction(CONFIRM_ACCOUNT, api.confirmAccount);
 export const setUnique = createAction(SET_UNIQUE);
+export const setAuth = createAction(SET_AUTH);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -49,6 +51,7 @@ const initialState = Map({
 export default handleActions(
     {
         [SET_REMEMBER]: (state, action) => {
+            console.log('gg');
             return state.set('rememberMe', action.payload);
         },
         [SIGN_OUT]: (state, action) => {
@@ -62,13 +65,6 @@ export default handleActions(
             //로그인 여부 false, profile 빈 값
             return state.set('isAuthenticated', false).set('profile', Map({}));
         },
-        [SET_REMEMBER]: (state, action) => {
-            if (api.isUserLoggedIn()) {
-                //로그인  여부 store에 재저장
-                return state.set('isAuthenticated', true);
-            }
-            return state;
-        },
         [SET_USERNAME]: (state, action) => {
             return state.set('username', action.payload);
         },
@@ -81,18 +77,32 @@ export default handleActions(
                 return state.set('nicknameUnique', false);
             }
         },
+        [SET_AUTH]: (state, action) => {
+            if (api.isUserLoggedIn()) {
+                //로그인  여부 store에 재저장
+                return state.set('isAuthenticated', true);
+            }
+            return state;
+        },
         ...pender({
             type: SIGN_IN,
             onSuccess: (state, action) => {
                 const data = action.payload.data;
                 //access token 저장
                 if (state.get('rememberMe')) {
+                    console.log('로컬');
                     Storage.local.set('__AUTH__', data.token);
                 } else {
                     Storage.session.set('__AUTH__', data.token);
                 }
+                console.log(state.get('rememberMe'));
+                const profile = Map({
+                    nickname: data.user.nickname,
+                    introduction: data.user.introduction,
+                    profile_image: data.user.profile_image,
+                });
                 //받아온 회원정보 sessionStorage에 저장(사이드바에서 사용될것)
-                return state.set('isAuthenticated', true);
+                return state.set('isAuthenticated', true).set('profile', profile);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
