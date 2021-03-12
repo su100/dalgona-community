@@ -43,8 +43,11 @@ class HomeContainer extends Component {
     };
 
     componentDidMount() {
+        if (this.props.isAuthenticated) {
+            //로그인 상태일 경우
+            this.getBookmarkList(); //즐겨찾는게시판 가져오기
+        }
         this.getHotVoteList(); //실시간 인기 투표 가져오기
-        this.getBookmarkList(); //즐겨찾는게시판 가져오기
         this.getHotPostList(); //HOT 실시간 인기글 가져오기
         this.getNewsList(); //연예뉴스 가져오기
     }
@@ -68,6 +71,7 @@ class HomeContainer extends Component {
 
 export default connect(
     (state) => ({
+        isAuthenticated: state.auth.get('isAuthenticated'),
         hotVoteList: state.home.get('hotVoteList'),
         bookmarkList: state.home.get('bookmarkList'),
         hotPostList: state.home.get('hotPostList'),
