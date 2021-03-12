@@ -107,8 +107,6 @@ class VoteContainer extends Component {
     };
 
     voteReply = (boardUrl, page) => {
-        let params = {};
-        params['page'] = page;
         this.getVoteReply(boardUrl, page);
     };
 
@@ -136,10 +134,10 @@ class VoteContainer extends Component {
                     location={location}
                     voteInfo={voteInfo}
                     voteReplyList={voteReplyList}
-                    isAuthenticated={isAuthenticated}
                     reply_success={reply_success}
                     rereply_success={rereply_success}
                     voteReplyCount={voteReplyCount}
+                    isAuthenticated={isAuthenticated}
                     isVote={isVote}
                     voteid={this.props.match.params.voteid}
                     getVoteInfo={this.getVoteInfo}

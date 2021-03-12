@@ -10,9 +10,34 @@ class Post extends Component {
             postList: [],
         };
     }
-
+    deleteReply = (e) => {
+        const postReplyId = e.currentTarget.id;
+        this.props.deletePostReply(postReplyId);
+    };
+    replyRecommend = (e) => {
+        const postReplyId = e.currentTarget.id;
+        console.log(postReplyId);
+        this.props.replyRecommend(postReplyId);
+    };
+    deleteRereply = (e) => {
+        const postRereplyId = e.currentTarget.id;
+        console.log(postRereplyId);
+        this.props.deletePostRereply(postRereplyId);
+    };
+    reReplyRecommend = (e) => {
+        const postRereplyId = e.currentTarget.id;
+        this.props.reReplyRecommend(postRereplyId);
+    };
     render() {
-        const { postReplyList, history, isAuthenticated, getReply, addPostReply, postReplyCount } = this.props;
+        const {
+            postReplyList,
+            history,
+            isAuthenticated,
+            getReply,
+            postReplyCount,
+            reply_success,
+            rereply_success,
+        } = this.props;
         console.log(postReplyList);
         return (
             <div className="post">
@@ -31,9 +56,17 @@ class Post extends Component {
                     commentList={postReplyList}
                     postReplyCount={postReplyCount}
                     isAuthenticated={isAuthenticated}
+                    reply_success={reply_success}
+                    rereply_success={rereply_success}
+                    deleteReply={this.deleteReply}
+                    deleteRereply={this.deleteRereply}
+                    replyRecommend={this.replyRecommend}
+                    reReplyRecommend={this.reReplyRecommend}
                     postid={this.props.postid}
-                    addPostReply={this.props.addPostReply}
-                    addPostRereply={this.props.addPostRereply}
+                    addReply={this.props.addPostReply}
+                    addRereply={this.props.addPostRereply}
+                    updateReply={this.props.updatePostReply}
+                    updateRereply={this.props.updatePostRereply}
                     isRecommend
                 />
             </div>

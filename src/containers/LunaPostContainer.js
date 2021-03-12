@@ -34,27 +34,84 @@ class LunaPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getReply = (boardUrl, page) => {
-        let params = {};
-        params['page'] = page;
-        console.log(params);
-        this.getPostReply(boardUrl, page);
-    };
     addPostReply = async (formData) => {
-        const { WriteActions } = this.props;
+        const { WriteActions, match } = this.props;
         try {
             await WriteActions.addPostReply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getPostReply(match.params.postid, 1);
     };
+    ///
+    updatePostReply = async (formData, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostReply(formData, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    deletePostReply = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    ///
     addPostRereply = async (formData) => {
-        const { WriteActions } = this.props;
+        const { WriteActions, match } = this.props;
         try {
             await WriteActions.addPostRereply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getPostReply(match.params.postid, 1);
+    };
+    ///
+    updatePostRereply = async (formdata, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostRereply(formdata, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    deletePostRereply = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    replyRecommend = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    reReplyRecommend = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    ///
+    getReply = (boardUrl, page) => {
+        this.getPostReply(boardUrl, page);
     };
     componentDidMount() {
         const postid = this.props.match.params.postid;
@@ -63,7 +120,7 @@ class LunaPostContainer extends Component {
     }
 
     render() {
-        const { history, location, match, isAuthenticated } = this.props;
+        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
         return (
             <Fragment>
                 <Post
@@ -72,11 +129,19 @@ class LunaPostContainer extends Component {
                     location={location}
                     isAuthenticated={isAuthenticated}
                     postid={match.params.postid}
+                    reply_success={reply_success}
+                    rereply_success={rereply_success}
                     getReply={this.getReply}
                     addPostReply={this.addPostReply}
                     addPostRereply={this.addPostRereply}
                     addPostImage={this.addPostImage}
                     getPostInfo={this.getPostInfo}
+                    updatePostReply={this.updatePostReply}
+                    deletePostReply={this.deletePostReply}
+                    updatePostRereply={this.updatePostRereply}
+                    deletePostRereply={this.deletePostRereply}
+                    replyRecommend={this.replyRecommend}
+                    reReplyRecommend={this.reReplyRecommend}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
                     postReplyCount={this.props.postReplyCount}
@@ -92,6 +157,8 @@ export default connect(
         postInfo: state.luna.get('postInfo'),
         postReplyList: state.luna.get('postReplyList'),
         postReplyCount: state.luna.get('postReplyCount'),
+        reply_success: state.pender.success['write/ADD_POST_REPLY'],
+        rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

@@ -111,13 +111,24 @@ class CommentList extends Component {
     };
     openUpdate = (comment, id) => {
         const { isUpdate } = this.state;
-        this.setState({
-            isUpdate: !isUpdate,
-            updateId: comment.id,
-            updateText: comment.content,
-            updatePreview: comment.votereply_image,
-            updateAnonymous: comment.anonymous,
-        });
+        console.log(comment);
+        if (this.props.vote) {
+            this.setState({
+                isUpdate: !isUpdate,
+                updateId: comment.id,
+                updateText: comment.content,
+                updatePreview: comment.votereply_image,
+                updateAnonymous: comment.anonymous,
+            });
+        } else {
+            this.setState({
+                isUpdate: !isUpdate,
+                updateId: comment.id,
+                updateText: comment.body,
+                updatePreview: comment.reply_image || comment.rereply_image,
+                updateAnonymous: comment.anonymous,
+            });
+        }
         if (id) {
             console.log(id);
             this.setState({ updateReplyId: id });
@@ -139,14 +150,13 @@ class CommentList extends Component {
                 formData.append('content', commentText);
                 if (commentImg !== null) formData.append('votereply_image', commentImg);
                 formData.append('anonymous', isAnonymous);
-                this.props.postVoteReply(formData);
             } else {
                 formData.append('board_post_id', postid);
                 formData.append('body', commentText);
                 if (commentImg !== null) formData.append('reply_image', commentImg);
                 formData.append('anonymous', isAnonymous);
-                this.props.addPostReply(formData);
             }
+            this.props.addReply(formData);
         }
     };
 
@@ -165,15 +175,14 @@ class CommentList extends Component {
                 formData.append('content', reText);
                 if (reImg !== null) formData.append('voterereply_image', reImg);
                 formData.append('anonymous', reAnonymous);
-                this.props.postVoteRereply(formData);
             } else {
                 formData.append('board_post_id', postid);
                 formData.append('reply_id', recommentId);
                 formData.append('body', reText);
                 if (reImg !== null) formData.append('rereply_image', reImg);
                 formData.append('anonymous', reAnonymous);
-                this.props.addPostRereply(formData);
             }
+            this.props.addRereply(formData);
         }
     };
     updateReply = (e) => {
@@ -220,7 +229,6 @@ class CommentList extends Component {
                 if (updateImg !== null) formData.append('rereply_image', updateImg);
                 formData.append('anonymous', updateAnonymous);
             }
-            console.log(updateId);
             this.props.updateRereply(formData, updateId);
             this.closeUpdate();
         }
@@ -292,11 +300,11 @@ class CommentList extends Component {
                                             <span>{comment.created_at}</span>
                                             <span>{`추천 ${comment.recommend_count}`}</span>
                                         </div>
-                                        {comment.votereply_image && (
+                                        {(comment.votereply_image || comment.reply_image) && (
                                             <div>
                                                 <img
                                                     className="comment-list__item--img"
-                                                    src={comment.votereply_image}
+                                                    src={comment.votereply_image || comment.reply_image}
                                                     alt="comment"
                                                 />
                                             </div>
@@ -396,6 +404,18 @@ class CommentList extends Component {
                                                                 `추천 ${reComment.recommend_count}`}
                                                         </span>
                                                     </div>
+                                                    {(reComment.voterereply_image || reComment.rereply_image) && (
+                                                        <div>
+                                                            <img
+                                                                className="comment-list__item--img"
+                                                                src={
+                                                                    reComment.voterereply_image ||
+                                                                    reComment.rereply_image
+                                                                }
+                                                                alt="comment"
+                                                            />
+                                                        </div>
+                                                    )}
                                                     {reComment.image && (
                                                         <div>
                                                             <img

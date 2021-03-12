@@ -164,16 +164,16 @@ class Vote extends Component {
                         isAuthenticated={isAuthenticated}
                         voteid={voteid}
                         rereply_success={rereply_success}
+                        addReply={this.props.postVoteReply}
+                        addRereply={this.props.postVoteRereply}
+                        updateReply={this.props.updateVoteReply}
+                        updateRereply={this.props.updateVoteRereply}
                         deleteReply={this.deleteReply}
                         deleteRereply={this.deleteRereply}
                         replyRecommend={this.replyRecommend}
                         reReplyRecommend={this.reReplyRecommend}
                         getVoteInfo={this.props.getVoteInfo}
                         voteReply={this.props.voteReply}
-                        postVoteReply={this.props.postVoteReply}
-                        updateReply={this.props.updateVoteReply}
-                        postVoteRereply={this.props.postVoteRereply}
-                        updateRereply={this.props.updateVoteRereply}
                         isRecommend
                     />
                 )}
