@@ -40,7 +40,9 @@ class ProfileContainer extends Component {
             console.log('error log:' + e);
         }
         if (this.props.quitSuccess) {
-            this.props.history.push('/');
+            //탈퇴 성공시
+            AuthActions.signOut(); //로그아웃
+            this.props.history.push('/'); //메인으로 이동
         }
     };
 
