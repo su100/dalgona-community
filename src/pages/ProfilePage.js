@@ -10,7 +10,7 @@ const ProfilePage = ({ history, location }) => {
                 header={<NavContainer history={history} location={location} isHome={false} />}
                 nofooter={true}
             >
-                <ProfileContainer />
+                <ProfileContainer history={history} />
             </PageTemplate>
         </div>
     );

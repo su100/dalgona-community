@@ -2,27 +2,99 @@
 
 //pc, 기본
 .profile {
-    @include flex(column, center, center);
-    width: 100%;
-    height: 100%;
-    padding-bottom: 300px;
-    &__listtype {
-        padding-top: 150px;
-        padding-bottom: 79px;
-        button {
-            font-family: Noto Sans KR;
-            font-size: 22px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 28px;
-            letter-spacing: 0em;
-            text-align: left;
-            color: #838383;
-            padding: 0 40px 0 0;
+    @include flex(row, center, flex-start);
+    margin-top: 87px;
+    h5 {
+        margin-top: 0;
+        margin-bottom: 17px;
+        font-weight: 500;
+        font-size: 17px;
+    }
+    .profile__default {
+        width: 206px;
+        height: 206px;
+        input[type='file'] {
+            display: none;
         }
-        &.click {
-            color: #1f1f1f;
-            padding-right: 40px;
+        &--empty {
+            @include flex(row, center, center);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid #cbcbcb;
+            cursor: pointer;
+            .profile__default--photoicon {
+                width: 33.5px;
+                height: 26.8px;
+            }
+        }
+        &--preview {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-weight: bold;
+                font-size: 25px;
+                color: red;
+            }
+        }
+    }
+    .profile__box {
+        margin-left: 41px;
+        width: 699px;
+        button {
+            width: 100%;
+            height: 50px;
+            background: #f7c95f;
+            color: #fff;
+            font-size: 20px;
+            &:last-child {
+                margin-top: 5px;
+                background: #f7f7f7;
+                color: #dedede;
+            }
+        }
+        textarea {
+            margin-bottom: 22px;
+            padding: 9px 14px;
+            width: 100%;
+            height: 123px;
+            border: 1px solid #cbcbcb;
+            box-sizing: border-box;
+            resize: none;
+            &::placeholder {
+                color: #dedede;
+            }
+        }
+        .profile__row {
+            @include flex(row, center, center);
+            margin-bottom: 29px;
+            input {
+                padding-left: 13px;
+                width: calc(100% - 122px);
+                height: 50px;
+                border: 1px solid #cbcbcb;
+                box-sizing: border-box;
+                &::placeholder {
+                    color: #dedede;
+                }
+            }
+            button {
+                margin-top: 0px;
+                width: 122px;
+                background: #f7c95f;
+                color: #fff;
+            }
         }
     }
 }
@@ -30,11 +102,117 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .profile {
+        @include flex(column, center, center);
+        margin-top: 0;
+        h4 {
+            margin: 0;
+            margin-bottom: 39px;
+            width: 100%;
+            height: 69px;
+            line-height: 69px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 21px;
+            border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+        }
+        h5 {
+            width: 100%;
+            margin-bottom: 17.5px;
+            &:nth-child(2) {
+                padding-left: 20px;
+                box-sizing: border-box;
+            }
+        }
+        .profile__default {
+            margin-bottom: 64px;
+            width: 194px;
+            height: 194px;
+            &--photoicon {
+                width: 31.55px;
+                height: 25.24px;
+            }
+            &--preview {
+                button {
+                    font-size: 24px;
+                }
+            }
+        }
+        .profile__box {
+            margin-left: 0;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            textarea {
+                margin-bottom: 21.6px;
+            }
+            .profile__row {
+                margin-bottom: 28.6px;
+                input {
+                    width: calc(100% - 128px);
+                }
+                button {
+                    margin-top: 0px;
+                    width: 128px;
+                }
+            }
+        }
     }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
     .profile {
+        h4 {
+            margin-bottom: 15px;
+            height: 47px;
+            line-height: 47px;
+            font-size: 17px;
+        }
+        h5 {
+            margin-bottom: 7px;
+            font-size: 12px;
+        }
+        .profile__default {
+            margin-bottom: 20px;
+            width: 92px;
+            height: 92px;
+            &--photoicon {
+                width: 14.96px;
+                height: 11.97px;
+            }
+            &--preview {
+                button {
+                    margin-top: -5px;
+                    margin-right: -5px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .profile__box {
+            button {
+                height: 32px;
+                font-size: 15px;
+                &:last-child {
+                    margin-top: 3px;
+                }
+            }
+            textarea {
+                margin-bottom: 20px;
+                padding: 5px 10px;
+                height: 108px;
+            }
+            .profile__row {
+                margin-bottom: 20px;
+                input {
+                    padding-left: 10px;
+                    width: calc(100% - 74px);
+                    height: 32px;
+                }
+                button {
+                    margin-top: 0px;
+                    width: 74px;
+                }
+            }
+        }
     }
 }
