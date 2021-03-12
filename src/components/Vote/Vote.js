@@ -15,9 +15,12 @@ class Vote extends Component {
     }
 
     onClickVote = (e) => {
-        this.props.userVote(e.target.id);
-        this.handleShowModal();
-        console.log(this.props.isVote);
+        console.log(e.currentTarget.id);
+        if (e.currentTarget.id) {
+            this.props.userVote(e.currentTarget.id);
+            this.handleShowModal();
+            console.log(this.props.isVote);
+        }
     };
 
     handleShowModal = (e) => {
@@ -65,19 +68,19 @@ class Vote extends Component {
                                 userVote={this.props.userVote}
                             />
                         )}
-                        <div className="vote__main__content-first">
-                            <button
-                                onClick={this.onClickVote}
-                                id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].id}
-                                className="vote__main__content-first-circle"
-                            ></button>
+                        <button
+                            className="vote__main__content-first"
+                            id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].id}
+                            onClick={this.onClickVote}
+                        >
+                            <button className="vote__main__content-first-circle"></button>
                             <span className="vote__main__content-first-title">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_name}
                             </span>
                             <span className="vote__main__content-first-description">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_content}
                             </span>
-                        </div>
+                        </button>
                         <div className="vote__main__content-area">
                             <div className="only-pc">
                                 <div className="vote__main__content-area-vs">
@@ -90,13 +93,13 @@ class Vote extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="vote__main__content-second">
+                        <button
+                            className="vote__main__content-second"
+                            id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].id}
+                            onClick={this.onClickVote}
+                        >
                             {voteInfo.board_image === null ? (
-                                <button
-                                    className="vote__main__content-second-circle"
-                                    onClick={this.onClickVote}
-                                    id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].id}
-                                ></button>
+                                <button className="vote__main__content-second-circle"></button>
                             ) : (
                                 <img src={voteInfo.board_image}></img>
                             )}
@@ -106,7 +109,7 @@ class Vote extends Component {
                             <span className="vote__main__content-second-description">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_content}
                             </span>
-                        </div>
+                        </button>
                     </div>
                     <div className="not-pc">
                         <div className="vote__main-description">{voteInfo.content}</div>

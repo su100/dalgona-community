@@ -5,7 +5,7 @@
     @include flex(column, center, center);
     position: absolute;
     top: 50%;
-    left: 42%;
+    left: 40%;
     z-index: 1;
     height: 208px;
     width: 386px;
@@ -23,7 +23,7 @@
         padding-bottom: 38px;
     }
     &__button {
-        @include flex(row, space-between, center);
+        @include flex(row, center, center);
         width: 330px;
         button {
             height: 40px;
@@ -32,10 +32,11 @@
             background: #ffd278;
             color: #fff;
             font-size: 22px;
-        }
-        &.cancel {
-            background: #e6e6e6;
-            color: #838383;
+            &.cancel {
+                background: #e6e6e6;
+                color: #838383;
+                margin-right: 20px;
+            }
         }
     }
 }
@@ -65,6 +66,12 @@
                 height: 54px;
                 background: none;
                 color: #0078ff;
+                &.cancel {
+                    margin-right: 0px;
+                    color: #0078ff;
+                    background: none;
+                    opacity: 0.85;
+                }
             }
         }
     }
@@ -75,27 +82,35 @@
     .votemodal {
         @include flex(column, space-between, center);
         position: absolute;
-        top: 50%;
-        left: 30%;
-        height: 151px;
-        width: 260px;
+        top: 20%;
+        left: 37%;
+        height: 100px;
+        width: 200px;
         border-radius: 0px;
         background: #ffffff;
         opacity: 0.85;
         span {
-            font-size: 20px;
+            font-size: 11px;
             padding-top: 37px;
             padding-bottom: 37px;
         }
         div {
             width: 100%;
             button {
+                font-size: 11px;
                 border-radius: 0px;
                 border-top: 0.5px solid #707070;
                 width: 100%;
                 height: 41px;
-                background: none;
+                background: #ffffff;
+                opacity: 0.85;
                 color: #0078ff;
+                &.cancel {
+                    background: #ffffff;
+                    margin-right: 0px;
+                    color: #0078ff;
+                    opacity: 0.85;
+                }
             }
         }
     }
