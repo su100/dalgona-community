@@ -76,6 +76,10 @@
                     font-weight: bold;
                     font-size: 14px;
                 }
+                img{
+                    width: 146px;
+                    height: 111px;
+                }
             }
             .comment-list__item--contents {
                 margin: 25px 0;
@@ -93,6 +97,9 @@
                     font-weight: bold;
                     font-size: 11px;
                 }
+            }
+            .comment-list__item--openupdate{
+                margin-top: 12px;
             }
         }
     }

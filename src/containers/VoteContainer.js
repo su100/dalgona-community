@@ -25,68 +25,76 @@ class VoteContainer extends Component {
         }
     };
     postVoteReply = async (formData) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.postVoteReply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
-    updateVoteReply = async (formdata, replyUrl) => {
-        const { IssueActions } = this.props;
+    updateVoteReply = async (formData, updateId) => {
+        const { IssueActions, match } = this.props;
         try {
-            await IssueActions.updateVoteReply(replyUrl);
+            await IssueActions.updateVoteReply(formData, updateId);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     deleteVoteReply = async (replyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.deleteVoteReply(replyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     postVoteRereply = async (formData) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.postVoteRereply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
-    updateVoteRereply = async (formdata, replyUrl) => {
-        const { IssueActions } = this.props;
+    updateVoteRereply = async (formdata, updateId) => {
+        const { IssueActions, match } = this.props;
         try {
-            await IssueActions.updateVoteRereply(formdata, replyUrl);
+            await IssueActions.updateVoteRereply(formdata, updateId);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     deleteVoteRereply = async (reReplyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.deleteVoteRereply(reReplyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     replyRecommend = async (replyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.replyRecommend(replyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
     reReplyRecommend = async (reReplyUrl) => {
-        const { IssueActions } = this.props;
+        const { IssueActions, match } = this.props;
         try {
             await IssueActions.reReplyRecommend(reReplyUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getVoteReply(match.params.voteid, 1); //댓글 목록 새로고침
     };
 
     userVote = async (voteitem) => {
@@ -106,7 +114,6 @@ class VoteContainer extends Component {
 
     componentDidMount() {
         const voteid = this.props.match.params.voteid;
-        console.log(voteid);
         this.getVoteInfo(voteid);
         this.voteReply(voteid, 1);
     }
@@ -114,14 +121,11 @@ class VoteContainer extends Component {
         const {
             history,
             voteInfo,
-            info_loading,
-            reply_loading,
-            info_success,
-            post_delete_success,
             voteReplyList,
             reply_list_success,
             voteReplyCount,
             reply_success,
+            rereply_success,
             isAuthenticated,
             isVote,
         } = this.props;
@@ -134,6 +138,7 @@ class VoteContainer extends Component {
                     voteReplyList={voteReplyList}
                     isAuthenticated={isAuthenticated}
                     reply_success={reply_success}
+                    rereply_success={rereply_success}
                     voteReplyCount={voteReplyCount}
                     isVote={isVote}
                     voteid={this.props.match.params.voteid}
@@ -166,6 +171,7 @@ export default connect(
         info_success: state.pender.success['issue/VOTE_INFO'],
         reply_list_success: state.pender.success['issue/GET_VOTE_REPLY'],
         reply_success: state.pender.success['issue/POST_VOTE_REPLY'],
+        rereply_success: state.pender.success['issue/POST_VOTE_REREPLY'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

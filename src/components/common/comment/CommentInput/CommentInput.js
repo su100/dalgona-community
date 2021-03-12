@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import photoIcon from 'images/photo.svg';
 
@@ -23,8 +23,13 @@ const CommentInput = (props) => {
     };
 
     const onClickPost = (e) => {
-        if (e.target.id === 'comment') {
+        const id = e.currentTarget.id;
+        if (id === 'comment') {
             props.addReply(e);
+        } else if (id === 'update-reply') {
+            props.updateReply(e);
+        } else if (id === 'update-rereply') {
+            props.updateRereply(e);
         } else {
             props.addRereply(e);
         }

@@ -87,13 +87,9 @@ export const getVoteInfo = (boardUrl) =>
 
 // 투표 게시판 전체 댓글 가져오기
 export const getVoteReply = (boardUrl, params) =>
-    axios.get(
-        `${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=${params}`,
-        { params: params },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=${params}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
 
 // 투표 게시판 댓글 작성
 export const postVoteReply = (formdata) =>
@@ -102,31 +98,35 @@ export const postVoteReply = (formdata) =>
     });
 
 //투표 게시판 댓글 수정
-export const updateVoteReply = (formdata, replyUrl) => {
-    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata);
-};
+export const updateVoteReply = (formdata, updateId) =>
+    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${updateId}`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판의 댓글 삭제
-export const deleteVoteReply = (replyUrl) => {
-    axios.delete(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`);
-};
+export const deleteVoteReply = (replyUrl) =>
+    axios.delete(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 작성
-export const postVoteRereply = (voteboardreply_id, content, voterereply_image, anonymous) => {
-    axios.post(
-        `${API_BASE_URL}/battle/vote/board/rereply`,
-        { voteboardreply_id, content, voterereply_image, anonymous },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
-};
+export const postVoteRereply = (formdata) =>
+    axios.post(`${API_BASE_URL}/battle/vote/board/rereply`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 수정
-export const updateVoteRereply = (formdata, replyUrl) => {
-    axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata);
-};
+export const updateVoteRereply = (formdata, replyUrl) =>
+    axios.put(`${API_BASE_URL}/battle/vote/board/rereply/${replyUrl}`, formdata, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 특정 댓글의 대댓글 삭제
-export const deleteVoteRereply = (reReplyUrl) => {
-    axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`);
-};
+export const deleteVoteRereply = (reReplyUrl) =>
+    axios.delete(`${API_BASE_URL}/battle/vote/board/rereply/${reReplyUrl}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //투표 게시판 댓글 추천 추가 및 취소
 export const replyRecommend = (replyUrl) =>
     axios.post(
@@ -140,7 +140,7 @@ export const replyRecommend = (replyUrl) =>
 //투표 게시판 대댓글 추천 추가 및 취소
 export const reReplyRecommend = (reReplyUrl) =>
     axios.post(
-        `${API_BASE_URL}/battle/vote/board/reply/recommend`,
+        `${API_BASE_URL}/battle/vote/board/rereply/recommend`,
         { voteboardrereply_id: reReplyUrl },
         {
             headers: { Authorization: getAccesesToken() },
@@ -181,13 +181,9 @@ export const getPostInfo = (boardUrl, postId) =>
     });
 // 댓글 목록 가져오기: 게시글
 export const getPostReply = (postId, params) =>
-    axios.get(
-        `${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=${params}`,
-        { params: params },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.get(`${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=${params}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
 //내가 쓴 글 조회
 export const getMyPost = (params) =>
     axios.get(`${API_BASE_URL}/accounts/profile/mypost?page=${params}`, {
