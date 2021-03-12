@@ -221,13 +221,13 @@ export const addPostReply = (formdata) =>
         headers: { Authorization: getAccesesToken() },
     });
 //댓글 수정하기
-export const updatePostReply = (postid) =>
-    axios.post(`${API_BASE_URL}/board/rereply/${postid}`, {
+export const updatePostReply = (formdata, updateId) =>
+    axios.put(`${API_BASE_URL}/board/rereply/${updateId}`, formdata, {
         headers: { Authorization: getAccesesToken() },
     });
 //댓글 삭제하기
-export const deletePostReply = (postid) =>
-    axios.post(`${API_BASE_URL}/board/rereply/${postid}`, {
+export const deletePostReply = (replyUrl) =>
+    axios.delete(`${API_BASE_URL}/board/reply/${replyUrl}`, {
         headers: { Authorization: getAccesesToken() },
     });
 //대댓글 작성하기
@@ -236,15 +236,34 @@ export const addPostRereply = (formdata) =>
         headers: { Authorization: getAccesesToken() },
     });
 //대댓글 수정하기
-export const updatePostRereply = (postid) =>
-    axios.post(`${API_BASE_URL}/board/rereply/${postid}`, {
+export const updatePostRereply = (formdata, replyUrl) =>
+    axios.put(`${API_BASE_URL}/board/rereply/${replyUrl}`, {
         headers: { Authorization: getAccesesToken() },
     });
 //대댓글 삭제하기
-export const deletePostRereply = (postid) =>
-    axios.post(`${API_BASE_URL}/board/reply/${postid}`, {
+export const deletePostRereply = (reReplyUrl) =>
+    axios.delete(`${API_BASE_URL}/board/rereply/${reReplyUrl}`, {
         headers: { Authorization: getAccesesToken() },
     });
+//글 추천 추가 및 취소
+export const recommendPostReply = (replyUrl) =>
+    axios.post(
+        `${API_BASE_URL}/board/reply/recommend`,
+        { reply_id: replyUrl },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+//대댓글 추천 추가 및 취소
+export const recommendPostRereply = (reReplyUrl) =>
+    axios.post(
+        `${API_BASE_URL}/board/rereply/recommend`,
+        { rereply_id: reReplyUrl },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+
 //즐겨찾기 추가 및 삭제
 export const getBookmarkList = () =>
     axios.get(`${API_BASE_URL}/accounts/profile/bookmark`, {
