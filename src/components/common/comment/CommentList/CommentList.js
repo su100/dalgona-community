@@ -21,8 +21,13 @@ class CommentList extends Component {
             reImg: null,
             previewURL: '',
             rePreview: '',
-            isUpdate: '',
+            isUpdate: false,
             updateId: '',
+            updateReplyId: '',
+            updateText: '',
+            updateImg: null,
+            updateAnonymous: false,
+            updatePreview: '',
         };
     }
     handlePage = (e) => {
@@ -38,7 +43,6 @@ class CommentList extends Component {
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
             //댓글 작성 성공했을 때
-            console.log('댓글작성');
             return 'reply';
         } else if (prevProps.rereply_success !== this.props.rereply_success && this.props.rereply_success) {
             //대댓글 작성 성공했을 때
@@ -53,34 +57,43 @@ class CommentList extends Component {
             this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
         } else if (snapshot === 'rereply')
             this.setState({
-                isRereplyOpen: false,
-                replyOpenId: 0,
-                reReplyText: '',
+                reImg: '',
+                rePreview: '',
+                recommentId: 0,
+                reText: '',
                 reAnonymous: false,
             });
     }
 
     handleComment = (e) => {
         if (e.target.id === 'comment') this.setState({ commentText: e.target.value });
+        else if (e.target.id === 'update-reply' || e.target.id === 'update-rereply')
+            this.setState({ updateText: e.target.value });
         else this.setState({ reText: e.target.value });
     };
 
     handleAnonymous = (e) => {
         if (e.target.id === 'comment') this.setState({ isAnonymous: e.target.checked });
+        else if (e.target.id === 'update-reply' || e.target.id === 'update-rereply')
+            this.setState({ updateAnonymous: e.target.checked });
         else this.setState({ reAnonymous: e.target.checked });
     };
 
     setImage = (type, file) => {
         if (type === 'comment') this.setState({ commentImg: file });
+        else if (type === 'update-reply' || type === 'update-rereply') this.setState({ updateImg: file });
         else this.setState({ reImg: file });
     };
     setPreview = (type, url) => {
         if (type === 'comment') this.setState({ previewURL: url });
+        else if (type === 'update-reply' || type === 'update-rereply') this.setState({ updatePreview: url });
         else this.setState({ rePreview: url });
     };
 
     deleteImg = (e) => {
         if (e.target.id === 'comment') this.setState({ commentImg: null, previewURL: '' });
+        else if (e.target.id === 'update-reply' || e.target.id === 'update-rereply')
+            this.setState({ updateImg: '', updatePreview: '' });
         else this.setState({ reImg: null, rePreview: '' });
     };
 
@@ -93,24 +106,20 @@ class CommentList extends Component {
     closeRecomment = (e) => {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
-    /*
-    openUpdate = (e) => {
+    closeUpdate = (e) => {
+        this.setState({ isUpdate: false, updateId: '' });
+    };
+    openUpdate = (comment) => {
         const { isUpdate } = this.state;
-        console.log(e);
         this.setState({
             isUpdate: !isUpdate,
-            updateId: e.currentTarget.id,
+            updateId: comment.id,
+            updateText: comment.content,
+            updatePreview: comment.votereply_image,
+            updateAnonymous: comment.anonymous,
         });
     };
-    setUpdate = (comment) => {
-        this.setState({
-            commentText: comment.content,
-            commentImg: comment.votereply_image,
-            previewURL: comment.votereply_image,
-            isAnonymous: comment.anonymous,
-        });
-    };
-    */
+
     addReply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { commentText, commentImg, isAnonymous, reAnonymous, reText, reImg } = this.state;
@@ -121,6 +130,7 @@ class CommentList extends Component {
         } else {
             const formData = new FormData();
             if (vote) {
+                console.log(commentImg);
                 formData.append('voteboard_id', voteid);
                 formData.append('content', commentText);
                 if (commentImg !== null) formData.append('votereply_image', commentImg);
@@ -162,7 +172,55 @@ class CommentList extends Component {
             }
         }
     };
+    updateReply = (e) => {
+        const { voteid, isAuthenticated, vote, postid } = this.props;
+        const { updateId, updateAnonymous, updateText, updateImg } = this.state;
 
+        if (!isAuthenticated) {
+            alert('로그인이 필요합니다');
+            this.props.history.push('/login');
+        } else {
+            const formData = new FormData();
+            console.log(updateImg);
+            if (vote) {
+                formData.append('content', updateText);
+                if (updateImg !== null) formData.append('votereply_image', updateImg);
+                formData.append('anonymous', updateAnonymous);
+            } else {
+                formData.append('board_post_id', postid);
+                formData.append('body', updateText);
+                if (updateImg !== null) formData.append('image', updateImg);
+                formData.append('anonymous', updateAnonymous);
+            }
+            this.props.updateReply(formData, updateId);
+            this.closeUpdate();
+        }
+    };
+    updateRereply = (e) => {
+        const { voteid, isAuthenticated, vote, postid } = this.props;
+        const { updateId, updateAnonymous, updateText, updateImg } = this.state;
+
+        if (!isAuthenticated) {
+            alert('로그인이 필요합니다');
+            this.props.history.push('/login');
+        } else {
+            const formData = new FormData();
+            if (vote) {
+                formData.append('content', updateText);
+                if (updateImg !== null) formData.append('voterereply_image', updateImg);
+                formData.append('anonymous', updateAnonymous);
+            } else {
+                formData.append('board_post_id', postid);
+                //formData.append('reply_id', d);
+                formData.append('body', updateText);
+                if (updateImg !== null) formData.append('rereply_image', updateImg);
+                formData.append('anonymous', updateAnonymous);
+            }
+            console.log(updateId);
+            this.props.updateRereply(formData, updateId);
+            this.closeUpdate();
+        }
+    };
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
@@ -251,7 +309,9 @@ class CommentList extends Component {
                                             </button>
                                             {comment.is_author ? (
                                                 <>
-                                                    <button id={comment.id}>수정 </button>
+                                                    <button id={comment.id} onClick={() => this.openUpdate(comment)}>
+                                                        수정
+                                                    </button>
                                                     <button id={comment.id} onClick={this.props.deleteReply}>
                                                         삭제
                                                     </button>
@@ -267,6 +327,25 @@ class CommentList extends Component {
                                                 </span>
                                             )}
                                         </div>
+                                        {isUpdate && Number(updateId) === comment.id && (
+                                            <div className="comment-list__item--openupdate">
+                                                <CommentInput
+                                                    type="update-reply"
+                                                    setUpdate={() => this.setUpdate(comment)}
+                                                    handleAnonymous={this.handleAnonymous}
+                                                    isAnonymous={this.state.updateAnonymous}
+                                                    handleComment={this.handleComment}
+                                                    commentText={this.state.updateText}
+                                                    setImage={this.setImage}
+                                                    setPreview={this.setPreview}
+                                                    commentImg={this.state.updateImg}
+                                                    previewURL={this.state.updatePreview}
+                                                    deleteImg={this.deleteImg}
+                                                    updateReply={this.updateReply}
+                                                    updateRereply={this.updateRereply}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 {this.props.recommended && (
@@ -327,7 +406,12 @@ class CommentList extends Component {
                                                     <div className="comment-list__item--button">
                                                         {reComment.is_author ? (
                                                             <>
-                                                                <button>수정</button>
+                                                                <button
+                                                                    id={reComment.id}
+                                                                    onClick={() => this.openUpdate(reComment)}
+                                                                >
+                                                                    수정
+                                                                </button>
                                                                 <button
                                                                     id={reComment.id}
                                                                     onClick={this.props.deleteRereply}
@@ -349,6 +433,25 @@ class CommentList extends Component {
                                                             </span>
                                                         )}
                                                     </div>
+                                                    {isUpdate && Number(updateId) === reComment.id && (
+                                                        <div className="comment-list__item--openupdate">
+                                                            <CommentInput
+                                                                type="update-rereply"
+                                                                setUpdate={() => this.setUpdate(reComment)}
+                                                                handleAnonymous={this.handleAnonymous}
+                                                                isAnonymous={this.state.updateAnonymous}
+                                                                handleComment={this.handleComment}
+                                                                commentText={this.state.updateText}
+                                                                setImage={this.setImage}
+                                                                setPreview={this.setPreview}
+                                                                commentImg={this.state.updateImg}
+                                                                previewURL={this.state.updatePreview}
+                                                                deleteImg={this.deleteImg}
+                                                                updateReply={this.updateReply}
+                                                                updateRereply={this.updateRereply}
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                             {this.props.isRecommend && (

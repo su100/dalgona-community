@@ -19,17 +19,12 @@ class Vote extends Component {
         if (e.currentTarget.id) {
             this.props.userVote(e.currentTarget.id);
             this.handleShowModal();
-            console.log(this.props.isVote);
         }
     };
 
     handleShowModal = (e) => {
         const { showModal } = this.state;
         this.setState({ showModal: !showModal });
-    };
-    updateReply = (e) => {
-        const voteReplyId = e.currentTarget.id;
-        this.props.updateVoteReply(voteReplyId);
     };
     deleteReply = (e) => {
         const voteReplyId = e.currentTarget.id;
@@ -39,10 +34,6 @@ class Vote extends Component {
         const voteReplyId = e.currentTarget.id;
         console.log(voteReplyId);
         this.props.replyRecommend(voteReplyId);
-    };
-    updateRereply = (e) => {
-        const voteRereplyId = e.currentTarget.id;
-        this.props.updateVoteRereply(voteRereplyId);
     };
     deleteRereply = (e) => {
         const voteRereplyId = e.currentTarget.id;
@@ -64,6 +55,7 @@ class Vote extends Component {
             isAuthenticated,
             voteReplyCount,
             isVote,
+            rereply_success,
         } = this.props;
         console.log(voteInfo);
         return (
@@ -159,6 +151,7 @@ class Vote extends Component {
                         voteReplyCount={voteReplyCount}
                         isAuthenticated={isAuthenticated}
                         voteid={voteid}
+                        rereply_success={rereply_success}
                         deleteReply={this.deleteReply}
                         deleteRereply={this.deleteRereply}
                         replyRecommend={this.replyRecommend}
@@ -166,9 +159,9 @@ class Vote extends Component {
                         getVoteInfo={this.props.getVoteInfo}
                         voteReply={this.props.voteReply}
                         postVoteReply={this.props.postVoteReply}
-                        updateReply={this.props.updateReply}
+                        updateReply={this.props.updateVoteReply}
                         postVoteRereply={this.props.postVoteRereply}
-                        updateRereply={this.props.updateRereply}
+                        updateRereply={this.props.updateVoteRereply}
                         isRecommend
                     />
                 )}

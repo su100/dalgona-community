@@ -98,8 +98,8 @@ export const postVoteReply = (formdata) =>
     });
 
 //투표 게시판 댓글 수정
-export const updateVoteReply = (formdata, replyUrl) =>
-    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${replyUrl}`, formdata, {
+export const updateVoteReply = (formdata, updateId) =>
+    axios.put(`${API_BASE_URL}/battle/vote/board/reply/${updateId}`, formdata, {
         headers: { Authorization: getAccesesToken() },
     });
 
