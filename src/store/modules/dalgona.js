@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { Map } from 'immutable';
+import { List, Map } from 'immutable';
 import { pender } from 'redux-pender';
 
 import * as api from 'lib/api';
@@ -31,6 +31,7 @@ const initialState = Map({
     postInfo: [],
     postReplyList: [],
     postReplyCount: 0,
+    myPostCount: 0,
     myPost: [],
     myPoint: [],
 });
@@ -90,8 +91,18 @@ export default handleActions(
         ...pender({
             type: GET_MY_POST,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state.set('myPost', action.payload.data.results);
+                const { data } = action.payload;
+                const postList = data.results;
+                let myPostList = {};
+                for (let i = 0; i < postList.length; i++) {
+                    const date = postList[i].created_at.substring(0, 10);
+                    if (Object.keys(myPostList).includes(date)) {
+                        myPostList[date] = myPostList[date].push(postList[i]);
+                    } else {
+                        myPostList[date] = List([postList[i]]);
+                    }
+                }
+                return state.set('myPostCount', data.count).set('myPost', myPostList);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

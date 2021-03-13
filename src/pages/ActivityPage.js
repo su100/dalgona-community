@@ -10,7 +10,7 @@ const ActivityPage = ({ history, location, match }) => {
                 header={<NavContainer history={history} match={match} location={location} isHome={false} />}
                 nofooter={true}
             >
-                <ActivityContainer />
+                <ActivityContainer history={history} location={location} />
             </PageTemplate>
         </div>
     );
