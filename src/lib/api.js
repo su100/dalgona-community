@@ -141,32 +141,23 @@ export const deleteVoteRereply = (reReplyUrl) =>
 
 //투표 게시판 댓글 추천 추가 및 취소
 export const replyRecommend = (replyUrl) =>
-    axios.post(
-        `${API_BASE_URL}/battle/vote/board/reply/recommend`,
-        { voteboardreply_id: replyUrl },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/battle/vote/board/reply/recommend`, {
+        voteboardreply_id: replyUrl,
+        headers: { Authorization: getAccesesToken() },
+    });
 
 //투표 게시판 대댓글 추천 추가 및 취소
 export const reReplyRecommend = (reReplyUrl) =>
-    axios.post(
-        `${API_BASE_URL}/battle/vote/board/rereply/recommend`,
-        { voteboardrereply_id: reReplyUrl },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/battle/vote/board/rereply/recommend`, {
+        voteboardrereply_id: reReplyUrl,
+        headers: { Authorization: getAccesesToken() },
+    });
 //유저 투표하기
 export const userVote = (voteitem) =>
-    axios.post(
-        `${API_BASE_URL}/battle/vote`,
-        { voteitem_id: voteitem },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/battle/vote`, {
+        voteitem_id: voteitem,
+        headers: { Authorization: getAccesesToken() },
+    });
 
 /* Board: luna, free, dalgona*/
 //특정 게시판 정보 가져오기
@@ -210,13 +201,13 @@ export const getMyPoint = (params) =>
 /*write*/
 //게시글 작성하기
 export const addPost = (title, body, boardUrl, anonymous) =>
-    axios.post(
-        `${API_BASE_URL}/board/${boardUrl}/posts`,
-        { title: title, body: body, board_url: boardUrl, anonymous: anonymous },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/board/${boardUrl}/posts`, {
+        title: title,
+        body: body,
+        board_url: boardUrl,
+        anonymous: anonymous,
+        headers: { Authorization: getAccesesToken() },
+    });
 //즐겨찾기 추가 및 삭제
 export const updateBookmark = (bookmark) =>
     axios.post(
@@ -260,22 +251,16 @@ export const deletePostRereply = (reReplyUrl) =>
     });
 //글 추천 추가 및 취소
 export const recommendPostReply = (replyUrl) =>
-    axios.post(
-        `${API_BASE_URL}/board/reply/recommend`,
-        { reply_id: replyUrl },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/board/reply/recommend`, {
+        reply_id: replyUrl,
+        headers: { Authorization: getAccesesToken() },
+    });
 //대댓글 추천 추가 및 취소
 export const recommendPostRereply = (reReplyUrl) =>
-    axios.post(
-        `${API_BASE_URL}/board/rereply/recommend`,
-        { rereply_id: reReplyUrl },
-        {
-            headers: { Authorization: getAccesesToken() },
-        }
-    );
+    axios.post(`${API_BASE_URL}/board/rereply/recommend`, {
+        rereply_id: reReplyUrl,
+        headers: { Authorization: getAccesesToken() },
+    });
 
 //즐겨찾기 추가 및 삭제
 export const getBookmarkList = () =>
