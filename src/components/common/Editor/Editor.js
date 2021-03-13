@@ -105,7 +105,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
                     </div>
                 </div>
             )}
-            <div className="write__contents">
+            <div className={!readOnly ? 'write__contents' : 'read__contents'}>
                 <div ref={quillElement} onClick={setFocus} />
             </div>
         </div>

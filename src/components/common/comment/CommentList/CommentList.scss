@@ -6,6 +6,7 @@
     .comment-list__count {
         @include flex(row, flex-start, center);
         width: 1200px;
+        padding-top: 40px;
         padding-bottom: 60px;
         font-family: Roboto;
         font-size: 14px;
@@ -76,7 +77,7 @@
                     font-weight: bold;
                     font-size: 14px;
                 }
-                img{
+                img {
                     width: 146px;
                     height: 111px;
                 }
@@ -98,7 +99,7 @@
                     font-size: 11px;
                 }
             }
-            .comment-list__item--openupdate{
+            .comment-list__item--openupdate {
                 margin-top: 12px;
             }
         }
@@ -128,6 +129,7 @@
         .comment-list__count {
             @include flex(column, center, center);
             width: 768px;
+            padding-top: 0px;
             padding-bottom: 68px;
             img {
                 width: 32px;
@@ -236,6 +238,7 @@
         .comment-list__count {
             @include flex(column, center, center);
             width: 360px;
+            padding-top: 0px;
             padding-bottom: 38px;
             img {
                 width: 25px;

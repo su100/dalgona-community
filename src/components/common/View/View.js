@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CommentList from 'components/common/comment/CommentList';
 import heart from 'images/heart.png';
 import moment from 'moment';
+import Editor from 'components/common/Editor';
 import './View.scss';
 
 class View extends Component {
@@ -36,9 +37,8 @@ class View extends Component {
                     </div>
                     <span className="not-pc">조회수 {postInfo.views} | 21:20 | 추천 50</span>
                 </div>
-                <div className="view__content"></div>
                 <div className="view__post">
-                    <span>{postInfo.body}</span>
+                    <Editor readOnly contents={postInfo.body} />
                 </div>
             </div>
         );
