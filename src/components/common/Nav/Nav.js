@@ -194,10 +194,12 @@ class Nav extends Component {
                             )}
                             {(isPC || openMenu === 'Luna') && (
                                 <div className="nav-hover__menu-luna">
-                                    <Link to={{ pathname: '/luna/1', path: 'Luna' }}>
-                                        <span> 비투비</span>
+                                    <Link to={{ pathname: '/luna/daily-life', path: 'Luna' }}>
+                                        <span>daily-life</span>
                                     </Link>
-                                    <span>스키니브라운</span>
+                                    <Link to={{ pathname: '/luna/help', path: 'Luna' }}>
+                                        <span>help</span>
+                                    </Link>
                                     <span>아이유</span>
                                 </div>
                             )}
