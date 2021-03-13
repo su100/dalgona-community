@@ -197,8 +197,9 @@ export const getPostReply = (postId, params) =>
         headers: { Authorization: getAccesesToken() },
     });
 //내가 쓴 글 조회
-export const getMyPost = (params) =>
-    axios.get(`${API_BASE_URL}/accounts/profile/mypost?page=${params}`, {
+export const getMyPost = (page) =>
+    axios.get(`${API_BASE_URL}/accounts/profile/mypost`, {
+        params: { page },
         headers: { Authorization: getAccesesToken() },
     });
 //별 획득 내역 조회

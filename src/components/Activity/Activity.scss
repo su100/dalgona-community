@@ -4,45 +4,39 @@
     @include flex(column, center, center);
     width: 100%;
     height: 100%;
-    padding-bottom: 300px;
-    &__listtype {
-        padding-top: 150px;
-        padding-bottom: 79px;
-        button {
-            font-family: Noto Sans KR;
-            font-size: 22px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 28px;
-            letter-spacing: 0em;
-            text-align: left;
-            color: #838383;
-            padding: 0 40px 0 0;
-        }
-        &.click {
-            color: #1f1f1f;
-            padding-right: 40px;
-        }
+    padding-bottom: 110px;
+    &__header {
+        margin: 0;
+        padding-top: 67px;
+        padding-bottom: 42px;
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    section {
+        width: 100%;
+        margin-bottom: 40px;
+        border-bottom: 1px solid rgba(196, 196, 196, 0.5);
     }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .activity {
-        width: 100vw;
+        padding-bottom: 80px;
         &__header {
-            @include flex(row, center, center);
-            width: 100vw;
+            padding: 0;
             height: 69px;
-            border-bottom: 0.487px solid #afafaf;
-            span {
-                font-family: Noto Sans KR;
-                font-size: 21px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 69px;
-                letter-spacing: 0em;
-            }
+            line-height: 69px;
+            border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+            text-align: center;
+            font-weight: 500;
+            font-size: 21px;
+        }
+        section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(226, 226, 226, 0.5);
         }
     }
 }
@@ -50,11 +44,14 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .activity {
+        padding-bottom: 20px;
         &__header {
             height: 47px;
-            span {
-                font-size: 17px;
-            }
+            line-height: 47px;
+            font-size: 17px;
+        }
+        section {
+            margin-bottom: 10px;
         }
     }
 }

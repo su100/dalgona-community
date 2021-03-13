@@ -1,43 +1,29 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import EditProfile from 'components/common/EditProfile';
+import queryString from 'query-string';
 import ActivityList from 'components/common/ActivityList';
-import PointList from 'components/common/PointList';
+import Pagination from 'components/common/Pagination';
 import './Activity.scss';
 
 class Activity extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            type: 'activity',
-        };
-    }
-    handleType = (e) => {
-        this.setState({ type: e.target.id });
+    handlePage = (e) => {
+        const { history } = this.props;
+        const page = e.target.value;
+        history.push(`/my/activity?page=${page}`);
     };
+
     render() {
-        const { type } = this.state;
-        const { myPost } = this.props;
-        console.log(this.props.myPost);
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+        const { myPostCount, myPost } = this.props;
         return (
             <div className="activity">
-                <div className="only-pc">
-                    <div className="activity__listtype">
-                        <button
-                            className={type === 'activity' ? 'profile__listtype click' : undefined}
-                            onClick={this.handleType}
-                            id="activity"
-                        >
-                            활동내역
-                        </button>
-                    </div>
-                </div>
-                <div className="not-pc">
-                    <div className="activity__header">
-                        <span>활동내역</span>
-                    </div>
-                </div>
-                <ActivityList myPost={myPost} />
+                <h4 className="activity__header">활동내역</h4>
+                <section>
+                    {Object.keys(myPost).map((date) => {
+                        return <ActivityList key={date} date={date} myPost={myPost[date]} />;
+                    })}
+                </section>
+                <Pagination countList={myPostCount} currentPage={currentPage} handlePage={this.handlePage} />
             </div>
         );
     }
