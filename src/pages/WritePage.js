@@ -7,7 +7,7 @@ const WritePage = ({ history, location, match }) => {
     return (
         <div>
             <PageTemplate header={<NavContainer history={history} location={location} isHome={true} />} nofooter={true}>
-                <WriteContainer history={history} match={match} />
+                <WriteContainer history={history} match={match} location={location} />
             </PageTemplate>
         </div>
     );
