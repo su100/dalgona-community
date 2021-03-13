@@ -4,7 +4,7 @@ import 'quill/dist/quill.bubble.css';
 import photoIcon from 'images/photo.svg';
 import './Editor.scss';
 
-const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, handleAnonymous }) => {
+const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, handleAnonymous, boardUrl }) => {
     const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
     const quillInstance = useRef(null); // Quill 인스턴스를 설정 설정
 
@@ -86,7 +86,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
             {!readOnly && (
                 <div className="editor-photo-btn">
                     <div className="editor-photo-btn-div">
-                        <div className="write__info-type">비투비</div>
+                        <div className="write__info-type">{boardUrl[2]}</div>
                         <div className="editor-photo-btn">
                             <input type="checkbox" onChange={handleAnonymous} /> 익명
                             <button className="btn-photo" onClick={onClickImageBtn}>
@@ -105,7 +105,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
                     </div>
                 </div>
             )}
-            <div className="write__contents">
+            <div className={!readOnly ? 'write__contents' : 'read__contents'}>
                 <div ref={quillElement} onClick={setFocus} />
             </div>
         </div>

@@ -7,6 +7,11 @@ import Write from 'components/Write';
 
 class WriteContainer extends Component {
     addPostImage = async (formdata, func) => {
+        const { isAuthenticated } = this.props;
+        if (!isAuthenticated) {
+            alert('로그인이 필요합니다.');
+            this.props.history.push('/login');
+        }
         const { WriteActions } = this.props;
         try {
             await WriteActions.addPostImage(formdata);
@@ -26,12 +31,14 @@ class WriteContainer extends Component {
         }
         if (this.props.post_success) history.push(`/luna/${match.params.board_url}`);
     };
+
     render() {
         return (
             <Fragment>
                 <Write
                     history={this.props.history}
                     match={this.props.match}
+                    location={this.props.location}
                     addPostImage={this.addPostImage}
                     addPost={this.addPost}
                     isAuthenticated={this.props.isAuthenticated}

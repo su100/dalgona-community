@@ -25,12 +25,6 @@ class FreePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getReply = (boardUrl, page) => {
-        let params = {};
-        params['page'] = page;
-        console.log(params);
-        this.getPostReply(boardUrl, page);
-    };
     addPostReply = async (formData) => {
         const { WriteActions } = this.props;
         try {
@@ -39,13 +33,68 @@ class FreePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    updatePostReply = async (formData, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostReply(formData, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
     addPostRereply = async (formData) => {
-        const { WriteActions } = this.props;
+        const { WriteActions, match } = this.props;
         try {
             await WriteActions.addPostRereply(formData);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getPostReply(match.params.postid, 1);
+    };
+    deletePostReply = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    updatePostRereply = async (formdata, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostRereply(formdata, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    deletePostRereply = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    replyRecommend = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
+    };
+    reReplyRecommend = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.postid, 1);
     };
     componentDidMount() {
         const postid = this.props.match.params.postid;
@@ -54,7 +103,7 @@ class FreePostContainer extends Component {
         this.getReply(postid, 1);
     }
     render() {
-        const { history, location, match, isAuthenticated } = this.props;
+        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
         return (
             <Fragment>
                 <Post
@@ -62,6 +111,8 @@ class FreePostContainer extends Component {
                     history={history}
                     location={location}
                     isAuthenticated={isAuthenticated}
+                    reply_success={reply_success}
+                    rereply_success={rereply_success}
                     postid={match.params.postid}
                     getReply={this.getReply}
                     addPostReply={this.addPostReply}
@@ -69,6 +120,12 @@ class FreePostContainer extends Component {
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
+                    updatePostReply={this.updatePostReply}
+                    deletePostReply={this.deletePostReply}
+                    updatePostRereply={this.updatePostRereply}
+                    deletePostRereply={this.deletePostRereply}
+                    replyRecommend={this.replyRecommend}
+                    reReplyRecommend={this.reReplyRecommend}
                 />
             </Fragment>
         );
@@ -79,8 +136,12 @@ export default connect(
         isAuthenticated: state.auth.get('isAuthenticated'),
         postInfo: state.free.get('postInfo'),
         postReplyList: state.free.get('postReplyList'),
+        reply_success: state.pender.success['write/ADD_POST_REPLY'],
+        rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
     }),
     (dispatch) => ({
+        AuthActions: bindActionCreators(authActions, dispatch),
         FreeActions: bindActionCreators(freeActions, dispatch),
+        WriteActions: bindActionCreators(writeActions, dispatch),
     })
 )(FreePostContainer);

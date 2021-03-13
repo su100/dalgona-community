@@ -36,7 +36,7 @@
         @include flex(row, flex-start, center);
         width: 1200px;
         padding-top: 21px;
-        padding-bottom: 101px;
+        padding-bottom: 40px;
         span {
             padding-right: 41px;
             font-family: Noto Sans KR;
@@ -55,6 +55,7 @@
         background: #dadada;
     }
     &__post {
+        min-height: 600px;
         padding-top: 40px;
     }
 }
@@ -81,7 +82,7 @@
             @include flex(row, flex-start, center);
             width: 728px;
             padding-top: 4px;
-            padding-bottom: 17px;
+            padding-bottom: 5px;
             span {
                 padding-right: 41px;
                 font-size: 15px;
@@ -98,6 +99,7 @@
             background: #dadada;
         }
         &__post {
+            min-height: 480px;
             padding-top: 40px;
             padding-bottom: 33px;
         }
@@ -124,7 +126,7 @@
             @include flex(row, flex-start, center);
             width: 320px;
             padding-top: 4px;
-            padding-bottom: 17px;
+            padding-bottom: 5px;
             span {
                 font-size: 12px;
                 color: #a8a8a8;
@@ -136,6 +138,7 @@
             background: #dadada;
         }
         &__post {
+            min-height:300px;
             padding-top: 12px;
             padding-bottom: 47px;
         }

@@ -42,7 +42,8 @@ class Write extends Component {
     };
 
     addPost = () => {
-        const { match, addPost, updatePost, editPost, isAuthenticated } = this.props;
+        const { match, addPost, updatePost, editPost, isAuthenticated, location } = this.props;
+        const boardUrl = location.pathname.split('/')[2];
         const { title, categoryId, isAnonymous, editorState } = this.state;
         //빈 값 체크
         if (title === '') alert('제목을 입력해주세요.');
@@ -66,7 +67,7 @@ class Write extends Component {
             addPost(
                 title,
                 JSON.stringify(editorState, null, 2),
-                'iu',
+                boardUrl,
                 isAnonymous ? true : false //익명이 참일때 1, 익명이 아닐 때 0
             );
         }
@@ -80,16 +81,17 @@ class Write extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        //댓글 대댓글 입력 초기화
         if (snapshot === 'post') {
             console.log('초기화');
+            const boardUrl = location.pathname.split('/')[2];
             this.setState({ title: null, editorState: null, isAnonymous: false });
-            this.props.history.push('/luna/1');
+            this.props.history.push(`/luna/${boardUrl}`);
         }
     }
 
     render() {
-        const { title, categoryId, isAnonymous, previewURL } = this.state;
+        const { title, categoryId, isAnonymous, previewURL, location } = this.state;
+        const { isAuthenticated } = this.props;
         return (
             <div className="write">
                 <div className="not-pc">
@@ -128,6 +130,8 @@ class Write extends Component {
                     addPostImage={this.props.addPostImage}
                     handleForm={this.handleForm('title')}
                     handleAnonymous={this.handleAnonymous}
+                    boardUrl={this.props.location.pathname.split('/')}
+                    isAuthenticated={isAuthenticated}
                 />
                 <div className="write__btn">
                     <button onClick={this.props.history.goBack} className="write__btn-cancel">
