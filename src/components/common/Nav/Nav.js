@@ -194,23 +194,31 @@ class Nav extends Component {
                             )}
                             {(isPC || openMenu === 'Luna') && (
                                 <div className="nav-hover__menu-luna">
-                                    <Link to={{ pathname: '/luna/daily-life', path: 'Luna' }}>
-                                        <span>daily-life</span>
+                                    <Link to={{ pathname: '/luna/btob', path: 'Luna' }}>
+                                        <span>비투비</span>
                                     </Link>
                                     <Link to={{ pathname: '/luna/help', path: 'Luna' }}>
-                                        <span>help</span>
+                                        <span>청하</span>
                                     </Link>
-                                    <span>아이유</span>
+                                    <Link to={{ pathname: '/luna/iu', path: 'Luna' }}>
+                                        <span>아이유</span>
+                                    </Link>
                                 </div>
                             )}
                             {(isPC || openMenu === 'free') && (
                                 <div className="nav-hover__menu-free">
-                                    <Link to={{ pathname: '/free/1', path: 'free' }}>
+                                    <Link to={{ pathname: '/free/daily-life', path: 'free' }}>
                                         <span> 일상 / 잡담</span>
                                     </Link>
-                                    <span>취미</span>
-                                    <span>생활정보</span>
-                                    <span>고민</span>
+                                    <Link to={{ pathname: '/free/hobby', path: 'free' }}>
+                                        <span>취미</span>
+                                    </Link>
+                                    <Link to={{ pathname: '/free/life-info', path: 'free' }}>
+                                        <span>생활정보</span>
+                                    </Link>
+                                    <Link to={{ pathname: '/free/worry', path: 'free' }}>
+                                        <span>고민</span>
+                                    </Link>
                                 </div>
                             )}
                             {(isPC || openMenu === 'dalgona') && (

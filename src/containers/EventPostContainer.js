@@ -34,9 +34,6 @@ class EventPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getReply = (boardUrl, page) => {
-        this.getPostReply(boardUrl, page);
-    };
     addPostReply = async (formData) => {
         const { WriteActions } = this.props;
         try {
@@ -53,23 +50,92 @@ class EventPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    updatePostReply = async (formData, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostReply(formData, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    deletePostReply = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    updatePostRereply = async (formdata, updateId) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.updatePostRereply(formdata, updateId);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    deletePostRereply = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    replyRecommend = async (replyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostReply(replyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    reReplyRecommend = async (reReplyUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPostRereply(reReplyUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostReply(match.params.eventid, 1);
+    };
+    getReply = (boardUrl, page) => {
+        this.getPostReply(boardUrl, page);
+    };
     componentDidMount() {
         const eventid = this.props.match.params.eventid;
         this.getPostInfo(eventid);
         this.getReply(eventid, 1);
     }
     render() {
+        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
         return (
             <Fragment>
                 <Post
                     type="event"
                     history={history}
-                    postid={this.props.match.params.eventid}
+                    location={location}
+                    isAuthenticated={isAuthenticated}
+                    postid={match.params.eventid}
+                    reply_success={reply_success}
+                    rereply_success={rereply_success}
+                    getReply={this.getReply}
                     addPostReply={this.addPostReply}
                     addPostRereply={this.addPostRereply}
                     getPostInfo={this.getPostInfo}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
+                    updatePostReply={this.updatePostReply}
+                    deletePostReply={this.deletePostReply}
+                    updatePostRereply={this.updatePostRereply}
+                    deletePostRereply={this.deletePostRereply}
+                    replyRecommend={this.replyRecommend}
+                    reReplyRecommend={this.reReplyRecommend}
                     postReplyCount={this.props.postReplyCount}
                 />
             </Fragment>
@@ -83,6 +149,8 @@ export default connect(
         postInfo: state.dalgona.get('postInfo'),
         postReplyList: state.dalgona.get('postReplyList'),
         postReplyCount: state.dalgona.get('postReplyCount'),
+        reply_success: state.pender.success['write/ADD_POST_REPLY'],
+        rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
