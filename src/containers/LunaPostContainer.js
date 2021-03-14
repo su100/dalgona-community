@@ -109,6 +109,14 @@ class LunaPostContainer extends Component {
         }
         this.getPostReply(match.params.postid, 1);
     };
+    recommendPost = async (boardUrl) => {
+        const { LunaActions, match } = this.props;
+        try {
+            await LunaActions.recommendPost(boardUrl);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     ///
     getReply = (boardUrl, page) => {
         this.getPostReply(boardUrl, page);

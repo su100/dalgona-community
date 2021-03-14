@@ -35,14 +35,14 @@ class View extends Component {
                         <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
                         <span>조회수 {postInfo.views}</span>
                     </div>
-                    <span className="not-pc">조회수 {postInfo.views} | 21:20 | 추천 50</span>
+                    <span className="not-pc">
+                        조회수 {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
+                    </span>
                 </div>
-                <div className="view__post">
-                    <Editor readOnly contents={postInfo.body} />
-                </div>
+                <div className="view__post"> {postInfo.body} </div>
             </div>
         );
     }
 }
-
+// <Editor readOnly contents={postInfo.body} />
 export default View;
