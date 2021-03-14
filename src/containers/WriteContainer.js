@@ -21,7 +21,7 @@ class WriteContainer extends Component {
         func(this.props.imageURL);
     };
 
-    addPost = async (title, body, boardUrl, anonymous, board) => {
+    addPost = async (title, body, boardUrl, anonymous) => {
         console.log(title, body, boardUrl, anonymous);
         const { WriteActions, history, match } = this.props;
         try {
