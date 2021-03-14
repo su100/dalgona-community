@@ -236,7 +236,7 @@ class CommentList extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { vote, commentList, voteReplyCount, postReplyCount } = this.props;
+        const { vote, commentList, voteReplyCount, postReplyCount, recommend_count } = this.props;
         const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
@@ -245,7 +245,7 @@ class CommentList extends Component {
                     <div className="comment-list__count">
                         <div className="comment-list__count-recommend">
                             <span className="border">추천</span>
-                            <span>123</span>
+                            <span>{recommend_count}</span>
                         </div>
                         <div className="comment-list__count-reply">
                             <span className="border">댓글</span>
@@ -257,7 +257,7 @@ class CommentList extends Component {
                     <div className="not-pc">
                         <div className="comment-list__count">
                             <img src={heart}></img>
-                            <span>추천 6</span>
+                            <span>추천 {recommend_count}</span>
                         </div>
                     </div>
                 )}

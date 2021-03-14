@@ -96,6 +96,9 @@ class FreePostContainer extends Component {
         }
         this.getPostReply(match.params.postid, 1);
     };
+    getReply = (boardUrl, page) => {
+        this.getPostReply(boardUrl, page);
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         //console.log(this.props.match.params.postid);
@@ -126,6 +129,7 @@ class FreePostContainer extends Component {
                     deletePostRereply={this.deletePostRereply}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
+                    postReplyCount={this.props.postReplyCount}
                 />
             </Fragment>
         );
@@ -136,6 +140,7 @@ export default connect(
         isAuthenticated: state.auth.get('isAuthenticated'),
         postInfo: state.free.get('postInfo'),
         postReplyList: state.free.get('postReplyList'),
+        postReplyCount: state.free.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
     }),

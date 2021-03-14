@@ -21,7 +21,7 @@ class WriteContainer extends Component {
         func(this.props.imageURL);
     };
 
-    addPost = async (title, body, boardUrl, anonymous) => {
+    addPost = async (title, body, boardUrl, anonymous, board) => {
         console.log(title, body, boardUrl, anonymous);
         const { WriteActions, history, match } = this.props;
         try {
@@ -29,7 +29,7 @@ class WriteContainer extends Component {
         } catch (e) {
             console.log('error log:' + e);
         }
-        if (this.props.post_success) history.push(`/luna/${match.params.board_url}`);
+        if (this.props.post_success) history.push(`/free/${boardUrl}`);
     };
 
     render() {

@@ -37,6 +37,7 @@ class Post extends Component {
             postReplyCount,
             reply_success,
             rereply_success,
+            postInfo,
         } = this.props;
         console.log(postReplyList);
         return (
@@ -47,7 +48,7 @@ class Post extends Component {
                     location={location}
                     postid={this.props.postid}
                     getPostInfo={this.props.getPostInfo}
-                    postInfo={this.props.postInfo}
+                    postInfo={postInfo}
                 />
                 <CommentList
                     history={history}
@@ -58,6 +59,7 @@ class Post extends Component {
                     isAuthenticated={isAuthenticated}
                     reply_success={reply_success}
                     rereply_success={rereply_success}
+                    recommend_count={postInfo.recommend_count}
                     deleteReply={this.deleteReply}
                     deleteRereply={this.deleteRereply}
                     replyRecommend={this.replyRecommend}

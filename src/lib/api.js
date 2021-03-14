@@ -201,13 +201,18 @@ export const getMyPoint = (params) =>
 /*write*/
 //게시글 작성하기
 export const addPost = (title, body, boardUrl, anonymous) =>
-    axios.post(`${API_BASE_URL}/board/${boardUrl}/posts`, {
-        title: title,
-        body: body,
-        board_url: boardUrl,
-        anonymous: anonymous,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/board/${boardUrl}/posts`,
+        {
+            title: title,
+            body: body,
+            board_url: boardUrl,
+            anonymous: anonymous,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 //즐겨찾기 추가 및 삭제
 export const updateBookmark = (bookmark) =>
     axios.post(
@@ -265,5 +270,11 @@ export const recommendPostRereply = (reReplyUrl) =>
 //즐겨찾기 추가 및 삭제
 export const getBookmarkList = () =>
     axios.get(`${API_BASE_URL}/accounts/profile/bookmark`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+//게시글 추천
+export const recommendPost = (boardUrl) =>
+    axios.post(`${API_BASE_URL}/board/recommend`, {
+        board_post_id: boardUrl,
         headers: { Authorization: getAccesesToken() },
     });

@@ -13,7 +13,7 @@ export const POST_INFO = 'luna/POST_INFO'; //글 정보 가져오기
 export const GET_POST_REPLY = 'luna/GET_POST_REPLY'; //댓글 리스트 가져오기
 export const LIST_BOOKMARK = 'luna/LIST_BOOKMARK'; //즐겨찾기 가져오기
 export const UPDATE_BOOKMARK = 'luna/UPDATE_BOOKMARK'; //즐겨찾기 추가 및 삭제
-
+export const RECOMMEND_POST = 'write/RECOMMEND_POST'; //게시글 추천
 /* 액션 생성자 */
 export const addPostImage = createAction(ADD_POST_IMAGE, api.addPostImage);
 export const getBoardInfo = createAction(VIEW_BOARD, api.getBoardInfo);
@@ -23,6 +23,7 @@ export const getPostInfo = createAction(POST_INFO, api.getPostInfo);
 export const getPostReply = createAction(GET_POST_REPLY, api.getPostReply);
 export const getBookmarkList = createAction(LIST_BOOKMARK, api.getBookmarkList);
 export const updateBookmark = createAction(UPDATE_BOOKMARK, api.updateBookmark);
+export const recommendPost = createAction(RECOMMEND_POST, api.recommendPost);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -124,6 +125,18 @@ export default handleActions(
                 return state
                     .set('postReplyList', action.payload.data.results)
                     .set('postReplyCount', action.payload.data.count);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: RECOMMEND_POST,
+            onSuccess: (state, action) => {
+                console.log('ggg');
+                return state;
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

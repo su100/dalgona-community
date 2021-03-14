@@ -68,7 +68,8 @@ class Write extends Component {
                 title,
                 JSON.stringify(editorState, null, 2),
                 boardUrl,
-                isAnonymous ? true : false //익명이 참일때 1, 익명이 아닐 때 0
+                isAnonymous ? true : false, //익명이 참일때 1, 익명이 아닐 때 0
+                board
             );
         }
     };
