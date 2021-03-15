@@ -4,9 +4,9 @@
 .login {
     @include flex(column, center, center);
     width: 100%;
-    height: calc(100vh + 150px);
+    height: calc(100vh + 50px);
     &__logo {
-        padding-top: 243px;
+        padding-top: 100px;
         padding-bottom: 76px;
         img {
             height: 71.33126831054688px;
@@ -16,21 +16,22 @@
     &__input {
         @include flex(column, center, center);
         input {
-            width: 701px;
-            height: 76px;
-            background: #dadada;
-            border-radius: 8px;
-            border: none;
+            width: 698px;
+            height: 50px;
+            background: #fff;
+            border-radius: 0px;
+            border: 1px solid #A7A7A7;
         }
         &-id {
-            margin-bottom: 17px;
+            margin-bottom: 10px;
         }
         &-password {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
         &-selectbox {
             @include flex(row, flex-start, flex-start);
             width: 701px;
+            margin-bottom: 16px;
             .remember-check {
                 width: 18px;
                 height: 18px;
@@ -69,18 +70,17 @@
         }
     }
     &__button {
-        padding-bottom: 250px;
+        padding-bottom: 37px;
         button {
-            width: 454px;
-            height: 103px;
+           height: 59px;
+           width: 704px;
             background: #f7c95f;
-            border-radius: 8px;
             border: none;
             font-family: Noto Sans KR;
             font-style: normal;
             font-weight: bold;
-            font-size: 34px;
-            line-height: 41px;
+            font-size: 23px;
+            line-height: 33px;
             color: #1f1f1f;
         }
     }
