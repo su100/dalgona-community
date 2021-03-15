@@ -257,7 +257,12 @@ class Home extends Component {
                                 hotPostList.map((post, index) => {
                                     const image = post.body.includes('image:') ? post.body : '';
                                     return (
-                                        <Link to={`/luna/${post.board_url.board_url}/${post.id}`} key={post.id}>
+                                        <Link
+                                            to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${
+                                                post.board_url.board_url
+                                            }/${post.id}`}
+                                            key={post.id}
+                                        >
                                             <div className="home__item--hotpost--pc">
                                                 <div>{image && <img src={image} alt="post" />}</div>
                                                 <div>
