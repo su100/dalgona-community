@@ -4,7 +4,7 @@
 .login {
     @include flex(column, center, center);
     width: 100%;
-    height: calc(100vh + 50px);
+    height: 100vh;
     &__logo {
         padding-top: 100px;
         padding-bottom: 76px;
