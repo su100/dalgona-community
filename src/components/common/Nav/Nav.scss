@@ -125,7 +125,7 @@
                     color: #838383;
                     padding: 9px 0;
                 }
-                padding-right:20%;
+                padding-right: 20%;
             }
         }
         &__menu {
@@ -274,6 +274,7 @@
                 height: 42px;
                 margin-top: 0px;
                 padding-right: 0px;
+                padding-left: 0px;
                 &-main,
                 &-luna,
                 &-free,
@@ -357,6 +358,7 @@
                 width: 100%;
                 height: 40px;
                 padding-left: 0px;
+                flex-shrink: none;
                 min-width: 0px;
                 &-content {
                     width: 20%;
@@ -388,18 +390,18 @@
             width: 100%;
             height: 25.62px;
             background: rgb(53, 53, 53);
-            min-width:0px;
             @include flex(row, center, center);
             &__border {
-                  min-width:0px;
                 display: none;
             }
             &__menu {
                 @include flex(row, space-around, center);
                 width: 100%;
-                height: inherit;
+                height: 26px;
                 margin-top: 0px;
+                min-width: 0px;
                 padding-right: 0px;
+                padding-left: 0px;
                 &-main,
                 &-luna,
                 &-free,
@@ -407,7 +409,7 @@
                     @include flex(row, space-around, center);
                     width: 100%;
                     min-width: 0px;
-                    height: inherit;
+                    height: 26px;
                     color: white;
                     font-family: Noto Sans KR;
                     font-size: 12px;
