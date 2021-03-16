@@ -51,10 +51,11 @@ class App extends Component {
                     <Route exact path="/vote" component={VoteBoardPage} />
                     <Route exact path="/vote/:voteid" component={VotePage} />
                     <Route exact path="/luna/:board_url" component={LunaBoardPage} />
+                    <Route exact path="/luna/write/:board_url" component={WritePage} />
                     <Route exact path="/luna/:board_url/:postid" component={LunaPostPage} />
-                    <Route exact path="/write/:category" component={WritePage} />
-                    <Route exact path="/free/:category" component={FreeBoardPage} />
-                    <Route exact path="/free/:category/:postid" component={FreePostPage} />
+                    <Route exact path="/free/:board_url" component={FreeBoardPage} />
+                    <Route exact path="/free/write/:category" component={WritePage} />
+                    <Route exact path="/free/:board_url/:postid" component={FreePostPage} />
                     <Route exact path="/notice" component={NoticeBoardPage} />
                     <Route exact path="/notice/:noticeid" component={NoticePostPage} />
                     <Route exact path="/event" component={EventBoardPage} />

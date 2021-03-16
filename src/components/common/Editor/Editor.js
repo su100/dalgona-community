@@ -4,7 +4,17 @@ import 'quill/dist/quill.bubble.css';
 import photoIcon from 'images/photo.svg';
 import './Editor.scss';
 
-const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, handleAnonymous, boardUrl }) => {
+const Editor = ({
+    readOnly,
+    QuillChange,
+    boardTitle,
+    title,
+    contents,
+    addPostImage,
+    handleForm,
+    handleAnonymous,
+    isAnonymous,
+}) => {
     const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
     const quillInstance = useRef(null); // Quill 인스턴스를 설정 설정
 
@@ -84,11 +94,12 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
     return (
         <div className={readOnly ? 'read-only editor' : 'editor'}>
             {!readOnly && (
-                <div className="editor-photo-btn">
-                    <div className="editor-photo-btn-div">
-                        <div className="write__info-type">{boardUrl[2]}</div>
+                <div className="editor-top">
+                    <div className="editor-top__row">
+                        <div className="editor-top__row-boardname">{boardTitle}</div>
                         <div className="editor-photo-btn">
-                            <input type="checkbox" onChange={handleAnonymous} /> 익명
+                            <input type="checkbox" checked={isAnonymous} onChange={handleAnonymous} id="anonymous" />
+                            <label htmlFor="anonymous">익명</label>
                             <button className="btn-photo" onClick={onClickImageBtn}>
                                 <img src={photoIcon} alt="add-pic" /> 파일선택
                             </button>
@@ -96,7 +107,7 @@ const Editor = ({ readOnly, QuillChange, contents, addPostImage, handleForm, han
                     </div>
                     <div className="editor-title">
                         <input
-                            // value={title}
+                            value={title}
                             onChange={handleForm}
                             className="post-editor-title"
                             type="text"

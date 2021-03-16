@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import photoIcon from 'images/photo.svg';
 import Editor from 'components/common/Editor';
-import arrowIcon from 'images/arrowIcon.png';
 import './Write.scss';
 
 class Write extends Component {
     constructor(props) {
         super(props);
-        this.searchSelect = [
-            { name: '일상/잡담', id: '1' },
-            { name: '취미', id: '2' },
-            { name: '생활정보', id: '3' },
-            { name: '고민', id: '4' },
-        ];
+        const isEdit = Object.keys(props.editPost).length > 0;
         this.state = {
-            title: '',
+            isEdit: isEdit,
+            title: isEdit ? props.editPost.title : '',
             categoryId: '',
-            isAnonymous: false,
-            editorState: '',
+            isAnonymous: isEdit ? props.editPost.anonymous : false,
+            editorState: isEdit ? props.editPost.body : '',
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -27,8 +21,7 @@ class Write extends Component {
     }
 
     handleForm = (name) => (e) => {
-        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-        this.setState({ [name]: value });
+        this.setState({ [name]: e.target.value });
     };
 
     handleAnonymous = (e) => {
@@ -41,25 +34,20 @@ class Write extends Component {
         return !textContent.trim();
     };
 
+    updatePost = () => {
+        const { editPost, updatePost } = this.props;
+        const { title, editorState, isAnonymous } = this.state;
+        updatePost(editPost.board_url, editPost.id, title, JSON.stringify(editorState, null, 2), isAnonymous);
+    };
+
     addPost = () => {
-        const { match, addPost, updatePost, editPost, isAuthenticated, location } = this.props;
+        const { addPost, isAuthenticated, location } = this.props;
         const boardUrl = location.pathname.split('/')[2];
-        const { title, categoryId, isAnonymous, editorState } = this.state;
+        const { title, isAnonymous, editorState } = this.state;
         //빈 값 체크
         if (title === '') alert('제목을 입력해주세요.');
         else if (this.isEmpty(editorState)) alert('내용을 입력해주세요.');
         else {
-            /* if (editPost.size > 0) {
-                 //수정일 때
-                 updatePost(
-                     match.params.board_url,
-                     editPost.get('id'),
-                     title,
-                     JSON.stringify(editorState, null, 2),
-                     categoryId === '0' ? null : categoryId, //카테고리 선택 안 하면 null
-                     anonymous ? 1 : 0 //익명이 참일때 1, 익명이 아닐 때 0)
-                 );
-             } else*/
             if (!isAuthenticated) {
                 alert('로그인이 필요합니다.');
                 this.props.history.push('/login');
@@ -72,48 +60,14 @@ class Write extends Component {
             );
         }
     };
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        if (prevProps.post_success !== this.props.post_success && this.props.post_success) {
-            //댓글 작성 성공했을 때
-            return 'post';
-        }
-        return null;
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (snapshot === 'post') {
-            console.log('초기화');
-            const boardUrl = location.pathname.split('/')[2];
-            this.setState({ title: null, editorState: null, isAnonymous: false });
-            this.props.history.push(`/luna/${boardUrl}`);
-        }
-    }
 
     render() {
-        const { title, categoryId, isAnonymous, previewURL, location } = this.state;
-        const { isAuthenticated } = this.props;
+        const { previewURL, isEdit, title, isAnonymous, editorState } = this.state;
+        const { isAuthenticated, boardInfo, editPost } = this.props;
         return (
             <div className="write">
-                <div className="not-pc">
-                    <div className="write__top">
-                        <span>글쓰기</span>
-                        <button>글쓰기</button>
-                    </div>
-                </div>
-                <div className="write__info">
-                    <select
-                        onChange={this.handleForm('categoryId')}
-                        value={categoryId}
-                        style={{ background: `url(${arrowIcon}) no-repeat 107px white` }}
-                    >
-                        {this.searchSelect.map((category) => {
-                            return (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            );
-                        })}
-                    </select>
+                <div className="write__top">
+                    <span>글쓰기</span>
                 </div>
                 {previewURL && (
                     <div className="signupinfo__img-preview">
@@ -125,7 +79,10 @@ class Write extends Component {
                     </div>
                 )}
                 <Editor
-                    contents={''}
+                    boardTitle={boardInfo.board_name}
+                    title={title}
+                    contents={editorState}
+                    isAnonymous={isAnonymous}
                     QuillChange={this.handleChange}
                     addPostImage={this.props.addPostImage}
                     handleForm={this.handleForm('title')}
@@ -137,8 +94,8 @@ class Write extends Component {
                     <button onClick={this.props.history.goBack} className="write__btn-cancel">
                         취소
                     </button>
-                    <button onClick={this.addPost} className="write__btn-confirm">
-                        확인
+                    <button onClick={isEdit ? this.updatePost : this.addPost} className="write__btn-confirm">
+                        {isEdit ? '수정' : '등록'}
                     </button>
                 </div>
             </div>

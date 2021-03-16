@@ -117,6 +117,14 @@ class LunaPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
+    deletePost = async () => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePost(match.params.board_url, match.params.postid); //boardUrl, postId
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     ///
     getReply = (boardUrl, page) => {
         this.getPostReply(boardUrl, page);
@@ -128,7 +136,7 @@ class LunaPostContainer extends Component {
     }
 
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
+        const { history, location, match, isAuthenticated, reply_success, rereply_success, WriteActions } = this.props;
         return (
             <Fragment>
                 <Post
@@ -140,6 +148,8 @@ class LunaPostContainer extends Component {
                     reply_success={reply_success}
                     rereply_success={rereply_success}
                     getReply={this.getReply}
+                    setPost={WriteActions.setPost}
+                    deletePost={this.deletePost}
                     addPostReply={this.addPostReply}
                     addPostRereply={this.addPostRereply}
                     addPostImage={this.addPostImage}

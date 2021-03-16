@@ -12,7 +12,6 @@ class View extends Component {
 
     render() {
         const { link, postInfo, type } = this.props;
-        console.log(postInfo);
         const { location } = this.props;
         const path = location.pathname.split('/');
         return (
@@ -31,13 +30,20 @@ class View extends Component {
                 </div>
                 <div className="view__info">
                     <div className="only-pc">
-                        <span>{!postInfo.anonymous && postInfo.author && postInfo.author.nickname}</span>
+                        <span>{postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname}</span>
                         <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
                         <span>조회수 {postInfo.views}</span>
                     </div>
                     <span className="not-pc">
-                        조회수 {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
+                        {postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname} 조회수{' '}
+                        {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
                     </span>
+                    {postInfo.is_author && (
+                        <div className="view__btn-area">
+                            <button onClick={this.props.editPost}>수정</button>
+                            <button onClick={this.props.deletePost}>삭제</button>
+                        </div>
+                    )}
                 </div>
                 <div className="view__post"> {postInfo.body} </div>
             </div>

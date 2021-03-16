@@ -6,12 +6,17 @@ import * as writeActions from 'store/modules/write';
 import Write from 'components/Write';
 
 class WriteContainer extends Component {
-    addPostImage = async (formdata, func) => {
-        const { isAuthenticated } = this.props;
-        if (!isAuthenticated) {
-            alert('로그인이 필요합니다.');
-            this.props.history.push('/login');
+    getBoardInfo = async () => {
+        const { location, WriteActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await WriteActions.getBoardInfo(tmp[3]);
+        } catch (e) {
+            console.log('error log:' + e);
         }
+    };
+
+    addPostImage = async (formdata, func) => {
         const { WriteActions } = this.props;
         try {
             await WriteActions.addPostImage(formdata);
@@ -22,27 +27,55 @@ class WriteContainer extends Component {
     };
 
     addPost = async (title, body, boardUrl, anonymous) => {
-        console.log(title, body, boardUrl, anonymous);
         const { WriteActions, history, match } = this.props;
         try {
             await WriteActions.addPost(title, body, boardUrl, anonymous);
         } catch (e) {
             console.log('error log:' + e);
         }
-        if (this.props.post_success) history.push(`/free/${boardUrl}`);
+        if (this.props.post_success) {
+            const tmp = this.props.location.pathname.split('/');
+            history.push(`/${tmp[1]}/${boardUrl}`);
+        }
     };
 
+    updatePost = async (boardUrl, postId, title, body, anonymous) => {
+        const { WriteActions, history } = this.props;
+        try {
+            await WriteActions.updatePost(boardUrl, postId, title, body, anonymous);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        if (this.props.update_success) {
+            const tmp = this.props.location.pathname.split('/');
+            history.push(`/${tmp[1]}/${boardUrl}`);
+        }
+    };
+
+    componentDidMount() {
+        if (!this.props.isAuthenticated) {
+            alert('로그인이 필요합니다.');
+            this.props.history.push('/login');
+        } else {
+            this.getBoardInfo(); //게시판 정보 가져오기
+        }
+    }
+
     render() {
+        const { history, match, location, boardInfo, editPost, isAuthenticated, post_success } = this.props;
         return (
             <Fragment>
                 <Write
-                    history={this.props.history}
-                    match={this.props.match}
-                    location={this.props.location}
+                    history={history}
+                    match={match}
+                    location={location}
+                    boardInfo={boardInfo}
+                    editPost={editPost}
+                    isAuthenticated={isAuthenticated}
+                    post_success={post_success}
                     addPostImage={this.addPostImage}
+                    updatePost={this.updatePost}
                     addPost={this.addPost}
-                    isAuthenticated={this.props.isAuthenticated}
-                    post_success={this.props.post_success}
                 />
             </Fragment>
         );
@@ -51,10 +84,13 @@ class WriteContainer extends Component {
 export default connect(
     (state) => ({
         isAuthenticated: state.auth.get('isAuthenticated'),
+        boardInfo: state.write.get('boardInfo'),
+        editPost: state.write.get('editPost'),
         imageURL: state.write.get('imageURL'),
         loading: state.pender.pending['write/ADD_POST_IMAGE'],
         post_loading: state.pender.pending['write/ADD_POST'],
         img_success: state.pender.success['write/ADD_POST_IMAGE'],
+        update_success: state.pender.success['write/UPDATE_POST'],
         post_success: state.pender.success['write/ADD_POST'],
     }),
     (dispatch) => ({
