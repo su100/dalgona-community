@@ -31,12 +31,16 @@ class View extends Component {
                 </div>
                 <div className="view__info">
                     <div className="only-pc">
-                        <span>{!postInfo.anonymous && postInfo.author && postInfo.author.nickname}</span>
+                        <span>{!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명'}</span>
                         <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
                         <span>조회수 {postInfo.views}</span>
                     </div>
                     <span className="not-pc">
-                        조회수 {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
+                        {!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명 '}
+                        <span>|</span>조회수 {postInfo.views} <span>|</span>
+                        {moment(postInfo.created_at).format('HH:MM')}
+                        <span>|</span>
+                        추천 {postInfo.recommend_count}
                     </span>
                 </div>
                 <div className="view__post"> {postInfo.body} </div>
