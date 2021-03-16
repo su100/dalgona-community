@@ -42,7 +42,7 @@ class App extends Component {
             <div className="App">
                 <Switch>
                     <Route exact path="/" component={HomePage} />
-                    <Route exact path="/search/:word" component={SearchPage} />
+                    <Route exact path="/search" component={SearchPage} />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/signup" component={SignUpPage} />
                     <Route exact path="/find/id" component={FindIdPage} />

@@ -12,6 +12,17 @@
         outline: none;
         border: none;
     }
+    &.nav-pc{
+        width: 207px; 
+        background:white;
+        input{ 
+            width:100%;
+        }
+        img{
+            width: 16px;
+            height: 16px;
+        }
+    }
 }
 
 //태블릿

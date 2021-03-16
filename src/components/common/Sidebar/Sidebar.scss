@@ -15,7 +15,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        z-index: 1;
+        z-index: 10;
         &__header {
             @include flex(row, center, center);
             height: 74.79000091552734px;

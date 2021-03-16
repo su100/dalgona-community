@@ -7,7 +7,7 @@ const SearchPage = ({ history, location }) => {
     return (
         <div>
             <PageTemplate header={<NavContainer history={history} location={location} isHome={true} />}>
-                <SearchContainer />
+                <SearchContainer history={history} location={location} />
             </PageTemplate>
         </div>
     );
