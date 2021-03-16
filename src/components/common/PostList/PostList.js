@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ history, postList, hasGrid, noBorder, link }) => {
+const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
     const [type, setType] = useState('list');
 
     const handleType = (e) => {
@@ -50,7 +50,7 @@ const PostList = ({ history, postList, hasGrid, noBorder, link }) => {
                                             <p>{post.title}</p>
                                         </div>
                                         <div className="post-list__item--detail">
-                                            {post.reply_count && (
+                                            {hasReply && (
                                                 <span className="post-list__item--comment--pc">
                                                     댓글 {post.reply_count}
                                                 </span>
@@ -61,7 +61,7 @@ const PostList = ({ history, postList, hasGrid, noBorder, link }) => {
                                         </div>
                                     </div>
                                 </div>
-                                {post.reply_count && <div className="post-list__item--comment">{post.reply_count}</div>}
+                                {hasReply && <div className="post-list__item--comment">{post.reply_count}</div>}
                             </Link>
                         );
                     })}
@@ -93,7 +93,7 @@ const PostList = ({ history, postList, hasGrid, noBorder, link }) => {
                                                 <p>{post.title}</p>
                                             </div>
                                             <div className="post-list__item--detail">
-                                                {post.reply_count && (
+                                                {hasReply && (
                                                     <span className="post-list__item--comment--pc">
                                                         댓글 {post.reply_count}
                                                     </span>
@@ -104,8 +104,8 @@ const PostList = ({ history, postList, hasGrid, noBorder, link }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    {post.reply_count && (
-                                        <div className="post-list__item--comment">{post.reply_count}</div>
+                                    {hasReply && (
+                                        <div className="post-list__item--comment not-pc">{post.reply_count}</div>
                                     )}
                                 </Link>
                             );
