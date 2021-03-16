@@ -81,6 +81,13 @@ export const getNewsList = (params) =>
         params: params,
     });
 
+/* search */
+//게시판 종류 별 검색
+export const getSearchList = (searchWord, searchDivision, page, ordering = 'created_at', searchType = 'title-body') =>
+    axios.get(`${API_BASE_URL}/board/search`, {
+        params: { searchType, searchWord, searchDivision, page, ordering },
+    });
+
 /*issue*/
 //기사 인기 키워드
 export const getNewsKeyword = () => axios.get(`${API_BASE_URL}/news/popular-keyword`);
@@ -198,6 +205,7 @@ export const getMyPoint = (params) =>
     axios.get(`${API_BASE_URL}/accounts/profile/mypoint/get?page=${params}`, {
         headers: { Authorization: getAccesesToken() },
     });
+
 /*write*/
 //게시글 작성하기
 export const addPost = (title, body, boardUrl, anonymous) =>
@@ -213,6 +221,28 @@ export const addPost = (title, body, boardUrl, anonymous) =>
             headers: { Authorization: getAccesesToken() },
         }
     );
+
+//게시글 수정하기
+export const updatePost = (boardUrl, postId, title, body, anonymous) =>
+    axios.put(
+        `${API_BASE_URL}/board/${boardUrl}/${postId}`,
+        {
+            title: title,
+            body: body,
+            board_url: boardUrl,
+            anonymous: anonymous,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
+
+//게시글 작성하기
+export const deletePost = (boardUrl, postId) =>
+    axios.delete(`${API_BASE_URL}/board/${boardUrl}/${postId}`, {
+        headers: { Authorization: getAccesesToken() },
+    });
+
 //즐겨찾기 추가 및 삭제
 export const updateBookmark = (bookmark) =>
     axios.post(

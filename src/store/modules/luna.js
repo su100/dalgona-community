@@ -100,7 +100,7 @@ export default handleActions(
         ...pender({
             type: UPDATE_BOOKMARK,
             onSuccess: (state, action) => {
-                return state.set('bookmarkList', action.payload.data);
+                return state.set('bookmarkList', action.payload.data.bookmark);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

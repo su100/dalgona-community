@@ -27,7 +27,7 @@ class ActivityContainer extends Component {
         if (snapshot) {
             const { location } = this.props;
             const query = queryString.parse(location.search);
-            this.getPostList(query.page);
+            this.getMyPost(query.page);
         }
     }
 

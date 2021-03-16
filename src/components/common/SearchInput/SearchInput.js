@@ -1,9 +1,10 @@
 import React from 'react';
 
 import searchIcon from 'images/searchIcon.png';
+import searchIcon_gold from 'images/search.png';
 import './SearchInput.scss';
 
-const SearchInput = ({ searchWord, handleChange, placeholder, getSearch }) => {
+const SearchInput = ({ isNavPC, searchWord, handleChange, placeholder, getSearch }) => {
     const handleKeyPress = (e) => {
         //Enter 누르면 검색
         if (e.key === 'Enter') {
@@ -11,7 +12,7 @@ const SearchInput = ({ searchWord, handleChange, placeholder, getSearch }) => {
         }
     };
     return (
-        <div className="search-input">
+        <div className={isNavPC ? 'nav-pc search-input' : 'search-input'}>
             <input
                 type="search"
                 name="q"
@@ -22,7 +23,7 @@ const SearchInput = ({ searchWord, handleChange, placeholder, getSearch }) => {
                 onKeyPress={handleKeyPress}
             />
             <button onClick={getSearch}>
-                <img src={searchIcon} alt="search" />
+                <img src={isNavPC ? searchIcon_gold : searchIcon} alt="search" />
             </button>
         </div>
     );

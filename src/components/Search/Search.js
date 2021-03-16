@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import Pagination from 'components/common/Pagination';
-import SearchInput from 'components/common/SearchInput';
+import SearchBox from 'components/common/SearchBox';
 import './Search.scss';
 
 class Search extends Component {
     constructor(props) {
         super(props);
+        const query = queryString.parse(location.search);
         this.state = {
             page: 1,
-            searchWord: '', //초기값 url에서 읽어서 넣기
-            searchType: 'all', //초기값 url에서 읽어서 넣기
+            searchWord: query.searchWord,
+            searchDivision: query.searchDivision,
             searchCount: 28,
             searchList: [
                 {
@@ -74,36 +76,49 @@ class Search extends Component {
     };
 
     getSearch = () => {
-        //this.state.searchWord, SearchType으로 getList해오기
-        console.log(this.state.searchType, '에서', this.state.searchWord, '검색');
+        this.props.history.push(
+            `/search?searchWord=${this.state.searchWord}&searchDivision=${this.state.searchDivision}`
+        );
     };
 
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevProps.location !== this.props.location) {
+            return true;
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (snapshot) {
+            //주소바뀜=>검색일어남
+            const { location } = this.props;
+            const query = queryString.parse(location.search);
+            //검색어, 검색범위 변경 적용
+            this.setState({ searchWord: query.searchWord, searchDivision: query.searchDivision });
+        }
+    }
+
     render() {
-        const { page, searchType, searchWord, searchCount } = this.state;
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+        const { searchDivision, searchWord } = this.state;
+        const { searchCount, searchList } = this.props;
         return (
             <div className="search">
                 <h3 className="only-pc">
-                    <span>&apos;{searchWord}&apos;</span>에 대한 총 <span>{searchCount}건</span>의 검색결과
+                    <span>&apos;{query.searchWord}&apos;</span>에 대한 총 <span>{searchCount}건</span>의 검색결과
                 </h3>
-                <h4 className="not-pc">검색</h4>
-                <div className="search__box">
-                    <select id="searchType" value={searchType} onChange={this.handleChange}>
-                        <option value="all">루나+자유+달고나</option>
-                        <option value="luna">루나</option>
-                        <option value="free">자유</option>
-                        <option value="dalgona">달고나</option>
-                    </select>
-                    <SearchInput
-                        searchWord={searchWord}
-                        handleChange={this.handleChange}
-                        placeholder="키워드"
-                        getSearch={this.getSearch}
-                    />
-                </div>
+                <SearchBox
+                    searchWord={searchWord}
+                    searchDivision={searchDivision}
+                    handleChange={this.handleChange}
+                    placeholder="키워드"
+                    getSearch={this.getSearch}
+                />
                 <div className="border_line" />
                 <h5 className="not-pc">{searchCount}건</h5>
                 <div className="search__container--postlist">
-                    {this.state.searchList.map((post) => {
+                    {searchList.map((post) => {
                         return (
                             <div key={post.id} className="search__item">
                                 <div className="search__item--left">
@@ -130,7 +145,7 @@ class Search extends Component {
                         );
                     })}
                 </div>
-                <Pagination countList={searchCount} currentPage={page} handlePage={this.handlePage} />
+                <Pagination countList={searchCount} currentPage={currentPage} handlePage={this.handlePage} />
             </div>
         );
     }

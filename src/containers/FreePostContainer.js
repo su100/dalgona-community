@@ -96,6 +96,14 @@ class FreePostContainer extends Component {
         }
         this.getPostReply(match.params.postid, 1);
     };
+    deletePost = async () => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePost(match.params.board_url, match.params.postid); //boardUrl, postId
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     getReply = (boardUrl, page) => {
         this.getPostReply(boardUrl, page);
     };
@@ -106,7 +114,7 @@ class FreePostContainer extends Component {
         this.getReply(postid, 1);
     }
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
+        const { history, location, match, isAuthenticated, reply_success, rereply_success, WriteActions } = this.props;
         return (
             <Fragment>
                 <Post
@@ -118,6 +126,8 @@ class FreePostContainer extends Component {
                     rereply_success={rereply_success}
                     postid={match.params.postid}
                     getReply={this.getReply}
+                    setPost={WriteActions.setPost}
+                    deletePost={this.deletePost}
                     addPostReply={this.addPostReply}
                     addPostRereply={this.addPostRereply}
                     getPostInfo={this.getPostInfo}

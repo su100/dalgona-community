@@ -85,21 +85,7 @@
                 &.home {
                     padding-left: 20px;
                 }
-            }
-            &-input {
-                width: 100%;
-                padding-left: 5%;
-                padding-right: 5%;
-                input {
-                    background-position: 91% center;
-                    background-repeat: no-repeat;
-                    background-image: url('../../../images/search.png');
-                    background-size: 10%;
-                    width: 207px;
-                    height: 30px;
-                    border-radius: 40px;
-                }
-            }
+            } 
         }
     }
     &-hover {
@@ -238,6 +224,7 @@
             &__menu {
                 @include flex(row, center, center);
                 width: 100%;
+                min-width: 0;
                 height: 40px;
                 padding-left: 0px;
                 flex-shrink: none;
@@ -269,9 +256,11 @@
             }
         }
         &-hover {
+            position:relative;
+            @include flex(row, center, center);
             height: 42.150001525878906px;
             background: rgb(53, 53, 53);
-            @include flex(row, center, center);
+            z-index:5;
             &__border {
                 display: none;
             }
@@ -282,7 +271,6 @@
                 margin-top: 0px;
                 padding-right: 0px;
                 padding-left: 0px;
-                &-main,
                 &-luna,
                 &-free,
                 &-dalgona {
@@ -291,8 +279,7 @@
                     min-width: 0px;
                     max-width: 100%;
                     height: inherit;
-                    color: white;
-                    font-family: Noto Sans KR;
+                    color: white; 
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -308,6 +295,15 @@
                     }
                 }
             }
+        } 
+        &-search__box{
+            position:fixed;
+            top:119.78px;
+            padding-top:42px;
+            width:100%;
+            height:calc(100vh - 119.78px);
+            z-index:3; 
+            background:#fff;
         }
     }
 }
@@ -396,6 +392,8 @@
             }
         }
         &-hover {
+            @include flex(row, center, center);
+            position: relative;
             width: 100%;
             height: 25.62px;
             background: rgb(53, 53, 53);
@@ -435,6 +433,15 @@
                     text-decoration: none;
                 }
             }
+        }
+        &-search__box{
+            position:fixed;
+            top:89.78px;
+            padding-top:25.61px;
+            width:100%;
+            height:calc(100vh - 89.78px);
+            z-index:3; 
+            background:#fff;
         }
     }
 }

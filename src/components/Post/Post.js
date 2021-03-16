@@ -28,6 +28,18 @@ class Post extends Component {
         const postRereplyId = e.currentTarget.id;
         this.props.reReplyRecommend(postRereplyId);
     };
+
+    editPost = () => {
+        const { setPost, location, history, postInfo } = this.props;
+        const tmp = location.pathname.split('/');
+        setPost(postInfo);
+        history.push(`/${tmp[1]}/write/${tmp[2]}`);
+    };
+    deletePost = () => {
+        if (window.confirm('게시글을 삭제하시겠습니까?')) {
+            this.props.deletePost();
+        }
+    };
     render() {
         const {
             postReplyList,
@@ -49,6 +61,8 @@ class Post extends Component {
                     postid={this.props.postid}
                     getPostInfo={this.props.getPostInfo}
                     postInfo={postInfo}
+                    editPost={this.editPost}
+                    deletePost={this.deletePost}
                 />
                 <CommentList
                     history={history}

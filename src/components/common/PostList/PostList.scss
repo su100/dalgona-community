@@ -167,6 +167,7 @@
             }
             .post-list__item--left {
                 @include flex(row, flex-start, center);
+                width:100%; 
             }
             .post-list__img {
                 display: block;
@@ -178,6 +179,7 @@
             }
             .post-list__item--main {
                 @include flex(column, space-around, flex-start);
+                width:100%;
                 height: 101px;
                 .post-list__item--title {
                     width: stretch;
