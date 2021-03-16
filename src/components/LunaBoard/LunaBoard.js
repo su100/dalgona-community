@@ -99,7 +99,7 @@ class LunaBoard extends Component {
                     </div>
                 </section>
                 <div className="border_line" />
-                <PostList history={history} link={`luna/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <PostList hasReply link={`luna/${boardInfo.board_url}`} hasGrid postList={postList} />
                 <section className="only-pc luna-board__container--btn">
                     <Link to={`/write/${boardInfo.board_url}`}>글쓰기</Link>
                 </section>
