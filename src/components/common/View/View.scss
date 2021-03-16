@@ -6,11 +6,9 @@
     width: 100%;
     &__detail {
         @include flex(row, flex-start, center);
-        width: 1200px;
-        span {
-            font-family: Roboto;
-            font-size: 27px;
-            font-style: normal;
+        width:100%;
+        span { 
+            font-size: 27px; 
             font-weight: 400;
             line-height: 34px;
             letter-spacing: 0em;
@@ -21,10 +19,9 @@
     }
     &__title {
         @include flex(row, flex-start, center);
-        width: 1200px;
+        width:100%;
         height: 77px;
-        border-bottom: 0.5px solid #c4c4c4;
-        font-family: Roboto;
+        border-bottom: 0.5px solid #c4c4c4; 
         font-size: 34px;
         font-style: normal;
         font-weight: 700;
@@ -33,17 +30,30 @@
         text-align: left;
     }
     &__info {
-        @include flex(row, flex-start, center);
-        width: 1200px;
+        @include flex(row, space-between, center);
+        width:100%;
         padding-top: 21px;
         padding-bottom: 40px;
         span {
-            padding-right: 41px;
-            font-family: Noto Sans KR;
+            padding-right: 41px; 
             font-size: 11px;
             font-style: normal;
             font-weight: 400;
             color: #4f4f4f;
+        }
+        .view__btn-area{
+            button{
+                width:50px;
+                height:30px;
+                margin-left:5px;
+                border-radius: 5px; 
+                color: #838383;
+                border:1px solid #838383;
+                &:last-child{
+                    color:#fff;
+                    background:#838383;
+                }
+            }
         }
     }
     &__content {
@@ -69,8 +79,7 @@
         &__detail {
             display: none;
         }
-        &__title {
-            @include flex(row, flex-start, center);
+        &__title { 
             width: 728px;
             height: 52px;
             font-size: 23px;
@@ -78,16 +87,23 @@
             padding-top: 9px;
             border-bottom: none;
         }
-        &__info {
-            @include flex(row, flex-start, center);
+        &__info { 
             width: 728px;
             padding-top: 4px;
             padding-bottom: 5px;
             span {
                 padding-right: 41px;
-                font-size: 15px;
-                font-style: normal;
+                font-size: 15px; 
                 color: #a8a8a8;
+            } 
+            .view__btn-area{
+                button{
+                    width:40px;
+                    height:25px;
+                    margin-left:7px;
+                    font-size:12px;
+                    border-radius: 4px;  
+                }
             }
         }
         &__content {
@@ -110,26 +126,32 @@
 @media screen and (max-width: $mobile-max) {
     .view {
         @include flex(column, center, center);
-        width: 100%;
-        font-family: Noto Sans KR;
+        width: 100%; 
         &__detail {
             display: none;
         }
-        &__title {
-            @include flex(row, flex-start, center);
+        &__title { 
             width: 320px;
             height: 25px;
             font-size: 17px;
             padding-top: 16px;
         }
-        &__info {
-            @include flex(row, flex-start, center);
+        &__info { 
             width: 320px;
             padding-top: 4px;
             padding-bottom: 5px;
             span {
                 font-size: 12px;
                 color: #a8a8a8;
+            }
+            .view__btn-area{
+                button{
+                    width:32px;
+                    height:20px;
+                    margin-left:6px;
+                    font-size:10px;
+                    border-radius: 3px;  
+                }
             }
         }
         &__content {

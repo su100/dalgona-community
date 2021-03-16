@@ -6,8 +6,10 @@ import * as api from 'lib/api';
 import { Storage } from 'lib/storage';
 
 /* 액션 타입 */
+export const VIEW_BOARD = 'write/VIEW_BOARD'; //게시판 정보 가져오기
 export const ADD_POST_IMAGE = 'write/ADD_POST_IMAGE'; //이미지 ADD
 export const ADD_POST = 'write/ADD_POST'; //게시물 작성
+export const UPDATE_POST = 'write/UPDATE_POST'; //게시물 수정
 export const ADD_POST_REPLY = 'write/ADD_POST_REPLY'; //투표 게시판 댓글 POST
 export const UPDATE_POST_REPLY = 'write/UPDATE_POST_REPLY'; //게시판 댓글 update
 export const DELETE_POST_REPLY = 'write/DELETE_POST_REPLY'; //게시판 댓글 delete
@@ -16,10 +18,13 @@ export const UPDATE_POST_REREPLY = 'write/UPDATE_POST_REREPLY'; //게시판 대�
 export const DELETE_POST_REREPLY = 'write/DELETE_POST_REREPLY'; //게시판 대댓글 delete
 export const RECOMMEND_POST_REPLY = 'write/RECOMMEND_POST_REPLY'; //댓글 추천 추가 및 취소
 export const RECOMMEND_POST_REREPLY = 'write/RECOMMEND_POST_REREPLY'; //대댓글 추천 추가 및 취소
+export const SET_POST = 'write/SET_POST'; //게시글 수정시 제목, 내용 저장
 
 /* 액션 생성자 */
+export const setPost = createAction(SET_POST);
 export const addPostImage = createAction(ADD_POST_IMAGE, api.addPostImage);
 export const addPost = createAction(ADD_POST, api.addPost);
+export const updatePost = createAction(UPDATE_POST, api.updatePost);
 export const addPostReply = createAction(ADD_POST_REPLY, api.addPostReply);
 export const updatePostReply = createAction(UPDATE_POST_REPLY, api.updatePostReply);
 export const deletePostReply = createAction(DELETE_POST_REPLY, api.deletePostReply);
@@ -28,15 +33,32 @@ export const updatePostRereply = createAction(UPDATE_POST_REREPLY, api.updatePos
 export const deletePostRereply = createAction(DELETE_POST_REREPLY, api.deletePostRereply);
 export const recommendPostReply = createAction(RECOMMEND_POST_REPLY, api.recommendPostReply);
 export const recommendPostRereply = createAction(RECOMMEND_POST_REREPLY, api.recommendPostRereply);
-
+export const getBoardInfo = createAction(VIEW_BOARD, api.getBoardInfo);
 /* 초기 상태 정의 */
 const initialState = Map({
     imageURL: '',
+    boardInfo: {},
+    editPost: {},
 });
 
 /* reducer + pender */
 export default handleActions(
     {
+        [SET_POST]: (state, action) => {
+            console.log(action.payload);
+            return state.set('editPost', action.payload);
+        },
+        ...pender({
+            type: VIEW_BOARD,
+            onSuccess: (state, action) => {
+                return state.set('boardInfo', action.payload.data);
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
+                return state;
+            },
+        }),
         ...pender({
             type: ADD_POST_IMAGE,
             onSuccess: (state, action) => {
@@ -52,13 +74,24 @@ export default handleActions(
             type: ADD_POST,
             onSuccess: (state, action) => {
                 const data = action.payload;
-                console.log('gg');
                 console.log(data);
                 return state;
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                console.log('gg');
+                console.log(data);
+                return state;
+            },
+        }),
+        ...pender({
+            type: UPDATE_POST,
+            onSuccess: (state, action) => {
+                const data = action.payload;
+                console.log(data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
                 console.log(data);
                 return state;
             },

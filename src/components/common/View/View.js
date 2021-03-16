@@ -12,7 +12,6 @@ class View extends Component {
 
     render() {
         const { link, postInfo, type } = this.props;
-        console.log(postInfo);
         const { location } = this.props;
         const path = location.pathname.split('/');
         return (
@@ -38,6 +37,12 @@ class View extends Component {
                     <span className="not-pc">
                         조회수 {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
                     </span>
+                    {postInfo.is_author && (
+                        <div className="view__btn-area">
+                            <button onClick={this.props.editPost}>수정</button>
+                            <button onClick={this.props.deletePost}>삭제</button>
+                        </div>
+                    )}
                 </div>
                 <div className="view__post"> {postInfo.body} </div>
             </div>
