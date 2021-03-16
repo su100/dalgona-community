@@ -62,6 +62,7 @@ class VoteBoard extends Component {
                 />
 
                 <section>
+                    <h4 className="only-pc">인기글</h4>
                     <BasicSlider autoplay speed={5000} infinite background="#dadada">
                         {hotVoteList.map((vote) => {
                             return <VoteItem key={vote.id} id={vote.id} title={vote.title} voteitem={vote.voteitem} />;
