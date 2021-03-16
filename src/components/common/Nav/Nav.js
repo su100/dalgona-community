@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from 'components/common/Sidebar';
-import searchIcon from 'images/search.png';
+import SearchInput from 'components/common/SearchInput';
+import SearchBox from 'components/common/SearchBox';
+import searchIcon from 'images/searchIcon.png';
 import menuIcon from 'images/menu.png';
 import logo from 'images/logo.png';
 import biglogo from 'images/biglogo.png';
@@ -17,6 +19,9 @@ class Nav extends Component {
             _ismounted: false,
             openSidebar: false,
             path: '',
+            isSearch: false,
+            searchWord: '',
+            searchDivision: 'all',
         };
     }
 
@@ -28,6 +33,10 @@ class Nav extends Component {
                 this.setState({ isOpen: true, openMenu: e.target.id });
             }
         }
+    };
+
+    handleChange = (e) => {
+        this.setState({ [e.target.id]: e.target.value });
     };
 
     handleOnClick = (e) => {
@@ -73,6 +82,17 @@ class Nav extends Component {
         if (window.confirm('로그아웃 하시겠습니까?')) this.props.signOut();
     };
 
+    toggleSearch = () => {
+        this.setState({ isSearch: !this.state.isSearch });
+    };
+
+    getSearch = () => {
+        console.log(this.state.searchDivision, this.state.searchWord);
+        this.props.history.push(
+            `/search?searchWord=${this.state.searchWord}&searchDivision=${this.state.searchDivision}`
+        );
+    };
+
     componentDidMount() {
         this._isMounted = true;
         this.checkIsPc();
@@ -85,7 +105,7 @@ class Nav extends Component {
     }
 
     render() {
-        const { isOpen, openMenu, isPC, openSidebar, path } = this.state;
+        const { isSearch, searchWord, searchDivision, isOpen, openMenu, isPC, openSidebar, path } = this.state;
         const { isAuthenticated, profile } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
@@ -101,6 +121,18 @@ class Nav extends Component {
                         />
                     </div>
                 )}
+                {isSearch && (
+                    <div className="nav-search__box not-pc">
+                        <SearchBox
+                            searchWord={searchWord}
+                            searchDivision={searchDivision}
+                            handleChange={this.handleChange}
+                            placeholder="검색어를 입력하세요. (제목 + 내용)"
+                            getSearch={this.getSearch}
+                        />
+                        <div className="border_line" />
+                    </div>
+                )}
                 <div className={isHome ? 'nav-main' : 'nav-main no'}>
                     <div className="nav-main__logo">
                         <div className="not-pc">
@@ -110,7 +142,9 @@ class Nav extends Component {
                             <img src={isPC ? biglogo : logo}></img>
                         </div>
                         <div className="not-pc">
-                            <img className="nav-main__logo-search" src={searchIcon}></img>
+                            <button onClick={this.toggleSearch}>
+                                <img className="nav-main__logo-search" src={searchIcon}></img>
+                            </button>
                         </div>
                     </div>
                     {isAuthenticated ? (
@@ -155,7 +189,13 @@ class Nav extends Component {
                                 </div>
                             ))}
                             <div className="nav-main__menu-input">
-                                <input></input>
+                                <SearchInput
+                                    isNavPC
+                                    searchWord={searchWord}
+                                    placeholder=""
+                                    handleChange={this.handleChange}
+                                    getSearch={this.getSearch}
+                                />
                             </div>
                         </div>
                     )}

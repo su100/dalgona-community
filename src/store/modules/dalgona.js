@@ -13,6 +13,7 @@ export const POST_INFO = 'dalgona/POST_INFO'; //글 정보 가져오기
 export const GET_POST_REPLY = 'dalgona/GET_POST_REPLY'; //댓글 리스트 가져오기
 export const GET_MY_POST = 'dalgona/GET_MY_POST'; //내가 쓴 글 조회
 export const GET_MY_POINT = 'dalgona/GET_MY_POINT'; //내 별 획득 조회
+
 /* 액션 생성자 */
 export const getNoticeList = createAction(LIST_NOTICE, api.getPostList);
 export const getEventList = createAction(LIST_EVENT, api.getPostList);
