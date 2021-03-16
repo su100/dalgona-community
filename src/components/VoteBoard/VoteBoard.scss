@@ -2,9 +2,13 @@
 
 .vote-board {
     padding-bottom: 100px;
-
+    section{
+        h4{
+            font-size:1.55rem;
+        }
+    }
     .vote-board__container {
-        @include flex(row, center, center);
+        @include flex(row, flex-start, center);
         margin-top: 167px;
         margin-bottom: 150px - 20px - 23px; //23px: pagination margin top
         flex-wrap: wrap;
