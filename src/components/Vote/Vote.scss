@@ -81,6 +81,7 @@
                 top: 0;
                 left: -23px;
                 width: 70px;
+                z-index: 1;
                 &-vs {
                     @include flex(row, center, center);
                     height: 57px;

@@ -188,7 +188,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.result.includes('이미 참여한 투표입니다.')) {
+                if (data.detail.includes('이미 참여한 투표입니다.')) {
                     return state.set('isVote', true);
                 }
                 return state;
