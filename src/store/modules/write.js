@@ -66,7 +66,11 @@ export default handleActions(
         ...pender({
             type: ADD_POST_REPLY,
             onSuccess: (state, action) => {
+                const data = action.payload.data;
                 console.log(action.payload.data);
+                if (data.body.includes('Ensure this field has at least 4 characters.')) {
+                    alert('4글자 이상 입력해주세요');
+                }
                 return state;
             },
             onFailure: (state, action) => {
