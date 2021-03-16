@@ -8,11 +8,11 @@
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 999;
     &-modal {
         @include flex(column, center, center);
         height: 208px;
         width: 386px;
-        z-index: 5;
         position: absolute;
         top: 43%;
         left: 38%;
