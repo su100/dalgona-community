@@ -243,10 +243,12 @@ class CommentList extends Component {
             <div className="comment-list">
                 <div className="only-pc">
                     <div className="comment-list__count">
-                        <div className="comment-list__count-recommend">
-                            <span className="border">추천</span>
-                            <span>{recommend_count}</span>
-                        </div>
+                        {!vote && (
+                            <div className="comment-list__count-recommend">
+                                <span className="border">추천</span>
+                                <span>{recommend_count}</span>
+                            </div>
+                        )}
                         <div className="comment-list__count-reply">
                             <span className="border">댓글</span>
                             <span>{vote ? voteReplyCount : postReplyCount}</span>

@@ -2,40 +2,48 @@
 
 //pc, 기본
 .votemodal {
-    @include flex(column, center, center);
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    z-index: 1;
-    height: 208px;
-    width: 386px;
-    border-radius: 4px;
-    background: #c4c4c4;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    span {
-        font-family: Roboto;
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 28px;
-        letter-spacing: 0em;
-        text-align: left;
-        padding-bottom: 38px;
-    }
-    &__button {
-        @include flex(row, center, center);
-        width: 330px;
-        button {
-            height: 40px;
-            width: 157px;
-            border-radius: 4px;
-            background: #ffd278;
-            color: #fff;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    &-modal {
+        @include flex(column, center, center);
+        height: 208px;
+        width: 386px;
+        position: absolute;
+        top: 43%;
+        left: 38%;
+        border-radius: 4px;
+        background: #c4c4c4;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        span {
+            font-family: Roboto;
             font-size: 22px;
-            &.cancel {
-                background: #e6e6e6;
-                color: #838383;
-                margin-right: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 28px;
+            letter-spacing: 0em;
+            text-align: left;
+            padding-bottom: 38px;
+        }
+        &__button {
+            @include flex(row, center, center);
+            width: 330px;
+            button {
+                height: 40px;
+                width: 157px;
+                border-radius: 4px;
+                background: #ffd278;
+                color: #fff;
+                font-size: 22px;
+                &.cancel {
+                    background: #e6e6e6;
+                    color: #838383;
+                    margin-right: 20px;
+                }
             }
         }
     }
@@ -44,33 +52,41 @@
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .votemodal {
-        @include flex(column, space-between, center);
-        position: absolute;
-        top: 50%;
-        left: 30%;
-        height: 197px;
-        width: 382px;
-        border-radius: 0px;
-        background: #ffffff;
-        opacity: 0.85;
-        span {
-            padding-top: 54px;
-            padding-bottom: 54px;
-        }
-        div {
-            width: 100%;
-            button {
-                border-radius: 0px;
-                border-top: 0.5px solid #707070;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        &-modal {
+            @include flex(column, space-between, center);
+            position: absolute;
+            top: 41%;
+            left: 30%;
+            height: 197px;
+            width: 382px;
+            border-radius: 0px;
+            background: #ffffff;
+            opacity: 0.85;
+            span {
+                padding-top: 54px;
+                padding-bottom: 54px;
+            }
+            div {
                 width: 100%;
-                height: 54px;
-                background: none;
-                color: #0078ff;
-                &.cancel {
-                    margin-right: 0px;
-                    color: #0078ff;
+                button {
+                    border-radius: 0px;
+                    border-top: 0.5px solid #707070;
+                    width: 100%;
+                    height: 54px;
                     background: none;
-                    opacity: 0.85;
+                    color: #0078ff;
+                    &.cancel {
+                        margin-right: 0px;
+                        color: #0078ff;
+                        background: none;
+                        opacity: 0.85;
+                    }
                 }
             }
         }
@@ -80,36 +96,46 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .votemodal {
-        @include flex(column, space-between, center);
-        position: absolute;
-        top: 20%;
-        left: 37%;
-        height: 100px;
-        width: 200px;
-        border-radius: 0px;
-        background: #ffffff;
-        opacity: 0.85;
-        span {
-            font-size: 11px;
-            padding-top: 37px;
-            padding-bottom: 37px;
-        }
-        div {
-            width: 100%;
-            button {
-                font-size: 11px;
+        .votemodal {
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            &-modal {
+                @include flex(column, space-between, center);
+                position: absolute;
+                top: 20%;
+                left: 32%;
+                height: 100px;
+                width: 200px;
                 border-radius: 0px;
-                border-top: 0.5px solid #707070;
-                width: 100%;
-                height: 41px;
                 background: #ffffff;
                 opacity: 0.85;
-                color: #0078ff;
-                &.cancel {
-                    background: #ffffff;
-                    margin-right: 0px;
-                    color: #0078ff;
-                    opacity: 0.85;
+                span {
+                    font-size: 11px;
+                    padding-top: 37px;
+                    padding-bottom: 37px;
+                }
+                div {
+                    width: 100%;
+                    button {
+                        font-size: 11px;
+                        border-radius: 0px;
+                        border-top: 0.5px solid #707070;
+                        width: 100%;
+                        height: 41px;
+                        background: #ffffff;
+                        opacity: 0.85;
+                        color: #0078ff;
+                        &.cancel {
+                            background: #ffffff;
+                            margin-right: 0px;
+                            color: #0078ff;
+                            opacity: 0.85;
+                        }
+                    }
                 }
             }
         }

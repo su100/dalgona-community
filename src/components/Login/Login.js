@@ -39,6 +39,9 @@ class Login extends Component {
             console.log(this.state.username);
         }
     };
+    onClickLogin = (e) => {
+        this.signIn();
+    };
     handleForm = (name) => (e) => {
         if (e.target.type === 'checkbox') {
             this.props.setRemember(e.target.checked);
@@ -56,16 +59,14 @@ class Login extends Component {
                     </div>
                 </div>
                 <form className="login__input">
-                    <div className="not-pc">
-                        <div className="login__input-selectbox">
-                            <input
-                                className="remember-check"
-                                type="checkbox"
-                                id="remember"
-                                onChange={this.handleForm('remember')}
-                            />
-                            <span>자동 로그인</span>
-                        </div>
+                    <div className="login__input-selectbox">
+                        <input
+                            className="remember-check"
+                            type="checkbox"
+                            id="remember"
+                            onChange={this.handleForm('remember')}
+                        />
+                        <span>자동 로그인</span>
                     </div>
                     <input
                         className="login__input-id"
@@ -80,22 +81,9 @@ class Login extends Component {
                         onChange={this.handleForm('password')}
                         onKeyPress={this.handleKeyPress}
                     ></input>
-                    <div className="only-pc">
-                        <div className="login__input-selectbox">
-                            <input
-                                className="remember-check"
-                                type="checkbox"
-                                id="remember"
-                                onChange={this.handleForm('remember')}
-                            />
-                            <span>자동 로그인</span>
-                        </div>
-                    </div>
                 </form>
-                <div className="not-pc">
-                    <div className="login__button">
-                        <button>로그인</button>
-                    </div>
+                <div className="login__button">
+                    <button onClick={this.onClickLogin}>로그인</button>
                 </div>
                 <div className="login__searchandsignup">
                     <div className="login__searchandsignup-id">
@@ -106,11 +94,6 @@ class Login extends Component {
                     </div>
                     <div className="login__searchandsignup-signup">
                         <Link to="signup">회원가입</Link>
-                    </div>
-                </div>
-                <div className="only-pc">
-                    <div className="login__button">
-                        <button onClick={this.signIn}>로그인</button>
                     </div>
                 </div>
             </div>

@@ -74,6 +74,7 @@
             &-content {
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
                 text-align: center;
                 &:hover {
                     color: #ffd278;
@@ -111,7 +112,7 @@
                     color: #838383;
                     padding: 9px 0;
                 }
-                padding-right:20%;
+                padding-right: 20%;
             }
         }
         &__menu {
@@ -134,11 +135,13 @@
             &-home {
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
             }
             &-main {
                 @include flex(column, flex-start, center);
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
@@ -146,6 +149,7 @@
                 @include flex(column, flex-start, center);
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
@@ -153,6 +157,7 @@
                 @include flex(column, flex-start, center);
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
             }
@@ -160,6 +165,7 @@
                 @include flex(column, flex-start, center);
                 width: 100%;
                 min-width: 100px;
+                max-width: 140px;
                 height: 256px;
             }
             &-dummy {
@@ -226,6 +232,7 @@
                     width: 20%;
                     height: 40px;
                     min-width: 0px;
+                   max-width: 100%;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -263,14 +270,14 @@
                 height: 42px;
                 margin-top: 0px;
                 padding-right: 0px;
-                z-index:5;
-                &-main,
+                padding-left: 0px;
                 &-luna,
                 &-free,
                 &-dalgona {
                     @include flex(row, space-around, center);
                     width: 100%;
                     min-width: 0px;
+                    max-width: 100%;
                     height: inherit;
                     color: white; 
                     font-size: 15px;
@@ -355,7 +362,9 @@
                 width: 100%;
                 height: 40px;
                 padding-left: 0px;
+                flex-shrink: none;
                 min-width: 0px;
+                max-width: 100%;
                 &-content {
                     width: 20%;
                     height: 30px;
@@ -388,21 +397,18 @@
             width: 100%;
             height: 25.62px;
             background: rgb(53, 53, 53);
-            min-width:0px;
-            z-index:5;
+            @include flex(row, center, center);
             &__border {
-                min-width:0px;
                 display: none;
             }
             &__menu {
                 @include flex(row, space-around, center);
                 width: 100%;
-                min-width: 0;
-                height: inherit;
+                height: 26px;
                 margin-top: 0px;
-                padding-left: 0px;
+                min-width: 0px;
                 padding-right: 0px;
-                z-index:5;
+                padding-left: 0px;
                 &-main,
                 &-luna,
                 &-free,
@@ -410,9 +416,12 @@
                     @include flex(row, space-around, center);
                     width: 100%;
                     min-width: 0px;
-                    height: inherit;
-                    color: white; 
-                    font-size: 12px; 
+                    max-width: 100%;
+                    height: 26px;
+                    color: white;
+                    font-family: Noto Sans KR;
+                    font-size: 12px;
+                    font-style: normal;
                     font-weight: 500;
                     line-height: 17px;
                     letter-spacing: 0em;

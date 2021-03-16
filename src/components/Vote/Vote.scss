@@ -8,7 +8,7 @@
         @include flex(row, flex-start, center);
         width: 100%;
         padding-top: 65px;
-        padding-right: 130px;
+        padding-right: 250px;
         padding-bottom: 70px;
         font-family: Roboto;
         font-size: 27px;
@@ -81,6 +81,7 @@
                 top: 0;
                 left: -23px;
                 width: 70px;
+                z-index: 1;
                 &-vs {
                     @include flex(row, center, center);
                     height: 57px;

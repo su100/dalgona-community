@@ -15,7 +15,7 @@
             text-align: left;
             color: #838383;
         }
-        padding-top: 63px;
+        padding-top: 150px;
     }
     &__title {
         @include flex(row, flex-start, center);
@@ -92,8 +92,10 @@
             padding-top: 4px;
             padding-bottom: 5px;
             span {
-                padding-right: 41px;
-                font-size: 15px; 
+                padding-left: 5px;
+                padding-right: 5px;
+                font-size: 15px;
+                font-style: normal;
                 color: #a8a8a8;
             } 
             .view__btn-area{

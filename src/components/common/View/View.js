@@ -35,8 +35,11 @@ class View extends Component {
                         <span>조회수 {postInfo.views}</span>
                     </div>
                     <span className="not-pc">
-                        {postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname} 조회수{' '}
-                        {postInfo.views} | 21:20 | 추천 {postInfo.recommend_count}
+                        {!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명 '}
+                        <span>|</span>조회수 {postInfo.views} <span>|</span>
+                        {moment(postInfo.created_at).format('HH:MM')}
+                        <span>|</span>
+                        추천 {postInfo.recommend_count}
                     </span>
                     {postInfo.is_author && (
                         <div className="view__btn-area">
