@@ -101,12 +101,14 @@ class Point extends Component {
                         </button>
                     </div>
                 </div>
-                <div className="point__select">
-                    <select id="type" value={type} onChange={this.handleChange}>
-                        <option value="get">충전</option>
-                        <option value="use">사용</option>
-                        <option value="lose">회수</option>
-                    </select>
+                <div className="only-pc">
+                    <div className="point__select-pc">
+                        <select id="type" value={type} onChange={this.handleChange}>
+                            <option value="get">충전</option>
+                            <option value="use">사용</option>
+                            <option value="lose">회수</option>
+                        </select>
+                    </div>
                 </div>
                 <section>
                     {Object.keys(myPoint).map((date) => {

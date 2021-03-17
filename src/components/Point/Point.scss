@@ -25,14 +25,16 @@
             color: black;
         }
     }
-    &__select{
-           @include flex(row,flex-end, center);
-           width: 1140px;
-           padding-bottom: 24px;
-           select{
-               width: 106px;
-               height: 23px;
-           }
+    &__select {
+        &-pc {
+            @include flex(row, flex-end, center);
+            width: 1140px;
+            padding-bottom: 24px;
+            select {
+                width: 106px;
+                height: 23px;
+            }
+        }
     }
 }
 
