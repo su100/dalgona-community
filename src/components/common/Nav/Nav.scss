@@ -16,7 +16,7 @@
             flex-shrink: 10;
             width: 30%;
             height: 70px;
-            min-width: 250px;
+            min-width: 300px;
             &-menu {
                 display: none;
             }
@@ -24,7 +24,7 @@
                 @include flex(row, center, center);
                 width: 80%;
                 height: 55px;
-                padding-left: 10%;
+                padding-left: 30%;
                 padding-right: 10%;
                 img {
                     display: block;
@@ -69,11 +69,11 @@
             flex-shrink: 0;
             line-height: 80px;
             width: 55%;
-            min-width: 800px;
+            min-width: 650px;
             padding-left: 40px;
             &-content {
                 width: 100%;
-                min-width: 100px;
+                min-width: 80px;
                 max-width: 140px;
                 text-align: center;
                 &:hover {
@@ -85,7 +85,11 @@
                 &.home {
                     padding-left: 20px;
                 }
-            } 
+            }
+            &-input {
+                padding-left: 20px;
+                min-width: 300px;
+            }
         }
     }
     &-hover {
@@ -97,10 +101,10 @@
             @include flex(row, flex-end, center);
             flex-shrink: 10;
             width: 43%;
-            min-width: 150px;
+            min-width: 250px;
             height: 256px;
             margin-top: 15px;
-            padding-left: 260px;
+            padding-left: 20%;
             border-right: 1px solid #838383;
             &-authenticated {
                 @include flex(column, flex-start, center);
@@ -119,7 +123,7 @@
             @include flex(row, flex-start, center);
             flex-shrink: 0;
             width: 55%;
-            min-width: 800px;
+            min-width: 650px;
             height: 256px;
             margin-top: 15px;
             padding-left: 40px;
@@ -134,13 +138,13 @@
             }
             &-home {
                 width: 100%;
-                min-width: 100px;
-                max-width: 140px;
+                min-width: 50px;
+                max-width: 220px;
             }
             &-main {
                 @include flex(column, flex-start, center);
                 width: 100%;
-                min-width: 100px;
+                min-width: 80px;
                 max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
@@ -148,7 +152,7 @@
             &-luna {
                 @include flex(column, flex-start, center);
                 width: 100%;
-                min-width: 100px;
+                min-width: 80px;
                 max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
@@ -156,7 +160,7 @@
             &-free {
                 @include flex(column, flex-start, center);
                 width: 100%;
-                min-width: 100px;
+                min-width: 80px;
                 max-width: 140px;
                 height: 256px;
                 border-right: 1px solid #838383;
@@ -164,14 +168,13 @@
             &-dalgona {
                 @include flex(column, flex-start, center);
                 width: 100%;
-                min-width: 100px;
+                min-width: 80px;
                 max-width: 140px;
                 height: 256px;
             }
             &-dummy {
-                width: 100%;
-                padding-left: 15%;
-                padding-right: 10%;
+                min-width: 300px;
+                padding-left: 20px;
             }
         }
     }
@@ -232,7 +235,7 @@
                     width: 20%;
                     height: 40px;
                     min-width: 0px;
-                   max-width: 100%;
+                    max-width: 100%;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
@@ -256,11 +259,11 @@
             }
         }
         &-hover {
-            position:relative;
+            position: relative;
             @include flex(row, center, center);
             height: 42.150001525878906px;
             background: rgb(53, 53, 53);
-            z-index:5;
+            z-index: 5;
             &__border {
                 display: none;
             }
@@ -280,7 +283,7 @@
                     min-width: 0px;
                     max-width: 100%;
                     height: inherit;
-                    color: white; 
+                    color: white;
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -296,15 +299,15 @@
                     }
                 }
             }
-        } 
-        &-search__box{
-            position:fixed;
-            top:119.78px;
-            padding-top:42px;
-            width:100%;
-            height:calc(100vh - 119.78px);
-            z-index:3; 
-            background:#fff;
+        }
+        &-search__box {
+            position: fixed;
+            top: 119.78px;
+            padding-top: 42px;
+            width: 100%;
+            height: calc(100vh - 119.78px);
+            z-index: 3;
+            background: #fff;
         }
     }
 }
@@ -435,14 +438,14 @@
                 }
             }
         }
-        &-search__box{
-            position:fixed;
-            top:89.78px;
-            padding-top:25.61px;
-            width:100%;
-            height:calc(100vh - 89.78px);
-            z-index:3; 
-            background:#fff;
+        &-search__box {
+            position: fixed;
+            top: 89.78px;
+            padding-top: 25.61px;
+            width: 100%;
+            height: calc(100vh - 89.78px);
+            z-index: 3;
+            background: #fff;
         }
     }
 }
