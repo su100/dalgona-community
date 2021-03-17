@@ -10,16 +10,16 @@ class VoteContainer extends Component {
     getVoteInfo = async (boardUrl) => {
         const { IssueActions } = this.props;
         try {
-            console.log(boardUrl);
             await IssueActions.getVoteInfo(boardUrl);
         } catch (e) {
             console.log('error log:' + e);
         }
     };
-    getVoteReply = async (boardUrl, params) => {
+    getVoteReply = async (boardUrl, page, ordering) => {
         const { IssueActions } = this.props;
+        console.log(boardUrl, page, ordering);
         try {
-            await IssueActions.getVoteReply(boardUrl, params);
+            await IssueActions.getVoteReply(boardUrl, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -106,8 +106,8 @@ class VoteContainer extends Component {
         }
     };
 
-    voteReply = (boardUrl, page) => {
-        this.getVoteReply(boardUrl, page);
+    voteReply = (boardUrl, page, ordering) => {
+        this.getVoteReply(boardUrl, page, ordering);
     };
 
     componentDidMount() {
