@@ -26,7 +26,7 @@ const PointList = ({ date, myPoint }) => {
                             </div>
                             <div className="not-pc">
                                 <div className="point-list__activity-point mobile">
-                                    <span>+ {point.points}개</span>
+                                    <span className="pointcount">+ {point.points}개</span>
                                     <img src={star}></img>
                                 </div>
                             </div>
