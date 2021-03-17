@@ -5,15 +5,16 @@
     width: 1141px;
     &__date {
         height: 36px;
-        background: #c4c4c4;
+        background: #f6f6f6;
         span {
-            padding-left: 33px;
             font-family: Noto Sans KR;
-            font-style: normal;
-            font-weight: bold;
             font-size: 17px;
+            font-style: normal;
+            font-weight: 700;
             line-height: 36px;
-            letter-spacing: 0.16px;
+            letter-spacing: 0.1599999964237213px;
+            text-align: left;
+            padding-left: 33px;
             color: #4f4f4f;
         }
     }
@@ -39,8 +40,13 @@
             font-weight: bold;
             font-size: 22px;
             line-height: 28px;
-
             color: #1f1f1f;
+            img{
+                padding-left: 10px;
+                padding-right: 10px;
+                width: 28px;
+                height: 28px;
+            }
         }
     }
 }
@@ -102,9 +108,9 @@
                     font-size: 20px;
                     line-height: 29px;
                     color: #000000;
-                    img{
-                        width:20px;
-                        height:20px;
+                    img {
+                        width: 20px;
+                        height: 20px;
                     }
                 }
             }

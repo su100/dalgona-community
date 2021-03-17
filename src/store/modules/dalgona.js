@@ -33,6 +33,7 @@ const initialState = Map({
     postReplyList: [],
     postReplyCount: 0,
     myPostCount: 0,
+    myPointCount: 0,
     myPost: [],
     myPoint: [],
 });
@@ -114,8 +115,19 @@ export default handleActions(
         ...pender({
             type: GET_MY_POINT,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state.set('myPoint', action.payload.data.results);
+                const { data } = action.payload;
+                const pointList = data.results;
+                let myPointList = {};
+                for (let i = 0; i < pointList.length; i++) {
+                    const date = pointList[i].created_at.substring(0, 10);
+                    if (Object.keys(myPointList).includes(date)) {
+                        myPointList[date] = myPointList[date].push(pointList[i]);
+                    } else {
+                        myPointList[date] = List([pointList[i]]);
+                    }
+                }
+                console.log(data.count);
+                return state.set('myPointCount', data.count).set('myPoint', myPointList);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

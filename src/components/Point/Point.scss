@@ -6,11 +6,15 @@
     height: 100%;
     padding-bottom: 300px;
     &__listtype {
-        width: 1200px;
-        padding-top: 150px;
+        width: 1140px;
+        padding-top: 54px;
         padding-bottom: 79px;
-          @include flex(row, space-between, center);
-        button {
+        @include flex(row, space-between, center);
+        img{
+            width:28px;
+            height: 28px;
+        }
+        span {
             font-family: Noto Sans KR;
             font-size: 22px;
             font-style: normal;
@@ -19,11 +23,6 @@
             letter-spacing: 0em;
             text-align: left;
             color: #838383;
-            padding: 0 40px 0 0;
-        }
-        &.click {
-            color: #1f1f1f;
-            padding-right: 40px;
         }
     }
 }
@@ -63,7 +62,7 @@
             }
             &-star {
                 @include flex(row, row, center);
-                img{
+                img {
                     width: 20px;
                     height: 20px;
                 }

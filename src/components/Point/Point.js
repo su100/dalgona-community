@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import { Link } from 'react-router-dom';
-import EditProfile from 'components/common/EditProfile';
-import ActivityList from 'components/common/ActivityList';
+import Pagination from 'components/common/Pagination';
 import PointList from 'components/common/PointList';
 import star from 'images/star_filled.png';
 
@@ -14,24 +14,28 @@ class Point extends Component {
             type: 'point',
         };
     }
-    handleType = (e) => {
-        this.setState({ type: e.target.id });
+
+    handlePage = (e) => {
+        const { history } = this.props;
+        const page = e.target.value;
+        history.push(`/my/point?page=${page}`);
     };
 
     render() {
-        const { type } = this.state;
-        const { myPoint } = this.props;
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+        const { myPoint, myPointCount } = this.props;
+        console.log(myPointCount);
         console.log(myPoint);
         return (
             <div className="point">
                 <div className="only-pc">
-                    <div className="activity__listtype">
-                        <button className={'profile__listtype click'} onClick={this.handleType} id="point">
-                            별 내역
-                        </button>
-                        <button className={'profile__listtype click'} onClick={this.handleType} id="point">
-                            현재 나의 별
-                        </button>
+                    <div className="point__listtype">
+                        <span> 별 내역</span>
+                        <span>
+                            현재 나의 별 <img src={star}></img>
+                            {myPointCount}
+                        </span>
                     </div>
                 </div>
                 <div className="not-pc">
@@ -51,7 +55,12 @@ class Point extends Component {
                         <button>회수</button>
                     </div>
                 </div>
-                <PointList myPoint={myPoint} />
+                <section>
+                    {Object.keys(myPoint).map((date) => {
+                        return <PointList key={date} date={date} myPoint={myPoint[date]} />;
+                    })}
+                </section>
+                <Pagination countList={myPointCount} currentPage={currentPage} handlePage={this.handlePage} />
             </div>
         );
     }

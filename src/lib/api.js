@@ -201,8 +201,9 @@ export const getMyPost = (page) =>
         headers: { Authorization: getAccesesToken() },
     });
 //별 획득 내역 조회
-export const getMyPoint = (params) =>
-    axios.get(`${API_BASE_URL}/accounts/profile/mypoint/get?page=${params}`, {
+export const getMyPoint = (page) =>
+    axios.get(`${API_BASE_URL}/accounts/profile/mypoint/get`, {
+        params: { page },
         headers: { Authorization: getAccesesToken() },
     });
 
