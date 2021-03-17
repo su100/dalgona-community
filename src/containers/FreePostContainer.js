@@ -17,10 +17,11 @@ class FreePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params) => {
+
+    getPostReply = async (postid, page, ordering) => {
         const { FreeActions } = this.props;
         try {
-            await FreeActions.getPostReply(postid, params);
+            await FreeActions.getPostReply(postid, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -104,14 +105,15 @@ class FreePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getReply = (boardUrl, page) => {
-        this.getPostReply(boardUrl, page);
+    getReply = (boardUrl, page, ordering) => {
+        console.log(boardUrl, page, ordering);
+        this.getPostReply(boardUrl, page, ordering);
     };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         //console.log(this.props.match.params.postid);
         this.getPostInfo(postid);
-        this.getReply(postid, 1);
+        this.getReply(postid, 1, 'recomment_count');
     }
     render() {
         const { history, location, match, isAuthenticated, reply_success, rereply_success, WriteActions } = this.props;

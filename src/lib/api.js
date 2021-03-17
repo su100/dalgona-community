@@ -105,8 +105,10 @@ export const getVoteInfo = (boardUrl) =>
     });
 
 // 투표 게시판 전체 댓글 가져오기
-export const getVoteReply = (boardUrl, params) =>
-    axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply?page=${params}`, {
+export const getVoteReply = (boardUrl, page, ordering) =>
+    axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply`, {
+        page: page,
+        ordering: ordering,
         headers: { Authorization: getAccesesToken() },
     });
 
@@ -190,8 +192,10 @@ export const getPostInfo = (boardUrl, postId) =>
         headers: { Authorization: getAccesesToken() },
     });
 // 댓글 목록 가져오기: 게시글
-export const getPostReply = (postId, params) =>
-    axios.get(`${API_BASE_URL}/board/${postId}/reply?ordering=recommend_count&page=${params}`, {
+export const getPostReply = (postId, page, ordering) =>
+    axios.get(`${API_BASE_URL}/board/${postId}/reply?`, {
+        page: page,
+        ordering: 'recommend_count',
         headers: { Authorization: getAccesesToken() },
     });
 //내가 쓴 글 조회
@@ -201,8 +205,9 @@ export const getMyPost = (page) =>
         headers: { Authorization: getAccesesToken() },
     });
 //별 획득 내역 조회
-export const getMyPoint = (params) =>
-    axios.get(`${API_BASE_URL}/accounts/profile/mypoint/get?page=${params}`, {
+export const getMyPoint = (type, page) =>
+    axios.get(`${API_BASE_URL}/accounts/profile/mypoint/${type}`, {
+        params: page,
         headers: { Authorization: getAccesesToken() },
     });
 

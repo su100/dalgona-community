@@ -3,49 +3,70 @@
 //pc, 기본
 .comment-list {
     width: 1194px;
-    .comment-list__count {
-        @include flex(row, flex-start, center);
+    .comment-list__info {
         width: 1200px;
-        padding-top: 40px;
-        padding-bottom: 60px;
-        font-family: Roboto;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: #838383;
-
-        &-recommend {
+        @include flex(row, space-between, center);
+        .comment-list__info-count {
             @include flex(row, center, center);
-            height: 30px;
-            width: 84px;
-            border-radius: 4px;
-            background: #ffd278;
-            margin-right: 5px;
-            span {
-                padding-left: 5px;
-                &.border {
-                    padding-right: 5px;
-                    border-right: 0.5px solid #ffffff;
+            padding-top: 40px;
+            padding-bottom: 60px;
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 19px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #838383;
+
+            &-recommend {
+                @include flex(row, center, center);
+                height: 30px;
+                width: 84px;
+                border-radius: 4px;
+                background: #ffd278;
+                margin-right: 5px;
+                span {
+                    padding-left: 5px;
+                    &.border {
+                        padding-right: 5px;
+                        border-right: 0.5px solid #ffffff;
+                    }
+                    color: white;
                 }
-                color: white;
+            }
+            &-reply {
+                @include flex(row, center, center);
+                height: 30px;
+                width: 84px;
+                border-radius: 4px;
+                background: #c2c2c2;
+                span {
+                    padding-left: 5px;
+                    &.border {
+                        padding-right: 5px;
+                        border-right: 0.5px solid #838383;
+                    }
+                    color: #838383;
+                }
             }
         }
-        &-reply {
-            @include flex(row, center, center);
-            height: 30px;
-            width: 84px;
-            border-radius: 4px;
-            background: #c2c2c2;
-            span {
-                padding-left: 5px;
-                &.border {
-                    padding-right: 5px;
-                    border-right: 0.5px solid #838383;
+        .comment-list__sort {
+            @include flex(row, space-between, center);
+            width: 130px;
+            button {
+                @include flex(row, center, center);
+                font-family: Noto Sans KR;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0em;
+                text-align: left;
+                img {
+                    height: 6.669921875px;
+                    width: 10.58001708984375px;
                 }
-                color: #838383;
             }
         }
     }
@@ -139,15 +160,38 @@
                 padding-top: 7px;
             }
         }
-        .comment-list__reply {
-            span {
-                font-family: Noto Sans KR;
-                font-size: 19px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 28px;
-                letter-spacing: 0em;
-                text-align: left;
+        .comment-list__ordering {
+            @include flex(row, space-between, center);
+            width: 730px;
+            .comment-list__reply {
+                span {
+                    font-family: Noto Sans KR;
+                    font-size: 19px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 28px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                }
+            }
+            .comment-list__sort {
+                @include flex(row, space-between, center);
+                width: 140px;
+                button {
+                    font-family: Noto Sans KR;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    color: #a8a8a8;
+                    img {
+                        color: #a8a8a8;
+                        width: 10px;
+                        height: 6px;
+                    }
+                }
             }
         }
         .comment-list__item {
@@ -246,6 +290,27 @@
             }
             span {
                 padding-top: 7px;
+            }
+        }
+        .comment-list__ordering {
+            @include flex(row, space-between, center);
+            width: 338px;
+            .comment-list__reply {
+                span {
+                    font-size: 14px;
+                }
+            }
+            .comment-list__sort {
+                @include flex(row, space-between, center);
+                width: 160px;
+                button {
+                    font-size: 12px;
+                    img {
+                        color: #a8a8a8;
+                        width: 10px;
+                        height: 6px;
+                    }
+                }
             }
         }
         .comment-list__reply {

@@ -4,13 +4,17 @@
     @include flex(column, center, center);
     width: 100%;
     height: 100%;
-    padding-bottom: 300px;
+    padding-bottom: 150px;
     &__listtype {
-        width: 1200px;
-        padding-top: 150px;
-        padding-bottom: 79px;
-          @include flex(row, space-between, center);
-        button {
+        width: 1140px;
+        padding-top: 54px;
+        padding-bottom: 61px;
+        @include flex(row, space-between, center);
+        img {
+            width: 28px;
+            height: 28px;
+        }
+        span {
             font-family: Noto Sans KR;
             font-size: 22px;
             font-style: normal;
@@ -18,12 +22,18 @@
             line-height: 28px;
             letter-spacing: 0em;
             text-align: left;
-            color: #838383;
-            padding: 0 40px 0 0;
+            color: black;
         }
-        &.click {
-            color: #1f1f1f;
-            padding-right: 40px;
+    }
+    &__select {
+        &-pc {
+            @include flex(row, flex-end, center);
+            width: 1140px;
+            padding-bottom: 24px;
+            select {
+                width: 106px;
+                height: 23px;
+            }
         }
     }
 }
@@ -33,6 +43,7 @@
     .point {
         @include flex(column, center, center);
         width: 100%;
+        padding-bottom: 80px;
         &__header {
             @include flex(row, center, center);
             width: 100vw;
@@ -63,7 +74,7 @@
             }
             &-star {
                 @include flex(row, row, center);
-                img{
+                img {
                     width: 20px;
                     height: 20px;
                 }
@@ -72,12 +83,22 @@
         &__select {
             @include flex(row, space-around, center);
             height: 59.58px;
-            font-family: Noto Sans KR;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 19px;
-            line-height: 28px;
-            color: #898989;
+            button {
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 18px;
+                line-height: 28px;
+                color: #898989;
+            }
+            &.click {
+                font-weight: bold;
+                color: black;
+            }
+        }
+        section {
+            width: 100%;
+            min-width: 730px;
         }
     }
 }
@@ -85,6 +106,7 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .point {
+        padding-bottom: 50px;
         &__header {
             height: 47px;
             span {
@@ -111,8 +133,14 @@
         &__select {
             @include flex(row, space-around, center);
             height: 35px;
-            font-size: 14px;
-            line-height: 20px;
+            button {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+        section {
+            width: 100%;
+            min-width: 350px;
         }
     }
 }

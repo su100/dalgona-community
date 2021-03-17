@@ -5,7 +5,7 @@ import Pagination from 'components/common/Pagination';
 import userDefault from 'images/user-default.png';
 import heartFilled from 'images/heart_filled.png';
 import heart from 'images/heart.png';
-
+import arrowIcon from 'images/arrowIcon.png';
 import './CommentList.scss';
 
 class CommentList extends Component {
@@ -28,17 +28,22 @@ class CommentList extends Component {
             updateImg: null,
             updateAnonymous: false,
             updatePreview: '',
+            sortType: '',
+            page: 1,
         };
     }
     handlePage = (e) => {
         const page = e.target.value;
-        const { vote } = this.props;
+        const { vote, voteid } = this.props;
         console.log(page);
         if (vote) {
-            this.props.voteReply(this.props.voteid, page);
+            this.props.voteReply(voteid, page);
         } else {
-            this.props.getReply(this.props.postid, page);
+            this.props.getReply(voteid, page);
         }
+        this.setState({
+            page: page,
+        });
     };
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
@@ -233,6 +238,13 @@ class CommentList extends Component {
             this.closeUpdate();
         }
     };
+    handleSort = (e) => {
+        const { page } = this.state;
+        const { vote, voteid, postid } = this.props;
+        const boardUrl = vote ? voteid : postid;
+        this.setState({ sortType: e.target.id });
+        this.props.voteReply(boardUrl, page, e.currentTarget.id);
+    };
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
@@ -242,17 +254,31 @@ class CommentList extends Component {
         return (
             <div className="comment-list">
                 <div className="only-pc">
-                    <div className="comment-list__count">
-                        {!vote && (
-                            <div className="comment-list__count-recommend">
-                                <span className="border">추천</span>
-                                <span>{recommend_count}</span>
+                    <div className="comment-list__info">
+                        <div className="comment-list__info-count">
+                            {!vote && (
+                                <div className="comment-list__info-count-recommend">
+                                    <span className="border">추천</span>
+                                    <span>{recommend_count}</span>
+                                </div>
+                            )}
+                            <div className="comment-list__info-count-reply">
+                                <span className="border">댓글</span>
+                                <span>{vote ? voteReplyCount : postReplyCount}</span>
+                            </div>
+                        </div>
+                        {vote && (
+                            <div className="comment-list__sort">
+                                <button id="recomment_count" onClick={this.handleSort}>
+                                    추천순
+                                    <img src={arrowIcon}></img>
+                                </button>
+                                <button id="created_at" onClick={this.handleSort}>
+                                    최신순
+                                    <img src={arrowIcon}></img>
+                                </button>
                             </div>
                         )}
-                        <div className="comment-list__count-reply">
-                            <span className="border">댓글</span>
-                            <span>{vote ? voteReplyCount : postReplyCount}</span>
-                        </div>
                     </div>
                 </div>
                 {!vote && (
@@ -278,8 +304,22 @@ class CommentList extends Component {
                     addRereply={this.addRereply}
                 />
                 <div className="not-pc">
-                    <div className="comment-list__reply">
-                        <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
+                    <div className="comment-list__ordering">
+                        <div className="comment-list__reply">
+                            <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
+                        </div>
+                        {vote && (
+                            <div className="comment-list__sort">
+                                <button id="recomment_count" onClick={this.handleSort}>
+                                    추천순
+                                    <img src={arrowIcon}></img>
+                                </button>
+                                <button id="created_at" onClick={this.handleSort}>
+                                    최신순
+                                    <img src={arrowIcon}></img>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 {this.props.commentList.map((comment) => {

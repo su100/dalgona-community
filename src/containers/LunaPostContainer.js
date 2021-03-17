@@ -26,10 +26,10 @@ class LunaPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params) => {
+    getPostReply = async (postid, page, ordering) => {
         const { LunaActions } = this.props;
         try {
-            await LunaActions.getPostReply(postid, params);
+            await LunaActions.getPostReply(postid, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -126,8 +126,8 @@ class LunaPostContainer extends Component {
         }
     };
     ///
-    getReply = (boardUrl, page) => {
-        this.getPostReply(boardUrl, page);
+    getReply = (boardUrl, page, ordering) => {
+        this.getPostReply(boardUrl, page, ordering);
     };
     componentDidMount() {
         const postid = this.props.match.params.postid;
