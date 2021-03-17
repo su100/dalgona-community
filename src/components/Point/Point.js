@@ -43,13 +43,18 @@ class Point extends Component {
         this.setState({ type: type });
         this.props.getMyPoint(type, page);
     };
+    handleChange = (e) => {
+        const { page } = this.state;
+        this.setState({ [e.target.id]: e.target.value });
+        this.props.getMyPoint(e.target.value, page);
+    };
+
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
         const { myPoint, myPointCount } = this.props;
         const { type } = this.state;
-        console.log(myPointCount);
-        console.log(myPoint);
+
         return (
             <div className="point">
                 <div className="only-pc">
@@ -95,6 +100,13 @@ class Point extends Component {
                             회수
                         </button>
                     </div>
+                </div>
+                <div className="point__select">
+                    <select id="type" value={type} onChange={this.handleChange}>
+                        <option value="get">충전</option>
+                        <option value="use">사용</option>
+                        <option value="lose">회수</option>
+                    </select>
                 </div>
                 <section>
                     {Object.keys(myPoint).map((date) => {

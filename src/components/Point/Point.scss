@@ -8,7 +8,7 @@
     &__listtype {
         width: 1140px;
         padding-top: 54px;
-        padding-bottom: 79px;
+        padding-bottom: 61px;
         @include flex(row, space-between, center);
         img {
             width: 28px;
@@ -24,6 +24,15 @@
             text-align: left;
             color: black;
         }
+    }
+    &__select{
+           @include flex(row,flex-end, center);
+           width: 1140px;
+           padding-bottom: 24px;
+           select{
+               width: 106px;
+               height: 23px;
+           }
     }
 }
 
