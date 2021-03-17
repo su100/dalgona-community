@@ -209,9 +209,9 @@
                     @include flex(row, center, center);
                     margin-right: 10px;
                     height: 31px;
+                    padding: 0px;
                     img {
-                        padding-left: 0px;
-                        padding-right: 0px;
+                        padding: 0px;
                         width: 110px;
                         height: 31px;
                     }
