@@ -156,12 +156,13 @@
                 @include flex(column, center, center);
                 padding-left: 20px;
                 &-title {
-                    font-size: 14px;
-                    padding-bottom: 11px;
+                    font-size: 12px;
+                    padding-bottom: 0px;
                 }
                 &-luna {
                     font-size: 11px;
                     line-height: 17px;
+                    padding-bottom: 3px;
                 }
             }
             &-reply {
