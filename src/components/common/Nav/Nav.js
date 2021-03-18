@@ -78,6 +78,10 @@ class Nav extends Component {
         this.setState({ openSidebar: !openSidebar });
     };
 
+    closeSidebar = () => {
+        const { openSidebar } = this.state;
+        this.setState({ openSidebar: false });
+    };
     signOut = () => {
         if (window.confirm('로그아웃 하시겠습니까?')) this.props.signOut();
     };
@@ -118,6 +122,8 @@ class Nav extends Component {
                             isAuthenticated={isAuthenticated}
                             profile={profile}
                             signOut={this.signOut}
+                            openSidebar={openSidebar}
+                            closeSidebar={this.closeSidebar}
                         />
                     </div>
                 )}
