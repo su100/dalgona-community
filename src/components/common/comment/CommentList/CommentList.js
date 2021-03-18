@@ -419,7 +419,7 @@ class CommentList extends Component {
                                 </div>
                                 {this.props.recommended && (
                                     <div className="not-pc">
-                                        <button>
+                                        <button id={comment.id} onClick={this.props.replyRecommend}>
                                             <img
                                                 className="comment-list__item__button--heart"
                                                 src={comment.recommended ? heartFilled : heart}
@@ -539,10 +539,10 @@ class CommentList extends Component {
                                             </div>
                                             {this.props.isRecommend && (
                                                 <div className="not-pc">
-                                                    <button>
+                                                    <button id={reComment.id} onClick={this.props.reReplyRecommend}>
                                                         <img
                                                             className="comment-list__item__button--heart"
-                                                            src={reComment.isRecommended ? heartFilled : heart}
+                                                            src={reComment.recommended ? heartFilled : heart}
                                                             alt="heart"
                                                         />
                                                     </button>

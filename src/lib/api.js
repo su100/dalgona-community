@@ -301,16 +301,26 @@ export const deletePostRereply = (reReplyUrl) =>
     });
 //글 추천 추가 및 취소
 export const recommendPostReply = (replyUrl) =>
-    axios.post(`${API_BASE_URL}/board/reply/recommend`, {
-        reply_id: replyUrl,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/board/reply/recommend`,
+        {
+            reply_id: replyUrl,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 //대댓글 추천 추가 및 취소
 export const recommendPostRereply = (reReplyUrl) =>
-    axios.post(`${API_BASE_URL}/board/rereply/recommend`, {
-        rereply_id: reReplyUrl,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/board/rereply/recommend`,
+        {
+            rereply_id: reReplyUrl,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 
 //즐겨찾기 추가 및 삭제
 export const getBookmarkList = () =>
