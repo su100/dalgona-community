@@ -150,17 +150,27 @@ export const deleteVoteRereply = (reReplyUrl) =>
 
 //투표 게시판 댓글 추천 추가 및 취소
 export const replyRecommend = (replyUrl) =>
-    axios.post(`${API_BASE_URL}/battle/vote/board/reply/recommend`, {
-        voteboardreply_id: replyUrl,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/battle/vote/board/reply/recommend`,
+        {
+            voteboardreply_id: replyUrl,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 
 //투표 게시판 대댓글 추천 추가 및 취소
 export const reReplyRecommend = (reReplyUrl) =>
-    axios.post(`${API_BASE_URL}/battle/vote/board/rereply/recommend`, {
-        voteboardrereply_id: reReplyUrl,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/battle/vote/board/rereply/recommend`,
+        {
+            voteboardrereply_id: reReplyUrl,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 //유저 투표하기
 export const userVote = (voteitem) =>
     axios.post(`${API_BASE_URL}/battle/vote`, {
@@ -309,7 +319,12 @@ export const getBookmarkList = () =>
     });
 //게시글 추천
 export const recommendPost = (boardUrl) =>
-    axios.post(`${API_BASE_URL}/board/recommend`, {
-        board_post_id: boardUrl,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/board/recommend`,
+        {
+            board_post_id: boardUrl,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );

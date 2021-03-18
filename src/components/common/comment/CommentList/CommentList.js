@@ -6,6 +6,7 @@ import userDefault from 'images/user-default.png';
 import heartFilled from 'images/heart_filled.png';
 import heart from 'images/heart.png';
 import arrowIcon from 'images/arrowIcon.png';
+import heart_filled from 'images/heart_filled.png';
 import './CommentList.scss';
 
 class CommentList extends Component {
@@ -258,7 +259,7 @@ class CommentList extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { vote, commentList, voteReplyCount, postReplyCount, recommend_count } = this.props;
+        const { vote, commentList, voteReplyCount, postReplyCount, recommend_count, recommend } = this.props;
         const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
@@ -294,7 +295,7 @@ class CommentList extends Component {
                 {!vote && (
                     <div className="not-pc">
                         <div className="comment-list__count">
-                            <img src={heart}></img>
+                            <img src={recommend ? heart_filled : heart} onClick={this.props.recommendPost}></img>
                             <span>추천 {recommend_count}</span>
                         </div>
                     </div>

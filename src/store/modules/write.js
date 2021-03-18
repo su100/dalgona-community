@@ -19,6 +19,7 @@ export const DELETE_POST_REREPLY = 'write/DELETE_POST_REREPLY'; //게시판 대�
 export const RECOMMEND_POST_REPLY = 'write/RECOMMEND_POST_REPLY'; //댓글 추천 추가 및 취소
 export const RECOMMEND_POST_REREPLY = 'write/RECOMMEND_POST_REREPLY'; //대댓글 추천 추가 및 취소
 export const SET_POST = 'write/SET_POST'; //게시글 수정시 제목, 내용 저장
+export const RECOMMEND_POST = 'write/RECOMMEND_POST'; //게시글 추천하기
 
 /* 액션 생성자 */
 export const setPost = createAction(SET_POST);
@@ -34,6 +35,7 @@ export const deletePostRereply = createAction(DELETE_POST_REREPLY, api.deletePos
 export const recommendPostReply = createAction(RECOMMEND_POST_REPLY, api.recommendPostReply);
 export const recommendPostRereply = createAction(RECOMMEND_POST_REREPLY, api.recommendPostRereply);
 export const getBoardInfo = createAction(VIEW_BOARD, api.getBoardInfo);
+export const recommendPost = createAction(RECOMMEND_POST, api.recommendPost);
 /* 초기 상태 정의 */
 const initialState = Map({
     imageURL: '',
@@ -207,6 +209,18 @@ export default handleActions(
                 if (data.detail.includes('rereply recommend deleted')) {
                     alert('추천취소');
                 }
+                return state;
+            },
+        }),
+        ...pender({
+            type: RECOMMEND_POST,
+            onSuccess: (state, action) => {
+                console.log(action.payload.data);
+                return state;
+            },
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                console.log(data);
                 return state;
             },
         }),

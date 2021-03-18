@@ -50,8 +50,10 @@ class Post extends Component {
             reply_success,
             rereply_success,
             postInfo,
+            recommendPost,
         } = this.props;
         console.log(postReplyList);
+        console.log(postInfo);
         return (
             <div className="post">
                 <View
@@ -83,6 +85,8 @@ class Post extends Component {
                     addRereply={this.props.addPostRereply}
                     updateReply={this.props.updatePostReply}
                     updateRereply={this.props.updatePostRereply}
+                    recommendPost={recommendPost}
+                    recommend={postInfo.recommended}
                     isRecommend
                 />
             </div>
