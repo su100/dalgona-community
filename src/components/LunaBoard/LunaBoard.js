@@ -77,6 +77,7 @@ class LunaBoard extends Component {
                     handleChange={this.handleChange}
                     placeholder="글 제목을 검색하세요"
                     getSearch={this.getSearch}
+                    boardUrl={boardInfo.board_url}
                 />
                 <section className="luna-board__container--hot">
                     <h4>인기글</h4>

@@ -109,6 +109,15 @@ class FreePostContainer extends Component {
         console.log(boardUrl, page, ordering);
         this.getPostReply(boardUrl, page, ordering);
     };
+    recommendPost = async (postid) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPost(match.params.postid);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostInfo(match.params.postid);
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         //console.log(this.props.match.params.postid);
@@ -142,6 +151,7 @@ class FreePostContainer extends Component {
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
                     postReplyCount={this.props.postReplyCount}
+                    recommendPost={this.recommendPost}
                 />
             </Fragment>
         );

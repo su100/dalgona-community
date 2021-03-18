@@ -2,8 +2,6 @@
 
 //pc, 기본
 .nav {
-    &.sidebaropen {
-    }
     &-main {
         @include flex(row, center, center);
         width: 100%;
@@ -373,6 +371,7 @@
                     width: 20%;
                     height: 30px;
                     min-width: 0px;
+                    max-width: 20%;
                     font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;

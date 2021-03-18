@@ -51,7 +51,7 @@ class App extends Component {
                     <Route exact path="/vote" component={VoteBoardPage} />
                     <Route exact path="/vote/:voteid" component={VotePage} />
                     <Route exact path="/luna/:board_url" component={LunaBoardPage} />
-                    <Route exact path="/luna/write/:board_url" component={WritePage} />
+                    <Route exact path="/write/:board_url" component={WritePage} />
                     <Route exact path="/luna/:board_url/:postid" component={LunaPostPage} />
                     <Route exact path="/free/:board_url" component={FreeBoardPage} />
                     <Route exact path="/free/write/:category" component={WritePage} />

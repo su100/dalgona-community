@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from 'images/logo.png';
 import avatarbox from 'images/avatarbox.png';
 import './Sidebar.scss';
 
-const Sidebar = ({ handleSidebar, isAuthenticated, profile, signOut }) => {
-    console.log(profile);
+const Sidebar = ({ handleSidebar, isAuthenticated, profile, signOut, closeSidebar, openSidebar }) => {
+    const modalEl = useRef();
+    const handleClickOutside = (e) => {
+        if (openSidebar && !modalEl.current.contains(e.target)) closeSidebar();
+    };
+
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside);
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="sidebar">
-            <div className="sidebar-style">
+            <div className="sidebar-style" ref={modalEl}>
                 <div className="sidebar-style__header">
-                    <img src={logo} onClick={handleSidebar} />
+                    <img src={logo} />
                 </div>
                 {isAuthenticated && (
                     <div className="sidebar-style__profile">

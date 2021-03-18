@@ -6,6 +6,7 @@ import userDefault from 'images/user-default.png';
 import heartFilled from 'images/heart_filled.png';
 import heart from 'images/heart.png';
 import arrowIcon from 'images/arrowIcon.png';
+import heart_filled from 'images/heart_filled.png';
 import './CommentList.scss';
 
 class CommentList extends Component {
@@ -34,12 +35,12 @@ class CommentList extends Component {
     }
     handlePage = (e) => {
         const page = e.target.value;
-        const { vote, voteid } = this.props;
+        const { vote, voteid, postid } = this.props;
         console.log(page);
         if (vote) {
             this.props.voteReply(voteid, page);
         } else {
-            this.props.getReply(voteid, page);
+            this.props.getReply(postid, page);
         }
         this.setState({
             page: page,
@@ -58,9 +59,11 @@ class CommentList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         //댓글 대댓글 입력 초기화
+        const { page } = this.state;
+        const { vote, voteid, postid } = this.props;
         if (snapshot === 'reply') {
             this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
-        } else if (snapshot === 'rereply')
+        } else if (snapshot === 'rereply') {
             this.setState({
                 reImg: '',
                 rePreview: '',
@@ -68,6 +71,14 @@ class CommentList extends Component {
                 reText: '',
                 reAnonymous: false,
             });
+        }
+        if (snapshot === 'reply' || snapshot === 'rereply') {
+            if (vote) {
+                this.props.voteReply(voteid, page);
+            } else {
+                this.props.getReply(postid, page);
+            }
+        }
     }
 
     handleComment = (e) => {
@@ -248,7 +259,7 @@ class CommentList extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { vote, commentList, voteReplyCount, postReplyCount, recommend_count } = this.props;
+        const { vote, commentList, voteReplyCount, postReplyCount, recommend_count, recommend } = this.props;
         const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
@@ -284,7 +295,7 @@ class CommentList extends Component {
                 {!vote && (
                     <div className="not-pc">
                         <div className="comment-list__count">
-                            <img src={heart}></img>
+                            <img src={recommend ? heart_filled : heart} onClick={this.props.recommendPost}></img>
                             <span>추천 {recommend_count}</span>
                         </div>
                     </div>
@@ -408,7 +419,7 @@ class CommentList extends Component {
                                 </div>
                                 {this.props.recommended && (
                                     <div className="not-pc">
-                                        <button>
+                                        <button id={comment.id} onClick={this.props.replyRecommend}>
                                             <img
                                                 className="comment-list__item__button--heart"
                                                 src={comment.recommended ? heartFilled : heart}
@@ -528,10 +539,10 @@ class CommentList extends Component {
                                             </div>
                                             {this.props.isRecommend && (
                                                 <div className="not-pc">
-                                                    <button>
+                                                    <button id={reComment.id} onClick={this.props.reReplyRecommend}>
                                                         <img
                                                             className="comment-list__item__button--heart"
-                                                            src={reComment.isRecommended ? heartFilled : heart}
+                                                            src={reComment.recommended ? heartFilled : heart}
                                                             alt="heart"
                                                         />
                                                     </button>
