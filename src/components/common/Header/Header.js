@@ -2,6 +2,7 @@ import React from 'react';
 import SearchInput from 'components/common/SearchInput';
 import StarIcon from 'images/star.png';
 import StarFilledIcon from 'images/star_filled.png';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({
@@ -14,6 +15,7 @@ const Header = ({
     searchWord,
     getSearch,
     handleChange,
+    boardUrl,
 }) => {
     return (
         <div className="header">
@@ -26,7 +28,11 @@ const Header = ({
                         </button>
                     )}
                 </div>
-                {hasWrite && <button className="header__btn--write">글쓰기</button>}
+                {hasWrite && (
+                    <button className="header__btn--write">
+                        <Link to={`/write/${boardUrl}`}>글쓰기</Link>
+                    </button>
+                )}
             </div>
             <hr className="not-pc" />
             <div className="header__row">

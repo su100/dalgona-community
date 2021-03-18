@@ -34,12 +34,12 @@ class CommentList extends Component {
     }
     handlePage = (e) => {
         const page = e.target.value;
-        const { vote, voteid } = this.props;
+        const { vote, voteid, postid } = this.props;
         console.log(page);
         if (vote) {
             this.props.voteReply(voteid, page);
         } else {
-            this.props.getReply(voteid, page);
+            this.props.getReply(postid, page);
         }
         this.setState({
             page: page,
@@ -58,9 +58,11 @@ class CommentList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         //댓글 대댓글 입력 초기화
+        const { page } = this.state;
+        const { vote, voteid, postid } = this.props;
         if (snapshot === 'reply') {
             this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
-        } else if (snapshot === 'rereply')
+        } else if (snapshot === 'rereply') {
             this.setState({
                 reImg: '',
                 rePreview: '',
@@ -68,6 +70,14 @@ class CommentList extends Component {
                 reText: '',
                 reAnonymous: false,
             });
+        }
+        if (snapshot === 'reply' || snapshot === 'rereply') {
+            if (vote) {
+                this.props.voteReply(voteid, page);
+            } else {
+                this.props.getReply(postid, page);
+            }
+        }
     }
 
     handleComment = (e) => {
