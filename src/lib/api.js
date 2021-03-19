@@ -173,10 +173,15 @@ export const reReplyRecommend = (reReplyUrl) =>
     );
 //유저 투표하기
 export const userVote = (voteitem) =>
-    axios.post(`${API_BASE_URL}/battle/vote`, {
-        voteitem_id: voteitem,
-        headers: { Authorization: getAccesesToken() },
-    });
+    axios.post(
+        `${API_BASE_URL}/battle/vote`,
+        {
+            voteitem_id: voteitem,
+        },
+        {
+            headers: { Authorization: getAccesesToken() },
+        }
+    );
 
 /* Board: luna, free, dalgona*/
 //특정 게시판 정보 가져오기
