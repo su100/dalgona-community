@@ -289,7 +289,7 @@ class CommentList extends Component {
                     <div className="not-pc">
                         <div className="comment-list__count">
                             <img src={recommend ? heart_filled : heart} onClick={this.props.recommendPost}></img>
-                            <span>추천 {recommend_count}</span>
+                            <span className={recommend ? 'recommended' : ''}>추천 {recommend_count}</span>
                         </div>
                     </div>
                 )}
@@ -307,28 +307,26 @@ class CommentList extends Component {
                     addReply={this.addReply}
                     addRereply={this.addRereply}
                 />
-                <div className="not-pc">
-                    <div className="comment-list__ordering">
-                        <div className="comment-list__reply">
-                            <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
-                        </div>
-                        {vote && (
-                            <div className="comment-list__sort">
-                                <button id="recomment_count" onClick={this.handleSort}>
-                                    추천순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                                <button id="created_at" onClick={this.handleSort}>
-                                    최신순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                            </div>
-                        )}
+                <div className="comment-list__ordering">
+                    <div className="comment-list__reply">
+                        <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
                     </div>
+                    {vote && (
+                        <div className="comment-list__sort">
+                            <button id="recomment_count" onClick={this.handleSort}>
+                                추천순
+                                <img src={arrowIcon}></img>
+                            </button>
+                            <button id="created_at" onClick={this.handleSort}>
+                                최신순
+                                <img src={arrowIcon}></img>
+                            </button>
+                        </div>
+                    )}
                 </div>
                 {this.props.commentList.map((comment) => {
                     return (
-                        <div key={comment.id}>
+                        <div key={comment.id} className="comment-list__container">
                             <div className="comment-list__item">
                                 <div className="comment-list__item--left">
                                     <div className="not-pc">
@@ -410,7 +408,7 @@ class CommentList extends Component {
                                         )}
                                     </div>
                                 </div>
-                                {this.props.recommended && (
+                                {this.props.isRecommend && (
                                     <div className="not-pc">
                                         <button id={comment.id} onClick={this.props.replyRecommend}>
                                             <img

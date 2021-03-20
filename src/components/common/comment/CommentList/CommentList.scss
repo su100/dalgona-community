@@ -2,9 +2,9 @@
 
 //pc, 기본
 .comment-list {
-    width: 1194px;
+    width: 100%;
     .comment-list__info {
-        width: 1200px;
+        width: 100%;
         @include flex(row, space-between, center);
         .comment-list__info-count {
             @include flex(row, center, center);
@@ -137,8 +137,9 @@
             border-bottom: 1px solid rgba(131, 131, 131, 0.5);
         }
         .comment-list__item--main {
-            //디자인 나오면 폭 수정
-            width: 1194px - 25.5px - 16px - 39px; //전체 폭에서 recomment-mark의 너비와 padding-left, margin-right 제외
+            width: 100%;
+            // 디자인 나오면 폭 수정
+            // width: 1194px - 25.5px - 16px - 39px; //전체 폭에서 recomment-mark의 너비와 padding-left, margin-right 제외
         }
     }
 }
@@ -146,10 +147,11 @@
 //태블릿
 @media screen and (max-width: $tablet-max) {
     .comment-list {
-        width: 768px;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
         .comment-list__count {
             @include flex(column, center, center);
-            width: 768px;
             padding-top: 0px;
             padding-bottom: 68px;
             img {
@@ -159,15 +161,16 @@
             span {
                 padding-top: 7px;
             }
+            .recommended {
+                color: #ffd278;
+            }
         }
         .comment-list__ordering {
             @include flex(row, space-between, center);
-            width: 730px;
+            width: 100%;
             .comment-list__reply {
                 span {
-                    font-family: Noto Sans KR;
                     font-size: 19px;
-                    font-style: normal;
                     font-weight: 500;
                     line-height: 28px;
                     letter-spacing: 0em;
@@ -194,81 +197,87 @@
                 }
             }
         }
-        .comment-list__item {
-            padding: 22px;
-            width: 743px;
-            .comment-list__item--user-default {
-                margin-right: 29px;
-                width: 61.1px;
-                height: 61.1px;
-            }
 
-            .comment-list__item--main {
-                //디자인 나오면 폭 수정
-                width: 768px - 23.6px - 22px * 3 - 61.1px - 29px;
-                color: #3b3b3b;
-                font-family: Noto Sans KR;
-                .comment-list__item--detail {
-                    font-size: 17px;
-                    span {
-                        margin-right: 7px;
-                        padding-right: 7px;
-                        border-right: 1px solid #3b3b3b;
-                        &:last-child {
-                            border-right: none;
-                        }
-                    }
-                    .comment-list__item--username {
-                        margin-right: 7px;
-                        border-right: 1px solid #3b3b3b;
-                        font-weight: normal;
+        .comment-list__container {
+            width: 100%;
+            .comment-list__item {
+                padding: 22px;
+                .comment-list__item--user-default {
+                    margin-right: 29px;
+                    width: 61.1px;
+                    height: 61.1px;
+                }
+
+                .comment-list__item--main {
+                    //디자인 나오면 폭 수정
+                    width: 100%;
+                    color: #3b3b3b;
+                    .comment-list__item--detail {
                         font-size: 17px;
+                        span {
+                            margin-right: 7px;
+                            padding-right: 7px;
+                            border-right: 1px solid #3b3b3b;
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+                        .comment-list__item--username {
+                            margin-right: 7px;
+                            border-right: 1px solid #3b3b3b;
+                            font-weight: normal;
+                            font-size: 17px;
+                        }
                     }
-                }
-                .comment-list__item--contents {
-                    font-size: 19px;
-                    color: #000000;
-                }
+                    .comment-list__item--contents {
+                        margin: 3.19px 0 14.24px;
+                        font-size: 19px;
+                        color: #000000;
+                    }
 
-                .comment-list__item--button {
-                    button {
-                        margin-left: 6px;
-                        padding-left: 6px;
-                        margin-right: 0;
-                        border-left: 1px solid #b7b7b7;
-                        width: auto;
-                        height: auto;
-                        background: none;
-                        color: #b7b7b7;
-                        font-family: Noto Sans KR;
-                        font-weight: normal;
-                        font-size: 14px;
-                        &:first-child {
-                            margin-left: 0;
-                            padding-left: 0;
-                            border-left: 0;
+                    .comment-list__item--button {
+                        button {
+                            margin-left: 6px;
+                            padding-left: 6px;
+                            margin-right: 0;
+                            border-left: 1px solid #b7b7b7;
+                            width: auto;
+                            height: auto;
+                            background: none;
+                            color: #b7b7b7;
+                            font-family: Noto Sans KR;
+                            font-weight: normal;
+                            font-size: 14px;
+                            &:first-child {
+                                margin-left: 0;
+                                padding-left: 0;
+                                border-left: 0;
+                            }
                         }
                     }
                 }
+                .comment-list__item__button--heart {
+                    width: 23.6px;
+                }
             }
-            .comment-list__item__button--heart {
-                width: 23.6px;
-            }
-        }
-        .comment-list__item--recomment {
-            padding-left: 39px;
-            .comment-list__item--recomment-mark {
-                align-self: center;
-                margin-top: 0;
-                margin-right: 28px;
-                width: 60px;
-                height: 60px;
-                border-left: 1px solid #000;
-                border-bottom: 1px solid #000;
-            }
-            .comment-list__item--main {
-                //디자인 나오면 구체적인 수치로 수정
-                width: 768px - 60px - 28px - 39px -29px -61.1px -23.6px -22px * 2; //전체 폭에서 recomment-mark, user-default, recommend 제외
+            .comment-list__item--recomment {
+                padding-left: 39px;
+                .comment-list__item--recomment-mark {
+                    position: relative;
+                    top: 15px;
+                    margin-right: 28px;
+                    width: 33px;
+                    min-width: 33px;
+                    max-width: 33px;
+                    height: 33px;
+                    border-left: 1px solid #000;
+                    border-bottom: 1px solid #000;
+                }
+                .comment-list__item--main {
+                    //디자인 나오면 구체적인 수치로 수정
+                    width: 100%;
+                    // width: 768px - 60px - 28px - 39px -29px -61.1px -23.6px -22px * 2; //전체 폭에서 recomment-mark, user-default, recommend 제외
+                }
             }
         }
     }
@@ -278,10 +287,8 @@
 @media screen and (max-width: $mobile-max) {
     .comment-list {
         @include flex(column, center, center);
-        width: 360px;
         .comment-list__count {
             @include flex(column, center, center);
-            width: 360px;
             padding-top: 0px;
             padding-bottom: 38px;
             img {
@@ -294,7 +301,6 @@
         }
         .comment-list__ordering {
             @include flex(row, space-between, center);
-            width: 338px;
             .comment-list__reply {
                 span {
                     font-size: 14px;
@@ -314,9 +320,7 @@
             }
         }
         .comment-list__reply {
-            width: 354px;
             span {
-                font-family: Noto Sans KR;
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 500;
@@ -325,55 +329,56 @@
                 text-align: left;
             }
         }
-        .comment-list__item {
-            padding: 20px;
-            width: 345px;
-            .comment-list__item--user-default {
-                margin-right: 16px;
-                width: 40px;
-                height: 40px;
-            }
-            .comment-list__item--main {
-                width: 360px - 20px * 3 - 40px - 16px - 19px;
-                .comment-list__item--detail {
-                    font-size: 12px;
-                    span {
-                        margin-right: 4px;
-                        padding-right: 4px;
-                        &:last-child {
-                            border-right: none;
+        .comment-list__container {
+            .comment-list__item {
+                padding: 20px;
+                .comment-list__item--user-default {
+                    margin-right: 16px;
+                    width: 40px;
+                    height: 40px;
+                }
+                .comment-list__item--main {
+                    .comment-list__item--detail {
+                        font-size: 12px;
+                        span {
+                            margin-right: 4px;
+                            padding-right: 4px;
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+                        .comment-list__item--username {
+                            margin-right: 4px;
+                            font-size: 12px;
                         }
                     }
-                    .comment-list__item--username {
-                        margin-right: 4px;
-                        font-size: 12px;
+                    .comment-list__item--contents {
+                        margin: 5px 0 7px;
+                        font-size: 16px;
+                    }
+                    .comment-list__item--button {
+                        button {
+                            margin-left: 3px;
+                            padding-left: 3px;
+                            font-size: 10px;
+                        }
                     }
                 }
-                .comment-list__item--contents {
-                    font-size: 16px;
-                }
-                .comment-list__item--button {
-                    button {
-                        margin-left: 3px;
-                        padding-left: 3px;
-                        font-size: 10px;
-                    }
+                .comment-list__item__button--heart {
+                    width: 19px;
                 }
             }
-            .comment-list__item__button--heart {
-                width: 19px;
-            }
-        }
-        .comment-list__item--recomment {
-            padding-left: 39px;
-            .comment-list__item--recomment-mark {
-                margin-right: 18px;
-                width: 33px;
-                height: 33px;
-            }
-            .comment-list__item--main {
-                //디자인 나오면 구체적인 수치로 수정
-                width: 360px - 20px * 3 - 40px - 16px - 19px - 40px - 16px; //전체 폭에서 recomment-mark, user-default, recommend 제외
+            .comment-list__item--recomment {
+                padding-left: 39px;
+                .comment-list__item--recomment-mark {
+                    margin-right: 18px;
+                    width: 33px;
+                    height: 33px;
+                }
+                .comment-list__item--main {
+                    //디자인 나오면 구체적인 수치로 수정
+                    // width: 360px - 20px * 3 - 40px - 16px - 19px - 40px - 16px; //전체 폭에서 recomment-mark, user-default, recommend 제외
+                }
             }
         }
     }
