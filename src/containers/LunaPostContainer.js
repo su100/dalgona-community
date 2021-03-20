@@ -19,7 +19,6 @@ class LunaPostContainer extends Component {
     getPostInfo = async (postId) => {
         const { location, LunaActions } = this.props;
         const tmp = location.pathname.split('/');
-        console.log(tmp[2]);
         try {
             await LunaActions.getPostInfo(tmp[2], postId);
         } catch (e) {

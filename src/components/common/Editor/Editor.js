@@ -89,7 +89,6 @@ const Editor = ({
         }
         mounted.current = true;
         let result = JSON.parse(contents);
-        console.log(result);
         if (isCard) {
             let text = [];
             let tmp = result.ops.filter((element) => !element.insert.image); //텍스트만 보이게끔
