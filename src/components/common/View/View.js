@@ -48,10 +48,11 @@ class View extends Component {
                         </div>
                     )}
                 </div>
-                <div className="view__post"> {postInfo.body} </div>
+                <div className="view__post">
+                    <Editor readOnly contents={postInfo.body} />
+                </div>
             </div>
         );
     }
 }
-// <Editor readOnly contents={postInfo.body} />
 export default View;

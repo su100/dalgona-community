@@ -6,6 +6,7 @@ import './Editor.scss';
 
 const Editor = ({
     readOnly,
+    isCard,
     QuillChange,
     boardTitle,
     title,
@@ -48,6 +49,7 @@ const Editor = ({
     };
 
     useEffect(() => {
+        //최초 한번만 실행
         if (quillElement.current) {
             quillInstance.current = new Quill(quillElement.current, {
                 theme: 'bubble',
@@ -82,13 +84,23 @@ const Editor = ({
     const mounted = useRef(false);
     useEffect(() => {
         const quill = quillInstance.current;
-        if (!readOnly && (contents === '' || mounted.current)) {
+        if ((!readOnly && mounted.current) || (readOnly && !contents)) {
             return;
         }
         mounted.current = true;
-        if (contents !== undefined) {
-            quill.setContents(JSON.parse(contents));
-        }
+        let result = JSON.parse(contents);
+        // if (isCard) {
+        //     let text = [];
+        //     let tmp = result.ops.filter((element) => !element.insert.image); //텍스트만 보이게끔
+        //     tmp.forEach((element) => {
+        //         if (element.insert !== '\n') {
+        //             //단독 공백 제거
+        //             text.push({ insert: element.insert }); //텍스트 효과 제거
+        //         }
+        //     });
+        //     result.ops = text;
+        // }
+        quill.setContents(result);
     }, [contents]);
 
     return (

@@ -36,7 +36,6 @@ class CommentList extends Component {
     handlePage = (e) => {
         const page = e.target.value;
         const { vote, voteid, postid } = this.props;
-        console.log(page);
         if (vote) {
             this.props.voteReply(voteid, page);
         } else {
@@ -115,7 +114,6 @@ class CommentList extends Component {
 
     openRecomment = (e) => {
         //답글 새로 열 때마다 상태 초기화: 익명, 내용, 사진
-        console.log(e.currentTarget.id);
         this.setState({ recommentId: e.currentTarget.id, reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
 
@@ -127,7 +125,6 @@ class CommentList extends Component {
     };
     openUpdate = (comment, id) => {
         const { isUpdate } = this.state;
-        console.log(comment);
         if (this.props.vote) {
             this.setState({
                 isUpdate: !isUpdate,
@@ -146,7 +143,6 @@ class CommentList extends Component {
             });
         }
         if (id) {
-            console.log(id);
             this.setState({ updateReplyId: id });
         }
     };
@@ -161,7 +157,6 @@ class CommentList extends Component {
         } else {
             const formData = new FormData();
             if (vote) {
-                console.log(commentImg);
                 formData.append('voteboard_id', voteid);
                 formData.append('content', commentText);
                 if (commentImg !== null) formData.append('votereply_image', commentImg);
@@ -186,7 +181,6 @@ class CommentList extends Component {
         } else {
             const formData = new FormData();
             if (vote) {
-                console.log(voteid, reText, reImg, reAnonymous);
                 formData.append('voteboardreply_id', recommentId);
                 formData.append('content', reText);
                 if (reImg !== null) formData.append('voterereply_image', reImg);
@@ -210,7 +204,6 @@ class CommentList extends Component {
             this.props.history.push('/login');
         } else {
             const formData = new FormData();
-            console.log(updateImg);
             if (vote) {
                 formData.append('content', updateText);
                 if (updateImg !== null) formData.append('votereply_image', updateImg);
@@ -296,7 +289,7 @@ class CommentList extends Component {
                     <div className="not-pc">
                         <div className="comment-list__count">
                             <img src={recommend ? heart_filled : heart} onClick={this.props.recommendPost}></img>
-                            <span>추천 {recommend_count}</span>
+                            <span className={recommend ? 'recommended' : ''}>추천 {recommend_count}</span>
                         </div>
                     </div>
                 )}
@@ -314,28 +307,26 @@ class CommentList extends Component {
                     addReply={this.addReply}
                     addRereply={this.addRereply}
                 />
-                <div className="not-pc">
-                    <div className="comment-list__ordering">
-                        <div className="comment-list__reply">
-                            <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
-                        </div>
-                        {vote && (
-                            <div className="comment-list__sort">
-                                <button id="recomment_count" onClick={this.handleSort}>
-                                    추천순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                                <button id="created_at" onClick={this.handleSort}>
-                                    최신순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                            </div>
-                        )}
+                <div className="comment-list__ordering">
+                    <div className="comment-list__reply">
+                        <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
                     </div>
+                    {vote && (
+                        <div className="comment-list__sort">
+                            <button id="recomment_count" onClick={this.handleSort}>
+                                추천순
+                                <img src={arrowIcon}></img>
+                            </button>
+                            <button id="created_at" onClick={this.handleSort}>
+                                최신순
+                                <img src={arrowIcon}></img>
+                            </button>
+                        </div>
+                    )}
                 </div>
                 {this.props.commentList.map((comment) => {
                     return (
-                        <div key={comment.id}>
+                        <div key={comment.id} className="comment-list__container">
                             <div className="comment-list__item">
                                 <div className="comment-list__item--left">
                                     <div className="not-pc">
@@ -417,7 +408,7 @@ class CommentList extends Component {
                                         )}
                                     </div>
                                 </div>
-                                {this.props.recommended && (
+                                {this.props.isRecommend && (
                                     <div className="not-pc">
                                         <button id={comment.id} onClick={this.props.replyRecommend}>
                                             <img

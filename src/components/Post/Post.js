@@ -16,12 +16,10 @@ class Post extends Component {
     };
     replyRecommend = (e) => {
         const postReplyId = e.currentTarget.id;
-        console.log(postReplyId);
         this.props.replyRecommend(postReplyId);
     };
     deleteRereply = (e) => {
         const postRereplyId = e.currentTarget.id;
-        console.log(postRereplyId);
         this.props.deletePostRereply(postRereplyId);
     };
     reReplyRecommend = (e) => {
@@ -52,8 +50,6 @@ class Post extends Component {
             postInfo,
             recommendPost,
         } = this.props;
-        console.log(postReplyList);
-        console.log(postInfo);
         return (
             <div className="post">
                 <View

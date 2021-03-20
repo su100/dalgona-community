@@ -13,12 +13,11 @@ class Write extends Component {
             isAnonymous: isEdit ? props.editPost.anonymous : false,
             editorState: isEdit ? props.editPost.body : '',
         };
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(html) {
+    handleChange = (html) => {
         this.setState({ editorState: html });
-    }
+    };
 
     handleForm = (name) => (e) => {
         this.setState({ [name]: e.target.value });
@@ -42,7 +41,7 @@ class Write extends Component {
 
     addPost = () => {
         const { addPost, isAuthenticated, location } = this.props;
-        const boardUrl = location.pathname.split('/')[2];
+        const boardUrl = location.pathname.split('/')[3];
         const { title, isAnonymous, editorState } = this.state;
         //빈 값 체크
         if (title === '') alert('제목을 입력해주세요.');
@@ -64,6 +63,7 @@ class Write extends Component {
     render() {
         const { previewURL, isEdit, title, isAnonymous, editorState } = this.state;
         const { isAuthenticated, boardInfo, editPost } = this.props;
+
         return (
             <div className="write">
                 <div className="write__top">

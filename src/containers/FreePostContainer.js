@@ -10,7 +10,6 @@ class FreePostContainer extends Component {
     getPostInfo = async (postId) => {
         const { location, FreeActions } = this.props;
         const tmp = location.pathname.split('/');
-        console.log(tmp[2]);
         try {
             await FreeActions.getPostInfo(tmp[2], postId);
         } catch (e) {
@@ -106,7 +105,6 @@ class FreePostContainer extends Component {
         }
     };
     getReply = (boardUrl, page, ordering) => {
-        console.log(boardUrl, page, ordering);
         this.getPostReply(boardUrl, page, ordering);
     };
     recommendPost = async (postid) => {

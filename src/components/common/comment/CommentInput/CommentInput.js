@@ -46,15 +46,13 @@ const CommentInput = (props) => {
                     </button>
                 </div>
             )}
-            <div>
-                <textarea
-                    id={props.type}
-                    className="comment-input__input"
-                    value={props.commentText}
-                    onChange={props.handleComment}
-                    placeholder="댓글을 입력하세요."
-                />
-            </div>
+            <textarea
+                id={props.type}
+                className="comment-input__input"
+                value={props.commentText}
+                onChange={props.handleComment}
+                placeholder="댓글을 입력하세요."
+            />
             <div className="comment-input--bottom">
                 <div className="comment-input--bottom-file">
                     <span>
