@@ -312,15 +312,17 @@ class CommentList extends Component {
                         <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
                     </div>
                     {vote && (
-                        <div className="comment-list__sort">
-                            <button id="recomment_count" onClick={this.handleSort}>
-                                추천순
-                                <img src={arrowIcon}></img>
-                            </button>
-                            <button id="created_at" onClick={this.handleSort}>
-                                최신순
-                                <img src={arrowIcon}></img>
-                            </button>
+                        <div className="not-pc">
+                            <div className="comment-list__sort">
+                                <button id="recomment_count" onClick={this.handleSort}>
+                                    추천순
+                                    <img src={arrowIcon}></img>
+                                </button>
+                                <button id="created_at" onClick={this.handleSort}>
+                                    최신순
+                                    <img src={arrowIcon}></img>
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>
