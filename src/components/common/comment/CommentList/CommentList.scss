@@ -119,6 +119,9 @@
                     font-weight: bold;
                     font-size: 11px;
                 }
+                &.recommend{
+                    background: #ffd278;
+                }
             }
             .comment-list__item--openupdate {
                 margin-top: 12px;
@@ -308,7 +311,7 @@
             }
             .comment-list__sort {
                 @include flex(row, space-between, center);
-                width: 160px;
+                width: 110px;
                 button {
                     font-size: 12px;
                     img {
