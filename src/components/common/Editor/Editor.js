@@ -88,7 +88,12 @@ const Editor = ({
             return;
         }
         mounted.current = true;
-        let result = JSON.parse(contents);
+        let result;
+        try {
+            result = JSON.parse(contents);
+        } catch (e) {
+            result = contents;
+        }
         quill.setContents(result);
     }, [contents]);
 

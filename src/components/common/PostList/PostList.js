@@ -28,14 +28,19 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
             <div className="only-pc">
                 <div className="post-list__container">
                     {postList.map((post, index) => {
-                        let result = JSON.parse(post.body);
+                        let result;
                         let imageURL = '';
-                        result.ops.some((element) => {
-                            if (element.insert.image) {
-                                imageURL = element.insert.image;
-                                return true;
-                            }
-                        });
+                        try {
+                            result = JSON.parse(post.body);
+                            result.ops.some((element) => {
+                                if (element.insert.image) {
+                                    imageURL = element.insert.image;
+                                    return true;
+                                }
+                            });
+                        } catch (e) {
+                            result = post.body;
+                        }
                         return (
                             <Link
                                 to={`${link}/${post.id}`}
@@ -78,14 +83,19 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
             <div className="not-pc">
                 <div className="post-list__container">
                     {postList.map((post, index) => {
-                        let result = JSON.parse(post.body);
+                        let result;
                         let imageURL = '';
-                        result.ops.some((element) => {
-                            if (element.insert.image) {
-                                imageURL = element.insert.image;
-                                return true;
-                            }
-                        });
+                        try {
+                            result = JSON.parse(post.body);
+                            result.ops.some((element) => {
+                                if (element.insert.image) {
+                                    imageURL = element.insert.image;
+                                    return true;
+                                }
+                            });
+                        } catch (e) {
+                            result = post.body;
+                        }
                         if (type === 'list') {
                             return (
                                 <Link

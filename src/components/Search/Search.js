@@ -67,14 +67,19 @@ class Search extends Component {
                 <h5 className="not-pc">{searchCount}건</h5>
                 <div className="search__container--postlist">
                     {searchList.map((post) => {
-                        let result = JSON.parse(post.body);
+                        let result;
                         let imageURL = '';
-                        result.ops.some((element) => {
-                            if (element.insert.image) {
-                                imageURL = element.insert.image;
-                                return true;
-                            }
-                        });
+                        try {
+                            result = JSON.parse(post.body);
+                            result.ops.some((element) => {
+                                if (element.insert.image) {
+                                    imageURL = element.insert.image;
+                                    return true;
+                                }
+                            });
+                        } catch (e) {
+                            result = post.body;
+                        }
                         return (
                             <div key={post.id} className="search__item">
                                 <div className="search__item--left">
