@@ -112,12 +112,10 @@ export default handleActions(
                 const data = action.payload.response.data;
                 alert(JSON.stringify(data));
                 console.log(data);
-                if (data.non_field_errors) {
-                    if (data.non_field_errors.includes('Unable to log in with provided credentials.'))
-                        alert('존재하지 않는 아이디이거나 잘못된 패스워드입니다.');
-                    else if (data.non_field_errors.includes('E-mail is not verified.')) {
-                        return state.set('isEmailNotCertified', true);
-                    }
+                if (data.non_field_errors?.includes('Unable to log in with provided credentials.'))
+                    alert('존재하지 않는 아이디이거나 잘못된 패스워드입니다.');
+                else if (data.non_field_errors?.includes('E-mail is not verified.')) {
+                    return state.set('isEmailNotCertified', true);
                 } else {
                     alert('로그인 에러');
                 }
@@ -137,21 +135,20 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.password1) {
-                    if (data.password1.includes('This password is too common.')) alert('패스워드가 너무 단순합니다');
-                    else if (
-                        data.password1.includes('This password is too short. It must contain at least 8 characters.')
+                if (data.password1?.includes('This password is too common.')) {
+                    alert('패스워드가 너무 단순합니다');
+                } else if (
+                    data.password1?.includes('This password is too short. It must contain at least 8 characters.')
+                ) {
+                    alert('패스워드는 8글자 이상입니다.');
+                } else if (data.password1?.includes('This password is entirely numeric.')) {
+                    alert('패스워드는 숫자만으로 설정할 수 없습니다.');
+                } else if (
+                    data.profile_image?.includes(
+                        'The submitted data was not a file. Check the encoding type on the form.'
                     )
-                        alert('패스워드는 8글자 이상입니다.');
-                    else if (data.password1.includes('This password is entirely numeric.'))
-                        alert('패스워드는 숫자만으로 설정할 수 없습니다.');
-                } else if (data.profile_image) {
-                    if (
-                        data.profile_image.includes(
-                            'The submitted data was not a file. Check the encoding type on the form.'
-                        )
-                    )
-                        alert('프로필 사진이 file형태가 아닙니다');
+                ) {
+                    alert('프로필 사진이 file형태가 아닙니다');
                 } else {
                     console.log(data);
                     alert('회원가입 에러');
@@ -166,8 +163,8 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                if (data.detail) {
-                    if (data.detail.includes('Invalid signature.')) alert('유효하지 않은 사용자입니다.');
+                if (data.detail?.includes('Invalid signature.')) {
+                    alert('유효하지 않은 사용자입니다.');
                 } else {
                     console.log(data);
                     alert('사용자 정보 가져오기 에러');
@@ -183,8 +180,8 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.nickname) {
-                    if (data.nickname.includes('This field may not be blank.')) alert('닉네임을 입력해주세요');
+                if (data.nickname?.includes('This field may not be blank.')) {
+                    alert('닉네임을 입력해주세요');
                 } else {
                     console.log(data);
                     alert('사용자 정보 가져오기 에러');
@@ -214,10 +211,10 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                if (data.detail) {
-                    if (data.detail.includes('This field must be unique.')) alert('이미 존재하는 아이디입니다.');
-                    else if (data.detail.includes('Ensure this field has at least 5 characters.'))
-                        alert('아이디는 최소 5글자입니다');
+                if (data.detail?.includes('This field must be unique.')) {
+                    alert('이미 존재하는 아이디입니다.');
+                } else if (data.detail?.includes('Ensure this field has at least 5 characters.')) {
+                    alert('아이디는 최소 5글자입니다');
                 } else {
                     console.log(data);
                     alert('아이디 확인 에러');
@@ -234,9 +231,10 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                if (data.detail) {
-                    if (data.detail.includes('Enter a valid email address.')) alert('유효하지 않은 이메일입니다');
-                    else if (data.detail.includes('This field must be unique.')) alert('이미 존재하는 이메일입니다.');
+                if (data.detail?.includes('Enter a valid email address.')) {
+                    alert('유효하지 않은 이메일입니다');
+                } else if (data.detail?.includes('This field must be unique.')) {
+                    alert('이미 존재하는 이메일입니다.');
                 } else {
                     console.log(data);
                     alert('이메일 확인 에러');
@@ -253,8 +251,8 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                if (data.detail) {
-                    if (data.detail.includes('This field must be unique.')) alert('이미 존재하는 닉네임입니다.');
+                if (data.detail?.includes('This field must be unique.')) {
+                    alert('이미 존재하는 닉네임입니다.');
                 } else {
                     console.log(data);
                     alert('닉네임 확인 에러');
