@@ -210,7 +210,7 @@ export const getPostInfo = (boardUrl, postId) =>
 export const getPostReply = (postId, page, ordering) =>
     axios.get(`${API_BASE_URL}/board/${postId}/reply?`, {
         page: page,
-        ordering: 'recommend_count',
+        ordering: ordering,
         headers: { Authorization: getAccesesToken() },
     });
 //내가 쓴 글 조회

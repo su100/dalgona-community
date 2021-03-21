@@ -247,7 +247,11 @@ class CommentList extends Component {
         const { vote, voteid, postid } = this.props;
         const boardUrl = vote ? voteid : postid;
         this.setState({ sortType: e.target.id });
-        this.props.voteReply(boardUrl, page, e.currentTarget.id);
+        if (vote) {
+            this.props.voteReply(boardUrl, page, e.currentTarget.id);
+        } else {
+            this.props.getReply(postid, page, e.currentTarget.id);
+        }
     };
     render() {
         const query = queryString.parse(location.search);
@@ -271,18 +275,16 @@ class CommentList extends Component {
                                 <span>{vote ? voteReplyCount : postReplyCount}</span>
                             </div>
                         </div>
-                        {vote && (
-                            <div className="comment-list__sort">
-                                <button id="recomment_count" onClick={this.handleSort}>
-                                    추천순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                                <button id="created_at" onClick={this.handleSort}>
-                                    최신순
-                                    <img src={arrowIcon}></img>
-                                </button>
-                            </div>
-                        )}
+                        <div className="comment-list__sort">
+                            <button id="recomment_count" onClick={this.handleSort}>
+                                추천순
+                                <img src={arrowIcon}></img>
+                            </button>
+                            <button id="created_at" onClick={this.handleSort}>
+                                최신순
+                                <img src={arrowIcon}></img>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {!vote && (
@@ -311,7 +313,7 @@ class CommentList extends Component {
                     <div className="comment-list__reply">
                         <span>댓글 {vote ? voteReplyCount : postReplyCount}개</span>
                     </div>
-                    {vote && (
+                    <div className="not-pc">
                         <div className="comment-list__sort">
                             <button id="recomment_count" onClick={this.handleSort}>
                                 추천순
@@ -322,7 +324,7 @@ class CommentList extends Component {
                                 <img src={arrowIcon}></img>
                             </button>
                         </div>
-                    )}
+                    </div>
                 </div>
                 {this.props.commentList.map((comment) => {
                     return (
@@ -381,7 +383,14 @@ class CommentList extends Component {
                                             )}
                                             {this.props.isRecommend && (
                                                 <span className="only-pc">
-                                                    <button id={comment.id} onClick={this.props.replyRecommend}>
+                                                    <button
+                                                        className={
+                                                            comment.recommended &&
+                                                            'comment-list__item--button recommend'
+                                                        }
+                                                        id={comment.id}
+                                                        onClick={this.props.replyRecommend}
+                                                    >
                                                         추천
                                                     </button>
                                                 </span>
@@ -499,6 +508,10 @@ class CommentList extends Component {
                                                         {this.props.isRecommend && (
                                                             <span className="only-pc">
                                                                 <button
+                                                                    className={
+                                                                        reComment.recommended &&
+                                                                        'comment-list__item--button recommend'
+                                                                    }
                                                                     id={reComment.id}
                                                                     onClick={this.props.reReplyRecommend}
                                                                 >

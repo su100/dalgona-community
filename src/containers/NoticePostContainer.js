@@ -26,10 +26,10 @@ class NoticePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params) => {
+    getPostReply = async (postid, params, ordering) => {
         const { DalgonaActions } = this.props;
         try {
-            await DalgonaActions.getPostReply(postid, params);
+            await DalgonaActions.getPostReply(postid, params, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -105,8 +105,8 @@ class NoticePostContainer extends Component {
         this.getPostReply(match.params.noticeid, 1);
     };
     ///
-    getReply = (boardUrl, page) => {
-        this.getPostReply(boardUrl, page);
+    getReply = (boardUrl, page, ordering) => {
+        this.getPostReply(boardUrl, page, ordering);
     };
     componentDidMount() {
         const noticeid = this.props.match.params.noticeid;
