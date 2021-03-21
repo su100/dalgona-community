@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({
+    boardType,
+    boardUrl,
     title,
     hasWrite,
     hasBookmark,
@@ -15,7 +17,6 @@ const Header = ({
     searchWord,
     getSearch,
     handleChange,
-    boardUrl,
 }) => {
     return (
         <div className="header">
@@ -30,7 +31,7 @@ const Header = ({
                 </div>
                 {hasWrite && (
                     <button className="header__btn--write">
-                        <Link to={`/write/${boardUrl}`}>글쓰기</Link>
+                        <Link to={`/${boardType}/write/${boardUrl}`}>글쓰기</Link>
                     </button>
                 )}
             </div>

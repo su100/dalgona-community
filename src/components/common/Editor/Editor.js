@@ -39,7 +39,6 @@ const Editor = ({
         // Save current cursor state
         // Range {index: 48, length: 0} 꼴
         const range = quillInstance.current.getSelection(true);
-        console.log(range);
         quillInstance.current.insertEmbed(range.index, 'image', url);
         quillInstance.current.setSelection(range.index + 1);
     };
@@ -84,22 +83,16 @@ const Editor = ({
     const mounted = useRef(false);
     useEffect(() => {
         const quill = quillInstance.current;
-        if ((!readOnly && mounted.current) || (readOnly && !contents)) {
+        if ((!readOnly && !mounted.current) || (readOnly && !contents)) {
             return;
         }
         mounted.current = true;
-        let result = JSON.parse(contents);
-        // if (isCard) {
-        //     let text = [];
-        //     let tmp = result.ops.filter((element) => !element.insert.image); //텍스트만 보이게끔
-        //     tmp.forEach((element) => {
-        //         if (element.insert !== '\n') {
-        //             //단독 공백 제거
-        //             text.push({ insert: element.insert }); //텍스트 효과 제거
-        //         }
-        //     });
-        //     result.ops = text;
-        // }
+        let result;
+        try {
+            result = JSON.parse(contents);
+        } catch (e) {
+            result = contents;
+        }
         quill.setContents(result);
     }, [contents]);
 

@@ -257,7 +257,7 @@ export const updatePost = (boardUrl, postId, title, body, anonymous) =>
         }
     );
 
-//게시글 작성하기
+//게시글 삭제하기
 export const deletePost = (boardUrl, postId) =>
     axios.delete(`${API_BASE_URL}/board/${boardUrl}/${postId}`, {
         headers: { Authorization: getAccesesToken() },

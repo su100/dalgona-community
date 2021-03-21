@@ -123,6 +123,10 @@ class LunaPostContainer extends Component {
         } catch (e) {
             console.log('error log:' + e);
         }
+        if (this.props.delete_success) {
+            const tmp = location.pathname.split('/');
+            this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
+        }
     };
     ///
     getReply = (boardUrl, page, ordering) => {
@@ -176,6 +180,7 @@ export default connect(
         postReplyCount: state.luna.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
+        delete_success: state.pender.success['write/DELETE_POST'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

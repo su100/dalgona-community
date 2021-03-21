@@ -7,9 +7,22 @@ const ActivityList = ({ date, myPost }) => {
         <div className="activity-list">
             <div className="activity-list__date">{date}</div>
             {myPost.map((post) => {
+                let result;
+                let imageURL = '';
+                try {
+                    result = JSON.parse(post.body);
+                    result.ops.some((element) => {
+                        if (element.insert.image) {
+                            imageURL = element.insert.image;
+                            return true;
+                        }
+                    });
+                } catch (e) {
+                    result = post.body;
+                }
                 return (
                     <div key={post.id} className="activity-list__activity">
-                        <div className="only-pc">{post.img && <div className="activity-list__activity-img"></div>}</div>
+                        {imageURL !== '' && <img src={imageURL} className="activity-list__activity-img" alt="post" />}
                         <div className="activity-list__activity-info">
                             <div className="activity-list__activity-info-title">{post.title}</div>
                             <div className="activity-list__activity-info-luna">{post.board_list.board_name}</div>

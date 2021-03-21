@@ -15,7 +15,6 @@ class Vote extends Component {
     }
 
     onClickVote = (e) => {
-        console.log(e.currentTarget.id);
         if (e.currentTarget.id) {
             this.props.userVote(e.currentTarget.id);
             this.handleShowModal();
@@ -32,7 +31,6 @@ class Vote extends Component {
     };
     replyRecommend = (e) => {
         const voteReplyId = e.currentTarget.id;
-        console.log(voteReplyId);
         this.props.replyRecommend(voteReplyId);
     };
     deleteRereply = (e) => {
@@ -57,7 +55,6 @@ class Vote extends Component {
             isVote,
             rereply_success,
         } = this.props;
-        console.log(voteInfo);
         return (
             <div className="vote">
                 <div className="vote__detail">

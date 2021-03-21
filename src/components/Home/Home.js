@@ -125,17 +125,21 @@ class Home extends Component {
             let cols = [];
             for (let col = 0; col < postList.length; col++) {
                 let post = postList[col];
+                let result = JSON.parse(post.body);
+                let imageURL = '';
+                result.ops.some((element) => {
+                    if (element.insert.image) {
+                        imageURL = element.insert.image;
+                        return true;
+                    }
+                });
                 cols.push(
                     <Link
                         className="home__item--hotpost"
                         to={`/luna/${post.board_url.board_url}/${post.id}`}
                         key={post.id}
                     >
-                        <p>{post.title}</p>
-                        <img
-                            src="https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png"
-                            alt="post"
-                        />
+                        {imageURL === '' ? <p>{post.title}</p> : <img src={imageURL} alt="post" />}
                     </Link>
                 );
             }
@@ -149,17 +153,27 @@ class Home extends Component {
                 let cols = [];
                 for (let col = 0; row * 3 + col < postList.length && col < 3; col++) {
                     let post = postList[row * 3 + col];
+                    let result = JSON.parse(post.body);
+                    let imageURL = '';
+                    result.ops.some((element) => {
+                        if (element.insert.image) {
+                            imageURL = element.insert.image;
+                            return true;
+                        }
+                    });
                     cols.push(
                         <Link
                             className="home__item--hotpost"
                             to={`/luna/${post.board_url.board_url}/${post.id}`}
                             key={post.id}
                         >
-                            <p>{post.title}</p>
-                            <img
-                                src="https://programmers.co.kr/assets/bi-symbol-light-49a242793b7a8b540cfc3489b918e3bb2a6724f1641572c14c575265d7aeea38.png"
-                                alt="post"
-                            />
+                            {imageURL === '' ? (
+                                <div className="home__item--hotpost--text">
+                                    <p>{post.title}</p>
+                                </div>
+                            ) : (
+                                <img src={imageURL} alt="post" />
+                            )}
                         </Link>
                     );
                 }

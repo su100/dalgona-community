@@ -144,8 +144,8 @@ export default handleActions(
         ...pender({
             type: REPLY_RECOMMEND,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                if (action.payload.data.result.includes('recommend created')) {
+                const data = action.payload.response.data;
+                if (data.result?.includes('recommend created')) {
                     alert('추천완료');
                 }
                 return state;
@@ -153,7 +153,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.result.includes('recommend deleted')) {
+                if (data.result?.includes('recommend deleted')) {
                     alert('추천취소');
                 }
                 return state;
@@ -164,7 +164,7 @@ export default handleActions(
             onSuccess: (state, action) => {
                 console.log(action.payload.data);
                 const data = action.payload.response.data;
-                if (data.result.includes('recommend created')) {
+                if (data.result?.includes('recommend created')) {
                     alert('추천완료');
                 }
                 return state;
@@ -172,7 +172,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.result.includes('recommend deleted')) {
+                if (data.result?.includes('recommend deleted')) {
                     alert('추천취소');
                 }
                 return state;
@@ -188,7 +188,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.detail.includes('이미 참여한 투표입니다.')) {
+                if (data.detail?.includes('이미 참여한 투표입니다.')) {
                     return state.set('isVote', true);
                 }
                 return state;

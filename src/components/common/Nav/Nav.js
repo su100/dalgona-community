@@ -51,7 +51,6 @@ class Nav extends Component {
                 this.setState({ isOpen: true, openMenu: e.target.id });
             }
         }
-        console.log(e.target.id);
     };
 
     checkIsPc = () => {
@@ -91,7 +90,6 @@ class Nav extends Component {
     };
 
     getSearch = () => {
-        console.log(this.state.searchDivision, this.state.searchWord);
         this.props.history.push(
             `/search?searchWord=${this.state.searchWord}&searchDivision=${this.state.searchDivision}`
         );

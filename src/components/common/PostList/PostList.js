@@ -28,6 +28,19 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
             <div className="only-pc">
                 <div className="post-list__container">
                     {postList.map((post, index) => {
+                        let result;
+                        let imageURL = '';
+                        try {
+                            result = JSON.parse(post.body);
+                            result.ops.some((element) => {
+                                if (element.insert.image) {
+                                    imageURL = element.insert.image;
+                                    return true;
+                                }
+                            });
+                        } catch (e) {
+                            result = post.body;
+                        }
                         return (
                             <Link
                                 to={`${link}/${post.id}`}
@@ -42,9 +55,9 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
                                     )}
                                     <div className="post-list__item--main">
                                         <div className="post-list__item--title">
-                                            {post.image && (
+                                            {imageURL !== '' && (
                                                 <div className="post-list__img--pc">
-                                                    <img src={post.image} alt="post" />
+                                                    <img src={imageURL} alt="post" />
                                                 </div>
                                             )}
                                             <p>{post.title}</p>
@@ -70,6 +83,19 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
             <div className="not-pc">
                 <div className="post-list__container">
                     {postList.map((post, index) => {
+                        let result;
+                        let imageURL = '';
+                        try {
+                            result = JSON.parse(post.body);
+                            result.ops.some((element) => {
+                                if (element.insert.image) {
+                                    imageURL = element.insert.image;
+                                    return true;
+                                }
+                            });
+                        } catch (e) {
+                            result = post.body;
+                        }
                         if (type === 'list') {
                             return (
                                 <Link
@@ -78,16 +104,16 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
                                     key={index}
                                 >
                                     <div className="post-list__item--left">
-                                        {post.image && (
+                                        {imageURL !== '' && (
                                             <div className="post-list__img">
-                                                <img src={post.image} alt="post" />
+                                                <img src={imageURL} alt="post" />
                                             </div>
                                         )}
                                         <div className="post-list__item--main">
                                             <div className="post-list__item--title">
-                                                {post.image && (
+                                                {imageURL !== '' && (
                                                     <div className="post-list__img--pc">
-                                                        <img src={post.image} alt="post" />
+                                                        <img src={imageURL} alt="post" />
                                                     </div>
                                                 )}
                                                 <p>{post.title}</p>
@@ -112,11 +138,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
                         } else {
                             return (
                                 <Link to={`${link}/${post.id}`} key={post.id} className="post-list__item">
-                                    {!post.image ? (
-                                        <img src="http://unsplash.it/300/300?image=122" alt="post" />
-                                    ) : (
-                                        <p>{post.title}</p>
-                                    )}
+                                    {imageURL !== '' ? <img src={imageURL} alt="post" /> : <p>{post.title}</p>}
                                 </Link>
                             );
                         }
