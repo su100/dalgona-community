@@ -46,7 +46,7 @@ class Nav extends Component {
                 this.setState({ isOpen: !isOpen, openMenu: e.target.id });
             } else if (e.target.id === 'home') {
                 this.setState({ isOpen: false, openMenu: e.target.id });
-                this.goHome();
+                this.props.history.push('/');
             } else {
                 this.setState({ isOpen: true, openMenu: e.target.id });
             }
@@ -61,10 +61,6 @@ class Nav extends Component {
                 this.setState({ isPC: false });
             }
         }
-    };
-
-    goHome = () => {
-        this.props.history.push('/');
     };
 
     setPath = () => {
@@ -142,9 +138,9 @@ class Nav extends Component {
                         <div className="not-pc">
                             <img className="nav-main__logo-menu" src={menuIcon} onClick={this.handleSidebar}></img>
                         </div>
-                        <div className="nav-main__logo-logoimg" onClick={this.goHome}>
+                        <Link to="/" className="nav-main__logo-logoimg">
                             <img src={isPC ? biglogo : logo}></img>
-                        </div>
+                        </Link>
                         <div className="not-pc">
                             <button onClick={this.toggleSearch}>
                                 <img className="nav-main__logo-search" src={searchIcon}></img>

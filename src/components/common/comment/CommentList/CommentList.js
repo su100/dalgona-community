@@ -265,10 +265,13 @@ class CommentList extends Component {
                     <div className="comment-list__info">
                         <div className="comment-list__info-count">
                             {!vote && (
-                                <div className="comment-list__info-count-recommend">
+                                <button
+                                    className="comment-list__info-count-recommend"
+                                    onClick={this.props.recommendPost}
+                                >
                                     <span className="border">추천</span>
                                     <span>{recommend_count}</span>
-                                </div>
+                                </button>
                             )}
                             <div className="comment-list__info-count-reply">
                                 <span className="border">댓글</span>
@@ -290,7 +293,9 @@ class CommentList extends Component {
                 {!vote && (
                     <div className="not-pc">
                         <div className="comment-list__count">
-                            <img src={recommend ? heart_filled : heart} onClick={this.props.recommendPost}></img>
+                            <button onClick={this.props.recommendPost}>
+                                <img src={recommend ? heart_filled : heart} alt="heart" />
+                            </button>
                             <span className={recommend ? 'recommended' : ''}>추천 {recommend_count}</span>
                         </div>
                     </div>

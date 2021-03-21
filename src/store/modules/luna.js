@@ -135,12 +135,14 @@ export default handleActions(
         ...pender({
             type: RECOMMEND_POST,
             onSuccess: (state, action) => {
-                console.log('ggg');
                 return state;
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
+                if (data.detail?.includes('Authentication credentials were not provided.')) {
+                    alert('로그인이 필요합니다.');
+                }
                 return state;
             },
         }),
