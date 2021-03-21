@@ -35,7 +35,6 @@ class Article extends Component {
     searchKeyword = (e) => {
         const word = e.target.value;
         this.setState({ searchWord: word });
-        console.log(word, '로 검색한 리스트 가져오기');
     };
 
     getSearch = () => {

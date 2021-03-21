@@ -39,7 +39,6 @@ const Editor = ({
         // Save current cursor state
         // Range {index: 48, length: 0} 꼴
         const range = quillInstance.current.getSelection(true);
-        console.log(range);
         quillInstance.current.insertEmbed(range.index, 'image', url);
         quillInstance.current.setSelection(range.index + 1);
     };

@@ -55,7 +55,6 @@ const initialState = Map({
 export default handleActions(
     {
         [SET_REMEMBER]: (state, action) => {
-            console.log('gg');
             return state.set('rememberMe', action.payload);
         },
         [SIGN_OUT]: (state, action) => {
@@ -94,12 +93,10 @@ export default handleActions(
                 const data = action.payload.data;
                 //access token 저장
                 if (state.get('rememberMe')) {
-                    console.log('로컬');
                     Storage.local.set('__AUTH__', data.token);
                 } else {
                     Storage.session.set('__AUTH__', data.token);
                 }
-                console.log(state.get('rememberMe'));
                 const profile = Map({
                     nickname: data.user.nickname,
                     introduction: data.user.introduction,

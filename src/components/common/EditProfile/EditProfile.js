@@ -21,7 +21,6 @@ class EditProfile extends Component {
         this.setState({
             [e.target.id]: e.target.value,
         });
-        console.log(e.target.value);
     };
     selectImg = (e) => {
         let reader = new FileReader();

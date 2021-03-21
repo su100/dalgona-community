@@ -64,7 +64,6 @@ class FreeBoard extends Component {
         const currentPage = query.page ? Number(query.page) : 1;
         const { boardInfo, bookmarkList, bestPostList, postCount, postList } = this.props;
         const isBookmarked = bookmarkList.some((board) => board.board_url === boardInfo.board_url);
-        console.log(bestPostList);
         return (
             <div className="free-board">
                 <Header
