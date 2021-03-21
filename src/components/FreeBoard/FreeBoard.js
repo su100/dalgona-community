@@ -68,6 +68,8 @@ class FreeBoard extends Component {
         return (
             <div className="free-board">
                 <Header
+                    boardType="free"
+                    boardUrl={boardInfo.board_url}
                     title={boardInfo.board_name}
                     hasWrite
                     hasBookmark
