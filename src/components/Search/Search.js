@@ -12,58 +12,6 @@ class Search extends Component {
             page: 1,
             searchWord: query.searchWord,
             searchDivision: query.searchDivision,
-            searchCount: 28,
-            searchList: [
-                {
-                    reply_count: 3,
-                    id: 7,
-                    title:
-                        '테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/12',
-                },
-                {
-                    reply_count: 3,
-                    id: 6,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/12',
-                },
-                {
-                    reply_count: 3,
-                    id: 5,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/12',
-                },
-                {
-                    reply_count: 3,
-                    id: 4,
-                    title: '테스트 진행',
-                    body: '테스트 진행 차 작성하는 포스트 내용입니다!',
-                    views: 0,
-                    board_url: '1',
-                    category: '일상',
-                    category_id: 1,
-                    recommend_count: 0,
-                    created_at: '02/11',
-                },
-            ],
         };
     }
 
@@ -119,10 +67,18 @@ class Search extends Component {
                 <h5 className="not-pc">{searchCount}건</h5>
                 <div className="search__container--postlist">
                     {searchList.map((post) => {
+                        let result = JSON.parse(post.body);
+                        let imageURL = '';
+                        result.ops.some((element) => {
+                            if (element.insert.image) {
+                                imageURL = element.insert.image;
+                                return true;
+                            }
+                        });
                         return (
                             <div key={post.id} className="search__item">
                                 <div className="search__item--left">
-                                    <img src="" alt="post" />
+                                    {imageURL !== '' && <img src={imageURL} alt="post" />}
                                     <div className="search__item--info">
                                         <div className="search__item--title">{post.title}</div>
                                         <div className="not-pc">
