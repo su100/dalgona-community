@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import ArticleList from 'components/common/ArticleList';
 import BasicSlider from 'components/common/slider/BasicSlider';
+import HotPostCard from 'components/common/HotPostCard';
 import VoteItem from 'components/common/slider/VoteItem';
 import refreshIcon from 'images/refresh.png';
 import './Home.scss';
@@ -35,75 +36,6 @@ class Home extends Component {
             ],
             hotboardType: '', //'luna' 'free'
 
-            newsCount: 10,
-            newsList: [
-                {
-                    title: '‘딸바보’ 박남정, 딸 박시은 아이돌 데뷔 반대했었다',
-                    link: 'https://www.donga.com/news/Culture/article/all/20210203/105268143/1',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-441.jpg',
-                    date: '2021-02-03T20:29:00',
-                },
-                {
-                    title: '‘딸바보’ 박남정, 딸 박시은 아이돌 데뷔 반대했었다',
-                    link: 'https://www.donga.com/news/Culture/article/all/20210203/105268143/1',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-441.jpg',
-                    date: '2021-02-03T20:29:00',
-                },
-                {
-                    title: '존박, 코로나19 완치 퇴원…“의료진 수고 덕분”',
-                    link: 'https://www.donga.com/news/Entertainment/article/all/20210203/105265070/1',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-442.jpg',
-                    date: '2021-02-03T17:09:00',
-                },
-                {
-                    title: '엘키, CLC 탈퇴…소속사와도 전속계약 해지',
-                    link: 'https://www.yna.co.kr/view/AKR20210203149400005?section=entertainment/pop-song',
-                    image: 'http://127.0.0.1:8000/media/news_image/yna2021-02-03-20-441.jpg',
-                    date: '2021-02-03T17:01:00',
-                },
-                {
-                    title: "밴드 새소년, 신곡 '자유'…유아인 티저영상 특별 출연",
-                    link: 'https://www.yna.co.kr/view/AKR20210203145400005?section=entertainment/pop-song',
-                    image: 'http://127.0.0.1:8000/media/news_image/yna2021-02-03-20-442.jpg',
-                    date: '2021-02-03T16:51:00',
-                },
-                {
-                    title: '채널A, 세계 부호 1위 일론 머스크 집중 조명 다큐 방영',
-                    link: 'https://www.donga.com/news/Inter/article/all/20210203/105264158/2',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-443.jpg',
-                    date: '2021-02-03T16:40:00',
-                },
-                {
-                    title: '래퍼 칠린호미, 공황장애 치료 위해 입원',
-                    link: 'https://www.yna.co.kr/view/AKR20210203138900005?section=entertainment/pop-song',
-                    image: 'http://127.0.0.1:8000/media/news_image/yna2021-02-03-20-443.jpg',
-                    date: '2021-02-03T16:26:00',
-                },
-                {
-                    title: '래퍼 칠린호미, 공황·불안장애 치료 위해 입원',
-                    link: 'https://www.donga.com/news/Culture/article/all/20210203/105262469/1',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-444.jpg',
-                    date: '2021-02-03T15:45:00',
-                },
-                {
-                    title: '김수민 아나운서, ‘TV 동물농장’ MC 합류',
-                    link: 'https://www.donga.com/news/Culture/article/all/20210203/105260070/1',
-                    image: 'http://127.0.0.1:8000/media/news_image/donga2021-02-03-20-445.jpg',
-                    date: '2021-02-03T14:26:00',
-                },
-                {
-                    title: "'와치 미' 부른 미국 래퍼 사일렌토, 사촌 살해 혐의로 체포",
-                    link: 'https://www.yna.co.kr/view/AKR20210203101400005?section=entertainment/pop-song',
-                    image: 'http://127.0.0.1:8000/media/news_image/yna2021-02-03-20-444.jpg',
-                    date: '2021-02-03T14:11:00',
-                },
-                {
-                    title: '[영상] \'미스트롯2\' 불공정 의혹 부인…"근거없는 사실과 억측 유감"',
-                    link: 'https://www.yna.co.kr/view/AKR20210203084900704?section=entertainment/pop-song',
-                    image: 'http://127.0.0.1:8000/media/news_image/yna2021-02-03-20-445.jpg',
-                    date: '2021-02-03T12:02:00',
-                },
-            ],
             newsTime: moment().format('HH:mm'),
         };
     }
@@ -125,14 +57,19 @@ class Home extends Component {
             let cols = [];
             for (let col = 0; col < postList.length; col++) {
                 let post = postList[col];
-                let result = JSON.parse(post.body);
+                let result;
                 let imageURL = '';
-                result.ops.some((element) => {
-                    if (element.insert.image) {
-                        imageURL = element.insert.image;
-                        return true;
-                    }
-                });
+                try {
+                    result = JSON.parse(post.body);
+                    result.ops.some((element) => {
+                        if (element.insert.image) {
+                            imageURL = element.insert.image;
+                            return true;
+                        }
+                    });
+                } catch (e) {
+                    result = post.body;
+                }
                 cols.push(
                     <Link
                         className="home__item--hotpost"
@@ -153,14 +90,19 @@ class Home extends Component {
                 let cols = [];
                 for (let col = 0; row * 3 + col < postList.length && col < 3; col++) {
                     let post = postList[row * 3 + col];
-                    let result = JSON.parse(post.body);
+                    let result;
                     let imageURL = '';
-                    result.ops.some((element) => {
-                        if (element.insert.image) {
-                            imageURL = element.insert.image;
-                            return true;
-                        }
-                    });
+                    try {
+                        result = JSON.parse(post.body);
+                        result.ops.some((element) => {
+                            if (element.insert.image) {
+                                imageURL = element.insert.image;
+                                return true;
+                            }
+                        });
+                    } catch (e) {
+                        result = post.body;
+                    }
                     cols.push(
                         <Link
                             className="home__item--hotpost"
@@ -269,29 +211,7 @@ class Home extends Component {
                         <div className="home__container--hot">
                             {hotPostList.length > 0 &&
                                 hotPostList.map((post, index) => {
-                                    const image = post.body.includes('image:') ? post.body : '';
-                                    return (
-                                        <Link
-                                            to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${
-                                                post.board_url.board_url
-                                            }/${post.id}`}
-                                            key={post.id}
-                                        >
-                                            <div className="home__item--hotpost--pc">
-                                                <div>{image && <img src={image} alt="post" />}</div>
-                                                <div>
-                                                    <h3>0{index + 1}</h3>
-                                                    <h6>{post.title}</h6>
-                                                    <p className="home--hot--detail">
-                                                        <span>조회수 {post.views}</span>
-                                                        <span>{post.created_at}</span>
-                                                        <span>추천 {post.recommend_count}</span>
-                                                    </p>
-                                                    <p className="home--hot--contents">{post.contents}</p>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    );
+                                    return <HotPostCard key={index} index={index} post={post} />;
                                 })}
                         </div>
                     </div>
