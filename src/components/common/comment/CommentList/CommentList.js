@@ -385,8 +385,9 @@ class CommentList extends Component {
                                                 <span className="only-pc">
                                                     <button
                                                         className={
-                                                            comment.recommended &&
-                                                            'comment-list__item--button recommend'
+                                                            comment.recommended
+                                                                ? 'comment-list__item--button recommend'
+                                                                : ''
                                                         }
                                                         id={comment.id}
                                                         onClick={this.props.replyRecommend}
@@ -509,8 +510,9 @@ class CommentList extends Component {
                                                             <span className="only-pc">
                                                                 <button
                                                                     className={
-                                                                        reComment.recommended &&
-                                                                        'comment-list__item--button recommend'
+                                                                        reComment.recommended
+                                                                            ? 'comment-list__item--button recommend'
+                                                                            : ''
                                                                     }
                                                                     id={reComment.id}
                                                                     onClick={this.props.reReplyRecommend}
