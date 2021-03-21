@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import Pagination from 'components/common/Pagination';
 import SearchBox from 'components/common/SearchBox';
@@ -81,7 +82,17 @@ class Search extends Component {
                             result = post.body;
                         }
                         return (
-                            <div key={post.id} className="search__item">
+                            <Link
+                                to={`/${
+                                    post.board_url.division === 1
+                                        ? 'free'
+                                        : post.board_url.division === 2
+                                        ? 'luna'
+                                        : 'dalgona'
+                                }/${post.board_url.board_url}/${post.id}`}
+                                key={post.id}
+                                className="search__item"
+                            >
                                 <div className="search__item--left">
                                     {imageURL !== '' && <img src={imageURL} alt="post" />}
                                     <div className="search__item--info">
@@ -102,7 +113,7 @@ class Search extends Component {
                                     </div>
                                     <div className="not-pc search__reply-count">{post.reply_count}</div>
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>
