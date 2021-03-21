@@ -10,6 +10,7 @@ export const VIEW_BOARD = 'write/VIEW_BOARD'; //게시판 정보 가져오기
 export const ADD_POST_IMAGE = 'write/ADD_POST_IMAGE'; //이미지 ADD
 export const ADD_POST = 'write/ADD_POST'; //게시물 작성
 export const UPDATE_POST = 'write/UPDATE_POST'; //게시물 수정
+export const DELETE_POST = 'write/DELETE_POST'; //게시물 삭제
 export const ADD_POST_REPLY = 'write/ADD_POST_REPLY'; //투표 게시판 댓글 POST
 export const UPDATE_POST_REPLY = 'write/UPDATE_POST_REPLY'; //게시판 댓글 update
 export const DELETE_POST_REPLY = 'write/DELETE_POST_REPLY'; //게시판 댓글 delete
@@ -26,6 +27,7 @@ export const setPost = createAction(SET_POST);
 export const addPostImage = createAction(ADD_POST_IMAGE, api.addPostImage);
 export const addPost = createAction(ADD_POST, api.addPost);
 export const updatePost = createAction(UPDATE_POST, api.updatePost);
+export const deletePost = createAction(DELETE_POST, api.deletePost);
 export const addPostReply = createAction(ADD_POST_REPLY, api.addPostReply);
 export const updatePostReply = createAction(UPDATE_POST_REPLY, api.updatePostReply);
 export const deletePostReply = createAction(DELETE_POST_REPLY, api.deletePostReply);
@@ -99,11 +101,24 @@ export default handleActions(
             },
         }),
         ...pender({
+            type: DELETE_POST,
+            onFailure: (state, action) => {
+                const data = action.payload.response.data;
+                if (data.result?.includes('not enough point')) {
+                    alert('포인트 부족으로 삭제할 수 없습니다.');
+                }
+                if (data.detail?.includes('This user is in blacklist')) {
+                    alert('제재 중인 계정입니다.');
+                }
+                return state;
+            },
+        }),
+        ...pender({
             type: ADD_POST_REPLY,
             onSuccess: (state, action) => {
                 const data = action.payload.data;
                 console.log(action.payload.data);
-                if (data.body.includes('Ensure this field has at least 4 characters.')) {
+                if (data.body?.includes('Ensure this field has at least 4 characters.')) {
                     alert('4글자 이상 입력해주세요');
                 }
                 return state;
@@ -179,7 +194,7 @@ export default handleActions(
             onSuccess: (state, action) => {
                 const data = action.payload.data;
                 console.log(data);
-                if (data.detail.includes('reply recommend created')) {
+                if (data.detail?.includes('reply recommend created')) {
                     alert('추천완료');
                 }
                 return state;
@@ -187,7 +202,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.detail.includes('reply recommend deleted')) {
+                if (data.detail?.includes('reply recommend deleted')) {
                     alert('추천취소');
                 }
                 return state;
@@ -198,7 +213,7 @@ export default handleActions(
             onSuccess: (state, action) => {
                 console.log(action.payload.data);
                 const data = action.payload.data;
-                if (data.detail.includes('rereply recommend created')) {
+                if (data.detail?.includes('rereply recommend created')) {
                     alert('추천완료');
                 }
                 return state;
@@ -206,7 +221,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.detail.includes('rereply recommend deleted')) {
+                if (data.detail?.includes('rereply recommend deleted')) {
                     alert('추천취소');
                 }
                 return state;

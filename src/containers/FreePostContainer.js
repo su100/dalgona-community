@@ -97,11 +97,15 @@ class FreePostContainer extends Component {
         this.getPostReply(match.params.postid, 1);
     };
     deletePost = async () => {
-        const { WriteActions, match } = this.props;
+        const { WriteActions, match, location } = this.props;
         try {
             await WriteActions.deletePost(match.params.board_url, match.params.postid); //boardUrl, postId
         } catch (e) {
             console.log('error log:' + e);
+        }
+        if (this.props.delete_success) {
+            const tmp = location.pathname.split('/');
+            this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
         }
     };
     getReply = (boardUrl, page, ordering) => {
@@ -163,6 +167,7 @@ export default connect(
         postReplyCount: state.free.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
+        delete_success: state.pender.success['write/DELETE_POST'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
