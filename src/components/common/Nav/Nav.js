@@ -104,7 +104,7 @@ class Nav extends Component {
 
     render() {
         const { isSearch, searchWord, searchDivision, isOpen, openMenu, isPC, openSidebar, path } = this.state;
-        const { isAuthenticated, profile } = this.props;
+        const { isAuthenticated, profile, lunaBoard, freeBoard, dalgonaBoard } = this.props;
         const { isHome } = this.props;
         const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
         return (
@@ -234,41 +234,41 @@ class Nav extends Component {
                             )}
                             {(isPC || openMenu === 'Luna') && (
                                 <div className="nav-hover__menu-luna">
-                                    <Link to={{ pathname: '/luna/btob', path: 'Luna' }}>
-                                        <span>비투비</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/luna/help', path: 'Luna' }}>
-                                        <span>청하</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/luna/iu', path: 'Luna' }}>
-                                        <span>아이유</span>
-                                    </Link>
+                                    {lunaBoard.map((board, index) => {
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to={{ pathname: `/luna/${board.board_url}`, path: 'Luna' }}
+                                            >
+                                                <span>{board.board_name}</span>
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             )}
                             {(isPC || openMenu === 'free') && (
                                 <div className="nav-hover__menu-free">
-                                    <Link to={{ pathname: '/free/daily-life', path: 'free' }}>
-                                        <span> 일상 / 잡담</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/free/hobby', path: 'free' }}>
-                                        <span>취미</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/free/life-info', path: 'free' }}>
-                                        <span>생활정보</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/free/worry', path: 'free' }}>
-                                        <span>고민</span>
-                                    </Link>
+                                    {freeBoard.map((board, index) => {
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to={{ pathname: `/free/${board.board_url}`, path: 'free' }}
+                                            >
+                                                <span>{board.board_name}</span>
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             )}
                             {(isPC || openMenu === 'dalgona') && (
                                 <div className="nav-hover__menu-dalgona">
-                                    <Link to={{ pathname: '/notice', path: 'dalgona' }}>
-                                        <span> 공지사항</span>
-                                    </Link>
-                                    <Link to={{ pathname: '/event', path: 'dalgona' }}>
-                                        <span>이벤트</span>
-                                    </Link>
+                                    {dalgonaBoard.map((board, index) => {
+                                        return (
+                                            <Link key={index} to={{ pathname: `/${board.board_url}`, path: 'dalgona' }}>
+                                                <span>{board.board_name}</span>
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             )}
                             {isPC && <div className="nav-hover__menu-dummy"></div>}

@@ -343,3 +343,8 @@ export const recommendPost = (boardUrl) =>
             headers: { Authorization: getAccesesToken() },
         }
     );
+
+//루나, 자유, 공지 게시판에 있는 게시판만 보기
+export const getLunaBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/2`);
+export const getFreeBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/1`);
+export const getDalgonaBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/0`);

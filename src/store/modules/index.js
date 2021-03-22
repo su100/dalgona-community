@@ -6,4 +6,5 @@ export { default as issue } from './issue';
 export { default as luna } from './luna';
 export { default as search } from './search';
 export { default as write } from './write';
+export { default as nav } from './nav';
 export { penderReducer as pender } from 'redux-pender';
