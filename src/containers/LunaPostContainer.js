@@ -109,12 +109,13 @@ class LunaPostContainer extends Component {
         this.getPostReply(match.params.postid, 1);
     };
     recommendPost = async (boardUrl) => {
-        const { LunaActions, match } = this.props;
+        const { WriteActions, match } = this.props;
         try {
-            await LunaActions.recommendPost(boardUrl);
+            await WriteActions.recommendPost(match.params.postid);
         } catch (e) {
             console.log('error log:' + e);
         }
+        this.getPostInfo(match.params.postid);
     };
     deletePost = async () => {
         const { WriteActions, match } = this.props;
@@ -163,6 +164,7 @@ class LunaPostContainer extends Component {
                     deletePostRereply={this.deletePostRereply}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
+                    recommendPost={this.recommendPost}
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
                     postReplyCount={this.props.postReplyCount}
