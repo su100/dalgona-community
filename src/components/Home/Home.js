@@ -13,11 +13,6 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favBoard: [
-                { board_name: '아이유', board_url: 'iu' },
-                { board_name: '청하', board_url: 'ch' },
-                { board_name: '비투비', board_url: 'bt' },
-            ],
             hotVoteList: [
                 {
                     id: 0,
@@ -35,7 +30,6 @@ class Home extends Component {
                 },
             ],
             hotboardType: '', //'luna' 'free'
-
             newsTime: moment().format('HH:mm'),
         };
     }
