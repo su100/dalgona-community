@@ -26,10 +26,10 @@ class EventPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params, ordering) => {
-        const { DalgonaActions } = this.props;
+    getPostReply = async (postid, page, ordering) => {
+        const { DalgonaActions, match } = this.props;
         try {
-            await DalgonaActions.getPostReply(postid, params, ordering);
+            await DalgonaActions.getPostReply(match.params.eventid, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
