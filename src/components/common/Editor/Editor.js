@@ -6,7 +6,6 @@ import './Editor.scss';
 
 const Editor = ({
     readOnly,
-    isCard,
     QuillChange,
     boardTitle,
     title,
@@ -83,7 +82,7 @@ const Editor = ({
     const mounted = useRef(false);
     useEffect(() => {
         const quill = quillInstance.current;
-        if ((!readOnly && !mounted.current) || (readOnly && !contents)) {
+        if ((!readOnly && !mounted.current && contents === '') || (readOnly && !contents)) {
             return;
         }
         mounted.current = true;

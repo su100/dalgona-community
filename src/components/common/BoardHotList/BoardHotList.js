@@ -10,10 +10,22 @@ const BoardHotList = ({ link, hotPostList }) => {
         <div className="board-hot-list">
             <BasicSlider slidesToShow={3} arrows dots={false}>
                 {hotPostList.map((post) => {
-                    const image = post.id % 2 == 0 ? '' : 'http://unsplash.it/300/300?image=122';
+                    let result;
+                    let imageURL = '';
+                    try {
+                        result = JSON.parse(post.body);
+                        result.ops.some((element) => {
+                            if (element.insert.image) {
+                                imageURL = element.insert.image;
+                                return true;
+                            }
+                        });
+                    } catch (e) {
+                        result = post.body;
+                    }
                     return (
-                        <Link to={`/${link}/${post.id}`} key={post.id} className="board-hot-list__item">
-                            <div className="image">{image ? <img src={image} alt="post" /> : '더보기'}</div>
+                        <Link to={`${link}/${post.id}`} key={post.id} className="board-hot-list__item">
+                            <div className="image">{imageURL ? <img src={imageURL} alt="post" /> : '더보기'}</div>
                             <p>
                                 {post.title}
                                 {post.title}

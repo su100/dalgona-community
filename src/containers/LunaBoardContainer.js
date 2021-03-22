@@ -71,10 +71,10 @@ class LunaBoardContainer extends Component {
             //게시판 이동할 때
             this.getBoardInfo(); //게시판 정보 가져오기
             this.getBestPostList(); //실시간 인기글 가져오기
-            this.getPostList(); //글 목록 가져오기
+            this.getPost(); //글 목록 가져오기
         } else if (snapshot === 'post') {
             //게시판 그대로고 글만 새로 가져올 때
-            this.getPostList(); //글 목록 가져오기
+            this.getPost(); //글 목록 가져오기
         }
     }
 
@@ -97,7 +97,7 @@ class LunaBoardContainer extends Component {
         this.getBoardInfo(); //게시판 정보 가져오기
         this.getBookmarkList(); //즐겨찾기 가져오기
         this.getBestPostList(); //실시간 인기글 가져오기
-        this.getPostList(); //글 목록 가져오기
+        this.getPost(); //글 목록 가져오기
     }
 
     render() {

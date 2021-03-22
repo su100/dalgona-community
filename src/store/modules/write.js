@@ -49,7 +49,6 @@ const initialState = Map({
 export default handleActions(
     {
         [SET_POST]: (state, action) => {
-            console.log(action.payload);
             return state.set('editPost', action.payload);
         },
         ...pender({
@@ -97,6 +96,9 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
+                if (data.result?.includes('인기게시글이 되었던 적 있는 게시글로 수정이 불가능 합니다.')) {
+                    alert('인기게시글이 되었던 적 있는 게시글로 수정이 불가능 합니다.');
+                }
                 return state;
             },
         }),

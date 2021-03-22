@@ -83,7 +83,7 @@ class LunaBoard extends Component {
                 <section className="luna-board__container--hot">
                     <h4>인기글</h4>
                     <div className="only-pc">
-                        <BoardHotList link={`luna/${boardInfo.board_url}`} hotPostList={bestPostList} />
+                        <BoardHotList link={`/luna/${boardInfo.board_url}`} hotPostList={bestPostList} />
                     </div>
                     <div className="not-pc">
                         <BasicSlider>
