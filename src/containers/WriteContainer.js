@@ -62,7 +62,16 @@ class WriteContainer extends Component {
     }
 
     render() {
-        const { history, match, location, boardInfo, editPost, isAuthenticated, post_success } = this.props;
+        const {
+            history,
+            match,
+            location,
+            boardInfo,
+            editPost,
+            isAuthenticated,
+            post_success,
+            WriteActions,
+        } = this.props;
         return (
             <Fragment>
                 <Write
@@ -71,6 +80,7 @@ class WriteContainer extends Component {
                     location={location}
                     boardInfo={boardInfo}
                     editPost={editPost}
+                    setPost={WriteActions.setPost}
                     isAuthenticated={isAuthenticated}
                     post_success={post_success}
                     addPostImage={this.addPostImage}

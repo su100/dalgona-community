@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Editor from 'components/common/Editor';
 import './Write.scss';
+import { setPost } from 'store/modules/write';
 
 class Write extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Write extends Component {
             title: isEdit ? props.editPost.title : '',
             categoryId: '',
             isAnonymous: isEdit ? props.editPost.anonymous : false,
-            editorState: isEdit ? props.editPost.body : '',
+            editorState: '',
         };
     }
 
@@ -60,10 +61,13 @@ class Write extends Component {
         }
     };
 
-    render() {
-        const { previewURL, isEdit, title, isAnonymous, editorState } = this.state;
-        const { isAuthenticated, boardInfo, editPost } = this.props;
+    componentWillUnmount() {
+        this.props.setPost({}); //store의 editPost 초기화
+    }
 
+    render() {
+        const { previewURL, isEdit, title, isAnonymous } = this.state;
+        const { isAuthenticated, boardInfo, editPost } = this.props;
         return (
             <div className="write">
                 <div className="write__top">
@@ -81,7 +85,7 @@ class Write extends Component {
                 <Editor
                     boardTitle={boardInfo.board_name}
                     title={title}
-                    contents={editorState}
+                    contents={isEdit ? editPost.body : ''}
                     isAnonymous={isAnonymous}
                     QuillChange={this.handleChange}
                     addPostImage={this.props.addPostImage}
