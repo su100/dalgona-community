@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import CommentList from 'components/common/comment/CommentList';
 import View from 'components/common/View';
 import './Post.scss';
+import PostList from 'components/common/PostList';
+import Pagination from 'components/common/Pagination';
 
 class Post extends Component {
     constructor(props) {
@@ -39,6 +42,8 @@ class Post extends Component {
         }
     };
     render() {
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
         const {
             postReplyList,
             history,
@@ -49,6 +54,9 @@ class Post extends Component {
             rereply_success,
             postInfo,
             recommendPost,
+            boardInfo,
+            postList,
+            postCount,
         } = this.props;
         return (
             <div className="post">
@@ -85,6 +93,9 @@ class Post extends Component {
                     recommend={postInfo.recommended}
                     isRecommend
                 />
+                <div className="border_line" />
+                <PostList hasReply link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );
     }
