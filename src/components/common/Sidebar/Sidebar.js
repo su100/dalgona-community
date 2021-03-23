@@ -7,7 +7,7 @@ import './Sidebar.scss';
 const Sidebar = ({ handleSidebar, isAuthenticated, profile, signOut, closeSidebar, openSidebar }) => {
     const modalEl = useRef();
     const handleClickOutside = (e) => {
-        if (openSidebar && !modalEl.current.contains(e.target)) closeSidebar();
+        if (modalEl.current && openSidebar && !modalEl.current.contains(e.target)) closeSidebar();
     };
 
     useEffect(() => {
