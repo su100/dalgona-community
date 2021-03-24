@@ -11,7 +11,7 @@ export const ADD_POST_IMAGE = 'write/ADD_POST_IMAGE'; //이미지 ADD
 export const ADD_POST = 'write/ADD_POST'; //게시물 작성
 export const UPDATE_POST = 'write/UPDATE_POST'; //게시물 수정
 export const DELETE_POST = 'write/DELETE_POST'; //게시물 삭제
-export const ADD_POST_REPLY = 'write/ADD_POST_REPLY'; //투표 게시판 댓글 POST
+export const ADD_POST_REPLY = 'write/ADD_POST_REPLY'; //게시판 댓글 POST
 export const UPDATE_POST_REPLY = 'write/UPDATE_POST_REPLY'; //게시판 댓글 update
 export const DELETE_POST_REPLY = 'write/DELETE_POST_REPLY'; //게시판 댓글 delete
 export const ADD_POST_REREPLY = 'write/ADD_POST_REREPLY'; //게시판 대댓글 POST
@@ -119,15 +119,14 @@ export default handleActions(
             type: ADD_POST_REPLY,
             onSuccess: (state, action) => {
                 const data = action.payload.data;
-                console.log(action.payload.data);
-                if (data.body?.includes('Ensure this field has at least 4 characters.')) {
-                    alert('4글자 이상 입력해주세요');
-                }
                 return state;
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
+                if (data.body?.includes('Ensure this field has at least 4 characters.')) {
+                    alert('4글자 이상 입력해주세요.');
+                }
                 return state;
             },
         }),
