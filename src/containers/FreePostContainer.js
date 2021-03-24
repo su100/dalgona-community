@@ -120,14 +120,46 @@ class FreePostContainer extends Component {
         }
         this.getPostInfo(match.params.postid);
     };
+    getBoardInfo = async () => {
+        const { location, FreeActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await FreeActions.getBoardInfo(tmp[2]);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+    getPostList = async () => {
+        const { location, FreeActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await FreeActions.getPostList(tmp[2], '');
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         //console.log(this.props.match.params.postid);
         this.getPostInfo(postid);
         this.getReply(postid, 1, 'recomment_count');
+        this.getBoardInfo();
+        this.getPostList();
     }
+
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success, WriteActions } = this.props;
+        const {
+            history,
+            location,
+            match,
+            isAuthenticated,
+            reply_success,
+            rereply_success,
+            WriteActions,
+            boardInfo,
+            postList,
+            postCount,
+        } = this.props;
         return (
             <Fragment>
                 <Post
@@ -154,6 +186,9 @@ class FreePostContainer extends Component {
                     reReplyRecommend={this.reReplyRecommend}
                     postReplyCount={this.props.postReplyCount}
                     recommendPost={this.recommendPost}
+                    boardInfo={boardInfo}
+                    postCount={postCount}
+                    postList={postList}
                 />
             </Fragment>
         );
@@ -168,6 +203,9 @@ export default connect(
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
         delete_success: state.pender.success['write/DELETE_POST'],
+        boardInfo: state.free.get('boardInfo'),
+        postCount: state.free.get('postCount'),
+        postList: state.free.get('postList'),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

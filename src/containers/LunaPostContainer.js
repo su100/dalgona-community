@@ -133,14 +133,45 @@ class LunaPostContainer extends Component {
     getReply = (boardUrl, page, ordering) => {
         this.getPostReply(boardUrl, page, ordering);
     };
+    getBoardInfo = async () => {
+        const { location, LunaActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await LunaActions.getBoardInfo(tmp[2]);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+    getPostList = async () => {
+        const { location, LunaActions } = this.props;
+        const tmp = location.pathname.split('/');
+        try {
+            await LunaActions.getPostList(tmp[2], '');
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const postid = this.props.match.params.postid;
         this.getPostInfo(postid);
         this.getReply(postid, 1);
+        this.getBoardInfo();
+        this.getPostList();
     }
 
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success, WriteActions } = this.props;
+        const {
+            history,
+            location,
+            match,
+            isAuthenticated,
+            reply_success,
+            rereply_success,
+            WriteActions,
+            boardInfo,
+            postCount,
+            postList,
+        } = this.props;
         return (
             <Fragment>
                 <Post
@@ -168,6 +199,9 @@ class LunaPostContainer extends Component {
                     postInfo={this.props.postInfo}
                     postReplyList={this.props.postReplyList}
                     postReplyCount={this.props.postReplyCount}
+                    boardInfo={boardInfo}
+                    postCount={postCount}
+                    postList={postList}
                 />
             </Fragment>
         );
@@ -183,6 +217,9 @@ export default connect(
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
         delete_success: state.pender.success['write/DELETE_POST'],
+        boardInfo: state.luna.get('boardInfo'),
+        postCount: state.luna.get('postCount'),
+        postList: state.luna.get('postList'),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
