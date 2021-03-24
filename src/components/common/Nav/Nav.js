@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from 'components/common/Sidebar';
 import SearchInput from 'components/common/SearchInput';
@@ -35,6 +35,11 @@ class Nav extends Component {
         }
     };
 
+    closeMenu = (e) => {
+        console.log(e.target.class);
+
+        this.setState({ isOpen: false });
+    };
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -96,6 +101,7 @@ class Nav extends Component {
         this.checkIsPc();
         this.setPath();
         window.addEventListener('resize', this.checkIsPc);
+        //   window.addEventListener('mouseout', this.closeMenu);
     }
 
     componentWillUnmount() {
