@@ -108,8 +108,8 @@ class FreePostContainer extends Component {
             this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
         }
     };
-    getReply = (boardUrl, page, ordering) => {
-        this.getPostReply(boardUrl, page, ordering);
+    getReply = (postid, page, ordering) => {
+        this.getPostReply(postid, page, ordering);
     };
     recommendPost = async (postid) => {
         const { WriteActions, match } = this.props;

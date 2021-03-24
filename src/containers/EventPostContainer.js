@@ -26,10 +26,10 @@ class EventPostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params, ordering) => {
-        const { DalgonaActions } = this.props;
+    getPostReply = async (postid, page, ordering) => {
+        const { DalgonaActions, match } = this.props;
         try {
-            await DalgonaActions.getPostReply(postid, params, ordering);
+            await DalgonaActions.getPostReply(match.params.eventid, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -107,6 +107,15 @@ class EventPostContainer extends Component {
     getReply = (boardUrl, page, ordering) => {
         this.getPostReply(boardUrl, page, ordering);
     };
+    recommendPost = async (boardUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPost(match.params.eventid);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostInfo(match.params.eventid);
+    };
     componentDidMount() {
         const eventid = this.props.match.params.eventid;
         this.getPostInfo(eventid);
@@ -134,6 +143,7 @@ class EventPostContainer extends Component {
                     deletePostReply={this.deletePostReply}
                     updatePostRereply={this.updatePostRereply}
                     deletePostRereply={this.deletePostRereply}
+                    recommendPost={this.recommendPost}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
                     postReplyCount={this.props.postReplyCount}

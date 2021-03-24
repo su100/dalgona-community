@@ -18,6 +18,7 @@
     }
     &__info {
         @include flex(column, center, flex-start);
+        width: 100%;
         &-date {
             font-family: Noto Sans KR;
             font-size: 14px;

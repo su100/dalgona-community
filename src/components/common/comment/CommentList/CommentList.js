@@ -242,13 +242,13 @@ class CommentList extends Component {
             this.closeUpdate();
         }
     };
-    handleSort = (e) => {
+    handleOrdering = (e) => {
         const { page } = this.state;
         const { vote, voteid, postid } = this.props;
-        const boardUrl = vote ? voteid : postid;
+
         this.setState({ sortType: e.target.id });
         if (vote) {
-            this.props.voteReply(boardUrl, page, e.currentTarget.id);
+            this.props.voteReply(voteid, page, e.currentTarget.id);
         } else {
             this.props.getReply(postid, page, e.currentTarget.id);
         }
@@ -279,11 +279,11 @@ class CommentList extends Component {
                             </div>
                         </div>
                         <div className="comment-list__sort">
-                            <button id="recomment_count" onClick={this.handleSort}>
+                            <button id="recomment_count" onClick={this.handleOrdering}>
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>
-                            <button id="created_at" onClick={this.handleSort}>
+                            <button id="created_at" onClick={this.handleOrdering}>
                                 최신순
                                 <img src={arrowIcon}></img>
                             </button>
@@ -320,11 +320,11 @@ class CommentList extends Component {
                     </div>
                     <div className="not-pc">
                         <div className="comment-list__sort">
-                            <button id="recomment_count" onClick={this.handleSort}>
+                            <button id="recomment_count" onClick={this.handleOrdering}>
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>
-                            <button id="created_at" onClick={this.handleSort}>
+                            <button id="created_at" onClick={this.handleOrdering}>
                                 최신순
                                 <img src={arrowIcon}></img>
                             </button>

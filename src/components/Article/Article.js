@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import Header from 'components/common/Header';
 import ArticleList from 'components/common/ArticleList';
@@ -35,6 +36,7 @@ class Article extends Component {
     searchKeyword = (e) => {
         const word = e.target.value;
         this.setState({ searchWord: word });
+        this.props.history.push(`/article?page=1&search=${word}`);
     };
 
     getSearch = () => {
@@ -57,7 +59,9 @@ class Article extends Component {
                 />
                 <div className="border_line" />
                 <div className="article__keyword">
-                    <h4>인기키워드</h4>
+                    <Link to="/article">
+                        <h4>인기키워드</h4>
+                    </Link>
                     {newsKeyword.map((keyword, index) => {
                         return (
                             <button

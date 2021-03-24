@@ -26,10 +26,10 @@ class NoticePostContainer extends Component {
             console.log('error log:' + e);
         }
     };
-    getPostReply = async (postid, params, ordering) => {
-        const { DalgonaActions } = this.props;
+    getPostReply = async (postid, page, ordering) => {
+        const { DalgonaActions, match } = this.props;
         try {
-            await DalgonaActions.getPostReply(postid, params, ordering);
+            await DalgonaActions.getPostReply(match.params.noticeid, page, ordering);
         } catch (e) {
             console.log('error log:' + e);
         }
@@ -104,7 +104,15 @@ class NoticePostContainer extends Component {
         }
         this.getPostReply(match.params.noticeid, 1);
     };
-    ///
+    recommendPost = async (boardUrl) => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.recommendPost(match.params.noticeid);
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        this.getPostInfo(match.params.noticeid);
+    };
     getReply = (boardUrl, page, ordering) => {
         this.getPostReply(boardUrl, page, ordering);
     };
@@ -138,6 +146,7 @@ class NoticePostContainer extends Component {
                     deletePostRereply={this.deletePostRereply}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
+                    recommendPost={this.recommendPost}
                     postReplyCount={this.props.postReplyCount}
                 />
             </Fragment>
