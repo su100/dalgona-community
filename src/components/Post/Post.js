@@ -42,11 +42,10 @@ class Post extends Component {
         }
     };
     render() {
-        const query = queryString.parse(location.search);
-        const currentPage = query.page ? Number(query.page) : 1;
         const {
             postReplyList,
             history,
+            location,
             isAuthenticated,
             getReply,
             postReplyCount,
@@ -54,10 +53,16 @@ class Post extends Component {
             rereply_success,
             postInfo,
             recommendPost,
-            boardInfo,
             postList,
             postCount,
         } = this.props;
+
+        const query = queryString.parse(location.search);
+        const currentPage = query.page ? Number(query.page) : 1;
+
+        const urlInfo = location.pathname.split('/');
+        const parentBoardUrl = urlInfo[1];
+        const boardUrl = urlInfo[2];
         return (
             <div className="post">
                 <View
@@ -94,7 +99,7 @@ class Post extends Component {
                     isRecommend
                 />
                 <div className="border_line" />
-                <PostList hasReply link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <PostList hasReply link={`/${parentBoardUrl}/${boardUrl}`} hasGrid postList={postList} />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );

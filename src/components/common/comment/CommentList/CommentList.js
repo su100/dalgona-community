@@ -33,6 +33,7 @@ class CommentList extends Component {
             page: 1,
         };
     }
+
     handlePage = (e) => {
         const page = e.target.value;
         const { vote, voteid, postid } = this.props;
@@ -45,6 +46,7 @@ class CommentList extends Component {
             page: page,
         });
     };
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         if (prevProps.reply_success !== this.props.reply_success && this.props.reply_success) {
             //댓글 작성 성공했을 때
@@ -99,6 +101,7 @@ class CommentList extends Component {
         else if (type === 'update-reply' || type === 'update-rereply') this.setState({ updateImg: file });
         else this.setState({ reImg: file });
     };
+
     setPreview = (type, url) => {
         if (type === 'comment') this.setState({ previewURL: url });
         else if (type === 'update-reply' || type === 'update-rereply') this.setState({ updatePreview: url });
@@ -120,9 +123,11 @@ class CommentList extends Component {
     closeRecomment = (e) => {
         this.setState({ recommentId: '', reAnonymous: false, reText: '', reImg: null, rePreview: '' });
     };
+
     closeUpdate = (e) => {
         this.setState({ isUpdate: false, updateId: '' });
     };
+
     openUpdate = (comment, id) => {
         const { isUpdate } = this.state;
         if (this.props.vote) {
@@ -195,6 +200,7 @@ class CommentList extends Component {
             this.props.addRereply(formData);
         }
     };
+
     updateReply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { updateId, updateAnonymous, updateText, updateImg } = this.state;
@@ -218,6 +224,7 @@ class CommentList extends Component {
             this.closeUpdate();
         }
     };
+
     updateRereply = (e) => {
         const { voteid, isAuthenticated, vote, postid } = this.props;
         const { updateId, updateAnonymous, updateText, updateImg, updateReplyId } = this.state;
@@ -242,6 +249,7 @@ class CommentList extends Component {
             this.closeUpdate();
         }
     };
+
     handleOrdering = (e) => {
         const { page } = this.state;
         const { vote, voteid, postid } = this.props;
@@ -253,6 +261,7 @@ class CommentList extends Component {
             this.props.getReply(postid, page, e.currentTarget.id);
         }
     };
+
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
@@ -589,20 +598,6 @@ class CommentList extends Component {
                     );
                 })}
                 <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
-                <CommentInput
-                    type="comment"
-                    handleAnonymous={this.handleAnonymous}
-                    isAnonymous={this.state.isAnonymous}
-                    handleComment={this.handleComment}
-                    commentText={this.state.commentText}
-                    setImage={this.setImage}
-                    setPreview={this.setPreview}
-                    commentImg={this.state.commentImg}
-                    previewURL={this.state.previewURL}
-                    deleteImg={this.deleteImg}
-                    addReply={this.addReply}
-                    addRereply={this.addRereply}
-                />
             </div>
         );
     }
