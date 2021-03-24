@@ -36,9 +36,12 @@ class Nav extends Component {
     };
 
     closeMenu = (e) => {
-        console.log(e.target.class);
-
-        this.setState({ isOpen: false });
+        const { isOpen } = this.state;
+        console.log(isOpen);
+        this.setState({ isOpen: !isOpen });
+    };
+    handleOpenMenu = (e) => {
+        this.setState({ isOpen: true });
     };
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
@@ -154,9 +157,7 @@ class Nav extends Component {
                         </div>
                     </div>
                     {isAuthenticated ? (
-                        <div className="nav-main__login" onMouseOver={this.handleOver}>
-                            {profile.get('nickname')}님
-                        </div>
+                        <div className="nav-main__login">{profile.get('nickname')}님</div>
                     ) : (
                         <div className="nav-main__login">
                             <Link to={{ pathname: '/login', path: 'login' }}>
@@ -207,7 +208,7 @@ class Nav extends Component {
                     )}
                 </div>
                 {isOpen && (
-                    <div className="nav-hover">
+                    <div className="nav-hover" onMouseLeave={this.closeMenu}>
                         <div className="nav-hover__border">
                             {isAuthenticated && (
                                 <div className="nav-hover__border-authenticated">
