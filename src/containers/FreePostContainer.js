@@ -135,6 +135,13 @@ class FreePostContainer extends Component {
         this.getReply(postid, 1, 'recomment_count');
         this.getPostList();
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            const postid = this.props.match.params.postid;
+            this.getPostInfo(postid);
+            this.getReply(postid, 1, 'recomment_count');
+        }
+    }
 
     render() {
         const {
