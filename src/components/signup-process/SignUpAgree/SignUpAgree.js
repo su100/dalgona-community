@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { termsCommunity } from 'constants/index.js';
 import { termsPrivate } from 'constants/index.js';
-import mobileCheckBox from 'images/mobile-checkbox.png';
-import clickMobileCheckBox from 'images/click-mobile-checkbox.png';
 import step1 from 'images/step1.png';
 import './SignUpAgree.scss';
 
@@ -53,10 +50,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                 <img src={step1}></img>
             </div>
             <div className="signupagree__button">
-                <button
-                    className={agree ? 'signupagree__button click' : 'signupagree__button noclick'}
-                    onClick={onClickAgree}
-                >
+                <button className={agree ? 'click' : 'noclick'} onClick={onClickAgree}>
                     모두 동의함(만 14세 이상)
                 </button>
             </div>
@@ -64,11 +58,14 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                 <div className="signupagree__content-agree">
                     <span>달고나 이용약관 동의 [필수]</span>
                     <div className="signupagree__content-agree-check box">
-                        <img
-                            src={checkAgreeOne ? clickMobileCheckBox : mobileCheckBox}
+                        <input
+                            type="checkbox"
+                            id="termCheck"
+                            checked={checkAgreeOne}
+                            // src={checkAgreeOne ? clickMobileCheckBox : mobileCheckBox}
                             onClick={onClickCheckAgreeOne}
-                        ></img>
-                        <span>동의함</span>
+                        />
+                        <label htmlFor="termCheck">동의함</label>
                     </div>
                 </div>
                 <pre className="terms-box">{termsCommunity}</pre>
@@ -77,11 +74,16 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                 <div className="signupagree__content-agree">
                     <span>개인정보 수집 및 이용 동의 [필수]</span>
                     <div className="signupagree__content-agree-check">
-                        <img
-                            src={checkAgreeTwo ? clickMobileCheckBox : mobileCheckBox}
+                        <input
+                            type="checkbox"
+                            id="privateCheck"
+                            checked={checkAgreeTwo}
+                            // src={checkAgreeTwo ? clickMobileCheckBox : mobileCheckBox}
                             onClick={onClickCheckAgreeTwo}
-                        ></img>
-                        <span className="signupagree__content-agree-check box">동의함</span>
+                        />
+                        <label className="signupagree__content-agree-check box" htmlFor="privateCheck">
+                            동의함
+                        </label>
                     </div>
                 </div>
                 <pre className="terms-box">{termsPrivate}</pre>
@@ -90,11 +92,14 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                 <div className="signupagree__content-agree">
                     <span>만 14세 이상입니다. [필수]</span>
                     <div className="signupagree__content-agree-check box">
-                        <img
-                            src={checkAgreeThree ? clickMobileCheckBox : mobileCheckBox}
+                        <input
+                            type="checkbox"
+                            id="ageCheck"
+                            checked={checkAgreeThree}
+                            // src={checkAgreeThree ? clickMobileCheckBox : mobileCheckBox}
                             onClick={onClickCheckAgreeThree}
-                        ></img>
-                        <span>동의함</span>
+                        />
+                        <label htmlFor="ageCheck">동의함</label>
                     </div>
                 </div>
                 <div className="signupagree__content-impossible">

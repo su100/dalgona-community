@@ -40,9 +40,7 @@ class SignUp extends Component {
         const { userNameUnique, emailUnique, nicknameUnique, setUnique } = this.props;
         return (
             <div className="signup">
-                <div className="not-pc">
-                    <div className="signup__title">회원가입</div>
-                </div>
+                <div className="not-pc signup__title">회원가입</div>
                 {currentPage === 'agree' && (
                     <SignUpAgree handleAgreeConfirm={this.handleAgreeConfirm} agreeConfirm={agreeConfirm} />
                 )}
