@@ -19,7 +19,6 @@ class NoticePostContainer extends Component {
     getPostInfo = async (postId) => {
         const { location, DalgonaActions } = this.props;
         const tmp = location.pathname.split('/');
-        console.log(tmp[1]);
         try {
             await DalgonaActions.getPostInfo(tmp[1], postId);
         } catch (e) {
@@ -116,13 +115,38 @@ class NoticePostContainer extends Component {
     getReply = (boardUrl, page, ordering) => {
         this.getPostReply(boardUrl, page, ordering);
     };
+    getPostList = async () => {
+        const { DalgonaActions } = this.props;
+        try {
+            await DalgonaActions.getNoticeList('notice', '');
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const noticeid = this.props.match.params.noticeid;
         this.getPostInfo(noticeid);
         this.getReply(noticeid, 1);
+        this.getPostList();
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            const noticeid = this.props.match.params.noticeid;
+            this.getPostInfo(noticeid);
+            this.getReply(noticeid, 1);
+        }
     }
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
+        const {
+            history,
+            location,
+            match,
+            isAuthenticated,
+            reply_success,
+            rereply_success,
+            noticeList,
+            noticeCount,
+        } = this.props;
         return (
             <Fragment>
                 <Post
@@ -148,6 +172,8 @@ class NoticePostContainer extends Component {
                     reReplyRecommend={this.reReplyRecommend}
                     recommendPost={this.recommendPost}
                     postReplyCount={this.props.postReplyCount}
+                    postList={noticeList}
+                    postCount={noticeCount}
                 />
             </Fragment>
         );
@@ -162,6 +188,8 @@ export default connect(
         postReplyCount: state.dalgona.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
+        noticeCount: state.dalgona.get('noticeCount'),
+        noticeList: state.dalgona.get('noticeList'),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

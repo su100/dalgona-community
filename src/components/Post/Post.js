@@ -61,8 +61,8 @@ class Post extends Component {
         const currentPage = query.page ? Number(query.page) : 1;
 
         const urlInfo = location.pathname.split('/');
-        const parentBoardUrl = urlInfo[1];
-        const boardUrl = urlInfo[2];
+        const parentBoardUrl = urlInfo[3] ? urlInfo[1] : '';
+        const boardUrl = parentBoardUrl ? `${parentBoardUrl}/${urlInfo[2]}` : urlInfo[1];
         return (
             <div className="post">
                 <View
@@ -99,7 +99,7 @@ class Post extends Component {
                     isRecommend
                 />
                 <div className="border_line" />
-                <PostList hasReply link={`/${parentBoardUrl}/${boardUrl}`} hasGrid postList={postList} />
+                <PostList hasReply link={`/${boardUrl}`} hasGrid postList={postList} />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );

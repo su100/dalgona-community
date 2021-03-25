@@ -116,13 +116,38 @@ class EventPostContainer extends Component {
         }
         this.getPostInfo(match.params.eventid);
     };
+    getPostList = async () => {
+        const { DalgonaActions } = this.props;
+        try {
+            await DalgonaActions.getEventList('event', '');
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     componentDidMount() {
         const eventid = this.props.match.params.eventid;
         this.getPostInfo(eventid);
         this.getReply(eventid, 1);
+        this.getPostList();
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            const eventid = this.props.match.params.eventid;
+            this.getPostInfo(eventid);
+            this.getReply(eventid, 1);
+        }
     }
     render() {
-        const { history, location, match, isAuthenticated, reply_success, rereply_success } = this.props;
+        const {
+            history,
+            location,
+            match,
+            isAuthenticated,
+            reply_success,
+            rereply_success,
+            eventCount,
+            eventList,
+        } = this.props;
         return (
             <Fragment>
                 <Post
@@ -147,6 +172,8 @@ class EventPostContainer extends Component {
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
                     postReplyCount={this.props.postReplyCount}
+                    postCount={eventCount}
+                    postList={eventList}
                 />
             </Fragment>
         );
@@ -161,6 +188,8 @@ export default connect(
         postReplyCount: state.dalgona.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
+        eventCount: state.dalgona.get('eventCount'),
+        eventList: state.dalgona.get('eventList'),
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),
