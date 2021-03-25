@@ -129,10 +129,12 @@ class NoticePostContainer extends Component {
         this.getReply(noticeid, 1);
         this.getPostList();
     }
-    componentDidUpdate() {
-        const noticeid = this.props.match.params.noticeid;
-        this.getPostInfo(noticeid);
-        this.getReply(noticeid, 1);
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            const noticeid = this.props.match.params.noticeid;
+            this.getPostInfo(noticeid);
+            this.getReply(noticeid, 1);
+        }
     }
     render() {
         const {

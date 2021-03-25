@@ -130,10 +130,12 @@ class EventPostContainer extends Component {
         this.getReply(eventid, 1);
         this.getPostList();
     }
-    componentDidUpdate() {
-        const eventid = this.props.match.params.eventid;
-        this.getPostInfo(eventid);
-        this.getReply(eventid, 1);
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            const eventid = this.props.match.params.eventid;
+            this.getPostInfo(eventid);
+            this.getReply(eventid, 1);
+        }
     }
     render() {
         const {
