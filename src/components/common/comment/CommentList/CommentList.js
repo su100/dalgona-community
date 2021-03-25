@@ -598,6 +598,20 @@ class CommentList extends Component {
                     );
                 })}
                 <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
+                <CommentInput
+                    type="comment"
+                    handleAnonymous={this.handleAnonymous}
+                    isAnonymous={this.state.isAnonymous}
+                    handleComment={this.handleComment}
+                    commentText={this.state.commentText}
+                    setImage={this.setImage}
+                    setPreview={this.setPreview}
+                    commentImg={this.state.commentImg}
+                    previewURL={this.state.previewURL}
+                    deleteImg={this.deleteImg}
+                    addReply={this.addReply}
+                    addRereply={this.addRereply}
+                />
             </div>
         );
     }
