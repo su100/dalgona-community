@@ -3,55 +3,94 @@
 //pc, 기본
 .signupinfo {
     @include flex(column, center, center);
-    width: 100%;
+    width: 944px;
     height: 100%;
     padding-bottom: 100px;
     &__title {
-        width: 824px;
+        width: 100%;
         padding-top: 100px;
         padding-bottom: 82px;
-        font-family: Noto Sans KR;
         font-size: 34px;
-        font-style: normal;
         font-weight: 700;
         line-height: 41px;
         letter-spacing: 0em;
         text-align: left;
     }
-    img {
-        padding-top: 9px;
-    }
-
-    &__content {
+    &__img {
         @include flex(column, center, center);
-        &-form {
+        width: 100%;
+        &-title {
             @include flex(row, flex-start, center);
             width: 100%;
-            padding-bottom: 55px;
-            span {
-                width: 200px;
-                font-family: Noto Sans KR;
-                font-size: 22px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 17px;
-                letter-spacing: 0em;
-                text-align: left;
+            padding-top: 78.99px;
+            padding-bottom: 24px;
+        }
+        input[type='file'] {
+            display: none;
+        }
+        button {
+            width: 194px;
+            height: 194px;
+            border: 1px solid #cbcbcb;
+            border-radius: 50%;
+        }
+        img {
+            width: 32px;
+            height: 25px;
+        }
+        &-preview {
+            @include flex(row, center, center);
+            width: inherit;
+            height: 194px;
+            &-background {
+                position: absolute;
+                width: inherit;
+                height: 194px;
+                background: #000000;
+                opacity: 0.13;
             }
+            img {
+                width: 194px;
+                height: 194px;
+            }
+            button {
+                width: 25px;
+                height: 25px;
+                margin-right: 5px;
+                margin-bottom: 15px;
+                align-self: flex-start;
+                color: black;
+                z-index: 10;
+            }
+        }
+    }
+    .signupinfo__title-form {
+        margin-bottom: 16px;
+        width: 100%;
+        font-weight: 500;
+        font-size: 17px;
+        text-align: left;
+    }
+    &__content {
+        width: 100%;
+        &-form {
+            width: 100%;
+            margin-bottom: 30px;
             &-input {
                 @include flex(row, flex-start, center);
+                height: 50px;
                 input {
-                    width: 309px;
-                    height: 32px;
-                    background: rgba(196, 196, 196, 0.5);
-                    border: 0px;
+                    margin: 0;
+                    padding-left: 21px;
+                    width: 100%;
+                    height: 100%;
+                    border: 1px solid #cbcbcb;
+                    box-sizing: border-box;
                 }
                 button {
                     @include flex(row, center, center);
                     text-align: center;
-                    width: 75px;
-                    height: 32px;
-                    margin-left: 14px;
+                    width: 123px;
                     background: #c4c4c4;
                 }
                 &.click {
@@ -65,63 +104,44 @@
     }
     &__button {
         margin-top: 110px;
-        height: 71.9000244140625px;
+        height: 71.9px;
         width: 100%;
         background: #ffd278;
         color: white;
     }
 }
 //태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+@media screen and (max-width: $tablet-max) {
     .signupinfo {
-        @include flex(column, flex-start, center);
+        padding: 0 20px 120px;
         width: 100%;
         height: 100%;
-        font-family: Noto Sans KR;
-        font-style: normal;
-        padding-bottom: 0px;
+        box-sizing: border-box;
         &__title {
             padding-top: 23.97px;
-            font-weight: 500;
+            padding-bottom: 20px;
             font-size: 18px;
             line-height: 26px;
-            color: #000000;
             text-align: center;
         }
         img {
             padding-top: 20px;
         }
+        .signupinfo__title-form {
+            font-weight: 500;
+            font-size: 17px;
+        }
         &__img {
-            @include flex(column, center, center);
-            &-title {
-                @include flex(row, flex-start, center);
-                width: 728px;
-                padding-top: 78.99px;
-                padding-bottom: 24px;
-            }
-            input[type='file'] {
-                display: none;
-            }
-            button {
-                width: 194px;
-                height: 194px;
-                border: 1px solid black;
-                border-radius: 194px;
-            }
-            img{
+            margin-bottom: 27.9px;
+            img {
                 width: 32px;
                 height: 25px;
             }
             &-preview {
-                @include flex(row, center, center);
                 width: inherit;
                 height: 194px;
                 &-background {
-                    position: absolute;
-                    width: inherit;
                     height: 194px;
-                    background: #000000;
-                    opacity: 0.13;
                 }
                 img {
                     width: 194px;
@@ -132,43 +152,21 @@
                     height: 25px;
                     margin-right: 5px;
                     margin-bottom: 15px;
-                    align-self: flex-start;
-                    color: black;
-                    z-index: 10;
                 }
             }
         }
         &__content {
-            @include flex(column, center, center);
             &-form {
-                @include flex(column, center, flex-start);
-                width: 728px;
-                padding-bottom: 29.61px;
-                span {
-                    padding-bottom: 16.49px;
-                    font-family: Noto Sans KR;
-                    font-size: 17px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 25px;
-                    letter-spacing: 0em;
-                }
                 &-input {
-                    @include flex(row, flex-start, center);
                     input {
-                        background: white;
-                        height: 50px;
-                        width: 600px;
                         border: 1px solid #a7a7a7;
                         border-right: none;
                         &.password {
                             border-right: 1px solid #a7a7a7;
-                            width: 728px;
                         }
                     }
                     button {
                         margin: 0px;
-                        height: 54px;
                         width: 128px;
                         font-size: 20px;
                         line-height: 29px;
@@ -187,11 +185,9 @@
             }
         }
         &__button {
-            margin-top: 80px;
-            height: 71.9000244140625px;
-            width: 100%;
-            background: #ffd278;
-            color: white;
+            position: fixed;
+            bottom: 0;
+            height: 71.9px;
         }
     }
 }
@@ -199,41 +195,33 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .signupinfo {
-        @include flex(column, flex-start, center);
-        width: 100%;
-        height: 100%;
-        padding-bottom: 0px;
+        padding: 0 20px 80px;
         &__title {
-            width: 100%;
             padding-top: 15px;
             padding-bottom: 23px;
             font-size: 14px;
             line-height: 20px;
-            text-align: center;
         }
         img {
             padding-top: 9px;
-            width: 234px;
             height: 30px;
         }
+        .signupinfo__title-form {
+            margin-bottom: 7px;
+            font-size: 12px;
+        }
         &__img {
-            @include flex(column, center, center);
+            margin-bottom: 20px;
             &-title {
-                @include flex(row, flex-start, center);
                 width: 320px;
                 padding-top: 46px;
                 padding-bottom: 0px;
                 font-size: 12px;
                 line-height: 17px;
             }
-            input[type='file'] {
-                display: none;
-            }
             button {
                 width: 92px;
                 height: 92px;
-                border: 1px solid black;
-                border-radius: 1940px;
                 img {
                     height: 11.969504356384277px;
                     width: 14.961897850036621px;
@@ -260,18 +248,12 @@
                     height: 15px;
                     margin-right: 5px;
                     margin-bottom: 10px;
-                    align-self: flex-start;
-                    color: black;
-                    z-index: 10;
                 }
             }
         }
         &__content {
-            @include flex(column, center, center);
             &-form {
-                @include flex(column, center, flex-start);
-                width: 320px;
-                padding-bottom: 20px;
+                margin-bottom: 20px;
                 span {
                     padding-top: 0px;
                     padding-bottom: 7px;
@@ -279,43 +261,22 @@
                     line-height: 17px;
                 }
                 &-input {
-                    @include flex(row, flex-start, center);
+                    height: 32px;
                     input {
-                        background: white;
-                        height: 32px;
-                        width: 247px;
-                        border: 1px solid #a7a7a7;
-                        border-right: none;
-                        &.password {
-                            border-right: 1px solid #a7a7a7;
-                            width: 320px;
-                        }
+                        height: inherit;
+                        padding-left: 10px;
+                        font-size: 15px;
                     }
                     button {
-                        margin: 0px;
-                        height: 36px;
                         width: 74px;
                         font-size: 15px;
-                        line-height: 21.72px;
-                        color: #ffffff;
-                        text-align: center;
-                        background: #d5d5d5;
-                    }
-                    &.click {
-                        background: #f7c95f;
-                    }
-                    &.noclick {
-                        background: #d5d5d5;
+                        line-height: 29px;
                     }
                 }
             }
         }
         &__button {
-            margin-top: 40px;
             height: 51px;
-            width: 360px;
-            background: #ffd278;
-            color: white;
         }
     }
 }

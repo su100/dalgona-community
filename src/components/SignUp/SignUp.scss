@@ -4,17 +4,6 @@
 .signup {
     width: 100%;
     height: 100%;
-    &__title {
-        height: 69.24px;
-        font-family: Noto Sans KR;
-        font-size: 21px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 69.24px;
-        letter-spacing: 0em;
-        border-bottom: 0.487px solid #afafaf;
-        text-align: center;
-    }
     &__button {
         margin-top: 110px;
         height: 71.9000244140625px;
@@ -24,27 +13,24 @@
     }
 }
 //태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+@media screen and (max-width: $tablet-max) {
     .signup {
         width: 100%;
         height: 100%;
         &__title {
+            width: 100%;
             height: 69.24px;
-            font-family: Noto Sans KR;
             font-size: 21px;
-            font-style: normal;
             font-weight: 500;
             line-height: 69.24px;
-            letter-spacing: 0em;
             border-bottom: 0.487px solid #afafaf;
             text-align: center;
         }
         &__button {
-            margin-top: 110px;
-            height: 71.9000244140625px;
-            width: 100%;
-            background: #ffd278;
-            color: white;
+            position: fixed;
+            bottom: 0;
+            margin-top: 0;
+            height: 71.9px;
         }
     }
 }
@@ -52,26 +38,14 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .signup {
-        @include flex(column, center, center);
-        width: 100%;
-        height: 100%;
         &__title {
-            width: 360px;
             height: 47px;
-            font-family: Noto Sans KR;
             font-size: 17px;
-            font-style: normal;
             font-weight: 500;
             line-height: 47px;
-            letter-spacing: 0em;
-            text-align: center;
-            border-bottom: 0.487px solid #afafaf;
         }
         &__button {
             height: 51px;
-            width: 360px;
-            background: #ffd278;
-            color: white;
         }
     }
 }

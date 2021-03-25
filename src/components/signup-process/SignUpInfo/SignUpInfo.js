@@ -140,7 +140,7 @@ class SignUpInfo extends Component {
             nickname: '한글/영문/숫자 1~20자',
             email: '이메일 주소 입력',
         };
-        const { duplicate, previewURL } = this.state;
+        const { previewURL } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
 
         return (
@@ -152,40 +152,37 @@ class SignUpInfo extends Component {
                 <div className="not-pc">
                     <img src={step3}></img>
                 </div>
-                <div className="not-pc">
-                    <div className="signupinfo__img">
-                        <div className="signupinfo__img-title">
-                            <span>대표사진</span>
-                        </div>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            ref={this.fileInput}
-                            onChange={this.selectImg}
-                            onClick={(event) => {
-                                event.target.value = null;
-                            }}
-                        />
-                        {!previewURL && (
-                            <button className="" onClick={this.onClickSelect}>
-                                <img src={photoIcon} alt="photoIcon" />
+                <div className="signupinfo__img">
+                    <div className="signupinfo__title-form">대표사진</div>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        ref={this.fileInput}
+                        onChange={this.selectImg}
+                        onClick={(event) => {
+                            event.target.value = null;
+                        }}
+                    />
+                    {!previewURL && (
+                        <button className="" onClick={this.onClickSelect}>
+                            <img src={photoIcon} alt="photoIcon" />
+                        </button>
+                    )}
+                    {previewURL && (
+                        <div className="signupinfo__img-preview">
+                            <div className="signupinfo__img-preview-background" />
+                            <img src={previewURL} alt="preview" />
+                            <button id={this.type} onClick={this.deleteImg}>
+                                X
                             </button>
-                        )}
-                        {previewURL && (
-                            <div className="signupinfo__img-preview">
-                                <div className="signupinfo__img-preview-background" />
-                                <img src={previewURL} alt="preview" />
-                                <button id={this.type} onClick={this.deleteImg}>
-                                    X
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
+
                 <div className="signupinfo__content">
                     {Object.keys(keyObject).map((value, index) => (
                         <div className="signupinfo__content-form" key={index}>
-                            <span>{keyObject[value]}</span>
+                            <div className="signupinfo__title-form">{keyObject[value]}</div>
                             <div className="signupinfo__content-form-input">
                                 <input
                                     className={

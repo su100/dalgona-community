@@ -4,22 +4,17 @@
 .signupagree {
     @include flex(column, space-around, center);
     width: 100%;
-    height: 1062.45px;
-    font-family: Noto Sans KR;
     font-size: 18px;
-    line-height: 26.06px;
-    padding-bottom: 100px;
     &__title {
+        margin-top: 100px;
+        margin-bottom: 35px;
         width: 824px;
-        padding-top: 100px;
+        font-weight: bold;
         font-size: 34px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 20px;
-        letter-spacing: 0em;
         text-align: left;
     }
     &__button {
+        margin-bottom: 117px;
         button {
             &.click {
                 background: #f7c95f;
@@ -31,37 +26,34 @@
             height: 103px;
             background: #f7c95f;
             border-radius: 8px;
-            font-family: Noto Sans KR;
-            font-style: normal;
             font-weight: bold;
             font-size: 34px;
-            line-height: 35px;
             color: #1f1f1f;
         }
     }
 
     &__content {
+        margin-bottom: 36px;
         &-agree {
             @include flex(row, space-between, center);
+            margin-bottom: 16px;
             width: 824px;
-            font-style: normal;
-            font-weight: 500;
             font-size: 17px;
-            line-height: 24.62px;
             color: #000000;
-            padding-bottom: 7px;
+            span {
+                font-weight: bold;
+            }
             &-check {
-                img {
-                    height: 18px;
-                    width: 18px;
+                input {
+                    margin-right: 10px;
                 }
                 &.box {
-                    font-size: 17px;
                     line-height: 22px;
                 }
             }
         }
         pre {
+            margin: 0;
             height: 215.89999389648438px;
             width: 824px;
             overflow-y: scroll;
@@ -71,11 +63,8 @@
             border: 1px solid #cbcbcb;
         }
         &-impossible {
-            width: 728px;
             text-align: left;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 17px;
+            font-size: 13px;
             line-height: 18.82px;
             color: #6e6e6e;
         }
@@ -83,79 +72,72 @@
 }
 
 //태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+@media screen and (max-width: $tablet-max) {
     .signupagree {
         @include flex(column, space-around, center);
+        padding: 0 20px;
         width: 100%;
-        height: 1062.45px;
-        font-family: Noto Sans KR;
+        box-sizing: border-box;
         font-size: 18px;
         line-height: 26.06px;
-        padding-bottom: 0px;
         &__title {
-            padding-top: 20px;
+            margin: 23.97px 0 20px;
+            width: 100%;
             font-size: 18px;
-            font-style: normal;
             font-weight: 500;
             line-height: 20px;
             letter-spacing: 0em;
             text-align: center;
         }
         &__button {
+            margin: 39px 0 105.09px;
+            width: 100%;
             button {
+                width: 100%;
                 &.click {
                     background: #f7c95f;
                 }
                 &.noclick {
                     background: #d5d5d5;
                 }
-                height: 49.899993896484375px;
-                width: 728px;
+                height: 49.89px;
                 border-radius: 0px;
-                font-style: normal;
-                font-weight: normal;
+                font-size: 20px;
                 align-items: center;
                 text-align: center;
                 color: #ffffff;
             }
         }
-
         &__content {
+            width: 100%;
             &-agree {
                 @include flex(row, space-between, center);
-                width: 728px;
-                font-style: normal;
+                width: 100%;
                 font-weight: 500;
                 font-size: 17px;
                 line-height: 24.62px;
                 color: #000000;
-                padding-bottom: 7px;
                 &-check {
-                    img {
+                    input {
+                        margin-right: 8.5px;
                         height: 14px;
                         width: 14px;
                     }
                     &.box {
-                        font-size: 15px;
-                        line-height: 21.72px;
+                        font-weight: 500;
                     }
                 }
             }
             pre {
-                height: 215.89999389648438px;
-                width: 728px;
+                width: 100%;
+                height: 215.89px;
                 font-size: 0.8rem;
                 line-height: 0.9rem;
             }
             &-impossible {
+                padding-bottom: 100px;
                 width: 728px;
-                text-align: left;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 13px;
                 line-height: 18.82px;
-                color: #6e6e6e;
-                padding-bottom: 115.49px;
             }
         }
     }
@@ -164,83 +146,49 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .signupagree {
-        @include flex(column, space-around, center);
-        width: 100%;
-        height: 487px;
-        font-family: Noto Sans KR;
         font-size: 14px;
         line-height: 20px;
-        padding-bottom: 0px;
         &__title {
-            width: 100%;
-            padding-top: 15px;
+            margin: 15px 0 9px;
             font-size: 14px;
-            font-style: normal;
             font-weight: 500;
             line-height: 20px;
-            letter-spacing: 0em;
-            text-align: center;
         }
         img {
-            width: 245px;
             height: 30px;
         }
         &__button {
+            margin: 15px 0 22px;
             button {
-                &.click {
-                    background: #f7c95f;
-                }
-                &.noclick {
-                    background: #d5d5d5;
-                }
                 height: 32px;
-                width: 320px;
-                border-radius: 0px;
                 font-size: 14px;
-                font-style: normal;
-                font-weight: normal;
-                align-items: center;
-                text-align: center;
-                color: #ffffff;
             }
         }
-
         &__content {
             &-agree {
-                @include flex(row, space-between, center);
-                width: 320px;
-                font-style: normal;
-                font-weight: 500;
+                margin-bottom: 7px;
                 font-size: 12px;
                 line-height: 17px;
-                color: #000000;
-                padding-bottom: 7px;
                 &-check {
-                    img {
-                        height: 6.523194789886475px;
-                        width: 6.523194789886475px;
+                    input {
+                        margin-right: 3.73px;
+                        height: 6.52px;
+                        width: 6.52px;
                     }
                     &.box {
-                        font-size: 11px;
-                        line-height: 15.93px;
+                        font-size: 12px;
                     }
                 }
             }
             pre {
                 height: 101px;
-                width: 320px;
                 font-size: 0.7rem;
                 line-height: 0.8rem;
             }
             &-impossible {
-                width: 320px;
-                text-align: left;
-                font-style: normal;
-                font-weight: normal;
                 font-size: 11px;
                 line-height: 16px;
-                color: #6e6e6e;
-                padding-bottom: 20px;
+                padding-bottom: 50px;
             }
         }
     }

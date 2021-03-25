@@ -132,7 +132,17 @@ export default handleActions(
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
                 console.log(data);
-                if (data.password1?.includes('This password is too common.')) {
+                if (data.username?.includes('This field is required.')) {
+                    alert('아이디를 입력해주세요');
+                } else if (data.password1?.includes('This field is required.')) {
+                    alert('비밀번호를 입력해주세요');
+                } else if (data.password2?.includes('This field is required.')) {
+                    alert('비밀번호 확인을 입력해주세요');
+                } else if (data.nickname?.includes('This field is required.')) {
+                    alert('닉네임을 입력해주세요');
+                } else if (data.email?.includes('This field is required.')) {
+                    alert('이메일을 입력해주세요');
+                } else if (data.password1?.includes('This password is too common.')) {
                     alert('패스워드가 너무 단순합니다');
                 } else if (
                     data.password1?.includes('This password is too short. It must contain at least 8 characters.')
