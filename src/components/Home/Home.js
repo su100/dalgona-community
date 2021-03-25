@@ -70,7 +70,13 @@ class Home extends Component {
                         to={`/luna/${post.board_url.board_url}/${post.id}`}
                         key={post.id}
                     >
-                        {imageURL === '' ? <p>{post.title}</p> : <img src={imageURL} alt="post" />}
+                        {imageURL === '' ? (
+                            <div className="home__item--hotpost--text">
+                                <p>{post.title}</p>
+                            </div>
+                        ) : (
+                            <img src={imageURL} alt="post" />
+                        )}
                     </Link>
                 );
             }

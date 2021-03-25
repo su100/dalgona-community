@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { termsCommunity } from 'constants/index.js';
+import { termsPrivate } from 'constants/index.js';
 import mobileCheckBox from 'images/mobile-checkbox.png';
 import clickMobileCheckBox from 'images/click-mobile-checkbox.png';
 import step1 from 'images/step1.png';
@@ -69,7 +71,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                         <span>동의함</span>
                     </div>
                 </div>
-                <input type="text" value="약관설명" readOnly="readonly" />
+                <pre className="terms-box">{termsCommunity}</pre>
             </div>
             <div className="signupagree__content">
                 <div className="signupagree__content-agree">
@@ -82,7 +84,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                         <span className="signupagree__content-agree-check box">동의함</span>
                     </div>
                 </div>
-                <input type="text" value="약관설명" readOnly="readonly" />
+                <pre className="terms-box">{termsPrivate}</pre>
             </div>
             <div className="signupagree__content">
                 <div className="signupagree__content-agree">

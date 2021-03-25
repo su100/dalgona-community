@@ -61,9 +61,14 @@
                 }
             }
         }
-        input {
+        pre {
             height: 215.89999389648438px;
             width: 824px;
+            overflow-y: scroll;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            line-height: 1rem;
+            border: 1px solid #cbcbcb;
         }
         &-impossible {
             width: 728px;
@@ -136,9 +141,11 @@
                     }
                 }
             }
-            input {
+            pre {
                 height: 215.89999389648438px;
                 width: 728px;
+                font-size: 0.8rem;
+                line-height: 0.9rem;
             }
             &-impossible {
                 width: 728px;
@@ -219,9 +226,11 @@
                     }
                 }
             }
-            input {
+            pre {
                 height: 101px;
                 width: 320px;
+                font-size: 0.7rem;
+                line-height: 0.8rem;
             }
             &-impossible {
                 width: 320px;

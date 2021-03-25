@@ -205,6 +205,7 @@ export const getPostList = (boardUrl, params) =>
 export const getPostInfo = (boardUrl, postId) =>
     axios.get(`${API_BASE_URL}/board/${boardUrl}/${postId}`, {
         headers: { Authorization: getAccesesToken() },
+        withCredentials: true,
     });
 // 댓글 목록 가져오기: 게시글
 export const getPostReply = (postId, page, ordering) =>
