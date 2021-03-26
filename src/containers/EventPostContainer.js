@@ -104,8 +104,12 @@ class EventPostContainer extends Component {
         }
         this.getPostReply(match.params.eventid, 1);
     };
-    getReply = (boardUrl, page, ordering) => {
-        this.getPostReply(boardUrl, page, ordering);
+    getReply = (postid, page, ordering) => {
+        if (ordering === 'created_at') {
+            this.getPostReply(postid, page, '');
+        } else {
+            this.getPostReply(postid, page, ordering);
+        }
     };
     recommendPost = async (boardUrl) => {
         const { WriteActions, match } = this.props;

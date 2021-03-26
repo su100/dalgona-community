@@ -27,6 +27,7 @@ class LunaPostContainer extends Component {
     };
     getPostReply = async (postid, page, ordering) => {
         const { LunaActions } = this.props;
+        console.log(ordering);
         try {
             await LunaActions.getPostReply(postid, page, ordering);
         } catch (e) {
@@ -130,8 +131,12 @@ class LunaPostContainer extends Component {
         }
     };
     ///
-    getReply = (boardUrl, page, ordering) => {
-        this.getPostReply(boardUrl, page, ordering);
+    getReply = (postid, page, ordering) => {
+        if (ordering === 'created_at') {
+            this.getPostReply(postid, page, '');
+        } else {
+            this.getPostReply(postid, page, ordering);
+        }
     };
     getPostList = async () => {
         const { location, LunaActions } = this.props;
