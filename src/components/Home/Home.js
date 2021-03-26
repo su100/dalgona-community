@@ -229,7 +229,7 @@ class Home extends Component {
                         <h4>
                             실시간 연예뉴스
                             <span className="not-pc">
-                                <button>
+                                <button onClick={this.updateNews}>
                                     <img src={refreshIcon} alt="refresh" />
                                     {this.state.newsTime}업데이트
                                 </button>
