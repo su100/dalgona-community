@@ -3,11 +3,9 @@
 .basic-slider {
     background: inherit;
     margin-bottom: 25px;
+    width: 100%;
     div {
         outline: none;
-    }
-    .slick-list {
-        margin: 0 -20px;
     }
     .slick-slide > div {
         padding: 0 20px;
