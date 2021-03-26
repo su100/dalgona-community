@@ -12,10 +12,6 @@ class SignUpContainer extends Component {
         } catch (e) {
             console.log('error log:' + e);
         }
-        if (this.props.success) {
-            //이메일 발송 화면으로
-            this.props.history.push('/SignUp');
-        }
     };
 
     checkUsername = async (username) => {
@@ -46,7 +42,16 @@ class SignUpContainer extends Component {
     };
 
     render() {
-        const { history, location, userNameUnique, emailUnique, nicknameUnique, AuthActions } = this.props;
+        const {
+            history,
+            location,
+            userNameUnique,
+            emailUnique,
+            nicknameUnique,
+            AuthActions,
+            signup_success,
+            signUpSuccess,
+        } = this.props;
         return (
             <Fragment>
                 <SignUp
@@ -60,6 +65,8 @@ class SignUpContainer extends Component {
                     checkEmail={this.checkEmail}
                     checkNickname={this.checkNickname}
                     setUnique={AuthActions.setUnique}
+                    signup_success={signup_success}
+                    signUpSuccess={signUpSuccess}
                 />
             </Fragment>
         );
@@ -72,8 +79,9 @@ export default connect(
         userNameUnique: state.auth.get('userNameUnique'),
         emailUnique: state.auth.get('emailUnique'),
         nicknameUnique: state.auth.get('nicknameUnique'),
-        success: state.pender.success['auth/SIGN_IN'],
-        failure: state.pender.failure['auth/SIGN_IN'],
+        signUpSuccess: state.auth.get('signUpSuccess'),
+        signup_success: state.pender.success['auth/SIGN_UP'],
+        signup_failure: state.pender.failure['auth/SIGN_UP'],
     }),
     (dispatch) => ({
         AuthActions: bindActionCreators(authActions, dispatch),

@@ -105,10 +105,9 @@ export const getVoteInfo = (boardUrl) =>
     });
 
 // 투표 게시판 전체 댓글 가져오기
-export const getVoteReply = (boardUrl, page, ordering) =>
+export const getVoteReply = (boardUrl, page, ordering = 'recommend_count') =>
     axios.get(`${API_BASE_URL}/battle/vote/board/${boardUrl}/reply`, {
-        page: page,
-        ordering: ordering,
+        params: { page, ordering },
         headers: { Authorization: getAccesesToken() },
     });
 
@@ -208,10 +207,9 @@ export const getPostInfo = (boardUrl, postId) =>
         withCredentials: true,
     });
 // 댓글 목록 가져오기: 게시글
-export const getPostReply = (postId, page, ordering) =>
-    axios.get(`${API_BASE_URL}/board/${postId}/reply?`, {
-        page: page,
-        ordering: ordering,
+export const getPostReply = (postId, page, ordering = 'recommend_count') =>
+    axios.get(`${API_BASE_URL}/board/${postId}/reply`, {
+        params: { page, ordering },
         headers: { Authorization: getAccesesToken() },
     });
 //내가 쓴 글 조회

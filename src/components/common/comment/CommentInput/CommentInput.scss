@@ -2,7 +2,8 @@
 
 //pc, 기본
 .comment-input {
-    margin-bottom: 32px;
+    padding-bottom: 35px;
+    padding-top: 15px;
     width: 100%;
     font-family: Noto Sans KR;
     .comment-input__preview {
@@ -48,6 +49,7 @@
         .comment-input--bottom-file {
             @include flex(row-reverse, space-between, center);
             span {
+                margin-left: 10px;
                 margin-right: 20px;
             }
             img {
@@ -92,6 +94,7 @@
 @media screen and (max-width: $tablet-max) {
     .comment-input {
         @include flex(column, center, center);
+        padding-top: 0px;
         border-top: 10px solid #f2f2f2;
         border-bottom: 10px solid #f2f2f2;
         .comment-input__input {
@@ -131,6 +134,8 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .comment-input {
+        border-top: 5px solid #f2f2f2;
+        border-bottom: 5px solid #f2f2f2;
         .comment-input__input {
             height: 101px;
             font-size: 15px;

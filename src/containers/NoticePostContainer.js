@@ -112,8 +112,12 @@ class NoticePostContainer extends Component {
         }
         this.getPostInfo(match.params.noticeid);
     };
-    getReply = (boardUrl, page, ordering) => {
-        this.getPostReply(boardUrl, page, ordering);
+    getReply = (postid, page, ordering) => {
+        if (ordering === 'created_at') {
+            this.getPostReply(postid, page, '');
+        } else {
+            this.getPostReply(postid, page, ordering);
+        }
     };
     getPostList = async () => {
         const { DalgonaActions } = this.props;

@@ -171,6 +171,7 @@
         }
         .comment-list__ordering {
             @include flex(row, space-between, center);
+            padding-top: 15px;
             width: 100%;
             .comment-list__reply {
                 span {
@@ -183,7 +184,7 @@
             }
             .comment-list__sort {
                 @include flex(row, space-between, center);
-                width: 140px;
+                width: 120px;
                 button {
                     font-family: Noto Sans KR;
                     font-size: 14px;
@@ -305,6 +306,7 @@
         }
         .comment-list__ordering {
             @include flex(row, space-between, center);
+            padding-top: 10px;
             .comment-list__reply {
                 span {
                     font-size: 14px;
@@ -312,7 +314,7 @@
             }
             .comment-list__sort {
                 @include flex(row, space-between, center);
-                width: 110px;
+                width: 105px;
                 button {
                     font-size: 12px;
                     img {

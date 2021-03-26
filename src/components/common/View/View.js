@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CommentList from 'components/common/comment/CommentList';
 import heart from 'images/heart.png';
 import moment from 'moment';
@@ -14,16 +15,19 @@ class View extends Component {
         const { link, postInfo, type } = this.props;
         const { location } = this.props;
         const path = location.pathname.split('/');
+        console.log(type, path);
         return (
             <div className="view">
                 <div className="view__detail">
-                    <span>
-                        홈{'>'}
-                        {type === `luna` && `루나>${path[2]}`}
-                        {type === `free` && `자유>${path[2]}`}
-                        {type === `notice` && `달고나>공지사항`}
-                        {type === `event` && `달고나>이벤트`}
-                    </span>
+                    <Link to={`/${type}/${path[2]}`}>
+                        <span>
+                            홈{'>'}
+                            {type === `luna` && `루나>${path[2]}`}
+                            {type === `free` && `자유>${path[2]}`}
+                            {type === `notice` && `달고나>공지사항`}
+                            {type === `event` && `달고나>이벤트`}
+                        </span>
+                    </Link>
                 </div>
                 <div className="view__title">
                     <span>{postInfo.title}</span>

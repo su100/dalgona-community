@@ -23,7 +23,6 @@ class SignUp extends Component {
         } else if (currentPage === 'confirm') {
             this.setState({ currentPage: 'info' });
         } else if (currentPage === 'info') {
-            this.props.signUp();
             this.setState({ currentPage: 'finish' });
         } else {
             this.props.history.push('/');
@@ -37,7 +36,8 @@ class SignUp extends Component {
 
     render() {
         const { currentPage, agreeConfirm } = this.state;
-        const { userNameUnique, emailUnique, nicknameUnique, setUnique } = this.props;
+        const { userNameUnique, emailUnique, nicknameUnique, setUnique, signup_success, signUpSuccess } = this.props;
+        console.log(signup_success, signUpSuccess);
         return (
             <div className="signup">
                 <div className="not-pc signup__title">회원가입</div>
@@ -56,10 +56,21 @@ class SignUp extends Component {
                         checkNickname={this.props.checkNickname}
                         setUnique={setUnique}
                         onClickNext={this.onClickNext}
+                        signup_success={signup_success}
+                        signUpSuccess={signUpSuccess}
                     />
                 )}
-                {currentPage === 'finish' && <SignUpFinish />}
-                {currentPage !== 'info' && (
+                {currentPage === 'finish' && (
+                    <div>
+                        <SignUpFinish />
+                        <div className="not-pc">
+                            <button className="signup__button" onClick={this.onClickNext}>
+                                다음
+                            </button>
+                        </div>
+                    </div>
+                )}
+                {currentPage !== 'info' && currentPage !== 'finish' && (
                     <button className="signup__button" onClick={this.onClickNext}>
                         다음
                     </button>

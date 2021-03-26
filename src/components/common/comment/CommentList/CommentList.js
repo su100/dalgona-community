@@ -268,6 +268,7 @@ class CommentList extends Component {
         const { vote, commentList, voteReplyCount, postReplyCount, recommend_count, recommend } = this.props;
         const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
+        console.log(commentList);
         return (
             <div className="comment-list">
                 <div className="only-pc">
@@ -288,7 +289,7 @@ class CommentList extends Component {
                             </div>
                         </div>
                         <div className="comment-list__sort">
-                            <button id="recomment_count" onClick={this.handleOrdering}>
+                            <button id="recommend_count" onClick={this.handleOrdering}>
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>
@@ -329,7 +330,7 @@ class CommentList extends Component {
                     </div>
                     <div className="not-pc">
                         <div className="comment-list__sort">
-                            <button id="recomment_count" onClick={this.handleOrdering}>
+                            <button id="recommend_count" onClick={this.handleOrdering}>
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>

@@ -146,6 +146,7 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .signupagree {
+        width: 100%;
         font-size: 14px;
         line-height: 20px;
         &__title {
@@ -186,6 +187,7 @@
                 line-height: 0.8rem;
             }
             &-impossible {
+                width: inherit;
                 font-size: 11px;
                 line-height: 16px;
                 padding-bottom: 50px;

@@ -109,7 +109,11 @@ class FreePostContainer extends Component {
         }
     };
     getReply = (postid, page, ordering) => {
-        this.getPostReply(postid, page, ordering);
+        if (ordering === 'created_at') {
+            this.getPostReply(postid, page, '');
+        } else {
+            this.getPostReply(postid, page, ordering);
+        }
     };
     recommendPost = async (postid) => {
         const { WriteActions, match } = this.props;

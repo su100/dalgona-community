@@ -49,6 +49,7 @@ const initialState = Map({
     email: '',
     nickname: '',
     username: '',
+    signUpSuccess: false,
 });
 
 /* reducer + pender */
@@ -107,7 +108,6 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
-                alert(JSON.stringify(data));
                 console.log(data);
                 if (data.non_field_errors?.includes('Unable to log in with provided credentials.'))
                     alert('존재하지 않는 아이디이거나 잘못된 패스워드입니다.');
@@ -122,12 +122,13 @@ export default handleActions(
         ...pender({
             type: SIGN_UP,
             onSuccess: (state, action) => {
+                console.log(action.payload);
                 return state
+                    .set('signUpSuccess', true)
                     .set('email', action.payload.data.email)
                     .set('userNameUnique', false)
                     .set('emailUnique', false)
-                    .set('nicknameUnique', false)
-                    .set('isEmailNotCertified', false);
+                    .set('nicknameUnique', false);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
