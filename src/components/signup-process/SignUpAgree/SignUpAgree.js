@@ -63,7 +63,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                             id="termCheck"
                             checked={checkAgreeOne}
                             // src={checkAgreeOne ? clickMobileCheckBox : mobileCheckBox}
-                            onClick={onClickCheckAgreeOne}
+                            onChange={onClickCheckAgreeOne}
                         />
                         <label htmlFor="termCheck">동의함</label>
                     </div>
@@ -79,7 +79,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                             id="privateCheck"
                             checked={checkAgreeTwo}
                             // src={checkAgreeTwo ? clickMobileCheckBox : mobileCheckBox}
-                            onClick={onClickCheckAgreeTwo}
+                            onChange={onClickCheckAgreeTwo}
                         />
                         <label className="signupagree__content-agree-check box" htmlFor="privateCheck">
                             동의함
@@ -97,7 +97,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
                             id="ageCheck"
                             checked={checkAgreeThree}
                             // src={checkAgreeThree ? clickMobileCheckBox : mobileCheckBox}
-                            onClick={onClickCheckAgreeThree}
+                            onChange={onClickCheckAgreeThree}
                         />
                         <label htmlFor="ageCheck">동의함</label>
                     </div>
