@@ -37,7 +37,7 @@ class SignUp extends Component {
 
     render() {
         const { currentPage, agreeConfirm } = this.state;
-        const { userNameUnique, emailUnique, nicknameUnique, setUnique } = this.props;
+        const { userNameUnique, emailUnique, nicknameUnique, setUnique, signup_success, signup_failure } = this.props;
         return (
             <div className="signup">
                 <div className="not-pc signup__title">회원가입</div>
@@ -56,6 +56,8 @@ class SignUp extends Component {
                         checkNickname={this.props.checkNickname}
                         setUnique={setUnique}
                         onClickNext={this.onClickNext}
+                        signup_success={signup_success}
+                        signup_failure={signup_failure}
                     />
                 )}
                 {currentPage === 'finish' && <SignUpFinish />}

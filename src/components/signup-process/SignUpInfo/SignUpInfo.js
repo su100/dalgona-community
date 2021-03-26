@@ -17,9 +17,9 @@ class SignUpInfo extends Component {
             Img: null,
             previewURL: '',
             rePreview: '',
-            usernameConfirm: false,
-            emailConfirm: false,
-            nicknameConfirm: false,
+            usernameCheck: false,
+            emailCheck: false,
+            nicknameCheck: false,
         };
         this.fileInput = React.createRef();
     }
@@ -47,9 +47,9 @@ class SignUpInfo extends Component {
     handleEditor = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
-            [e.target.id + 'Confirm']: false,
+            [e.target.id + 'Check']: false,
         });
-        //console.log(e.target.value);
+        console.log(e.target.value);
     };
     isPassword = (value) => {
         if (value.indexOf('password') !== -1) return true;
@@ -86,14 +86,24 @@ class SignUpInfo extends Component {
         } else if (e.target.id === 'email' && email !== '') {
             this.props.checkEmail(email);
         }
-        this.setState({ [e.target.id + 'Confirm']: true });
+        this.setState({ [e.target.id + 'Check']: true });
     };
     onClickThisDuplicate = (e) => {};
     signUp = () => {
-        const { img, username, email, password, passwordConfirm, nickname } = this.state;
-        const { userNameUnique, emailUnique, nicknameUnique } = this.props;
+        const {
+            img,
+            username,
+            email,
+            password,
+            passwordConfirm,
+            nickname,
+            usernameCheck,
+            nicknameCheck,
+            emailCheck,
+        } = this.state;
+        const { userNameUnique, emailUnique, nicknameUnique, signup_success, signup_failure } = this.props;
 
-        const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
         //항목 검사
         if (username === '') {
             alert('아이디를 입력해주세요');
@@ -109,13 +119,13 @@ class SignUpInfo extends Component {
         } else if (nickname === '') {
             alert('닉네임을 입력해주세요');
             //닉네임 조건 검사 추가해야함 한글/영문/숫자 2-20자
-        } else if (!userNameUnique) {
+        } else if (!userNameUnique || !usernameCheck) {
             //아이디 중복 확인
             alert('아이디 중복 여부를 확인해주세요');
-        } else if (!emailUnique) {
+        } else if (!emailUnique || !emailCheck) {
             //이메일 중복 확인
             alert('이메일 중복 여부를 확인해주세요');
-        } else if (!nicknameUnique) {
+        } else if (!nicknameUnique || !nicknameCheck) {
             //닉네임 중복 확인
             alert('닉네임 중복 여부를 확인해주세요');
         } else if (!passwordRegex.test(password)) {
@@ -129,7 +139,11 @@ class SignUpInfo extends Component {
             formData.append('nickname', nickname);
             if (img) formData.append('profile_image', img);
             this.props.signUp(formData);
-            this.props.onClickNext();
+            if (signup_success) {
+                this.props.onClickNext();
+            } else if (signup_failure) {
+                console.log('실패실패');
+            }
         }
     };
     render() {
@@ -147,9 +161,9 @@ class SignUpInfo extends Component {
             nickname: '한글/영문/숫자 1~20자',
             email: '이메일 주소 입력',
         };
-        const { previewURL, usernameConfirm, emailConfirm, nicknameConfirm } = this.state;
+        const { previewURL, usernameCheck, emailCheck, nicknameCheck } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
-        console.log(usernameConfirm);
+        console.log(usernameCheck);
         return (
             <div className="signupinfo">
                 <div className="signupinfo__title">
@@ -205,9 +219,9 @@ class SignUpInfo extends Component {
                                 {!this.isPassword(value) && (
                                     <button
                                         className={
-                                            (value === 'username' && usernameConfirm && userNameUnique) ||
-                                            (value === 'email' && emailConfirm && emailUnique) ||
-                                            (value === 'nickname' && nicknameConfirm && nicknameUnique)
+                                            (value === 'username' && usernameCheck && userNameUnique) ||
+                                            (value === 'email' && emailCheck && emailUnique) ||
+                                            (value === 'nickname' && nicknameCheck && nicknameUnique)
                                                 ? 'signupinfo__content-form-input click'
                                                 : 'signupinfo__content-form-input noclick'
                                         }
