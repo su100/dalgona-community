@@ -130,18 +130,6 @@ class Nav extends Component {
                         />
                     </div>
                 )}
-                {isSearch && (
-                    <div className="nav-search__box not-pc">
-                        <SearchBox
-                            searchWord={searchWord}
-                            searchDivision={searchDivision}
-                            handleChange={this.handleChange}
-                            placeholder="검색어를 입력하세요. (제목 + 내용)"
-                            getSearch={this.getSearch}
-                        />
-                        <div className="border_line" />
-                    </div>
-                )}
                 <div className={isHome ? 'nav-main' : 'nav-main no'}>
                     <div className="nav-main__logo">
                         <div className="not-pc">
@@ -282,6 +270,18 @@ class Nav extends Component {
                             )}
                             {isPC && <div className="nav-hover__menu-dummy"></div>}
                         </div>
+                    </div>
+                )}
+                {isSearch && (
+                    <div className="nav-search__box not-pc">
+                        <SearchBox
+                            searchWord={searchWord}
+                            searchDivision={searchDivision}
+                            handleChange={this.handleChange}
+                            placeholder="검색어를 입력하세요. (제목 + 내용)"
+                            getSearch={this.getSearch}
+                        />
+                        <div className="border_line" />
                     </div>
                 )}
             </div>

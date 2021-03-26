@@ -302,11 +302,9 @@
             }
         }
         &-search__box {
-            position: fixed;
-            top: 119.78px;
             padding-top: 42px;
             width: 100%;
-            height: calc(100vh - 119.78px);
+            height: 250px;
             z-index: 3;
             background: #fff;
         }
@@ -440,11 +438,9 @@
             }
         }
         &-search__box {
-            position: fixed;
-            top: 89.78px;
-            padding-top: 25.61px;
+            padding-top: 20.61px;
             width: 100%;
-            height: calc(100vh - 89.78px);
+            height: 175px;
             z-index: 3;
             background: #fff;
         }
