@@ -19,4 +19,5 @@ export { default as EventPostPage } from './EventPostPage';
 export { default as ProfilePage } from './ProfilePage';
 export { default as ActivityPage } from './ActivityPage';
 export { default as PointPage } from './PointPage';
+export { default as PolicyPage } from './PolicyPage';
 export { default as NotFoundPage } from './NotFoundPage';

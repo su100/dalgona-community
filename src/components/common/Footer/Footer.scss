@@ -2,42 +2,40 @@
 
 //pc, 기본
 .footer {
-    @include flex(column, center, center);
     width: 100%;
-    height: 289px;
-    background: #c2c2c2;
+    height: 210px;
+    background: #f2f2f2;
+    text-align: center;
     &.login {
         display: none;
     }
     &-icon {
+        margin: 0 auto;
         @include flex(row, space-around, center);
         width: 20%;
-        padding-bottom: 60px;
-        img {
+        padding: 43px 0 22px;
+        svg {
             width: 40px;
             height: 40px;
+            fill: #a0a0a0;
         }
     }
     &-information {
-        padding-top: 20px;
+        padding-top: 5px;
     }
     span {
-        font-family: Noto Sans KR;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 17px;
+        font-size: 14px;
         line-height: 22px;
-        color: #838383;
+        color: #a0a0a0;
+        letter-spacing: -0.033rem;
     }
 }
 
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
     .footer {
-        @include flex(column, center, center);
         width: 100%;
         height: 114.9px;
-        background: #f2f2f2;
         &.login {
             display: flex;
             width: 100%;
@@ -48,7 +46,7 @@
             @include flex(row, space-around, center);
             width: 20%;
             padding-bottom: 14px;
-            img {
+            svg {
                 width: 17px;
                 height: 17px;
             }
@@ -84,7 +82,7 @@
             @include flex(row, space-around, center);
             width: 30%;
             padding-bottom: 14px;
-            img {
+            svg {
                 width: 13.65px;
                 height: 13.65px;
             }
