@@ -88,7 +88,7 @@ class SignUpInfo extends Component {
         }
         this.setState({ [e.target.id + 'Check']: true });
     };
-    onClickThisDuplicate = (e) => {};
+
     signUp = () => {
         const {
             img,
@@ -101,7 +101,7 @@ class SignUpInfo extends Component {
             nicknameCheck,
             emailCheck,
         } = this.state;
-        const { userNameUnique, emailUnique, nicknameUnique, signup_success, signup_failure } = this.props;
+        const { userNameUnique, emailUnique, nicknameUnique, signUpSuccess } = this.props;
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
         //항목 검사
@@ -139,13 +139,15 @@ class SignUpInfo extends Component {
             formData.append('nickname', nickname);
             if (img) formData.append('profile_image', img);
             this.props.signUp(formData);
-            if (signup_success) {
-                this.props.onClickNext();
-            } else if (signup_failure) {
-                console.log('실패실패');
-            }
         }
     };
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const { signup_success, signUpSuccess } = this.props;
+        if (prevProps.signup_success !== this.props.signup_success && this.props.signup_success) {
+            //댓글 작성 성공했을 때
+            this.props.onClickNext();
+        }
+    }
     render() {
         const keyObject = {
             username: '아이디',
@@ -163,7 +165,7 @@ class SignUpInfo extends Component {
         };
         const { previewURL, usernameCheck, emailCheck, nicknameCheck } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
-        console.log(usernameCheck);
+
         return (
             <div className="signupinfo">
                 <div className="signupinfo__title">
@@ -210,7 +212,7 @@ class SignUpInfo extends Component {
                                         this.isPassword(value) ? 'signupinfo__content-form-input password' : undefined
                                     }
                                     id={value}
-                                    type={this.isPassword(value) && 'password'}
+                                    type={this.isPassword(value) ? 'password' : undefined}
                                     label={keyObject[value]}
                                     value={this.state[value]}
                                     onChange={this.handleEditor}

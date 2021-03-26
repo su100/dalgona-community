@@ -50,7 +50,7 @@ class SignUpContainer extends Component {
             nicknameUnique,
             AuthActions,
             signup_success,
-            signup_failure,
+            signUpSuccess,
         } = this.props;
         return (
             <Fragment>
@@ -60,13 +60,13 @@ class SignUpContainer extends Component {
                     userNameUnique={userNameUnique}
                     emailUnique={emailUnique}
                     nicknameUnique={nicknameUnique}
-                    signup_success={signup_success}
-                    signup_failure={signup_failure}
                     signUp={this.signUp}
                     checkUsername={this.checkUsername}
                     checkEmail={this.checkEmail}
                     checkNickname={this.checkNickname}
                     setUnique={AuthActions.setUnique}
+                    signup_success={signup_success}
+                    signUpSuccess={signUpSuccess}
                 />
             </Fragment>
         );
@@ -79,6 +79,7 @@ export default connect(
         userNameUnique: state.auth.get('userNameUnique'),
         emailUnique: state.auth.get('emailUnique'),
         nicknameUnique: state.auth.get('nicknameUnique'),
+        signUpSuccess: state.auth.get('signUpSuccess'),
         signup_success: state.pender.success['auth/SIGN_UP'],
         signup_failure: state.pender.failure['auth/SIGN_UP'],
     }),

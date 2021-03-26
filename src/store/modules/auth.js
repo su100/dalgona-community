@@ -49,6 +49,7 @@ const initialState = Map({
     email: '',
     nickname: '',
     username: '',
+    signUpSuccess: false,
 });
 
 /* reducer + pender */
@@ -122,12 +123,13 @@ export default handleActions(
         ...pender({
             type: SIGN_UP,
             onSuccess: (state, action) => {
+                console.log(action.payload);
                 return state
+                    .set('signUpSuccess', true)
                     .set('email', action.payload.data.email)
                     .set('userNameUnique', false)
                     .set('emailUnique', false)
-                    .set('nicknameUnique', false)
-                    .set('isEmailNotCertified', false);
+                    .set('nicknameUnique', false);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
