@@ -200,7 +200,7 @@
                 }
                 img {
                     display: inline;
-                    margin: 0 20px;
+                    padding: 0 20px;
                 }
                 &-menu {
                     width: 16px;
@@ -208,7 +208,6 @@
                 }
                 &-logoimg {
                     @include flex(row, center, center);
-                    margin-right: 10px;
                     height: 31px;
                     padding: 0px;
                     img {
@@ -330,7 +329,8 @@
                 }
                 img {
                     display: inline;
-                    margin: 0 5px;
+                    margin: 0px;
+                    padding: 0 15px;
                 }
                 &-menu {
                     width: 16px;
@@ -343,7 +343,7 @@
                     padding-left: 0px;
                     padding-right: 0px;
                     img {
-                        padding-left: 0px;
+                        padding: 0px;
                         width: 86.82999420166016px;
                         height: 25.177528381347656px;
                     }
@@ -351,10 +351,6 @@
                 &-search {
                     width: 16px;
                     height: 16px;
-                }
-                img {
-                    display: inline;
-                    margin: 0 20px;
                 }
             }
             &__login {
