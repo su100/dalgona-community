@@ -4,10 +4,10 @@
 .signupfinish {
     @include flex(column, center, center);
     width: 100%;
-    height: 601px;
+    height: 100vh;
     &__title {
         width: 824px;
-        padding-bottom: 23px;
+        padding-bottom: 60px;
         font-family: Noto Sans KR;
         font-size: 34px;
         font-style: normal;
