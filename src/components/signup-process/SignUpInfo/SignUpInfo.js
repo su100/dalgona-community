@@ -17,6 +17,9 @@ class SignUpInfo extends Component {
             Img: null,
             previewURL: '',
             rePreview: '',
+            usernameConfirm: false,
+            emailConfirm: false,
+            nicknameConfirm: false,
         };
         this.fileInput = React.createRef();
     }
@@ -44,6 +47,7 @@ class SignUpInfo extends Component {
     handleEditor = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
+            [e.target.id + 'Confirm']: false,
         });
         //console.log(e.target.value);
     };
@@ -74,6 +78,7 @@ class SignUpInfo extends Component {
     };
     onClickDuplicate = (e) => {
         const { username, nickname, email } = this.state;
+        const { userNameUnique } = this.props;
         if (e.target.id === 'username' && username !== '') {
             this.props.checkUsername(username);
         } else if (e.target.id === 'nickname' && nickname !== '') {
@@ -81,7 +86,9 @@ class SignUpInfo extends Component {
         } else if (e.target.id === 'email' && email !== '') {
             this.props.checkEmail(email);
         }
+        this.setState({ [e.target.id + 'Confirm']: true });
     };
+    onClickThisDuplicate = (e) => {};
     signUp = () => {
         const { img, username, email, password, passwordConfirm, nickname } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
@@ -140,9 +147,9 @@ class SignUpInfo extends Component {
             nickname: '한글/영문/숫자 1~20자',
             email: '이메일 주소 입력',
         };
-        const { previewURL } = this.state;
+        const { previewURL, usernameConfirm, emailConfirm, nicknameConfirm } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique } = this.props;
-
+        console.log(usernameConfirm);
         return (
             <div className="signupinfo">
                 <div className="signupinfo__title">
@@ -198,9 +205,9 @@ class SignUpInfo extends Component {
                                 {!this.isPassword(value) && (
                                     <button
                                         className={
-                                            (value === 'username' && userNameUnique) ||
-                                            (value === 'email' && emailUnique) ||
-                                            (value === 'nickname' && nicknameUnique)
+                                            (value === 'username' && usernameConfirm && userNameUnique) ||
+                                            (value === 'email' && emailConfirm && emailUnique) ||
+                                            (value === 'nickname' && nicknameConfirm && nicknameUnique)
                                                 ? 'signupinfo__content-form-input click'
                                                 : 'signupinfo__content-form-input noclick'
                                         }

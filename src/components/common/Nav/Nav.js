@@ -157,7 +157,9 @@ class Nav extends Component {
                         </div>
                     </div>
                     {isAuthenticated ? (
-                        <div className="nav-main__login">{profile.get('nickname')}님</div>
+                        <div className="nav-main__login" onMouseOver={this.handleOver}>
+                            {profile.get('nickname')}님
+                        </div>
                     ) : (
                         <div className="nav-main__login">
                             <Link to={{ pathname: '/login', path: 'login' }}>
