@@ -67,7 +67,9 @@ class Home extends Component {
                 cols.push(
                     <Link
                         className="home__item--hotpost"
-                        to={`/luna/${post.board_url.board_url}/${post.id}`}
+                        to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${post.board_url.board_url}/${
+                            post.id
+                        }`}
                         key={post.id}
                     >
                         {imageURL === '' ? (
@@ -106,7 +108,9 @@ class Home extends Component {
                     cols.push(
                         <Link
                             className="home__item--hotpost"
-                            to={`/luna/${post.board_url.board_url}/${post.id}`}
+                            to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${post.board_url.board_url}/${
+                                post.id
+                            }`}
                             key={post.id}
                         >
                             {imageURL === '' ? (
