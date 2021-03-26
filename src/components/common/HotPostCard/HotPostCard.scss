@@ -1,10 +1,13 @@
 @import 'styles/base.scss';
 
 .hot-post-card {
-    @include flex(row, flex-start, center);
+    @include flex(row, flex-start, flex-start);
     margin-bottom: 16px;
     width: 500px;
     height: 160px;
+    &:nth-child(-n + 3) {
+        margin-right: 44px;
+    }
     img {
         margin-right: 16px;
         width: 160px;
@@ -24,21 +27,18 @@
         color: #838383;
     }
     .home--hot--detail {
-        margin: 5px 0;
+        margin: 5px 0 30px;
         font-size: 0.7rem;
         span {
             margin-right: 31px;
         }
     }
     .home--hot--contents {
-        display: -webkit-box;
         width: 160px * 2;
-        height: 4rem;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        line-height: 1rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 0.9rem;
+        @include ellipsis(2, 1rem);
+        .ql-editor {
+            padding: 0;
+            overflow-y: hidden;
+        }
     }
 }
