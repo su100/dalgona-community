@@ -26,6 +26,7 @@ import {
     ProfilePage,
     ActivityPage,
     PointPage,
+    PolicyPage,
     NotFoundPage,
 } from 'pages';
 
@@ -63,6 +64,7 @@ class App extends Component {
                     <Route exact path="/my/profile" component={ProfilePage} />
                     <Route exact path="/my/activity" component={ActivityPage} />
                     <Route exact path="/my/point" component={PointPage} />
+                    <Route exact path="/policy/:type" component={PolicyPage} />
                     <Route path="/" component={NotFoundPage} />
                 </Switch>
             </div>

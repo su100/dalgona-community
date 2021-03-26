@@ -16,7 +16,12 @@ const Footer = ({ nofooter, isLogin }) =>
                 <img src={youtube}></img>
             </div>
             <div className="footer-content">
-                <span>회사소개 | 이용약관 | 개인정보취급정책</span>
+                <span>
+                    <a href="http://mapsosa.me" target="_blank" rel="noreferrer">
+                        회사소개
+                    </a>{' '}
+                    | <Link to="/policy/service">이용약관</Link> | <Link to="/policy/privacy">개인정보취급정책</Link>
+                </span>
             </div>
             <div className="footer-information">
                 <span>
