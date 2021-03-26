@@ -182,6 +182,7 @@ export default handleActions(
         ...pender({
             type: UPDATE_PROFILE,
             onSuccess: (state, action) => {
+                alert('프로필이 수정되었습니다.');
                 return state.set('profile', Map(action.payload.data));
             },
             onFailure: (state, action) => {
