@@ -155,6 +155,8 @@ export default handleActions(
                 console.log(data);
                 if (data.result?.includes('recommend deleted')) {
                     alert('추천취소');
+                } else if (data.detail?.includes('Authentication credentials were not provided.')) {
+                    alert('로그인이 필요합니다.');
                 }
                 return state;
             },
@@ -174,6 +176,8 @@ export default handleActions(
                 console.log(data);
                 if (data.result?.includes('recommend deleted')) {
                     alert('추천취소');
+                } else if (data.detail?.includes('Authentication credentials were not provided.')) {
+                    alert('로그인이 필요합니다.');
                 }
                 return state;
             },
