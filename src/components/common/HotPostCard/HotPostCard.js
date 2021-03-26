@@ -33,7 +33,7 @@ const HotPostCard = ({ index, post }) => {
         tmp.forEach((element) => {
             if (element.insert !== '\n') {
                 //단독 공백 제거
-                text.push({ insert: element.insert }); //텍스트 효과 제거
+                text.push({ insert: element.insert.replace('\n', '') }); //텍스트 효과 제거, 엔터 제거
             }
         });
         result.ops = text;
