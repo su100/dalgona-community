@@ -15,7 +15,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                 <div className="post-list__container--type">
                     {isInPost && (
                         <Link
-                            to={!request ? `${link}/` : `${link}/${request}`}
+                            to={!request ? `${link}/` : `${link}${request}`}
                             className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                         >
                             목록으로
@@ -82,7 +82,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                             </div>
                         ) : (
                             <Link
-                                to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
+                                to={!request ? `${link}/${post.id}` : `${link}/${post.id}${request}`}
                                 className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                 key={index}
                             >
@@ -171,7 +171,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                                 </div>
                             ) : (
                                 <Link
-                                    to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
+                                    to={!request ? `${link}/${post.id}` : `${link}/${post.id}${request}`}
                                     className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                     key={index}
                                 >
