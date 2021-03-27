@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import queryString from 'query-string';
 import * as authActions from 'store/modules/auth';
 import * as dalgonaActions from 'store/modules/dalgona';
 import * as writeActions from 'store/modules/write';
@@ -119,25 +120,40 @@ class NoticePostContainer extends Component {
             this.getPostReply(postid, page, ordering);
         }
     };
-    getPostList = async () => {
+    getPostList = async (params) => {
         const { DalgonaActions } = this.props;
         try {
-            await DalgonaActions.getNoticeList('notice', '');
+            await DalgonaActions.getNoticeList('notice', params);
         } catch (e) {
             console.log('error log:' + e);
         }
     };
+    getPost() {
+        //주소바뀔 때 글 목록 가져오기
+        const { location } = this.props;
+        const query = queryString.parse(location.search);
+        let params = {};
+        if (query.page) {
+            params['page'] = query.page;
+        }
+        if (query.search) {
+            params['searchWord'] = query.search;
+            params['searchType'] = 'title';
+        }
+        this.getPostList(params);
+    }
     componentDidMount() {
         const noticeid = this.props.match.params.noticeid;
         this.getPostInfo(noticeid);
         this.getReply(noticeid, 1);
-        this.getPostList();
+        this.getPost();
     }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.location.pathname !== prevProps.location.pathname) {
+        if (this.props.location !== prevProps.location) {
             const noticeid = this.props.match.params.noticeid;
             this.getPostInfo(noticeid);
             this.getReply(noticeid, 1);
+            this.getPost();
         }
     }
     render() {
