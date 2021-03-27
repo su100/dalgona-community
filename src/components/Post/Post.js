@@ -78,6 +78,7 @@ class Post extends Component {
         const urlInfo = location.pathname.split('/');
         const parentBoardUrl = urlInfo[3] ? urlInfo[1] : '';
         const boardUrl = parentBoardUrl ? `${parentBoardUrl}/${urlInfo[2]}` : urlInfo[1];
+        const currentPostId = postInfo.id;
         return (
             <div className="post">
                 <View
@@ -122,6 +123,7 @@ class Post extends Component {
                     isInPost
                     currentPage={currentPage}
                     request={request}
+                    currentPostId={currentPostId}
                 />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>

@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, request }) => {
+const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, request, currentPostId }) => {
     const [type, setType] = useState('list');
 
     const handleType = (e) => {
         setType(e.currentTarget.id);
     };
 
-    console.log(request);
     return (
         <div className={type === 'list' ? 'post-list' : 'post-list grid'}>
             {hasGrid && (
@@ -50,7 +49,38 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                         } catch (e) {
                             result = post.body;
                         }
-                        return (
+                        return currentPostId === post.id ? (
+                            <div className={noBorder ? 'post-list__item no-border' : 'post-list__item'} key={index}>
+                                <div className="post-list__item--left">
+                                    {post.image && (
+                                        <div className="post-list__img">
+                                            <img src={post.image} alt="post" />
+                                        </div>
+                                    )}
+                                    <div className="post-list__item--main">
+                                        <div className="post-list__item--title current">
+                                            {imageURL !== '' && (
+                                                <div className="post-list__img--pc">
+                                                    <img src={imageURL} alt="post" />
+                                                </div>
+                                            )}
+                                            <p>{post.title}</p>
+                                        </div>
+                                        <div className="post-list__item--detail">
+                                            {hasReply && (
+                                                <span className="post-list__item--comment--pc">
+                                                    댓글 {post.reply_count}
+                                                </span>
+                                            )}
+                                            <span>조회수 {post.views}</span>
+                                            <span className="post-list__item--date">{post.created_at}</span>
+                                            <span>추천 {post.recommend_count}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {hasReply && <div className="post-list__item--comment">{post.reply_count}</div>}
+                            </div>
+                        ) : (
                             <Link
                                 to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
                                 className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
@@ -106,7 +136,40 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                             result = post.body;
                         }
                         if (type === 'list') {
-                            return (
+                            return currentPostId === post.id ? (
+                                <div className={noBorder ? 'post-list__item no-border' : 'post-list__item'} key={index}>
+                                    <div className="post-list__item--left">
+                                        {imageURL !== '' && (
+                                            <div className="post-list__img">
+                                                <img src={imageURL} alt="post" />
+                                            </div>
+                                        )}
+                                        <div className="post-list__item--main">
+                                            <div className="post-list__item--title current">
+                                                {imageURL !== '' && (
+                                                    <div className="post-list__img--pc">
+                                                        <img src={imageURL} alt="post" />
+                                                    </div>
+                                                )}
+                                                <p>{post.title}</p>
+                                            </div>
+                                            <div className="post-list__item--detail">
+                                                {hasReply && (
+                                                    <span className="post-list__item--comment--pc">
+                                                        댓글 {post.reply_count}
+                                                    </span>
+                                                )}
+                                                <span>조회수 {post.views}</span>
+                                                <span className="post-list__item--date">{post.created_at}</span>
+                                                <span>추천 {post.recommend_count}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {hasReply && (
+                                        <div className="post-list__item--comment not-pc">{post.reply_count}</div>
+                                    )}
+                                </div>
+                            ) : (
                                 <Link
                                     to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
                                     className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
@@ -145,7 +208,11 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                                 </Link>
                             );
                         } else {
-                            return (
+                            return currentPostId === post.id ? (
+                                <div key={post.id} className="post-list__item">
+                                    {imageURL !== '' ? <img src={imageURL} alt="post" /> : <p>{post.title}</p>}
+                                </div>
+                            ) : (
                                 <Link to={`${link}/${post.id}`} key={post.id} className="post-list__item">
                                     {imageURL !== '' ? <img src={imageURL} alt="post" /> : <p>{post.title}</p>}
                                 </Link>
