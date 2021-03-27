@@ -99,7 +99,7 @@ class Post extends Component {
                     isRecommend
                 />
                 <div className="border_line" />
-                <PostList hasReply link={`/${boardUrl}`} hasGrid postList={postList} />
+                <PostList hasReply link={`/${boardUrl}`} hasGrid postList={postList} isInPost />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );

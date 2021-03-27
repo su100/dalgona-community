@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
+const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost }) => {
     const [type, setType] = useState('list');
 
     const handleType = (e) => {
@@ -13,6 +13,11 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link }) => {
         <div className={type === 'list' ? 'post-list' : 'post-list grid'}>
             {hasGrid && (
                 <div className="post-list__container--type">
+                    {isInPost && (
+                        <Link to={`${link}/`} className={noBorder ? 'post-list__item no-border' : 'post-list__item'}>
+                            목록으로
+                        </Link>
+                    )}
                     <button className="post-list__btn--type list" id="list" onClick={handleType}>
                         <div className={type === 'list' ? 'active list-bar' : 'list-bar'} />
                         <div className={type === 'list' ? 'active list-bar' : 'list-bar'} />
