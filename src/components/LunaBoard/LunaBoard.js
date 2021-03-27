@@ -59,7 +59,8 @@ class LunaBoard extends Component {
     };
 
     render() {
-        const query = queryString.parse(location.search);
+        const request = location.search;
+        const query = queryString.parse(request);
         const currentPage = query.page ? Number(query.page) : 1;
         const { boardInfo, bookmarkList, bestPostList, postCount, postList } = this.props;
 
@@ -93,6 +94,7 @@ class LunaBoard extends Component {
                                         link={`luna/${boardInfo.board_url}`}
                                         key={post.id}
                                         postList={[post]}
+                                        request={request}
                                         noBorder
                                     />
                                 );
@@ -101,7 +103,13 @@ class LunaBoard extends Component {
                     </div>
                 </section>
                 <div className="border_line" />
-                <PostList hasReply link={`/luna/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <PostList
+                    hasReply
+                    link={`/luna/${boardInfo.board_url}`}
+                    hasGrid
+                    postList={postList}
+                    request={request}
+                />
                 <section className="only-pc luna-board__container--btn">
                     <Link to={`/luna/write/${boardInfo.board_url}`}>글쓰기</Link>
                 </section>

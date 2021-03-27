@@ -2,19 +2,23 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PostList.scss';
 
-const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost }) => {
+const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, request }) => {
     const [type, setType] = useState('list');
 
     const handleType = (e) => {
         setType(e.currentTarget.id);
     };
 
+    console.log(request);
     return (
         <div className={type === 'list' ? 'post-list' : 'post-list grid'}>
             {hasGrid && (
                 <div className="post-list__container--type">
                     {isInPost && (
-                        <Link to={`${link}/`} className={noBorder ? 'post-list__item no-border' : 'post-list__item'}>
+                        <Link
+                            to={!request ? `${link}/` : `${link}/${request}`}
+                            className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
+                        >
                             목록으로
                         </Link>
                     )}
@@ -48,7 +52,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost }) => 
                         }
                         return (
                             <Link
-                                to={`${link}/${post.id}`}
+                                to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
                                 className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                 key={index}
                             >
@@ -104,7 +108,7 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost }) => 
                         if (type === 'list') {
                             return (
                                 <Link
-                                    to={`${link}/${post.id}`}
+                                    to={!request ? `${link}/${post.id}` : `${link}/${post.id}/${request}`}
                                     className={noBorder ? 'post-list__item no-border' : 'post-list__item'}
                                     key={index}
                                 >
