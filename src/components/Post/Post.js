@@ -41,6 +41,20 @@ class Post extends Component {
             this.props.deletePost();
         }
     };
+    handlePage = (e) => {
+        const { history, location } = this.props;
+        const query = queryString.parse(location.search);
+        const page = e.target.value;
+        const { pathname } = location;
+        //searchType:title, searchWord, page
+        if (query.search) {
+            //url에서 searchWord있는지 판별
+            history.push(`${pathname}?page=${page}&search=${query.search}`);
+        } else {
+            history.push(`${pathname}?page=${page}`);
+        }
+        this.setState({ currentPage: page });
+    };
     render() {
         const {
             postReplyList,
@@ -57,12 +71,14 @@ class Post extends Component {
             postCount,
         } = this.props;
 
-        const query = queryString.parse(location.search);
+        const request = location.search;
+        const query = queryString.parse(request);
         const currentPage = query.page ? Number(query.page) : 1;
 
         const urlInfo = location.pathname.split('/');
         const parentBoardUrl = urlInfo[3] ? urlInfo[1] : '';
         const boardUrl = parentBoardUrl ? `${parentBoardUrl}/${urlInfo[2]}` : urlInfo[1];
+        const currentPostId = postInfo.id;
         return (
             <div className="post">
                 <View
@@ -99,7 +115,16 @@ class Post extends Component {
                     isRecommend
                 />
                 <div className="border_line" />
-                <PostList hasReply link={`/${boardUrl}`} hasGrid postList={postList} isInPost />
+                <PostList
+                    hasReply
+                    link={`/${boardUrl}`}
+                    hasGrid
+                    postList={postList}
+                    isInPost
+                    currentPage={currentPage}
+                    request={request}
+                    currentPostId={currentPostId}
+                />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );
