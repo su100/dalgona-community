@@ -28,7 +28,6 @@ export default handleActions(
             type: LUNA_BOARD,
             onSuccess: (state, action) => {
                 const data = action.payload.data;
-                console.log(data);
                 return state.set('lunaBoard', data);
             },
             onFailure: (state, action) => {

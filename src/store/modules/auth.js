@@ -122,7 +122,6 @@ export default handleActions(
         ...pender({
             type: SIGN_UP,
             onSuccess: (state, action) => {
-                console.log(action.payload);
                 return state
                     .set('signUpSuccess', true)
                     .set('email', action.payload.data.email)

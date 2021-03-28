@@ -94,8 +94,10 @@ class LunaBoardContainer extends Component {
     }
 
     componentDidMount() {
+        if (this.props.isAuthenticated) {
+            this.getBookmarkList(); //즐겨찾기 가져오기
+        }
         this.getBoardInfo(); //게시판 정보 가져오기
-        this.getBookmarkList(); //즐겨찾기 가져오기
         this.getBestPostList(); //실시간 인기글 가져오기
         this.getPost(); //글 목록 가져오기
     }

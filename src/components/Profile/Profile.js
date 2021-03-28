@@ -42,8 +42,13 @@ class Profile extends Component {
     };
 
     checkNickname = () => {
-        this.props.checkNickname(this.state.nickname); //중복확인하기
-        this.setState({ isUnique: true }); //중복확인버튼 눌렀음
+        //원래 닉네임이면 중복체크 안 함
+        if (this.props.profile.get('nickname') === this.state.nickname) {
+            alert('현재 닉네임입니다.');
+        } else {
+            this.props.checkNickname(this.state.nickname); //중복확인하기
+            this.setState({ isUnique: true }); //중복확인버튼 눌렀음
+        }
     };
 
     updateProfile = () => {
@@ -72,7 +77,7 @@ class Profile extends Component {
         }
     };
     render() {
-        const { nickname, introduction, previewURL } = this.state;
+        const { nickname, introduction, previewURL, isUnique } = this.state;
         return (
             <div className="profile">
                 <h4 className="not-pc">프로필 수정</h4>
@@ -109,7 +114,17 @@ class Profile extends Component {
                             onChange={this.handleChange}
                             placeholder="한글/영문/숫자 1-20자"
                         />
-                        <button onClick={this.checkNickname}>중복확인</button>
+                        <button
+                            className={
+                                nickname !== this.props.profile.get('nickname') &&
+                                !(isUnique && this.props.nicknameUnique)
+                                    ? ''
+                                    : 'active'
+                            }
+                            onClick={this.checkNickname}
+                        >
+                            중복확인
+                        </button>
                     </div>
                     <h5>자기소개</h5>
                     <textarea

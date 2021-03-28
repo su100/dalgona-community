@@ -49,7 +49,6 @@ class SignUpInfo extends Component {
             [e.target.id]: e.target.value,
             [e.target.id + 'Check']: false,
         });
-        console.log(e.target.value);
     };
     isPassword = (value) => {
         if (value.indexOf('password') !== -1) return true;
@@ -78,7 +77,6 @@ class SignUpInfo extends Component {
     };
     onClickDuplicate = (e) => {
         const { username, nickname, email } = this.state;
-        const { userNameUnique } = this.props;
         if (e.target.id === 'username' && username !== '') {
             this.props.checkUsername(username);
         } else if (e.target.id === 'nickname' && nickname !== '') {
@@ -101,7 +99,7 @@ class SignUpInfo extends Component {
             nicknameCheck,
             emailCheck,
         } = this.state;
-        const { userNameUnique, emailUnique, nicknameUnique, signUpSuccess } = this.props;
+        const { userNameUnique, emailUnique, nicknameUnique } = this.props;
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
         //항목 검사
@@ -142,7 +140,6 @@ class SignUpInfo extends Component {
         }
     };
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const { signup_success, signUpSuccess } = this.props;
         if (prevProps.signup_success !== this.props.signup_success && this.props.signup_success) {
             //댓글 작성 성공했을 때
             this.props.onClickNext();
@@ -173,7 +170,7 @@ class SignUpInfo extends Component {
                     <span>회원정보입력</span>
                 </div>
                 <div className="not-pc">
-                    <img src={step3}></img>
+                    <img className="signupinfo__step" src={step3}></img>
                 </div>
                 <div className="signupinfo__img">
                     <div className="signupinfo__title-form">대표사진</div>
@@ -187,13 +184,41 @@ class SignUpInfo extends Component {
                         }}
                     />
                     {!previewURL && (
-                        <button className="" onClick={this.onClickSelect}>
-                            <img src={photoIcon} alt="photoIcon" />
+                        <button onClick={this.onClickSelect}>
+                            <svg
+                                className="signupinfo__img--icon"
+                                version="1.1"
+                                id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 471.04 471.04"
+                                xmlSpace="preserve"
+                            >
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M414.72,112.64h-49.152l-27.136-40.96c-10.24-15.36-28.16-24.576-46.592-24.576H179.2
+			c-18.432,0-36.352,9.216-46.592,24.576l-27.136,40.96H56.32C25.088,112.64,0,137.728,0,168.96v198.656
+			c0,31.232,25.088,56.32,56.32,56.32h358.4c31.232,0,56.32-25.088,56.32-56.32V168.96C471.04,137.728,445.952,112.64,414.72,112.64
+			z M235.52,377.856c-70.144,0-126.976-56.832-126.976-126.976c0-70.144,56.832-126.464,126.976-126.464
+			s126.976,56.832,126.976,126.976C362.496,321.024,305.664,377.856,235.52,377.856z M407.552,192c-0.512,0-1.024,0-2.048,0h-20.48
+			c-9.216-0.512-16.384-8.192-15.872-17.408c0.512-8.704,7.168-15.36,15.872-15.872h20.48c9.216-0.512,16.896,6.656,17.408,15.872
+			C423.424,183.808,416.768,191.488,407.552,192z"
+                                        />
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M235.52,180.736c-38.912,0-70.656,31.744-70.656,70.656s31.744,70.144,70.656,70.144s70.656-31.744,70.656-70.656
+			C306.176,211.968,274.432,180.736,235.52,180.736z"
+                                        />
+                                    </g>
+                                </g>
+                            </svg>
                         </button>
                     )}
                     {previewURL && (
                         <div className="signupinfo__img-preview">
-                            <div className="signupinfo__img-preview-background" />
                             <img src={previewURL} alt="preview" />
                             <button id={this.type} onClick={this.deleteImg}>
                                 X

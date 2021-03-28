@@ -6,7 +6,6 @@ import FindPw from 'components/FindPw';
 
 class FindPwContainer extends Component {
     render() {
-        console.log('home container');
         return (
             <Fragment>
                 <FindPw history={this.props.history} />

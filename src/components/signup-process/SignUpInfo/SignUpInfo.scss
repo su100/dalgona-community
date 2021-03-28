@@ -34,24 +34,19 @@
             border: 1px solid #cbcbcb;
             border-radius: 50%;
         }
-        img {
+        &--icon {
             width: 32px;
             height: 25px;
+            fill: #696969;
         }
         &-preview {
             @include flex(row, center, center);
             width: inherit;
             height: 194px;
-            &-background {
-                position: absolute;
-                width: inherit;
-                height: 194px;
-                background: #000000;
-                opacity: 0.13;
-            }
             img {
                 width: 194px;
                 height: 194px;
+                border-radius: 50%;
             }
             button {
                 width: 25px;
@@ -124,7 +119,7 @@
             line-height: 26px;
             text-align: center;
         }
-        img {
+        .signupinfo__step {
             padding-top: 20px;
         }
         .signupinfo__title-form {
@@ -133,27 +128,6 @@
         }
         &__img {
             margin-bottom: 27.9px;
-            img {
-                width: 32px;
-                height: 25px;
-            }
-            &-preview {
-                width: inherit;
-                height: 194px;
-                &-background {
-                    height: 194px;
-                }
-                img {
-                    width: 194px;
-                    height: 194px;
-                }
-                button {
-                    width: 25px;
-                    height: 25px;
-                    margin-right: 5px;
-                    margin-bottom: 15px;
-                }
-            }
         }
         &__content {
             &-form {
@@ -202,7 +176,7 @@
             font-size: 14px;
             line-height: 20px;
         }
-        img {
+        .signupinfo__step {
             padding-top: 9px;
             height: 30px;
         }
@@ -223,21 +197,12 @@
                 width: 92px;
                 height: 92px;
                 img {
-                    height: 11.969504356384277px;
-                    width: 14.961897850036621px;
+                    height: 11.96px;
+                    width: 14.96px;
                 }
             }
             &-preview {
-                @include flex(row, center, center);
-                width: inherit;
                 height: 110px;
-                &-background {
-                    position: absolute;
-                    width: inherit;
-                    height: 25px;
-                    background: #000000;
-                    opacity: 0.13;
-                }
                 img {
                     width: 92px;
                     height: 92px;
@@ -246,7 +211,6 @@
                 button {
                     width: 15px;
                     height: 15px;
-                    margin-right: 5px;
                     margin-bottom: 10px;
                 }
             }
