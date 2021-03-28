@@ -9,10 +9,11 @@ import App from 'components/App';
 const store = configure();
 
 function _ScrollToTop(props) {
-    const { pathname } = useLocation();
+    const { key } = useLocation();
+    console.log(useLocation());
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [pathname]);
+    }, [key]);
     return props.children;
 }
 const ScrollToTop = withRouter(_ScrollToTop);
