@@ -4,6 +4,7 @@
 .post {
     @include flex(column, center, center);
     width: 100%;
+    padding-bottom: 100px;
     &__detail {
         @include flex(row, flex-start, center);
         width: 1600px;
@@ -92,6 +93,7 @@
     .post {
         @include flex(column, center, center);
         width: 100%;
+        padding-bottom: 40px;
         font-family: Noto Sans KR;
         &__detail {
             display: none;
@@ -142,6 +144,7 @@
     .post {
         @include flex(column, center, center);
         width: 100%;
+        padding-bottom: 20px;
         font-family: Noto Sans KR;
         &__detail {
             display: none;
