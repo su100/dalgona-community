@@ -111,7 +111,6 @@ class FreeBoardContainer extends Component {
             postList,
             bookmarkList,
         } = this.props;
-        console.log(this.props);
         return (
             <Fragment>
                 <FreeBoard

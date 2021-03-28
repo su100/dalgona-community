@@ -44,7 +44,8 @@ class NoticeBoard extends Component {
     };
 
     render() {
-        const query = queryString.parse(location.search);
+        const request = location.search;
+        const query = queryString.parse(request);
         const currentPage = query.page ? Number(query.page) : 1;
         const { postList, postCount } = this.props;
         return (
@@ -57,7 +58,7 @@ class NoticeBoard extends Component {
                     getSearch={this.getSearch}
                 />
                 <div className="border_line" />
-                <PostList link="/notice" postList={postList} />
+                <PostList link="/notice" postList={postList} request={request} />
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );

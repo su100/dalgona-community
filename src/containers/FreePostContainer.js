@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
@@ -124,26 +125,41 @@ class FreePostContainer extends Component {
         }
         this.getPostInfo(match.params.postid);
     };
-    getPostList = async () => {
+    getPostList = async (params) => {
         const { location, FreeActions } = this.props;
         const tmp = location.pathname.split('/');
         try {
-            await FreeActions.getPostList(tmp[2], '');
+            await FreeActions.getPostList(tmp[2], params);
         } catch (e) {
             console.log('error log:' + e);
         }
     };
+    getPost() {
+        //주소바뀔 때 글 목록 가져오기
+        const { location } = this.props;
+        const query = queryString.parse(location.search);
+        let params = {};
+        if (query.page) {
+            params['page'] = query.page;
+        }
+        if (query.search) {
+            params['searchWord'] = query.search;
+            params['searchType'] = 'title';
+        }
+        this.getPostList(params);
+    }
     componentDidMount() {
         const postid = this.props.match.params.postid;
         this.getPostInfo(postid);
         this.getReply(postid, 1, 'recomment_count');
-        this.getPostList();
+        this.getPost();
     }
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.location.pathname !== prevProps.location.pathname) {
+        if (this.props.location !== prevProps.location) {
             const postid = this.props.match.params.postid;
             this.getPostInfo(postid);
             this.getReply(postid, 1, 'recomment_count');
+            this.getPost();
         }
     }
 

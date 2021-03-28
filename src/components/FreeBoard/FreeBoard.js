@@ -60,7 +60,8 @@ class FreeBoard extends Component {
     };
 
     render() {
-        const query = queryString.parse(location.search);
+        const request = location.search;
+        const query = queryString.parse(request);
         const currentPage = query.page ? Number(query.page) : 1;
         const { boardInfo, bookmarkList, bestPostList, postCount, postList } = this.props;
         const isBookmarked = bookmarkList.some((board) => board.board_url === boardInfo.board_url);
@@ -93,6 +94,7 @@ class FreeBoard extends Component {
                                         key={post.id}
                                         postList={[post]}
                                         noBorder
+                                        request={request}
                                     />
                                 );
                             })}
@@ -100,7 +102,13 @@ class FreeBoard extends Component {
                     </div>
                 </section>
                 <div className="border_line" />
-                <PostList hasReply link={`/free/${boardInfo.board_url}`} hasGrid postList={postList} />
+                <PostList
+                    hasReply
+                    link={`/free/${boardInfo.board_url}`}
+                    hasGrid
+                    postList={postList}
+                    request={request}
+                />
                 <section className="only-pc free-board__container--btn">
                     <Link to={`/free/write/${boardInfo.board_url}`}>글쓰기</Link>
                 </section>
