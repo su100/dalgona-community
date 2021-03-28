@@ -268,7 +268,6 @@ class CommentList extends Component {
         const { vote, commentList, voteReplyCount, postReplyCount, recommend_count, recommend } = this.props;
         const { isUpdate, updateId } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
-        console.log(commentList);
         return (
             <div className="comment-list">
                 <div className="only-pc">
