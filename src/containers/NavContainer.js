@@ -52,7 +52,6 @@ class NavContainer extends Component {
         this.getLunaBoard();
         this.getFreeBoard();
         this.getDalgonaBoard();
-        console.log(this.props.lunaBoard);
     }
 
     render() {

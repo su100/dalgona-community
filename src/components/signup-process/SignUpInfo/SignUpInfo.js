@@ -49,7 +49,6 @@ class SignUpInfo extends Component {
             [e.target.id]: e.target.value,
             [e.target.id + 'Check']: false,
         });
-        console.log(e.target.value);
     };
     isPassword = (value) => {
         if (value.indexOf('password') !== -1) return true;
