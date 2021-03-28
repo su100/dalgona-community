@@ -78,10 +78,10 @@
                 max-width: 140px;
                 text-align: center;
                 &:hover {
-                    color: #ffd278;
+                    color: $main-color;
                 }
                 &.click {
-                    color: #ffd278;
+                    color: $main-color;
                 }
                 &.home {
                     padding-left: 20px;
@@ -245,11 +245,11 @@
                     text-align: center;
                     &:hover {
                         color: white;
-                        border-bottom: 1px solid #ffd278;
+                        border-bottom: 1px solid $main-color;
                     }
                     &.click {
                         color: white;
-                        border-bottom: 1px solid #ffd278;
+                        border-bottom: 1px solid $main-color;
                     }
                 }
                 &-input {
@@ -377,11 +377,11 @@
                     text-align: center;
                     &:hover {
                         color: white;
-                        border-bottom: 1px solid #ffd278;
+                        border-bottom: 1px solid $main-color;
                     }
                     &.click {
                         color: white;
-                        border-bottom: 1px solid #ffd278;
+                        border-bottom: 1px solid $main-color;
                     }
                 }
                 &-input {
