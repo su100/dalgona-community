@@ -12,15 +12,6 @@ class NavContainer extends Component {
         this.props.history.go(); //새로고침으로 store초기화
     };
 
-    getProfile = async () => {
-        const { AuthActions } = this.props;
-        try {
-            await AuthActions.getProfile();
-        } catch (e) {
-            console.log('error log:' + e);
-        }
-    };
-
     getLunaBoard = async () => {
         const { NavActions } = this.props;
         try {
@@ -46,9 +37,6 @@ class NavContainer extends Component {
         }
     };
     componentDidMount() {
-        if (this.props.isAuthenticated) {
-            this.getProfile();
-        }
         this.getLunaBoard();
         this.getFreeBoard();
         this.getDalgonaBoard();

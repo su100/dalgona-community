@@ -54,12 +54,26 @@ class App extends Component {
                 window.sessionStorage.setItem('__AUTH__', event.newValue);
             }
 
-            //token 복사 후 setAuth 필요함
+            //token 복사 후 setAuth, getProfile
             const { AuthActions } = props;
             AuthActions.setAuth();
+            this.getProfile();
         });
     }
+
+    getProfile = async () => {
+        const { AuthActions } = this.props;
+        try {
+            await AuthActions.getProfile();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     componentDidMount() {
+        if (this.props.isAuthenticated) {
+            this.getProfile();
+        }
         window.localStorage.setItem('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
         window.localStorage.removeItem('REQUESTING_SHARED_CREDENTIALS');
     }
