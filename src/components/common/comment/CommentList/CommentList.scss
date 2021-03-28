@@ -176,6 +176,7 @@
             @include flex(row, space-between, center);
             padding-top: 15px;
             width: 100%;
+            border-top: 10px solid #f2f2f2;
             .comment-list__reply {
                 span {
                     font-size: 19px;
@@ -311,6 +312,7 @@
         .comment-list__ordering {
             @include flex(row, space-between, center);
             padding-top: 10px;
+            border-top: 5px solid #f2f2f2;
             .comment-list__reply {
                 span {
                     font-size: 14px;
