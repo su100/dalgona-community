@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
@@ -6,12 +6,20 @@ import * as navActions from 'store/modules/nav';
 import Nav from 'components/common/Nav';
 import { luna } from 'store/modules';
 
-class NavContainer extends Component {
+class NavContainer extends PureComponent {
     signOut = () => {
         this.props.AuthActions.signOut();
         this.props.history.go(); //새로고침으로 store초기화
     };
 
+    getProfile = async () => {
+        const { AuthActions } = this.props;
+        try {
+            await AuthActions.getProfile();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
     getLunaBoard = async () => {
         const { NavActions } = this.props;
         try {
@@ -36,7 +44,13 @@ class NavContainer extends Component {
             console.log('error log:' + e);
         }
     };
+
     componentDidMount() {
+        console.log('nav container');
+        if (this.props.isAuthenticated) {
+            //로그인 상태일 경우
+            this.getProfile();
+        }
         this.getLunaBoard();
         this.getFreeBoard();
         this.getDalgonaBoard();

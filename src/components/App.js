@@ -38,11 +38,10 @@ class App extends Component {
 
         const { AuthActions } = props;
         AuthActions.setAuth();
-
         window.addEventListener('storage', (event) => {
             const credentials = window.sessionStorage.getItem('__AUTH__');
-
             //다른 새 탭 열리고 token이 sessionStorage에 있을 때
+
             if (event.key === 'REQUESTING_SHARED_CREDENTIALS' && credentials) {
                 //localStorage에 복사했다가 지움
                 window.localStorage.setItem('CREDENTIALS_SHARING', credentials);
@@ -52,28 +51,14 @@ class App extends Component {
             //새 탭 기준: 위의 조건문 돌면 session에 복사
             if (event.key === 'CREDENTIALS_SHARING' && !credentials) {
                 window.sessionStorage.setItem('__AUTH__', event.newValue);
+                //token 복사 후 setAuth, getProfile
+                const { AuthActions } = props;
+                AuthActions.setAuth();
             }
-
-            //token 복사 후 setAuth, getProfile
-            const { AuthActions } = props;
-            AuthActions.setAuth();
-            this.getProfile();
         });
     }
 
-    getProfile = async () => {
-        const { AuthActions } = this.props;
-        try {
-            await AuthActions.getProfile();
-        } catch (e) {
-            console.log('error log:' + e);
-        }
-    };
-
     componentDidMount() {
-        if (this.props.isAuthenticated) {
-            this.getProfile();
-        }
         window.localStorage.setItem('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
         window.localStorage.removeItem('REQUESTING_SHARED_CREDENTIALS');
     }
