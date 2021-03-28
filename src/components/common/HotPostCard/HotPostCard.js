@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
@@ -7,6 +7,7 @@ import './HotPostCard.scss';
 const HotPostCard = ({ index, post }) => {
     const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
     const quillInstance = useRef(null); // Quill 인스턴스를 설정 설정
+    const [imageURL, setImage] = useState('');
 
     useEffect(() => {
         //최초 한번만 실행
@@ -23,36 +24,36 @@ const HotPostCard = ({ index, post }) => {
         const quill = quillInstance.current;
         mounted.current = true;
         let result;
+        let text = [];
+
         try {
             result = JSON.parse(post.body);
         } catch (e) {
             result = post.body;
         }
-        let text = [];
-        let tmp = result.ops.filter((element) => !element.insert.image); //텍스트만 보이게끔
+
+        //가장 처음 이미지 찾기
+        result.ops.some((element) => {
+            if (element.insert.image) {
+                setImage(element.insert.image);
+                return true;
+            }
+        });
+
+        //텍스트만 보이게끔
+        let tmp = result.ops.filter((element) => !element.insert.image);
+
         tmp.forEach((element) => {
-            if (element.insert !== '\n') {
+            let string = element.insert.replace('\n', '').trim(); //엔터 제거
+            if (string !== '') {
                 //단독 공백 제거
-                text.push({ insert: element.insert.replace('\n', '') }); //텍스트 효과 제거, 엔터 제거
+                text.push({ insert: string });
             }
         });
         result.ops = text;
         quill.setContents(result);
     }, [post]);
 
-    let result;
-    let imageURL = '';
-    try {
-        result = JSON.parse(post.body);
-        result.ops.some((element) => {
-            if (element.insert.image) {
-                imageURL = element.insert.image;
-                return true;
-            }
-        });
-    } catch (e) {
-        result = post.body;
-    }
     return (
         <Link
             className="hot-post-card"
