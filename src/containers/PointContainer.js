@@ -22,7 +22,6 @@ class PointContainer extends Component {
             this.props.history.push('/login');
         } else {
             this.getMyPoint('get', 1);
-            console.log('mypointcontainer');
         }
     }
     render() {

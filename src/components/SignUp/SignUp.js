@@ -37,7 +37,7 @@ class SignUp extends Component {
     render() {
         const { currentPage, agreeConfirm } = this.state;
         const { userNameUnique, emailUnique, nicknameUnique, setUnique, signup_success, signUpSuccess } = this.props;
-        console.log(signup_success, signUpSuccess);
+
         return (
             <div className="signup">
                 <div className="not-pc signup__title">회원가입</div>

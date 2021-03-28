@@ -37,7 +37,6 @@ class Nav extends Component {
 
     closeMenu = (e) => {
         const { isOpen } = this.state;
-        console.log(isOpen);
         this.setState({ isOpen: !isOpen });
     };
     handleOpenMenu = (e) => {
