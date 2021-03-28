@@ -217,9 +217,9 @@ class Nav extends Component {
                             )}
                         </div>
                         <div className="nav-hover__menu">
-                            {isPC && <div className="nav-hover__menu-home"></div>}
+                            {isPC && <div className="nav-hover__menu-col"></div>}
                             {(isPC || openMenu === 'main') && (
-                                <div className="nav-hover__menu-main">
+                                <div className="nav-hover__menu-col">
                                     <Link to={{ pathname: '/article', path: 'main' }}>
                                         <span> 기사</span>
                                     </Link>
@@ -229,7 +229,7 @@ class Nav extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'Luna') && (
-                                <div className="nav-hover__menu-luna">
+                                <div className="nav-hover__menu-col">
                                     {lunaBoard.map((board, index) => {
                                         return (
                                             <Link
@@ -243,7 +243,7 @@ class Nav extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'free') && (
-                                <div className="nav-hover__menu-free">
+                                <div className="nav-hover__menu-col">
                                     {freeBoard.map((board, index) => {
                                         return (
                                             <Link
@@ -257,7 +257,7 @@ class Nav extends Component {
                                 </div>
                             )}
                             {(isPC || openMenu === 'dalgona') && (
-                                <div className="nav-hover__menu-dalgona">
+                                <div className="nav-hover__menu-col">
                                     {dalgonaBoard.map((board, index) => {
                                         return (
                                             <Link key={index} to={{ pathname: `/${board.board_url}`, path: 'dalgona' }}>

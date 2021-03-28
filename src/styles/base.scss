@@ -1,7 +1,7 @@
 /* screen size */
 $mobile-max: 767px;
 $tablet-max: 1023px;
-
+$main-color: #ffd278;
 @mixin ellipsis($line-cnt, $line-height) {
     overflow: hidden;
     text-overflow: ellipsis;
