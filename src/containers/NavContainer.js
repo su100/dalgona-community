@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import * as navActions from 'store/modules/nav';
 import Nav from 'components/common/Nav';
-import { luna } from 'store/modules';
 
 class NavContainer extends PureComponent {
     signOut = () => {
@@ -46,14 +45,20 @@ class NavContainer extends PureComponent {
     };
 
     componentDidMount() {
-        console.log('nav container');
-        if (this.props.isAuthenticated) {
+        const { profile, lunaBoard, freeBoard, dalgonaBoard } = this.props;
+        if (profile.size === 0 && this.props.isAuthenticated) {
             //로그인 상태일 경우
             this.getProfile();
         }
-        this.getLunaBoard();
-        this.getFreeBoard();
-        this.getDalgonaBoard();
+        if (lunaBoard.length === 0) {
+            this.getLunaBoard();
+        }
+        if (freeBoard.length === 0) {
+            this.getFreeBoard();
+        }
+        if (dalgonaBoard.length === 0) {
+            this.getDalgonaBoard();
+        }
     }
 
     render() {
