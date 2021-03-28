@@ -66,7 +66,7 @@ class Login extends Component {
                             id="remember"
                             onChange={this.handleForm('remember')}
                         />
-                        <span>자동 로그인</span>
+                        <label htmlFor="remember">자동 로그인</label>
                     </div>
                     <input
                         className="login__input-id"

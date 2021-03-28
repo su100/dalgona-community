@@ -30,7 +30,6 @@ class LoginContainer extends Component {
         }
     };
     render() {
-        console.log('home container');
         return (
             <Fragment>
                 <Login signIn={this.signIn} setRemember={this.props.AuthActions.setRemember} />
