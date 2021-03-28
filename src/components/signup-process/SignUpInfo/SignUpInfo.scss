@@ -116,7 +116,8 @@
             padding-top: 23.97px;
             padding-bottom: 20px;
             font-size: 18px;
-            line-height: 26px;
+            font-weight: 500;
+            line-height: 20px;
             text-align: center;
         }
         .signupinfo__step {
@@ -171,8 +172,7 @@
     .signupinfo {
         padding: 0 20px 80px;
         &__title {
-            padding-top: 15px;
-            padding-bottom: 23px;
+            padding: 15px 0 15px;
             font-size: 14px;
             line-height: 20px;
         }

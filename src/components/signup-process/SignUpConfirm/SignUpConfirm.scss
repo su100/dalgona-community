@@ -77,7 +77,7 @@
         height: 487px;
         &__title {
             width: 100%;
-            padding-top: 15px;
+            padding: 15px 0 15px;
             font-weight: 500;
             font-size: 14px;
             line-height: 20.27px;
@@ -85,9 +85,7 @@
             text-align: center;
         }
         img {
-            width: 234px;
             height: 30px;
-            padding-top: 9px;
         }
         &__content {
             @include flex(column, center, center);

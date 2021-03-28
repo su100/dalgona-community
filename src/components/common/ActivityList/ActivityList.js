@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './ActivityList.scss';
 
 const ActivityList = ({ date, myPost }) => {
+    console.log(myPost);
     return (
         <div className="activity-list">
             <div className="activity-list__date">{date}</div>
@@ -24,7 +25,15 @@ const ActivityList = ({ date, myPost }) => {
                     <div key={post.id} className="activity-list__activity">
                         {imageURL !== '' && <img src={imageURL} className="activity-list__activity-img" alt="post" />}
                         <div className="activity-list__activity-info">
-                            <div className="activity-list__activity-info-title">{post.title}</div>
+                            <div className="activity-list__activity-info-title">
+                                <Link
+                                    to={`/${post.board_list.division === 2 ? 'luna' : 'free'}/${
+                                        post.board_list.board_url
+                                    }/${post.id}`}
+                                >
+                                    {post.title}
+                                </Link>
+                            </div>
                             <div className="activity-list__activity-info-luna">{post.board_list.board_name}</div>
                         </div>
                         <div className="only-pc activity-list__activity-reply">댓글 {post.reply_count}</div>
