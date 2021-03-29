@@ -20,7 +20,7 @@ const Policy = ({ match, history }) => {
                 setContents(termsPrivate);
             }
         }
-    }, []);
+    }, [match.params.type]);
 
     return (
         <div className="policy">
