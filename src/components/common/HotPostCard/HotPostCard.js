@@ -59,8 +59,6 @@ const HotPostCard = ({ index, post }) => {
         quill.setContents(result);
     }, [post]);
 
-    console.log(post);
-    console.log(imageURL);
     return (
         <Link
             className="hot-post-card"
