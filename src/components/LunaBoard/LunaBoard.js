@@ -91,7 +91,7 @@ class LunaBoard extends Component {
                             {bestPostList.map((post) => {
                                 return (
                                     <PostList
-                                        link={`luna/${boardInfo.board_url}`}
+                                        link={`/luna/${boardInfo.board_url}`}
                                         key={post.id}
                                         postList={[post]}
                                         request={request}
