@@ -110,7 +110,7 @@ class FreeBoard extends Component {
                     request={request}
                 />
                 <section className="only-pc free-board__container--btn">
-                    <Link to={`/free/write/${boardInfo.board_url}`}>글쓰기</Link>
+                    <Link to={`/free/${boardInfo.board_url}/write`}>글쓰기</Link>
                 </section>
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>

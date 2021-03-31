@@ -111,7 +111,7 @@ class LunaBoard extends Component {
                     request={request}
                 />
                 <section className="only-pc luna-board__container--btn">
-                    <Link to={`/luna/write/${boardInfo.board_url}`}>글쓰기</Link>
+                    <Link to={`/luna/${boardInfo.board_url}/write`}>글쓰기</Link>
                 </section>
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
