@@ -13,15 +13,20 @@
     .vote-item__box--img {
         @include flex(row, center, center);
         margin-bottom: 50px;
-        img {
-            width: 267.9px;
-            background: #838383;
-            height: 241.7px;
-        }
         span {
             margin: 0 141px;
             color: #898989;
             font-size: 17px;
+        }
+        .vote-item__image {
+            width: 267.9px;
+            height: 241.7px;
+            &.empty {
+                line-height: 241.7px;
+                background: #838383;
+                color: #fff;
+                font-size: 150px;
+            }
         }
     }
 }
@@ -39,12 +44,16 @@
             font-size: 10px;
         }
         .vote-item__box--img {
-            img {
-                width: 178.2px;
-                height: 160.92px;
-            }
             span {
                 margin: 0 94px;
+            }
+            .vote-item__image {
+                width: 178.2px;
+                height: 160.92px;
+                &.empty {
+                    line-height: 160.92px;
+                    font-size: 90px;
+                }
             }
         }
     }
@@ -63,12 +72,16 @@
         }
         .vote-item__box--img {
             margin-bottom: 20px;
-            img {
-                width: 72px;
-                height: 65px;
-            }
             span {
                 margin: 0 40px;
+            }
+            .vote-item__image {
+                width: 72px;
+                height: 65px;
+                &.empty {
+                    line-height: 65px;
+                    font-size: 40px;
+                }
             }
         }
     }

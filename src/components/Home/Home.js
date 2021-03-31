@@ -15,15 +15,14 @@ class Home extends Component {
         this.state = {
             hotVoteList: [
                 {
-                    id: 0,
-                    title: '투표 제목',
+                    title: '당신의 루나에게 투표하세요!',
                     voteitem: [
                         {
-                            id: 8,
+                            id: 0,
                             item_image: null,
                         },
                         {
-                            id: 9,
+                            id: 1,
                             item_image: null,
                         },
                     ],
