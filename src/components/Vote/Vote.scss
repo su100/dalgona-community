@@ -73,6 +73,7 @@
                     font-weight: 700;
                 }
                 &-description {
+                    max-height: 50px;
                     font-size: 14px;
                     font-weight: 400;
                 }
@@ -116,9 +117,14 @@
                     color: #ffffff;
                 }
                 &-description {
+                    max-height: 50px;
                     font-size: 14px;
                     font-weight: 400;
                     color: #ffffff;
+                }
+                img{
+                    width: 150px;
+                    height: 150px;
                 }
             }
         }
@@ -191,6 +197,10 @@
                     }
                     &-description {
                     }
+                    img{
+                        width: 130px;
+                        height: 130px;
+                    }
                 }
                 &-area {
                     position: relative;
@@ -215,6 +225,10 @@
                     &-title {
                     }
                     &-description {
+                    }
+                    img{
+                        width: 130px;
+                        height: 130px;
                     }
                 }
             }
@@ -273,6 +287,10 @@
                     }
                     &-description {
                     }
+                    img{
+                        width: 50px;
+                        height: 50px;
+                    }
                 }
                 &-area {
                     position: relative;
@@ -295,6 +313,10 @@
                     &-title {
                     }
                     &-description {
+                    }
+                    img{
+                        width: 50px;
+                        height: 50px;
                     }
                 }
             }
