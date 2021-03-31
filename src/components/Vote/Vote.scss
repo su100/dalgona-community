@@ -217,9 +217,10 @@
                 &-area {
                     position: relative;
                     top: -30px;
-                    left: -80px;
+                    left: -92px;
                     width: 16px;
                     &-vs {
+                        @include flex(column,center,center);
                         width: 200px;
                         background: none;
                         span {
@@ -326,7 +327,7 @@
                 &-area {
                     position: relative;
                     top: -40px;
-                    left: -90px;
+                    left: -92px;
                     width: 16px;
                     &-vs {
                         width: 200px;
