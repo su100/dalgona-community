@@ -36,6 +36,7 @@ const initialState = Map({
     myPointCount: 0,
     myPost: [],
     myPoint: [],
+    myListCount: 0,
 });
 
 /* reducer + pender */
@@ -116,6 +117,7 @@ export default handleActions(
             type: GET_MY_POINT,
             onSuccess: (state, action) => {
                 const { data } = action.payload;
+                console.log(data);
                 const pointList = data.results;
                 let myPointList = {};
                 for (let i = 0; i < pointList.length; i++) {
@@ -126,8 +128,7 @@ export default handleActions(
                         myPointList[date] = List([pointList[i]]);
                     }
                 }
-                console.log(data.count);
-                return state.set('myPointCount', data.count).set('myPoint', myPointList);
+                return state.set('myPointCount', data.total).set('myListCount', data.count).set('myPoint', myPointList);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;
