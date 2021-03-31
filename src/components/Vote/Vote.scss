@@ -67,12 +67,14 @@
                     border-radius: 176px;
                 }
                 &-title {
+                    max-width: 290px;
                     padding-top: 32px;
                     padding-bottom: 25px;
                     font-size: 27px;
                     font-weight: 700;
                 }
                 &-description {
+                    max-width: 290px;
                     max-height: 50px;
                     font-size: 14px;
                     font-weight: 400;
@@ -110,6 +112,7 @@
                     border-radius: 176px;
                 }
                 &-title {
+                    max-width: 290px;
                     padding-top: 32px;
                     padding-bottom: 25px;
                     font-size: 27px;
@@ -118,6 +121,7 @@
                 }
                 &-description {
                     max-height: 50px;
+                    max-width: 290px;
                     font-size: 14px;
                     font-weight: 400;
                     color: #ffffff;
@@ -192,18 +196,27 @@
                     width: 356px;
                     border-radius: 0px;
                     &-circle {
+                        width: 140px;
+                        height: 140px;
                     }
                     &-title {
+                        @include ellipsis(2 , 35px);
+                        min-height: 70px;
+                        padding-top: 20px;
+                        padding-bottom: 15px;
                     }
                     &-description {
+                        @include ellipsis(3 , 20px);
+                        height: 60px;
                     }
                     img{
-                        width: 130px;
-                        height: 130px;
+                        width: 140px;
+                        height: 140px;
                     }
                 }
                 &-area {
                     position: relative;
+                    top: -30px;
                     left: -80px;
                     width: 16px;
                     &-vs {
@@ -223,12 +236,18 @@
                     &-circle {
                     }
                     &-title {
+                        @include ellipsis(2 , 35px);
+                        min-height: 70px;
+                        padding-top: 20px;
+                        padding-bottom: 15px;
                     }
                     &-description {
+                        @include ellipsis(3 , 20px);
+                        height: 60px;
                     }
                     img{
-                        width: 130px;
-                        height: 130px;
+                        width: 140px;
+                        height: 140px;
                     }
                 }
             }
@@ -281,20 +300,33 @@
                     height: 152px;
                     width: 152px;
                     &-circle {
-                        display: none;
+                        width: 50px;
+                        height: 50px;
+                        background: none;
                     }
                     &-title {
+                        @include ellipsis(2,20px);
+                        padding: 7px 0;
+                        font-size: 13px;
+                        min-height: 10px;
+                        max-width: 140px;
                     }
                     &-description {
+                        @include ellipsis(3,15px);
+                        font-size: 10px;
+                        max-width: 140px;
+                        height: 50px;
                     }
                     img{
+                        padding-top: 10px;
                         width: 50px;
                         height: 50px;
                     }
                 }
                 &-area {
                     position: relative;
-                    left: -80px;
+                    top: -40px;
+                    left: -90px;
                     width: 16px;
                     &-vs {
                         width: 200px;
@@ -308,13 +340,25 @@
                     height: 152px;
                     width: 152px;
                     &-circle {
-                        display: none;
+                        width: 50px;
+                        height: 50px;
+                        background: none;
                     }
                     &-title {
+                        @include ellipsis(2,20px);
+                        padding: 7px 0;
+                        font-size: 13px;
+                        min-height: 10px;
+                        max-width: 140px;
                     }
                     &-description {
+                        @include ellipsis(3,15px);
+                        font-size: 10px;
+                        max-width: 140px;
+                        height: 50px;
                     }
                     img{
+                        padding-top: 10px;
                         width: 50px;
                         height: 50px;
                     }
@@ -328,7 +372,6 @@
             }
             &-description {
                 width: 322px;
-                min-height: 50px;
                 padding-top: 17px;
                 padding-bottom: 16px;
             }
