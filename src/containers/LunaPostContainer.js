@@ -28,7 +28,6 @@ class LunaPostContainer extends Component {
     };
     getPostReply = async (postid, page, ordering) => {
         const { LunaActions } = this.props;
-        console.log(ordering);
         try {
             await LunaActions.getPostReply(postid, page, ordering);
         } catch (e) {

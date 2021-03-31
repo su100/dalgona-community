@@ -15,7 +15,6 @@ class View extends Component {
         const { link, postInfo, type } = this.props;
         const { location } = this.props;
         const path = location.pathname.split('/');
-        console.log(type, path);
         return (
             <div className="view">
                 <div className="view__detail">

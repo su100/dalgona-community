@@ -72,7 +72,7 @@
         @include flex(column, center, center);
         width: 100%;
         height: 88.65px;
-        padding-bottom: 35px;
+        padding-bottom: 22px;
         background: #f2f2f2;
         &.login {
             display: flex;
@@ -83,6 +83,7 @@
         &-icon {
             @include flex(row, space-around, center);
             width: 30%;
+            padding-top: 20px;
             padding-bottom: 14px;
             svg {
                 width: 13.65px;
