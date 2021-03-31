@@ -42,7 +42,8 @@ class Write extends Component {
 
     addPost = () => {
         const { addPost, isAuthenticated, location } = this.props;
-        const boardUrl = location.pathname.split('/')[3];
+        const pathname = location.pathname.split('/');
+        const boardUrl = pathname[3] ? pathname[2] : pathname[1];
         const { title, isAnonymous, editorState } = this.state;
         //빈 값 체크
         if (title === '') alert('제목을 입력해주세요.');

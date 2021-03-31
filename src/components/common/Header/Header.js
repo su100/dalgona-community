@@ -31,7 +31,7 @@ const Header = ({
                 </div>
                 {hasWrite && (
                     <button className="header__btn--write">
-                        <Link to={`/${boardType}/write/${boardUrl}`}>글쓰기</Link>
+                        <Link to={boardUrl ? `/${boardType}/${boardUrl}/write` : `/${boardType}/write`}>글쓰기</Link>
                     </button>
                 )}
             </div>
