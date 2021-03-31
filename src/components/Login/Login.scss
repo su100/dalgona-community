@@ -197,24 +197,27 @@
             }
         }
         &__searchandsignup {
-            padding-top: 15px;
+            padding-top: 20px;
+            padding-bottom: 0px;
+            height: 20px;
             &-id {
-                height: 15px;
+                height: 18px;
                 line-height: 15px;
                 padding: 0 3px;
             }
             &-password {
-                height: 15px;
+                height: 18px;
                 line-height: 15px;
                 padding: 0 3px;
             }
             &-signup {
-                height: 15px;
-                padding: 0 3px;
+                height: 18px;
                 line-height: 15px;
+                padding: 0 3px;
             }
             a {
                 font-size: 11px;
+                line-height: 20px;
             }
         }
         &__button {
