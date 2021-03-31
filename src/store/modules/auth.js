@@ -102,6 +102,7 @@ export default handleActions(
                     nickname: data.user.nickname,
                     introduction: data.user.introduction,
                     profile_image: data.user.profile_image,
+                    is_superuser: data.user.is_superuser ? true : false,
                 });
                 //받아온 회원정보 sessionStorage에 저장(사이드바에서 사용될것)
                 return state.set('isAuthenticated', true).set('profile', profile);

@@ -10,7 +10,7 @@ class WriteContainer extends Component {
         const { location, WriteActions } = this.props;
         const tmp = location.pathname.split('/');
         try {
-            await WriteActions.getBoardInfo(tmp[3]);
+            await WriteActions.getBoardInfo(tmp[3] ? tmp[2] : tmp[1]);
         } catch (e) {
             console.log('error log:' + e);
         }
