@@ -88,13 +88,17 @@
                         color: black;
                     }
                     button {
-                        line-height: 54px;
-                        font-size: 20px;
-                        font-style: normal;
-                        font-weight: 400;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: black;
+                        span {
+                            line-height: 54px;
+                            text-decoration: none;
+                            font-family: Noto Sans KR;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 400;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: black;
+                        }
                     }
                 }
             }
@@ -184,13 +188,17 @@
                         color: black;
                     }
                     button {
-                        line-height: 54px;
-                        font-size: 17px;
-                        font-style: normal;
-                        font-weight: 400;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: black;
+                        span {
+                            line-height: 54px;
+                            text-decoration: none;
+                            font-family: Noto Sans KR;
+                            font-size: 17px;
+                            font-style: normal;
+                            font-weight: 400;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: black;
+                        }
                     }
                 }
             }
