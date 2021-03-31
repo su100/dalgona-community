@@ -13,6 +13,7 @@
     .page-template {
         main {
             width: 100%;
+            min-height: calc(100vh - 119.79px - 144.89px);
         }
     }
 }
@@ -20,5 +21,8 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .page-template {
+        main {
+            min-height: calc(100vh - 89.79px - 123.64px);
+        }
     }
 }
