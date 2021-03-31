@@ -104,6 +104,7 @@ class Vote extends Component {
                             </div>
                             <div className="not-pc">
                                 <div className="vote__main__content-area-vs">
+                                    <span>vs</span>
                                     <span>현재 {voteInfo.vote_count}표 차이</span>
                                 </div>
                             </div>

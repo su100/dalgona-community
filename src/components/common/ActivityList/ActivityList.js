@@ -22,23 +22,24 @@ const ActivityList = ({ date, myPost }) => {
                     result = post.body;
                 }
                 return (
-                    <div key={post.id} className="activity-list__activity">
-                        {imageURL !== '' && <img src={imageURL} className="activity-list__activity-img" alt="post" />}
-                        <div className="activity-list__activity-info">
-                            <div className="activity-list__activity-info-title">
-                                <Link
-                                    to={`/${post.board_list.division === 2 ? 'luna' : 'free'}/${
-                                        post.board_list.board_url
-                                    }/${post.id}`}
-                                >
-                                    {post.title}
-                                </Link>
+                    <Link
+                        to={`/${post.board_list.division === 2 ? 'luna' : 'free'}/${post.board_list.board_url}/${
+                            post.id
+                        }`}
+                        key={post.id}
+                    >
+                        <div className="activity-list__activity">
+                            {imageURL !== '' && (
+                                <img src={imageURL} className="activity-list__activity-img" alt="post" />
+                            )}
+                            <div className="activity-list__activity-info">
+                                <div className="activity-list__activity-info-title">{post.title}</div>
+                                <div className="activity-list__activity-info-luna">{post.board_list.board_name}</div>
                             </div>
-                            <div className="activity-list__activity-info-luna">{post.board_list.board_name}</div>
+                            <div className="only-pc activity-list__activity-reply">댓글 {post.reply_count}</div>
+                            <div className="not-pc activity-list__activity-reply mobile">{post.reply_count}</div>
                         </div>
-                        <div className="only-pc activity-list__activity-reply">댓글 {post.reply_count}</div>
-                        <div className="not-pc activity-list__activity-reply mobile">{post.reply_count}</div>
-                    </div>
+                    </Link>
                 );
             })}
         </div>
