@@ -90,7 +90,7 @@
 @media screen and (max-width: $tablet-max) {
     .login {
         @include flex(column, center, center);
-        height: calc(100vh - 119.79px);
+        height: calc(100vh - 114.9px);
         background: #2d2d2d;
 
         &__logo {
@@ -170,7 +170,7 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .login {
-        height: calc(100vh - 83px);
+        height: calc(100vh - 83.65px);
         &__logo {
             padding-bottom: 50px;
             img {
@@ -185,7 +185,8 @@
             }
             &-selectbox {
                 width: 320px;
-                padding-bottom: 12px;
+                margin-bottom: 0px;
+                padding-bottom: 18px;
                 .remember-check {
                     height: 8.39px;
                     width: 8.39px;
