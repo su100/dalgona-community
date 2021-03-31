@@ -32,13 +32,18 @@ const HotPostCard = ({ index, post }) => {
             result = post.body;
         }
 
-        //가장 처음 이미지 찾기
-        result.ops.some((element) => {
-            if (element.insert.image) {
-                setImage(element.insert.image);
-                return true;
-            }
-        });
+        if (
+            !result.ops.some((element) => {
+                //가장 처음 이미지 찾기
+                if (element.insert.image) {
+                    setImage(element.insert.image);
+                    return true;
+                }
+            })
+        ) {
+            //이미지 없으면 빈값
+            setImage('');
+        }
 
         //텍스트만 보이게끔
         let tmp = result.ops.filter((element) => !element.insert.image);

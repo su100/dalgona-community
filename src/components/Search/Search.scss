@@ -11,7 +11,7 @@
         span {
             font-weight: bold;
         }
-    } 
+    }
     &__container--postlist {
         margin: 0 auto 125px;
         width: 1000px;
@@ -56,6 +56,7 @@
             margin: 0 auto;
             padding: 13px 0;
             width: calc(100% - 20px);
+            box-sizing: border-box;
             border-bottom: 1px solid rgba(175, 175, 175, 0.5);
         }
         &__container--postlist {

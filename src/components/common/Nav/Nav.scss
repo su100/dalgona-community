@@ -286,6 +286,7 @@
                     height: 16px;
                 }
                 &-logoimg {
+                    @include flex(row, center, center);
                     width: 120px;
                     margin-right: 0px;
                     height: 26px;
