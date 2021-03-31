@@ -86,6 +86,18 @@ class NoticePostContainer extends Component {
         }
         this.getPostReply(match.params.noticeid, 1);
     };
+    deletePost = async () => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePost('notice', match.params.noticeid); //boardUrl, postId
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        if (this.props.delete_success) {
+            const tmp = location.pathname.split('/');
+            this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
+        }
+    };
     replyRecommend = async (replyUrl) => {
         const { WriteActions, match } = this.props;
         try {
@@ -188,6 +200,7 @@ class NoticePostContainer extends Component {
                     deletePostReply={this.deletePostReply}
                     updatePostRereply={this.updatePostRereply}
                     deletePostRereply={this.deletePostRereply}
+                    deletePost={this.deletePost}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
                     recommendPost={this.recommendPost}
