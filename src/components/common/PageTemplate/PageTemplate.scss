@@ -13,7 +13,7 @@
     .page-template {
         main {
             width: 100%;
-            min-height: calc(100vh - 119.79px - 144.89px);
+            min-height: calc(100vh - 119.79px - 114.89px);
         }
     }
 }
@@ -22,7 +22,7 @@
 @media screen and (max-width: $mobile-max) {
     .page-template {
         main {
-            min-height: calc(100vh - 89.79px - 123.64px);
+            min-height: calc(100vh - 89.79px - 95.64px);
         }
     }
 }
