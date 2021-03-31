@@ -26,6 +26,7 @@ class Nav extends Component {
     }
 
     handleOver = (e) => {
+        console.log(e.currentTarget.id + 'over');
         if (this._isMounted) {
             if (e.target.id === 'home') {
                 this.setState({ isOpen: false, openMenu: e.target.id });
@@ -48,6 +49,7 @@ class Nav extends Component {
 
     handleOnClick = (e) => {
         const { openMenu, isOpen } = this.state;
+        console.log(e.currentTarget.id + 'click');
         if (this._isMounted) {
             if (e.target.id === openMenu) {
                 this.setState({ isOpen: !isOpen, openMenu: e.target.id });
@@ -178,7 +180,7 @@ class Nav extends Component {
                                     }
                                     id={value}
                                     key={index}
-                                    onMouseOver={this.handleOver}
+                                    onMouseOver={isPC ? this.handleOver : undefined}
                                     onClick={this.handleOnClick}
                                 >
                                     {Menu[value]}
