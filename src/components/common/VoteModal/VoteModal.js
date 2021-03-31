@@ -5,7 +5,7 @@ import './VoteModal.scss';
 const VoteModal = ({ voteDuplicate, handleShowModal, isVote }) => (
     <div className="votemodal">
         <div className="votemodal-modal">
-            <span>{isVote ? '투표는 한번만 가능합니다.' : '투표되었습니다.'}</span>
+            <span>{isVote ? '투표되었습니다.' : '투표는 한번만 가능합니다.'}</span>
             <div className="votemodal-modal__button">
                 {isVote && (
                     <button className="cancel" onClick={handleShowModal}>
