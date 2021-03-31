@@ -29,7 +29,7 @@ class CommentList extends Component {
             updateImg: null,
             updateAnonymous: false,
             updatePreview: '',
-            sortType: '',
+            sortType: 'recommend_count',
             page: 1,
         };
     }
@@ -254,7 +254,7 @@ class CommentList extends Component {
         const { page } = this.state;
         const { vote, voteid, postid } = this.props;
 
-        this.setState({ sortType: e.target.id });
+        this.setState({ sortType: e.currentTarget.id });
         if (vote) {
             this.props.voteReply(voteid, page, e.currentTarget.id);
         } else {
@@ -266,7 +266,7 @@ class CommentList extends Component {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
         const { vote, commentList, voteReplyCount, postReplyCount, recommend_count, recommend } = this.props;
-        const { isUpdate, updateId } = this.state;
+        const { isUpdate, updateId, sortType } = this.state;
         const rereplyList = vote ? 'voteboardrereply' : 'rereply';
         return (
             <div className="comment-list">
@@ -288,11 +288,19 @@ class CommentList extends Component {
                             </div>
                         </div>
                         <div className="comment-list__sort">
-                            <button id="recommend_count" onClick={this.handleOrdering}>
+                            <button
+                                className={sortType === 'recommend_count' ? 'onclick' : undefined}
+                                id="recommend_count"
+                                onClick={this.handleOrdering}
+                            >
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>
-                            <button id="created_at" onClick={this.handleOrdering}>
+                            <button
+                                className={sortType === 'created_at' ? 'onclick' : undefined}
+                                id="created_at"
+                                onClick={this.handleOrdering}
+                            >
                                 최신순
                                 <img src={arrowIcon}></img>
                             </button>
@@ -329,11 +337,19 @@ class CommentList extends Component {
                     </div>
                     <div className="not-pc">
                         <div className="comment-list__sort">
-                            <button id="recommend_count" onClick={this.handleOrdering}>
+                            <button
+                                className={sortType === 'recommend_count' ? 'onclick' : undefined}
+                                id="recommend_count"
+                                onClick={this.handleOrdering}
+                            >
                                 추천순
                                 <img src={arrowIcon}></img>
                             </button>
-                            <button id="created_at" onClick={this.handleOrdering}>
+                            <button
+                                className={sortType === 'created_at' ? 'onclick' : undefined}
+                                id="created_at"
+                                onClick={this.handleOrdering}
+                            >
                                 최신순
                                 <img src={arrowIcon}></img>
                             </button>

@@ -71,6 +71,9 @@
                     width: 10.58001708984375px;
                 }
             }
+            .onclick{
+                color: $main-color;
+            }
         }
     }
     .comment-list__item {
@@ -205,6 +208,9 @@
                         height: 6px;
                     }
                 }
+                .onclick{
+                    color: $main-color;
+                }
             }
         }
 
@@ -329,6 +335,9 @@
                         width: 10px;
                         height: 6px;
                     }
+                }
+                .onclick{
+                    color: $main-color;
                 }
             }
         }
