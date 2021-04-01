@@ -23,6 +23,7 @@ button {
     padding: 0;
     cursor: pointer;
     color: inherit;
+    font-family: 'Noto Sans KR';
 }
 
 ul {
