@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from 'components/common/Sidebar';
 import SearchInput from 'components/common/SearchInput';
@@ -133,9 +133,9 @@ class Nav extends Component {
                 )}
                 <div className={isHome ? 'nav-main' : 'nav-main no'}>
                     <div className="nav-main__logo">
-                        <div className="not-pc">
+                        <button className="not-pc">
                             <img className="nav-main__logo-menu" src={menuIcon} onClick={this.handleSidebar}></img>
-                        </div>
+                        </button>
                         <Link to="/" className="nav-main__logo-logoimg">
                             <img src={isPC ? biglogo : logo}></img>
                         </Link>
