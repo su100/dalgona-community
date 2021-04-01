@@ -79,16 +79,16 @@ class App extends Component {
                     <Route exact path="/luna/:board_url" component={LunaBoardPage} />
                     <Route exact path="/free/:board_url" component={FreeBoardPage} />
                     <Route exact path="/notice" component={NoticeBoardPage} />
-                    <Route exact path="/notice/:noticeid" component={NoticePostPage} />
                     <Route exact path="/event" component={EventBoardPage} />
-                    <Route exact path="/event/:eventid" component={EventPostPage} />
                     <Route exact path="/my/profile" component={ProfilePage} />
                     <Route exact path="/my/activity" component={ActivityPage} />
                     <Route exact path="/my/point" component={PointPage} />
                     <Route exact path="/policy/:type" component={PolicyPage} />
-                    <Route path="/(luna|free|notice|event)/:board_url?/write" component={WritePage} />
+                    <Route exact path="/(luna|free|notice|event)/:board_url?/write" component={WritePage} />
                     <Route exact path="/luna/:board_url/:postid" component={LunaPostPage} />
                     <Route exact path="/free/:board_url/:postid" component={FreePostPage} />
+                    <Route exact path="/notice/:noticeid" component={NoticePostPage} />
+                    <Route exact path="/event/:eventid" component={EventPostPage} />
                     <Route path="/" component={NotFoundPage} />
                 </Switch>
             </div>

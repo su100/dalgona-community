@@ -143,6 +143,18 @@ class EventPostContainer extends Component {
         }
         this.getPostList(params);
     }
+    deletePost = async () => {
+        const { WriteActions, match } = this.props;
+        try {
+            await WriteActions.deletePost('event', match.params.eventid); //boardUrl, postId
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+        if (this.props.delete_success) {
+            const tmp = location.pathname.split('/');
+            this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
+        }
+    };
     componentDidMount() {
         const eventid = this.props.match.params.eventid;
         this.getPostInfo(eventid);
@@ -188,6 +200,7 @@ class EventPostContainer extends Component {
                     deletePostReply={this.deletePostReply}
                     updatePostRereply={this.updatePostRereply}
                     deletePostRereply={this.deletePostRereply}
+                    deletePost={this.deletePost}
                     recommendPost={this.recommendPost}
                     replyRecommend={this.replyRecommend}
                     reReplyRecommend={this.reReplyRecommend}
