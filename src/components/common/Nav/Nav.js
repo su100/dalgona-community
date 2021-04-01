@@ -174,7 +174,7 @@ class Nav extends Component {
                     {(isHome || isPC) && (
                         <div className="nav-main__menu">
                             {Object.keys(Menu).map((value, index) => (
-                                <div
+                                <button
                                     className={
                                         openMenu === value ? 'nav-main__menu-content click' : 'nav-main__menu-content'
                                     }
@@ -184,7 +184,7 @@ class Nav extends Component {
                                     onClick={this.handleOnClick}
                                 >
                                     {Menu[value]}
-                                </div>
+                                </button>
                             ))}
                             <div className="nav-main__menu-input">
                                 <SearchInput

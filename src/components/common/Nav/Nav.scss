@@ -22,7 +22,6 @@
                 padding-right: 10%;
                 img {
                     display: block;
-                    width: 140px;
                     height: 55px;
                 }
             }
@@ -65,6 +64,7 @@
             &-content {
                 min-width: 100px;
                 text-align: center;
+                font-size: 14px;
                 &:hover {
                     color: $main-color;
                 }
@@ -131,7 +131,7 @@
 }
 
 //태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+@media screen and (max-width: $tablet-max) {
     .nav {
         width: 100%;
         min-width: 0px;
@@ -163,7 +163,6 @@
                     padding: 0px;
                     img {
                         padding: 0px;
-                        width: 110px;
                         height: 31px;
                     }
                 }
@@ -181,19 +180,16 @@
                 min-width: 0;
                 height: 40px;
                 padding-left: 0px;
-                flex-shrink: none;
                 &-content {
                     width: 20%;
                     height: 40px;
                     min-width: 0px;
                     max-width: 100%;
-                    font-family: Noto Sans KR;
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 20px;
                     letter-spacing: 0em;
-                    text-align: center;
                     &:hover {
                         color: white;
                         border-bottom: 1px solid $main-color;
@@ -212,7 +208,7 @@
         &-hover {
             position: relative;
             @include flex(row, center, center);
-            height: 42.150001525878906px;
+            height: 42.15px;
             background: rgb(53, 53, 53);
             z-index: 5;
             &__border {
@@ -233,7 +229,6 @@
                     height: inherit;
                     color: white;
                     font-size: 15px;
-                    font-style: normal;
                     font-weight: 500;
                     line-height: 17px;
                     letter-spacing: 0em;
@@ -260,130 +255,46 @@
 //모바일
 @media screen and (max-width: $mobile-max) {
     .nav {
-        width: 100%;
-        min-width: 0px;
         &-main {
-            @include flex(column, space-between, space-between);
-            width: 100%;
             height: 89.79px;
             &.no {
                 height: 55px;
             }
             &__logo {
-                @include flex(row, space-between, space-between);
-                width: 100%;
                 padding: 15px 0px 15px 0px;
-                span {
-                    display: none;
-                }
                 img {
-                    display: inline;
                     margin: 0px;
                     padding: 0 15px;
                 }
-                &-menu {
-                    width: 16px;
-                    height: 16px;
-                }
                 &-logoimg {
-                    @include flex(row, center, center);
-                    width: 120px;
-                    margin-right: 0px;
                     height: 26px;
-                    padding-left: 0px;
-                    padding-right: 0px;
                     img {
-                        padding: 0px;
-                        width: 86.82999420166016px;
-                        height: 25.177528381347656px;
+                        height: 25.17px;
                     }
                 }
-                &-search {
-                    width: 16px;
-                    height: 16px;
-                }
-            }
-            &__login {
-                display: none;
             }
             &__menu {
-                @include flex(row, space-around, center);
-                width: 100%;
-                padding-left: 0px;
-                flex-shrink: none;
-                min-width: 0px;
-                max-width: 100%;
                 &-content {
-                    width: 20%;
                     height: 30px;
-                    min-width: 0px;
                     max-width: 20%;
-                    font-family: Noto Sans KR;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 20px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    &:hover {
-                        color: white;
-                        border-bottom: 1px solid $main-color;
-                    }
-                    &.click {
-                        color: white;
-                        border-bottom: 1px solid $main-color;
-                    }
-                }
-                &-input {
-                    display: none;
-                    padding: 0;
                 }
             }
         }
         &-hover {
-            @include flex(row, center, center);
-            position: relative;
             width: 100%;
             height: 25.62px;
-            background: rgb(53, 53, 53);
-            @include flex(row, center, center);
-            &__border {
-                display: none;
-            }
             &__menu {
-                @include flex(row, space-around, center);
-                width: 100%;
                 height: 26px;
                 margin-top: 0px;
                 min-width: 0px;
-                padding-right: 0px;
-                padding-left: 0px;
                 &-col {
-                    @include flex(row, space-around, center);
-                    width: 100%;
-                    min-width: 0px;
-                    max-width: 100%;
                     height: 26px;
-                    color: white;
                     font-size: 12px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 17px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    border: none;
-                    padding-left: 0px;
-                }
-                a {
-                    text-decoration: none;
                 }
             }
         }
         &-search__box {
-            width: 100%;
             height: 175px;
-            z-index: 3;
-            background: #fff;
         }
     }
 }
