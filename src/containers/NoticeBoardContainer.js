@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as dalgonaActions from 'store/modules/dalgona';
+import * as authActions from 'store/modules/auth';
 import NoticeBoard from 'components/NoticeBoard';
 
 class NoticeBoardContainer extends Component {
@@ -45,15 +46,33 @@ class NoticeBoardContainer extends Component {
         this.getPostList(params);
     }
 
+    getProfile = async () => {
+        const { AuthActions } = this.props;
+        try {
+            await AuthActions.getProfile();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     componentDidMount() {
         this.getPostList(); //글 목록 가져오기
+        this.getProfile();
     }
 
     render() {
-        const { history, location, noticeCount, noticeList } = this.props;
+        const { history, location, noticeCount, noticeList, profile } = this.props;
+        const isSuperuser = profile.get('is_superuser');
+
         return (
             <Fragment>
-                <NoticeBoard history={history} location={location} postCount={noticeCount} postList={noticeList} />
+                <NoticeBoard
+                    history={history}
+                    location={location}
+                    postCount={noticeCount}
+                    postList={noticeList}
+                    isSuperuser={isSuperuser}
+                />
             </Fragment>
         );
     }
@@ -63,8 +82,10 @@ export default connect(
     (state) => ({
         noticeCount: state.dalgona.get('noticeCount'),
         noticeList: state.dalgona.get('noticeList'),
+        profile: state.auth.get('profile'),
     }),
     (dispatch) => ({
+        AuthActions: bindActionCreators(authActions, dispatch),
         DalgonaActions: bindActionCreators(dalgonaActions, dispatch),
     })
 )(NoticeBoardContainer);

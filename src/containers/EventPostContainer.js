@@ -152,7 +152,7 @@ class EventPostContainer extends Component {
         }
         if (this.props.delete_success) {
             const tmp = location.pathname.split('/');
-            this.props.history.replace(`/${tmp[1]}/${tmp[2]}`);
+            this.props.history.replace(`/${tmp[1]}`);
         }
     };
     componentDidMount() {
@@ -221,6 +221,7 @@ export default connect(
         postReplyCount: state.dalgona.get('postReplyCount'),
         reply_success: state.pender.success['write/ADD_POST_REPLY'],
         rereply_success: state.pender.success['write/ADD_POST_REREPLY'],
+        delete_success: state.pender.success['write/DELETE_POST'],
         eventCount: state.dalgona.get('eventCount'),
         eventList: state.dalgona.get('eventList'),
     }),
