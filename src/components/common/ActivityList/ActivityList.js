@@ -4,7 +4,6 @@ import { BOARD_DIVISION } from '../../../constants';
 import './ActivityList.scss';
 
 const ActivityList = ({ date, myPost }) => {
-    console.log(myPost);
     return (
         <div className="activity-list">
             <div className="activity-list__date">{date}</div>
