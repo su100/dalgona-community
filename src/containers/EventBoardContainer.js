@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as authActions from 'store/modules/auth';
 import * as dalgonaActions from 'store/modules/dalgona';
 import EventBoard from 'components/EventBoard';
 
@@ -45,15 +46,31 @@ class EventBoardContainer extends Component {
         this.getPostList(params);
     }
 
+    getProfile = async () => {
+        const { AuthActions } = this.props;
+        try {
+            await AuthActions.getProfile();
+        } catch (e) {
+            console.log('error log:' + e);
+        }
+    };
+
     componentDidMount() {
         this.getPostList(); //글 목록 가져오기
     }
 
     render() {
-        const { history, location, eventCount, eventList } = this.props;
+        const { history, location, eventCount, eventList, profile } = this.props;
+        const isSuperuser = profile.get('is_superuser');
         return (
             <Fragment>
-                <EventBoard history={history} location={location} postCount={eventCount} postList={eventList} />
+                <EventBoard
+                    history={history}
+                    location={location}
+                    postCount={eventCount}
+                    postList={eventList}
+                    isSuperuser={isSuperuser}
+                />
             </Fragment>
         );
     }
@@ -63,8 +80,10 @@ export default connect(
     (state) => ({
         eventCount: state.dalgona.get('eventCount'),
         eventList: state.dalgona.get('eventList'),
+        profile: state.auth.get('profile'),
     }),
     (dispatch) => ({
+        AuthActions: bindActionCreators(authActions, dispatch),
         DalgonaActions: bindActionCreators(dalgonaActions, dispatch),
     })
 )(EventBoardContainer);

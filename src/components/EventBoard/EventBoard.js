@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 
 import Header from 'components/common/Header';
@@ -47,18 +48,33 @@ class EventBoard extends Component {
         const request = location.search;
         const query = queryString.parse(request);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { postList, postCount } = this.props;
+        const { postList, postCount, isSuperuser } = this.props;
         return (
             <div className="event-board">
-                <Header
-                    title="이벤트"
-                    searchWord={this.state.searchWord}
-                    handleChange={this.handleChange}
-                    placeholder="글 제목을 검색하세요"
-                    getSearch={this.getSearch}
-                />
+                {isSuperuser ? (
+                    <Header
+                        title="이벤트"
+                        searchWord={this.state.searchWord}
+                        handleChange={this.handleChange}
+                        placeholder="글 제목을 검색하세요"
+                        getSearch={this.getSearch}
+                        boardType="event"
+                        hasWrite
+                    />
+                ) : (
+                    <Header
+                        title="이벤트"
+                        searchWord={this.state.searchWord}
+                        handleChange={this.handleChange}
+                        placeholder="글 제목을 검색하세요"
+                        getSearch={this.getSearch}
+                    />
+                )}
                 <div className="border_line" />
                 <PostList hasReply link="/event" postList={postList} request={request} />
+                <section className="only-pc event-board__container--btn">
+                    {isSuperuser && <Link to={`/event/write`}>글쓰기</Link>}
+                </section>
                 <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );
