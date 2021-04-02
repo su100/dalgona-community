@@ -52,7 +52,7 @@ class Point extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { myPoint, myPointCount } = this.props;
+        const { myPoint, myPointCount, myListCount } = this.props;
         const { type } = this.state;
 
         return (
@@ -79,21 +79,21 @@ class Point extends Component {
                     </div>
                     <div className="point__select">
                         <button
-                            className={type === 'get' && 'point__select click'}
+                            className={type === 'get' ? 'point__select click' : undefined}
                             id="get"
                             onClick={this.handleSelect}
                         >
                             충전
                         </button>
                         <button
-                            className={type === 'use' && 'point__select click'}
+                            className={type === 'use' ? 'point__select click' : undefined}
                             id="use"
                             onClick={this.handleSelect}
                         >
                             사용
                         </button>
                         <button
-                            className={type === 'lose' && 'point__select click'}
+                            className={type === 'lose' ? 'point__select click' : undefined}
                             id="lose"
                             onClick={this.handleSelect}
                         >
@@ -115,7 +115,7 @@ class Point extends Component {
                         return <PointList key={date} date={date} myPoint={myPoint[date]} />;
                     })}
                 </section>
-                <Pagination countList={myPointCount} currentPage={currentPage} handlePage={this.handlePage} />
+                <Pagination countList={myListCount} currentPage={currentPage} handlePage={this.handlePage} />
             </div>
         );
     }

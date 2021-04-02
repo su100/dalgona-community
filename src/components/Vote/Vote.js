@@ -105,7 +105,6 @@ class Vote extends Component {
                             <div className="not-pc">
                                 <div className="vote__main__content-area-vs">
                                     <span>vs</span>
-                                    <span>현재 {voteInfo.vote_count}표 차이</span>
                                 </div>
                             </div>
                         </div>
@@ -127,9 +126,7 @@ class Vote extends Component {
                             </span>
                         </button>
                     </div>
-                    <div className="not-pc">
-                        <div className="vote__main-description">{voteInfo.content}</div>
-                    </div>
+                    <span className="vote__main-count">현재 {voteInfo.vote_count}표 차이</span>
                     <div className="vote__main-ratio">
                         <div
                             style={{
@@ -146,9 +143,7 @@ class Vote extends Component {
                             className="vote__main-ratio right"
                         ></div>
                     </div>
-                    <div className="only-pc">
-                        <div className="vote__main-description">{voteInfo.content}</div>
-                    </div>
+                    <div className="vote__main-description">{voteInfo.content}</div>
                 </div>
                 <div className="vote__comment"></div>
                 {voteReplyList !== undefined && (
