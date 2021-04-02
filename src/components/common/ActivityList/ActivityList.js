@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BOARD_DIVISION } from '../../../constants';
 import './ActivityList.scss';
 
 const ActivityList = ({ date, myPost }) => {
@@ -23,9 +24,7 @@ const ActivityList = ({ date, myPost }) => {
                 }
                 return (
                     <Link
-                        to={`/${post.board_list.division === 2 ? 'luna' : 'free'}/${post.board_list.board_url}/${
-                            post.id
-                        }`}
+                        to={`/${BOARD_DIVISION[post.board_list.division]}/${post.board_list.board_url}/${post.id}`}
                         key={post.id}
                     >
                         <div className="activity-list__activity">
