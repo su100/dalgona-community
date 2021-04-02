@@ -140,6 +140,10 @@
                 }
             }
         }
+        &-count{
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
         &-ratio {
             @include flex(row, center, center);
             margin-top: 30px;
@@ -265,7 +269,8 @@
                 }
             }
             &-count{
-                padding-top: 15px;
+                padding-top: 20px;
+                padding-bottom: 0px;
             }
             &-ratio {
                 width: 728px;
@@ -330,11 +335,10 @@
                         max-width: 140px;
                     }
                     &-description {
-                        @include ellipsis(3,15px);
+                        @include ellipsis(3,16px);
                         font-size: 10px;
                         max-width: 140px;
                         height: 50px;
-                        padding-bottom: 2px;
                     }
                     img{
                         margin-top: 10px;
@@ -375,11 +379,10 @@
                         max-width: 140px;
                     }
                     &-description {
-                        @include ellipsis(3,15px);
+                        @include ellipsis(3,16px);
                         font-size: 10px;
                         max-width: 140px;
                         height: 50px;
-                        padding-bottom: 2px;
                     }
                     img{
                         margin-top: 10px;
