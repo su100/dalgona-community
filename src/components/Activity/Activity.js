@@ -14,7 +14,7 @@ class Activity extends Component {
     render() {
         const query = queryString.parse(location.search);
         const currentPage = query.page ? Number(query.page) : 1;
-        const { myPostCount, myPost, history } = this.props;
+        const { myPostCount, myPost } = this.props;
         return (
             <div className="activity">
                 <h4 className="activity__header">활동내역</h4>
