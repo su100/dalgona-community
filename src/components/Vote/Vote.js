@@ -55,6 +55,7 @@ class Vote extends Component {
             isVote,
             rereply_success,
         } = this.props;
+        console.log(voteInfo);
         return (
             <div className="vote">
                 <div className="vote__detail">
@@ -75,7 +76,7 @@ class Vote extends Component {
                 </div>
                 <div className="vote__main">
                     <div className="vote__main__content">
-                        {isAuthenticated && showModal && (
+                        {showModal && (
                             <VoteModal
                                 voteDuplicate={selectVote}
                                 isVote={isVote}
@@ -88,7 +89,11 @@ class Vote extends Component {
                             id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].id}
                             onClick={this.onClickVote}
                         >
-                            <button className="vote__main__content-first-circle"></button>
+                            {voteInfo.voteitem[0].item_image === null ? (
+                                <button className="vote__main__content-first-circle"></button>
+                            ) : (
+                                <img src={voteInfo.voteitem[0].item_image}></img>
+                            )}
                             <span className="vote__main__content-first-title">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_name}
                             </span>
@@ -113,10 +118,10 @@ class Vote extends Component {
                             id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].id}
                             onClick={this.onClickVote}
                         >
-                            {voteInfo.board_image === null ? (
+                            {voteInfo.voteitem[1].item_image === null ? (
                                 <button className="vote__main__content-second-circle"></button>
                             ) : (
-                                <img src={voteInfo.board_image}></img>
+                                <img src={voteInfo.voteitem[1].item_image}></img>
                             )}
                             <span className="vote__main__content-second-title">
                                 {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_name}
