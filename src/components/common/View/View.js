@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CommentList from 'components/common/comment/CommentList';
-import heart from 'images/heart.png';
 import moment from 'moment';
 import Editor from 'components/common/Editor';
 import './View.scss';
@@ -12,7 +10,7 @@ class View extends Component {
     }
 
     render() {
-        const { link, postInfo, type } = this.props;
+        const { postInfo, type } = this.props;
         const { location } = this.props;
         const path = location.pathname.split('/');
         return (
@@ -34,13 +32,13 @@ class View extends Component {
                 <div className="view__info">
                     <div className="only-pc">
                         <span>{postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname}</span>
-                        <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
+                        <span>{moment(new Date(postInfo.created_at)).format('YYYY/MM/DD HH:MM')}</span>
                         <span>조회수 {postInfo.views}</span>
                     </div>
                     <span className="not-pc">
                         {!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명 '}
                         <span>|</span>조회수 {postInfo.views} <span>|</span>
-                        {moment(postInfo.created_at).format('HH:MM')}
+                        {moment(new Date(postInfo.created_at)).format('HH:MM')}
                         <span>|</span>
                         추천 {postInfo.recommend_count}
                     </span>

@@ -21,7 +21,7 @@ class Vote extends Component {
         }
     };
 
-    handleShowModal = (e) => {
+    handleShowModal = () => {
         const { showModal } = this.state;
         this.setState({ showModal: !showModal });
     };
@@ -64,9 +64,9 @@ class Vote extends Component {
                 </div>
                 <div className="vote__info">
                     <span className="vote__info-date">
-                        {moment(voteInfo.start_datetime).format('YYYY/MM/DD HH:MM')}
+                        {moment(new Date(voteInfo.start_datetime)).format('YYYY/MM/DD HH:MM')}
                         {'~'}
-                        {moment(voteInfo.end_datetime).format('YYYY/MM/DD HH:MM')}
+                        {moment(new Date(voteInfo.end_datetime)).format('YYYY/MM/DD HH:MM')}
                     </span>
                     <div className="vote__info-maininfo">
                         <span className="vote__info-maininfo-title">{voteInfo.title}</span>
@@ -75,7 +75,7 @@ class Vote extends Component {
                 </div>
                 <div className="vote__main">
                     <div className="vote__main__content">
-                        {showModal && (
+                        {isAuthenticated && showModal && (
                             <VoteModal
                                 voteDuplicate={selectVote}
                                 isVote={isVote}
@@ -83,19 +83,25 @@ class Vote extends Component {
                                 userVote={this.props.userVote}
                             />
                         )}
-                        <button
-                            className="vote__main__content-first"
-                            id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].id}
-                            onClick={this.onClickVote}
-                        >
-                            <button className="vote__main__content-first-circle"></button>
-                            <span className="vote__main__content-first-title">
-                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_name}
-                            </span>
-                            <span className="vote__main__content-first-description">
-                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].item_content}
-                            </span>
-                        </button>
+                        {voteInfo?.voteitem && (
+                            <button
+                                className="vote__main__content-first"
+                                id={voteInfo?.voteitem[0].id}
+                                onClick={this.onClickVote}
+                            >
+                                {voteInfo.voteitem[0].item_image === null ? (
+                                    <button className="vote__main__content-first-circle"></button>
+                                ) : (
+                                    <img src={voteInfo.voteitem[0].item_image}></img>
+                                )}
+                                <span className="vote__main__content-first-title">
+                                    {voteInfo?.voteitem[0].item_name}
+                                </span>
+                                <span className="vote__main__content-first-description">
+                                    {voteInfo?.voteitem[0].item_content}
+                                </span>
+                            </button>
+                        )}
                         <div className="vote__main__content-area">
                             <div className="only-pc">
                                 <div className="vote__main__content-area-vs">
@@ -108,36 +114,38 @@ class Vote extends Component {
                                 </div>
                             </div>
                         </div>
-                        <button
-                            className="vote__main__content-second"
-                            id={voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].id}
-                            onClick={this.onClickVote}
-                        >
-                            {voteInfo.board_image === null ? (
-                                <button className="vote__main__content-second-circle"></button>
-                            ) : (
-                                <img src={voteInfo.board_image}></img>
-                            )}
-                            <span className="vote__main__content-second-title">
-                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_name}
-                            </span>
-                            <span className="vote__main__content-second-description">
-                                {voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].item_content}
-                            </span>
-                        </button>
+                        {voteInfo?.voteitem && (
+                            <button
+                                className="vote__main__content-second"
+                                id={voteInfo?.voteitem[1].id}
+                                onClick={this.onClickVote}
+                            >
+                                {voteInfo.voteitem[1].item_image === null ? (
+                                    <button className="vote__main__content-second-circle"></button>
+                                ) : (
+                                    <img src={voteInfo.voteitem[1].item_image}></img>
+                                )}
+                                <span className="vote__main__content-second-title">
+                                    {voteInfo?.voteitem[1].item_name}
+                                </span>
+                                <span className="vote__main__content-second-description">
+                                    {voteInfo?.voteitem[1].item_content}
+                                </span>
+                            </button>
+                        )}
                     </div>
                     <span className="vote__main-count">현재 {voteInfo.vote_count}표 차이</span>
                     <div className="vote__main-ratio">
                         <div
                             style={{
-                                width: `calc(${voteInfo.voteitem && voteInfo.voteitem[0].vote_count}/
+                                width: `calc(${voteInfo && voteInfo.voteitem && voteInfo.voteitem[0].vote_count}/
                                     ${voteInfo.vote_count}*100%)`,
                             }}
                             className="vote__main-ratio left"
                         ></div>
                         <div
                             style={{
-                                width: `calc(${voteInfo.voteitem && voteInfo.voteitem[1].vote_count}/
+                                width: `calc(${voteInfo && voteInfo.voteitem && voteInfo.voteitem[1].vote_count}/
                                     ${voteInfo.vote_count}*100%)`,
                             }}
                             className="vote__main-ratio right"

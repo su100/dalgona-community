@@ -10,7 +10,6 @@ const store = configure();
 
 function _ScrollToTop(props) {
     const { key } = useLocation();
-    console.log(useLocation());
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [key]);

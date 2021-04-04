@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import queryString from 'query-string';
 import * as authActions from 'store/modules/auth';
 import * as issueActions from 'store/modules/issue';
 import Vote from 'components/Vote';
@@ -17,7 +16,6 @@ class VoteContainer extends Component {
     };
     getVoteReply = async (boardUrl, page, ordering) => {
         const { IssueActions } = this.props;
-        console.log(boardUrl, page, ordering);
         try {
             await IssueActions.getVoteReply(boardUrl, page, ordering);
         } catch (e) {
@@ -120,7 +118,6 @@ class VoteContainer extends Component {
             history,
             voteInfo,
             voteReplyList,
-            reply_list_success,
             voteReplyCount,
             reply_success,
             rereply_success,

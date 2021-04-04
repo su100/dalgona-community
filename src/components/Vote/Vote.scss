@@ -328,8 +328,8 @@
                         background: #898989;
                     }
                     &-title {
-                        @include ellipsis(2,20px);
-                        padding: 5px 0;
+                        @include ellipsis(2,16px);
+                        padding: 4px 0;
                         font-size: 13px;
                         min-height: 10px;
                         max-width: 140px;
@@ -372,8 +372,8 @@
                         background: #898989;
                     }
                     &-title {
-                        @include ellipsis(2,20px);
-                        padding: 5px 0;
+                        @include ellipsis(2,16px);
+                        padding: 4px 0;
                         font-size: 13px;
                         min-height: 10px;
                         max-width: 140px;
