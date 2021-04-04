@@ -75,7 +75,7 @@ class Vote extends Component {
                 </div>
                 <div className="vote__main">
                     <div className="vote__main__content">
-                        {showModal && (
+                        {isAuthenticated && showModal && (
                             <VoteModal
                                 voteDuplicate={selectVote}
                                 isVote={isVote}
