@@ -36,11 +36,11 @@ class Nav extends Component {
         }
     };
 
-    closeMenu = (e) => {
+    closeMenu = () => {
         const { isOpen } = this.state;
         this.setState({ isOpen: !isOpen });
     };
-    handleOpenMenu = (e) => {
+    handleOpenMenu = () => {
         this.setState({ isOpen: true });
     };
     handleChange = (e) => {
@@ -49,7 +49,6 @@ class Nav extends Component {
 
     handleOnClick = (e) => {
         const { openMenu, isOpen } = this.state;
-        console.log(e.currentTarget.id + 'click');
         if (this._isMounted) {
             if (e.target.id === openMenu) {
                 this.setState({ isOpen: !isOpen, openMenu: e.target.id });
@@ -83,7 +82,6 @@ class Nav extends Component {
     };
 
     closeSidebar = () => {
-        const { openSidebar } = this.state;
         this.setState({ openSidebar: false });
     };
     signOut = () => {
