@@ -13,7 +13,7 @@ const VoteModal = ({ voteDuplicate, handleShowModal, isVote }) => (
                     </button>
                 )}
                 <button className="confirm" onClick={handleShowModal}>
-                    {isVote ? '투표하기' : '확안'}
+                    {isVote ? '투표하기' : '확인'}
                 </button>
             </div>
         </div>
