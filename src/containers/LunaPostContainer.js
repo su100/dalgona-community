@@ -190,7 +190,9 @@ class LunaPostContainer extends Component {
             postReplyCount,
             postCount,
             postList,
+            profile,
         } = this.props;
+        const isSuperuser = profile.get('is_superuser');
         return (
             <Fragment>
                 <Post
@@ -220,6 +222,7 @@ class LunaPostContainer extends Component {
                     postReplyCount={postReplyCount}
                     postCount={postCount}
                     postList={postList}
+                    isSuperuser={isSuperuser}
                 />
             </Fragment>
         );
@@ -228,6 +231,7 @@ class LunaPostContainer extends Component {
 export default connect(
     (state) => ({
         isAuthenticated: state.auth.get('isAuthenticated'),
+        profile: state.auth.get('profile'),
         imageURL: state.luna.get('imageURL'),
         postInfo: state.luna.get('postInfo'),
         postReplyList: state.luna.get('postReplyList'),

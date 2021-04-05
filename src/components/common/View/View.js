@@ -12,7 +12,7 @@ class View extends Component {
     }
 
     render() {
-        const { link, postInfo, type } = this.props;
+        const { link, postInfo, type, isSuperuser } = this.props;
         const { location } = this.props;
         const path = location.pathname.split('/');
         return (
@@ -44,7 +44,7 @@ class View extends Component {
                         <span>|</span>
                         추천 {postInfo.recommend_count}
                     </span>
-                    {postInfo.is_author && (
+                    {(isSuperuser || postInfo.is_author) && (
                         <div className="view__btn-area">
                             <button onClick={this.props.editPost}>수정</button>
                             <button onClick={this.props.deletePost}>삭제</button>

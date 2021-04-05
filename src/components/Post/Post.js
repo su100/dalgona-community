@@ -69,6 +69,7 @@ class Post extends Component {
             recommendPost,
             postList,
             postCount,
+            isSuperuser,
         } = this.props;
 
         const request = location.search;
@@ -90,6 +91,7 @@ class Post extends Component {
                     postInfo={postInfo}
                     editPost={this.editPost}
                     deletePost={this.deletePost}
+                    isSuperuser={isSuperuser}
                 />
                 <CommentList
                     history={history}
