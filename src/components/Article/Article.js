@@ -76,7 +76,9 @@ class Article extends Component {
                     })}
                 </div>
                 <div className="border_line" />
-                <ArticleList articleList={newsList} />
+                <div className="article__container">
+                    <ArticleList articleList={newsList} />
+                </div>
                 <Pagination countList={newsCount} handlePage={this.handlePage} currentPage={currentPage} />
             </div>
         );
