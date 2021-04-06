@@ -8,10 +8,7 @@
     "plugins": [
         "prettier"
     ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
+    "extends": ["airbnb", "prettier"],
     "rules": {
         "react/prop-types": 0,
         "no-endef": "off",
@@ -23,6 +20,8 @@
             {
                 "endOfLine": "auto"
             }
-        ]
+        ],
+        "react/prefer-stateless-function": 0,
+        "import/no-unresolved": 0
     }
 }
