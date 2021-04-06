@@ -14,7 +14,7 @@
         @include flex(column, center, center);
         height: 208px;
         width: 386px;
-        border-radius: 4px;
+        border-radius: 8px;
         background: #c4c4c4;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
         span {
@@ -25,6 +25,7 @@
             line-height: 28px;
             letter-spacing: 0em;
             text-align: left;
+            padding-top: 15px;
             padding-bottom: 38px;
         }
         &__button {
@@ -37,6 +38,7 @@
                 background: #ffd278;
                 color: #fff;
                 font-size: 22px;
+                line-height: 20px;
                 &.cancel {
                     background: #e6e6e6;
                     color: #838383;
@@ -60,7 +62,7 @@
             @include flex(column, space-between, center);
             height: 197px;
             width: 382px;
-            border-radius: 0px;
+            border-radius: 10px;
             background: #ffffff;
             opacity: 0.85;
             span {
@@ -70,7 +72,6 @@
             div {
                 width: 100%;
                 button {
-                    border-radius: 0px;
                     border-top: 0.5px solid #707070;
                     width: 100%;
                     height: 54px;
@@ -97,22 +98,22 @@
         &-modal {
             @include flex(column, space-between, center);
             height: 100px;
-            width: 200px;
+            width: 210px;
             padding-bottom: 10px;
-            border-radius: 0px;
+            border-radius: 10px 10px 0 0;
             background: #ffffff;
             opacity: 0.85;
             span {
-                font-size: 11px;
-                padding-top: 37px;
-                padding-bottom: 37px;
+                font-size: 15px;
+                padding-top: 30px;
+                padding-bottom: 30px;
             }
             div {
                 width: 100%;
                 button {
-                    font-size: 11px;
-                    border-radius: 0px;
+                    font-size: 15px;
                     border-top: 0.3px solid #707070;
+                    border-radius: 0 0 10px 10px;
                     width: 100%;
                     height: 41px;
                     background: #ffffff;

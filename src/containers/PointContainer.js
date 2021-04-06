@@ -25,13 +25,14 @@ class PointContainer extends Component {
         }
     }
     render() {
-        const { history, location, myPointCount, myPoint } = this.props;
+        const { history, location, myPointCount, myPoint, myListCount } = this.props;
         return (
             <Fragment>
                 <Point
                     history={history}
                     location={location}
                     myPointCount={myPointCount}
+                    myListCount={myListCount}
                     myPoint={myPoint}
                     getMyPoint={this.getMyPoint}
                 />
@@ -45,6 +46,7 @@ export default connect(
         myPost: state.dalgona.get('myPost'),
         myPoint: state.dalgona.get('myPoint'),
         myPointCount: state.dalgona.get('myPointCount'),
+        myListCount: state.dalgona.get('myListCount'),
     }),
     (dispatch) => ({
         DalgonaActions: bindActionCreators(dalgonaActions, dispatch),

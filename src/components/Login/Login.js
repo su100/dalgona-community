@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import biglogo from 'images/biglogo.png';
 import loginlogo from 'images/login-tablet-logo.png';
-import checkbox from 'images/checkbox.png';
-import mobilecheckbox from 'images/mobile-checkbox.png';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
@@ -17,7 +15,6 @@ class Login extends Component {
     }
     handleForm = (name) => (e) => {
         this.setState({ [name]: e.target.value });
-        console.log(e.target.value);
     };
     signIn = () => {
         const { username, password, remember } = this.state;
@@ -39,7 +36,7 @@ class Login extends Component {
             console.log(this.state.username);
         }
     };
-    onClickLogin = (e) => {
+    onClickLogin = () => {
         this.signIn();
     };
     handleForm = (name) => (e) => {

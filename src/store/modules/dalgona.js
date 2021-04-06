@@ -3,7 +3,6 @@ import { List, Map } from 'immutable';
 import { pender } from 'redux-pender';
 
 import * as api from 'lib/api';
-import { Storage } from 'lib/storage';
 
 /* 액션 타입 */
 export const LIST_NOTICE = 'dalgona/LIST_NOTICE'; //공지사항 글목록 가져오기
@@ -36,6 +35,7 @@ const initialState = Map({
     myPointCount: 0,
     myPost: [],
     myPoint: [],
+    myListCount: 0,
 });
 
 /* reducer + pender */
@@ -79,7 +79,6 @@ export default handleActions(
         ...pender({
             type: GET_POST_REPLY,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
                 return state
                     .set('postReplyList', action.payload.data.results)
                     .set('postReplyCount', action.payload.data.count);
@@ -126,8 +125,7 @@ export default handleActions(
                         myPointList[date] = List([pointList[i]]);
                     }
                 }
-                console.log(data.count);
-                return state.set('myPointCount', data.count).set('myPoint', myPointList);
+                return state.set('myPointCount', data.total).set('myListCount', data.count).set('myPoint', myPointList);
             },
             onFailure: (state, action) => {
                 const data = action.payload.response.data;

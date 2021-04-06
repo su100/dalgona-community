@@ -108,7 +108,6 @@ export default handleActions(
         ...pender({
             type: VOTE_INFO,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
                 return state.set('voteInfo', action.payload.data);
             },
             onFailure: (state, action) => {
@@ -119,7 +118,6 @@ export default handleActions(
         ...pender({
             type: GET_VOTE_REPLY,
             onSuccess: (state, action) => {
-                console.log(action.payload.data);
                 return state
                     .set('voteReplyList', action.payload.data.results)
                     .set('voteReplyCount', action.payload.data.count);
