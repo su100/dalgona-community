@@ -174,7 +174,9 @@ class FreePostContainer extends Component {
             WriteActions,
             postList,
             postCount,
+            profile,
         } = this.props;
+        const isSuperuser = profile.get('is_superuser');
         return (
             <Fragment>
                 <Post
@@ -203,6 +205,7 @@ class FreePostContainer extends Component {
                     recommendPost={this.recommendPost}
                     postCount={postCount}
                     postList={postList}
+                    isSuperuser={isSuperuser}
                 />
             </Fragment>
         );
@@ -211,6 +214,7 @@ class FreePostContainer extends Component {
 export default connect(
     (state) => ({
         isAuthenticated: state.auth.get('isAuthenticated'),
+        profile: state.auth.get('profile'),
         postInfo: state.free.get('postInfo'),
         postReplyList: state.free.get('postReplyList'),
         postReplyCount: state.free.get('postReplyCount'),
