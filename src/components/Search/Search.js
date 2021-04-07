@@ -17,20 +17,6 @@ class Search extends Component {
     };
   }
 
-  handlePage = (e) => {
-    this.setState({ page: e.target.value });
-  };
-
-  handleChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  getSearch = () => {
-    const { history } = this.props;
-    const { searchWord, searchDivision } = this.state;
-    history.push(`/search?searchWord=${searchWord}&searchDivision=${searchDivision}`);
-  };
-
   getSnapshotBeforeUpdate(prevProps, prevState) {
     const { location } = this.props;
     if (prevProps.location !== location) {
@@ -45,9 +31,28 @@ class Search extends Component {
       const { location } = this.props;
       const query = queryString.parse(location.search);
       // 검색어, 검색범위 변경 적용
-      this.setState({ searchWord: query.searchWord, searchDivision: query.searchDivision });
+      this.setSearch(query.searchWord, query.searchDivision);
     }
   }
+
+  setSearch = (searchWord, searchDivision) => {
+    this.setState({ searchWord, searchDivision });
+  };
+
+  handlePage = (e) => {
+    const { page } = this.state;
+    this.setState({ page: e.target.value });
+  };
+
+  handleChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  getSearch = () => {
+    const { history } = this.props;
+    const { searchWord, searchDivision } = this.state;
+    history.push(`/search?searchWord=${searchWord}&searchDivision=${searchDivision}`);
+  };
 
   render() {
     const { searchCount, searchList, location } = this.props;
@@ -62,7 +67,12 @@ class Search extends Component {
             {query.searchWord}
             &apos;
           </span>
-          에 대한 총<span>{searchCount}건</span>의 검색결과
+          에 대한 총
+          <span>
+            {searchCount}
+            {'건'}
+          </span>
+          의 검색결과
         </h3>
         <SearchBox
           searchWord={searchWord}
@@ -72,7 +82,10 @@ class Search extends Component {
           getSearch={this.getSearch}
         />
         <div className="border_line" />
-        <h5 className="not-pc">{searchCount}건</h5>
+        <h5 className="not-pc">
+          {searchCount}
+          {'건'}
+        </h5>
         <div className="search__container--postlist">
           {searchList.map((post) => {
             let result;
@@ -102,7 +115,13 @@ class Search extends Component {
                     <div className="search__item--title">{post.title}</div>
                     <div className="not-pc">
                       <span>
-                        조회수 {post.views} | {post.created_at} | 추천 {post.recommend_count}
+                        {'조회수'}
+                        {post.views}
+                        {'|'}
+                        {post.created_at}
+                        {'|'}
+                        {'추천'}
+                        {post.recommend_count}
                       </span>
                     </div>
                   </div>
