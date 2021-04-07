@@ -67,8 +67,8 @@ class Post extends Component {
       isAuthenticated,
       getReply,
       postReplyCount,
-      replySuccess,
-      rereplySuccess,
+      reply_success,
+      rereply_success,
       postInfo,
       recommendPost,
       postList,
@@ -110,8 +110,8 @@ class Post extends Component {
           commentList={postReplyList}
           postReplyCount={postReplyCount}
           isAuthenticated={isAuthenticated}
-          reply_success={replySuccess}
-          rereply_success={rereplySuccess}
+          reply_success={reply_success}
+          rereply_success={rereply_success}
           recommend_count={postInfo.recommend_count}
           deleteReply={this.deleteReply}
           deleteRereply={this.deleteRereply}

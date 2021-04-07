@@ -50,7 +50,7 @@ class Home extends Component {
     // 3개씩 한줄에 넣기
     if (postList.length < 3) {
       const cols = [];
-      for (let col = 0; col < postList.length; col += 1) {
+      for (let col = 0; col < postList.length; col++) {
         const post = postList[col];
         let result;
         let imageURL = '';
@@ -88,9 +88,9 @@ class Home extends Component {
         </div>
       );
     } else {
-      for (let row = 0; row < 2; row += 1) {
+      for (let row = 0; row < 2; row++) {
         const cols = [];
-        for (let col = 0; row * 3 + col < postList.length && col < 3; col += 1) {
+        for (let col = 0; row * 3 + col < postList.length && col < 3; col++) {
           const post = postList[row * 3 + col];
           let result;
           let imageURL = '';
@@ -144,7 +144,7 @@ class Home extends Component {
     const tmp = newsList.slice();
     // 5개 단위로 나누기
     const count = Math.ceil(tmp.length / 5);
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 0; i < count; i++) {
       const article = tmp.splice(0, 5);
       result.push(<ArticleList key={i} articleList={article} />);
     }
