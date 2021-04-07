@@ -53,8 +53,7 @@ class FreeBoard extends Component {
     if (isAuthenticated) {
       // 로그인 되어있음
       updateBookmark();
-    }
-    if (window.confirm('로그인이 필요합니다.')) {
+    } else if (window.confirm('로그인이 필요합니다.')) {
       // 로그인 안 됨
       history.push('/login');
     }
