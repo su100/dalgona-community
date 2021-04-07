@@ -105,6 +105,7 @@ class Post extends Component {
         />
         <CommentList
           history={history}
+          location={location}
           vote={false}
           getReply={getReply}
           commentList={postReplyList}
