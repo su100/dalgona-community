@@ -3,25 +3,24 @@ import { Map } from 'immutable';
 import { pender } from 'redux-pender';
 
 import * as api from 'lib/api';
-import { Storage } from 'lib/storage';
 
 /* 액션 타입 */
-export const LIST_NEWS = 'issue/LIST_NEWS'; //실시간 연예뉴스 목록 가져오기
-export const LIST_KEYWORD = 'issue/LIST_KEYWORD'; //기사 인기 키워드 가져오기
-export const LIST_HOT_VOTE = 'issue/LIST_HOT_VOTE'; //실시간 인기 투표 목록 가져오기
-export const LIST_VOTE = 'issue/LIST_VOTE'; //투표 목록 가져오기
-export const VOTE_INFO = 'issue/VOTE_INFO'; //투표 정보 가져오기
+export const LIST_NEWS = 'issue/LIST_NEWS'; //  실시간 연예뉴스 목록 가져오기
+export const LIST_KEYWORD = 'issue/LIST_KEYWORD'; //  기사 인기 키워드 가져오기
+export const LIST_HOT_VOTE = 'issue/LIST_HOT_VOTE'; //  실시간 인기 투표 목록 가져오기
+export const LIST_VOTE = 'issue/LIST_VOTE'; //  투표 목록 가져오기
+export const VOTE_INFO = 'issue/VOTE_INFO'; //  투표 정보 가져오기
 
-export const GET_VOTE_REPLY = 'issue/GET_VOTE_REPLY'; //투표 게시판 댓글 GET
-export const POST_VOTE_REPLY = 'issue/POST_VOTE_REPLY'; //투표 게시판 댓글 POST
-export const UPDATE_VOTE_REPLY = 'issue/UPDATE_VOTE_REPLY'; //투표 게시판 댓글 PUT
-export const DELETE_VOTE_REPLY = 'issue/DELETE_VOTE_REPLY'; //투표 게시판 댓글 DELETE
-export const POST_VOTE_REREPLY = 'issue/POST_VOTE_REREPLY'; //투표 게시판 대댓글 POST
-export const UPDATE_VOTE_REREPLY = 'issue/UPDATE_VOTE_REREPLY'; //특정 댓글의 대댓글 UPDATE
-export const DELETE_VOTE_REREPLY = 'issue/DELETE_VOTE_REREPLY'; //특성 댓글의 대댓글 DELETE
-export const REPLY_RECOMMEND = 'issue/REPLY_RECOMMEND'; //댓글 추천 추가 및 취소
-export const REREPLY_RECOMMEND = 'issue/REREPLY_RECOMMEND'; //대댓글 추천 추가 및 취소
-export const USER_VOTE = 'issue/USER_VOTE'; //유저 투표하기
+export const GET_VOTE_REPLY = 'issue/GET_VOTE_REPLY'; //  투표 게시판 댓글 GET
+export const POST_VOTE_REPLY = 'issue/POST_VOTE_REPLY'; //  투표 게시판 댓글 POST
+export const UPDATE_VOTE_REPLY = 'issue/UPDATE_VOTE_REPLY'; //  투표 게시판 댓글 PUT
+export const DELETE_VOTE_REPLY = 'issue/DELETE_VOTE_REPLY'; //  투표 게시판 댓글 DELETE
+export const POST_VOTE_REREPLY = 'issue/POST_VOTE_REREPLY'; //  투표 게시판 대댓글 POST
+export const UPDATE_VOTE_REREPLY = 'issue/UPDATE_VOTE_REREPLY'; //  특정 댓글의 대댓글 UPDATE
+export const DELETE_VOTE_REREPLY = 'issue/DELETE_VOTE_REREPLY'; //  특성 댓글의 대댓글 DELETE
+export const REPLY_RECOMMEND = 'issue/REPLY_RECOMMEND'; //  댓글 추천 추가 및 취소
+export const REREPLY_RECOMMEND = 'issue/REREPLY_RECOMMEND'; //  대댓글 추천 추가 및 취소
+export const USER_VOTE = 'issue/USER_VOTE'; //  유저 투표하기
 
 /* 액션 생성자 */
 export const getNewsList = createAction(LIST_NEWS, api.getNewsList);
@@ -43,200 +42,194 @@ export const userVote = createAction(USER_VOTE, api.userVote);
 
 /* 초기 상태 정의 */
 const initialState = Map({
-    newsCount: 0,
-    newsList: [],
-    newsKeyword: [],
-    hotVoteList: [],
-    voteCount: 0,
-    voteList: [],
-    voteInfo: [],
-    voteReplyList: [],
-    voteReplyCount: 0,
-    isVote: false,
-    finishVote: false,
+  newsCount: 0,
+  newsList: [],
+  newsKeyword: [],
+  hotVoteList: [],
+  voteCount: 0,
+  voteList: [],
+  voteInfo: [],
+  voteReplyList: [],
+  voteReplyCount: 0,
+  isVote: false,
+  finishVote: false,
 });
 
 /* reducer + pender */
 export default handleActions(
-    {
-        ...pender({
-            type: LIST_NEWS,
-            onSuccess: (state, action) => {
-                const { count, results } = action.payload.data;
-                return state.set('newsCount', count).set('newsList', results);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: LIST_KEYWORD,
-            onSuccess: (state, action) => {
-                return state.set('newsKeyword', action.payload.data);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: LIST_HOT_VOTE,
-            onSuccess: (state, action) => {
-                return state.set('hotVoteList', action.payload.data);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: LIST_VOTE,
-            onSuccess: (state, action) => {
-                const { count, results } = action.payload.data;
-                return state.set('voteCount', count).set('voteList', results);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: VOTE_INFO,
-            onSuccess: (state, action) => {
-                return state.set('voteInfo', action.payload.data);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                return state;
-            },
-        }),
-        ...pender({
-            type: GET_VOTE_REPLY,
-            onSuccess: (state, action) => {
-                return state
-                    .set('voteReplyList', action.payload.data.results)
-                    .set('voteReplyCount', action.payload.data.count);
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: POST_VOTE_REPLY,
-            onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: REPLY_RECOMMEND,
-            onSuccess: (state, action) => {
-                const data = action.payload.response.data;
-                if (data.result?.includes('recommend created')) {
-                    alert('추천완료');
-                }
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                if (data.result?.includes('recommend deleted')) {
-                    alert('추천취소');
-                } else if (data.detail?.includes('Authentication credentials were not provided.')) {
-                    alert('로그인이 필요합니다.');
-                }
-                return state;
-            },
-        }),
-        ...pender({
-            type: REREPLY_RECOMMEND,
-            onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                const data = action.payload.response.data;
-                if (data.result?.includes('recommend created')) {
-                    alert('추천완료');
-                }
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                if (data.result?.includes('recommend deleted')) {
-                    alert('추천취소');
-                } else if (data.detail?.includes('Authentication credentials were not provided.')) {
-                    alert('로그인이 필요합니다.');
-                }
-                return state;
-            },
-        }),
-        ...pender({
-            type: USER_VOTE,
-            onSuccess: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                if (data.detail?.includes('이미 참여한 투표입니다.')) {
-                    return state.set('isVote', true);
-                } else if (data.detail?.includes('마감된 투표입니다.')) {
-                    return state.set('finishVote', true);
-                } else if (data.detail?.includes('Authentication credentials were not provided.')) {
-                    alert('로그인이 필요합니다.');
-                }
-                return state;
-            },
-        }),
-        ...pender({
-            type: UPDATE_VOTE_REPLY,
-            onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: DELETE_VOTE_REPLY,
-            onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-        ...pender({
-            type: POST_VOTE_REREPLY,
-            onSuccess: (state, action) => {
-                console.log(action.payload.data);
-                return state;
-            },
-            onFailure: (state, action) => {
-                const data = action.payload.response.data;
-                console.log(data);
-                return state;
-            },
-        }),
-    },
-    initialState
+  {
+    ...pender({
+      type: LIST_NEWS,
+      onSuccess: (state, action) => {
+        const { count, results } = action.payload.data;
+        return state.set('newsCount', count).set('newsList', results);
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: LIST_KEYWORD,
+      onSuccess: (state, action) => state.set('newsKeyword', action.payload.data),
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: LIST_HOT_VOTE,
+      onSuccess: (state, action) => state.set('hotVoteList', action.payload.data),
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: LIST_VOTE,
+      onSuccess: (state, action) => {
+        const { count, results } = action.payload.data;
+        return state.set('voteCount', count).set('voteList', results);
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: VOTE_INFO,
+      onSuccess: (state, action) => state.set('voteInfo', action.payload.data),
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: GET_VOTE_REPLY,
+      onSuccess: (state, action) =>
+        state.set('voteReplyList', action.payload.data.results).set('voteReplyCount', action.payload.data.count),
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: POST_VOTE_REPLY,
+      onSuccess: (state, action) => {
+        console.log(action.payload.data);
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: REPLY_RECOMMEND,
+      onSuccess: (state, action) => {
+        const { data } = action.payload.response;
+        if (data.result?.includes('recommend created')) {
+          alert('추천완료');
+        }
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        if (data.result?.includes('recommend deleted')) {
+          alert('추천취소');
+        } else if (data.detail?.includes('Authentication credentials were not provided.')) {
+          alert('로그인이 필요합니다.');
+        }
+        return state;
+      },
+    }),
+    ...pender({
+      type: REREPLY_RECOMMEND,
+      onSuccess: (state, action) => {
+        console.log(action.payload.data);
+        const { data } = action.payload.response;
+        if (data.result?.includes('recommend created')) {
+          alert('추천완료');
+        }
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        if (data.result?.includes('recommend deleted')) {
+          alert('추천취소');
+        } else if (data.detail?.includes('Authentication credentials were not provided.')) {
+          alert('로그인이 필요합니다.');
+        }
+        return state;
+      },
+    }),
+    ...pender({
+      type: USER_VOTE,
+      onSuccess: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        if (data.detail?.includes('이미 참여한 투표입니다.')) {
+          return state.set('isVote', true);
+        }
+        if (data.detail?.includes('마감된 투표입니다.')) {
+          return state.set('finishVote', true);
+        }
+        if (data.detail?.includes('Authentication credentials were not provided.')) {
+          alert('로그인이 필요합니다.');
+        }
+        return state;
+      },
+    }),
+    ...pender({
+      type: UPDATE_VOTE_REPLY,
+      onSuccess: (state, action) => {
+        console.log(action.payload.data);
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: DELETE_VOTE_REPLY,
+      onSuccess: (state, action) => {
+        console.log(action.payload.data);
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+    ...pender({
+      type: POST_VOTE_REREPLY,
+      onSuccess: (state, action) => {
+        console.log(action.payload.data);
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        return state;
+      },
+    }),
+  },
+  initialState
 );
