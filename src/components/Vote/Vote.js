@@ -76,10 +76,11 @@ class Vote extends Component {
       <div className="vote">
         <div className="vote__detail">
           <span>
-            홈 {'>'}
-            이슈
+            {'홈'}
             {'>'}
-            투표
+            {'이슈'}
+            {'>'}
+            {'투표'}
           </span>
         </div>
         <div className="vote__info">
@@ -152,9 +153,9 @@ class Vote extends Component {
             )}
           </div>
           <span className="vote__main-count">
-            현재
+            {'현재'}
             {voteInfo.vote_count}
-            표 차이
+            {'표 차이'}
           </span>
           <div className="vote__main-ratio">
             <div
