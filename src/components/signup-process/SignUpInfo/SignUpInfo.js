@@ -22,6 +22,14 @@ class SignUpInfo extends Component {
     this.fileInput = React.createRef();
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { signup_success, onClickNext } = this.props;
+    if (prevProps.signup_success !== signup_success && signup_success) {
+      // 댓글 작성 성공했을 때
+      onClickNext();
+    }
+  }
+
   setImage = (file) => {
     this.setState({ Img: file });
   };
@@ -146,14 +154,6 @@ class SignUpInfo extends Component {
       signUp(formData);
     }
   };
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const { signup_success, onClickNext } = this.props;
-    if (prevProps.signup_success !== signup_success && signup_success) {
-      // 댓글 작성 성공했을 때
-      onClickNext();
-    }
-  }
 
   render() {
     const keyObject = {
