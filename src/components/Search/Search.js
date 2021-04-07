@@ -17,7 +17,7 @@ class Search extends Component {
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
+  getSnapshotBeforeUpdate(prevProps) {
     const { location } = this.props;
     if (prevProps.location !== location) {
       return true;
@@ -25,7 +25,7 @@ class Search extends Component {
     return null;
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(snapshot) {
     if (snapshot) {
       // 주소바뀜=>검색일어남
       const { location } = this.props;
@@ -90,6 +90,14 @@ class Search extends Component {
           {searchList.map((post) => {
             let result;
             let imageURL = '';
+            let path = '';
+            if (post.board_url.division === 1) {
+              path = 'free';
+            } else if (post.board_url.division === 2) {
+              path = 'luna';
+            } else {
+              path = 'dalgona';
+            }
             try {
               result = JSON.parse(post.body);
               result.ops.some((element) => {
@@ -97,18 +105,13 @@ class Search extends Component {
                   imageURL = element.insert.image;
                   return true;
                 }
+                return false;
               });
             } catch (e) {
               result = post.body;
             }
             return (
-              <Link
-                to={`/${post.board_url.division === 1 ? 'free' : post.board_url.division === 2 ? 'luna' : 'dalgona'}/${
-                  post.board_url.board_url
-                }/${post.id}`}
-                key={post.id}
-                className="search__item"
-              >
+              <Link to={`/${path}/${post.board_url.board_url}/${post.id}`} key={post.id} className="search__item">
                 <div className="search__item--left">
                   {imageURL !== '' && <img src={imageURL} alt="post" />}
                   <div className="search__item--info">
