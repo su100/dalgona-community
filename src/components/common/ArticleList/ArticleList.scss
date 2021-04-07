@@ -1,99 +1,99 @@
 @import 'styles/base.scss';
 
 .article-list {
-    @include flex(row, space-between, flex-start);
-    width: 1000px;
-    flex-wrap: wrap;
-    .article-list__item {
-        @include flex(row, flex-start, flex-start);
-        margin-bottom: 20px;
-        width: 450px;
-        height: 170px;
-        .article-list__image {
-            min-width: 170px;
-            width: 170px;
-            height: 170px;
-            background: #838383;
-            img {
-                width: inherit;
-                height: inherit;
-                object-fit: cover;
-            }
-        }
-        .article-list__box {
-            padding: 16px;
-            h6 {
-                margin: 0;
-                font-size: 1.25rem;
-                font-weight: bold;
-            }
-            p {
-                color: #838383;
-                font-size: 0.8rem;
-            }
-        }
+  @include flex(row, space-between, flex-start);
+  width: 1000px;
+  flex-wrap: wrap;
+  .article-list__item {
+    @include flex(row, flex-start, flex-start);
+    margin-bottom: 20px;
+    width: 450px;
+    height: 170px;
+    .article-list__image {
+      min-width: 170px;
+      width: 170px;
+      height: 170px;
+      background: #838383;
+      img {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+      }
     }
+    .article-list__box {
+      padding: 16px;
+      h6 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      p {
+        color: #838383;
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .article-list {
-        // border-top: 1px solid rgba(175, 175, 175, 0.5);
-        width: 100%;
-        .article-list__item {
-            @include flex(row, flex-start, center);
-            margin: 0;
-            width: 100%;
-            height: 105px;
-            border-bottom: 1px solid rgba(175, 175, 175, 0.5);
-            &:last-child {
-                border-bottom: 0;
-            }
-            .article-list__image {
-                margin-right: 16px;
-                min-width: 77px;
-                width: 77px;
-                height: 77px;
-            }
-            .article-list__box {
-                @include flex(column, space-between, flex-start);
-                padding: 10px 0;
-                height: 77px;
-                h6 {
-                    margin: 0;
-                    width: calc(100% -18px * 2 - 77px - 16px);
-                    font-size: 17px;
-                    @include ellipsis(1, 17px);
-                }
-                p {
-                    margin: 0;
-                    font-size: 14px;
-                    color: #a8a8a8;
-                }
-            }
+  .article-list {
+    // border-top: 1px solid rgba(175, 175, 175, 0.5);
+    width: 100%;
+    .article-list__item {
+      @include flex(row, flex-start, center);
+      margin: 0;
+      width: 100%;
+      height: 105px;
+      border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+      &:last-child {
+        border-bottom: 0;
+      }
+      .article-list__image {
+        margin-right: 16px;
+        min-width: 77px;
+        width: 77px;
+        height: 77px;
+      }
+      .article-list__box {
+        @include flex(column, space-between, flex-start);
+        padding: 10px 0;
+        height: 77px;
+        h6 {
+          margin: 0;
+          width: calc(100% -18px * 2 - 77px - 16px);
+          font-size: 17px;
+          @include ellipsis(1, 17px);
         }
+        p {
+          margin: 0;
+          font-size: 14px;
+          color: #a8a8a8;
+        }
+      }
     }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .article-list {
-        .article-list__item {
-            height: 80px;
-            .article-list__image {
-                min-width: 56px;
-                width: 56px;
-                height: 56px;
-            }
-            .article-list__box {
-                height: 56px;
-                width: calc(100% - 20px);
-                h6 {
-                }
-                p {
-                    font-size: 12px;
-                }
-            }
+  .article-list {
+    .article-list__item {
+      height: 80px;
+      .article-list__image {
+        min-width: 56px;
+        width: 56px;
+        height: 56px;
+      }
+      .article-list__box {
+        height: 56px;
+        width: calc(100% - 20px);
+        h6 {
         }
+        p {
+          font-size: 12px;
+        }
+      }
     }
+  }
 }
