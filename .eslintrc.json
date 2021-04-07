@@ -21,6 +21,7 @@
                 "endOfLine": "auto"
             }
         ],
+        "react/button-has-type":0,
         "react/prefer-stateless-function": 0,
         "import/no-unresolved": 0,
         "no-alert": 0,
