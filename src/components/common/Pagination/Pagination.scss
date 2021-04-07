@@ -1,36 +1,30 @@
 @import 'styles/base.scss';
 
 .pagination {
-    @include flex(row, center, center);
-    margin-top: 27px;
-    margin-bottom: 15px;
-    button {
-        font-family: Noto Sans KR;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: normal;
-        line-height: 23px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: #838383;
-        padding: 0 10px;
-        img {
-            width: 39.68px;
-            height: 39.68px;
-        }
+  @include flex(row, center, center);
+  margin-top: 27px;
+  margin-bottom: 15px;
+  button {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #838383;
+    padding: 0 10px;
+    img {
+      width: 39.68px;
+      height: 39.68px;
     }
-    .page-num {
-        font-family: Noto Sans KR;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: normal;
-        line-height: 23px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: #838383;
-        padding: 0 8px;
-        &-click {
-            font-weight: bold;
-        }
+  }
+  .page-num {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #838383;
+    padding: 0 8px;
+    &-click {
+      font-weight: bold;
     }
+  }
 }
