@@ -1,235 +1,235 @@
 @import 'styles/base.scss';
 
 .editor {
-    @include flex(column, center, center);
-    font-size: 20px;
+  @include flex(column, center, center);
+  font-size: 20px;
+  width: 100%;
+  input[type='file'] {
+    display: none;
+  }
+  &-top {
+    margin-top: 14px;
     width: 100%;
-    input[type='file'] {
-        display: none;
+    box-sizing: border-box;
+    .ql-tooltip {
+      display: none;
     }
-    &-top {
-        margin-top: 14px;
-        width: 100%;
-        box-sizing: border-box;
-        .ql-tooltip {
-            display: none;
+    &__row {
+      @include flex(row, space-between, center);
+      width: 100%;
+      margin-bottom: 11px;
+      &-boardname {
+        font-size: 27px;
+      }
+      .editor-photo-btn {
+        font-size: 14px;
+        label {
+          margin-right: 19.38px;
         }
-        &__row {
-            @include flex(row, space-between, center);
-            width: 100%;
-            margin-bottom: 11px;
-            &-boardname {
-                font-size: 27px;
-            }
-            .editor-photo-btn {
-                font-size: 14px;
-                label {
-                    margin-right: 19.38px;
-                }
-                img {
-                    margin-right: 3px;
-                }
-            }
-        }
-        button {
-            img {
-                height: 15.609999656677246px;
-                width: 19.510000228881836px;
-            }
-        }
-        .editor-title {
-            margin-bottom: 19px;
-            width: 100%;
-            input {
-                padding-left: 18px;
-                width: 100%;
-                height: 48px;
-                font-size: 22px;
-                border: 1px solid #a7a7a7;
-                box-sizing: border-box;
-            }
-        }
-    }
-    .write__contents {
-        .ql-editor {
-            min-height: 800px;
-            background: #fff;
-            border: 1px solid #a7a7a7;
-            img {
-                max-width: 500px;
-            }
-            &.ql-disabled {
-                background: inherit;
-            }
-            &.readOnly {
-                border: none;
-            }
-        }
-    }
-    .read__contents {
-        width: 100%;
-        .ql-editor {
-            font-size: 20px;
-            min-height: 500px;
-            background: #fff;
-            border: 0px;
-            img {
-                width: 800px;
-            }
-            &.ql-disabled {
-                background: inherit;
-            }
-            &.readOnly {
-                border: none;
-                min-height: 100px;
-            }
-        }
-    }
-    .ql-container {
-        width: 1000px;
-        min-height: 800px;
-        background: #fff;
         img {
-            width: 800px;
+          margin-right: 3px;
         }
-        &.ql-disabled {
-            background: inherit;
-        }
+      }
     }
-    &.read-only {
-        .ql-container {
-            width: 100%;
-            min-height: 100px;
-        }
+    button {
+      img {
+        height: 15.6px;
+        width: 19.51px;
+      }
     }
+    .editor-title {
+      margin-bottom: 19px;
+      width: 100%;
+      input {
+        padding-left: 18px;
+        width: 100%;
+        height: 48px;
+        font-size: 22px;
+        border: 1px solid #a7a7a7;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .write__contents {
+    .ql-editor {
+      min-height: 800px;
+      background: #fff;
+      border: 1px solid #a7a7a7;
+      img {
+        max-width: 500px;
+      }
+      &.ql-disabled {
+        background: inherit;
+      }
+      &.readOnly {
+        border: none;
+      }
+    }
+  }
+  .read__contents {
+    width: 100%;
+    .ql-editor {
+      font-size: 20px;
+      min-height: 500px;
+      background: #fff;
+      border: 0px;
+      img {
+        width: 800px;
+      }
+      &.ql-disabled {
+        background: inherit;
+      }
+      &.readOnly {
+        border: none;
+        min-height: 100px;
+      }
+    }
+  }
+  .ql-container {
+    width: 1000px;
+    min-height: 800px;
+    background: #fff;
+    img {
+      width: 800px;
+    }
+    &.ql-disabled {
+      background: inherit;
+    }
+  }
+  &.read-only {
+    .ql-container {
+      width: 100%;
+      min-height: 100px;
+    }
+  }
 }
 
 //태블릿, 모바일 공통
 @media screen and (max-width: $tablet-max) {
-    .editor {
-        &-top {
-            margin-top: 14px;
-            padding: 0 20px;
-            &__row {
-                &-boardname {
-                    font-size: 18px;
-                }
-                .editor-photo-btn {
-                    img {
-                        margin-right: 3px;
-                    }
-                }
-            }
-            .editor-title {
-                margin-bottom: 5px;
-                input {
-                    height: 49px;
-                    font-size: 20px;
-                }
-            }
+  .editor {
+    &-top {
+      margin-top: 14px;
+      padding: 0 20px;
+      &__row {
+        &-boardname {
+          font-size: 18px;
         }
-        .write__contents {
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-            .ql-editor {
-                min-height: 300px;
-            }
+        .editor-photo-btn {
+          img {
+            margin-right: 3px;
+          }
         }
-        .read__contents {
-            .ql-editor {
-                font-size: 17px;
-                min-height: 500px;
-                background: #fff;
-                border: 0px;
-                &.ql-disabled {
-                    background: inherit;
-                }
-                &.readOnly {
-                    border: none;
-                    min-height: 100px;
-                }
-            }
+      }
+      .editor-title {
+        margin-bottom: 5px;
+        input {
+          height: 49px;
+          font-size: 20px;
         }
-        .ql-container {
-            width: 100%;
-            min-height: 289px;
-            background: #fff;
-            img {
-                max-width: 100%;
-            }
-            &.ql-disabled {
-                background: inherit;
-            }
-        }
-        &.read-only {
-            .ql-container {
-                min-height: 100px;
-            }
-        }
+      }
     }
+    .write__contents {
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+      .ql-editor {
+        min-height: 300px;
+      }
+    }
+    .read__contents {
+      .ql-editor {
+        font-size: 17px;
+        min-height: 500px;
+        background: #fff;
+        border: 0px;
+        &.ql-disabled {
+          background: inherit;
+        }
+        &.readOnly {
+          border: none;
+          min-height: 100px;
+        }
+      }
+    }
+    .ql-container {
+      width: 100%;
+      min-height: 289px;
+      background: #fff;
+      img {
+        max-width: 100%;
+      }
+      &.ql-disabled {
+        background: inherit;
+      }
+    }
+    &.read-only {
+      .ql-container {
+        min-height: 100px;
+      }
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .editor {
-        @include flex(column, center, center);
-        font-size: 20px;
-        &-top {
-            margin-top: 14px;
-            font-size: 11px;
-            font-weight: 400;
-            line-height: 16px;
-            letter-spacing: 0em;
-            text-align: left;
-            &__row {
-                &-boardname {
-                    font-size: 14px;
-                }
-                .editor-photo-btn {
-                    img {
-                        margin-right: 3px;
-                    }
-                }
-            }
-            .editor-title {
-                margin-bottom: 5px;
-                input {
-                    height: 32px;
-                    font-size: 15px;
-                }
-            }
+  .editor {
+    @include flex(column, center, center);
+    font-size: 20px;
+    &-top {
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0em;
+      text-align: left;
+      &__row {
+        &-boardname {
+          font-size: 14px;
         }
-        .write__contents {
-            .ql-editor {
-                min-height: 230px;
-            }
+        .editor-photo-btn {
+          img {
+            margin-right: 3px;
+          }
         }
-        .read__contents {
-            .ql-editor {
-                font-size: 16px;
-                min-height: 300px;
-                background: #fff;
-                border: 0px;
-                &.ql-disabled {
-                    background: inherit;
-                }
-                &.readOnly {
-                    border: none;
-                    min-height: 100px;
-                }
-            }
+      }
+      .editor-title {
+        margin-bottom: 5px;
+        input {
+          height: 32px;
+          font-size: 15px;
         }
-        .ql-container {
-            min-height: 289px;
-            &.ql-disabled {
-                background: inherit;
-            }
-        }
-        &.read-only {
-            .ql-container {
-                min-height: 100px;
-            }
-        }
+      }
     }
+    .write__contents {
+      .ql-editor {
+        min-height: 230px;
+      }
+    }
+    .read__contents {
+      .ql-editor {
+        font-size: 16px;
+        min-height: 300px;
+        background: #fff;
+        border: 0px;
+        &.ql-disabled {
+          background: inherit;
+        }
+        &.readOnly {
+          border: none;
+          min-height: 100px;
+        }
+      }
+    }
+    .ql-container {
+      min-height: 289px;
+      &.ql-disabled {
+        background: inherit;
+      }
+    }
+    &.read-only {
+      .ql-container {
+        min-height: 100px;
+      }
+    }
+  }
 }

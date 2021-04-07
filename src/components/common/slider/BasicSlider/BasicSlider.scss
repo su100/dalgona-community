@@ -1,52 +1,52 @@
 @import 'styles/base.scss';
 
 .basic-slider {
+  background: inherit;
+  margin-bottom: 25px;
+  width: 100%;
+  div {
+    outline: none;
+  }
+  .slick-slide > div {
+    padding: 0 20px;
+  }
+  .slick-arrow {
+    margin-top: -40px;
+  }
+  .slick-dots {
     background: inherit;
-    margin-bottom: 25px;
-    width: 100%;
-    div {
-        outline: none;
-    }
-    .slick-slide > div {
-        padding: 0 20px;
-    }
-    .slick-arrow {
-        margin-top: -40px;
-    }
-    .slick-dots {
-        background: inherit;
-        padding-bottom: 25px;
-        li {
-            button {
-                color: #ebebeb;
-                &:before {
-                    opacity: 1;
-                    color: #ebebeb;
-                }
-            }
+    padding-bottom: 25px;
+    li {
+      button {
+        color: #ebebeb;
+        &:before {
+          opacity: 1;
+          color: #ebebeb;
         }
-        .slick-active {
-            button:before {
-                color: #838383;
-            }
-        }
+      }
     }
+    .slick-active {
+      button:before {
+        color: #838383;
+      }
+    }
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .basic-slider {
-        .slick-dots {
-            padding-bottom: 15.79px;
-        }
+  .basic-slider {
+    .slick-dots {
+      padding-bottom: 15.79px;
     }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .basic-slider {
-        .slick-dots {
-            padding-bottom: 8.93px;
-        }
+  .basic-slider {
+    .slick-dots {
+      padding-bottom: 8.93px;
     }
+  }
 }

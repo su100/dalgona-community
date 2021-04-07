@@ -2,107 +2,101 @@
 
 //pc, 기본
 .footer {
-    width: 100%;
-    height: 210px;
-    background: #f2f2f2;
-    text-align: center;
-    &.login {
-        display: none;
+  width: 100%;
+  height: 210px;
+  background: #f2f2f2;
+  text-align: center;
+  &.login {
+    display: none;
+  }
+  &-icon {
+    margin: 0 auto;
+    @include flex(row, space-around, center);
+    width: 20%;
+    padding: 43px 0 22px;
+    svg {
+      width: 40px;
+      height: 40px;
+      fill: #a0a0a0;
     }
-    &-icon {
-        margin: 0 auto;
-        @include flex(row, space-around, center);
-        width: 20%;
-        padding: 43px 0 22px;
-        svg {
-            width: 40px;
-            height: 40px;
-            fill: #a0a0a0;
-        }
-    }
-    &-information {
-        padding-top: 5px;
-    }
-    span {
-        font-size: 14px;
-        line-height: 22px;
-        color: #a0a0a0;
-        letter-spacing: -0.033rem;
-    }
+  }
+  &-information {
+    padding-top: 5px;
+  }
+  span {
+    font-size: 14px;
+    line-height: 22px;
+    color: #a0a0a0;
+    letter-spacing: -0.033rem;
+  }
 }
 
 //태블릿
 @media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
-    .footer {
-        width: 100%;
-        height: 114.9px;
-        &.login {
-            display: flex;
-            width: 100%;
-            height: 114.9px;
-            background: #2d2d2d;
-        }
-        &-icon {
-            @include flex(row, space-around, center);
-            width: 20%;
-            padding-top: 28px;
-            padding-bottom: 14px;
-            svg {
-                width: 17px;
-                height: 17px;
-            }
-        }
-        &-information {
-            display: none;
-        }
-        span {
-            font-family: Noto Sans KR;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 10px;
-            line-height: 14px;
-            color: #a0a0a0;
-        }
+  .footer {
+    width: 100%;
+    height: 114.9px;
+    &.login {
+      display: flex;
+      width: 100%;
+      height: 114.9px;
+      background: #2d2d2d;
     }
+    &-icon {
+      @include flex(row, space-around, center);
+      width: 20%;
+      padding-top: 28px;
+      padding-bottom: 14px;
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+    &-information {
+      display: none;
+    }
+    span {
+      font-size: 10px;
+      line-height: 14px;
+      color: #a0a0a0;
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .footer {
-        @include flex(column, center, center);
-        width: 100%;
-        height: 95.65px;
-        background: #f2f2f2;
-        &.login {
-            display: flex;
-            width: 100%;
-            height: 95.65px;
-            background: #2d2d2d;
-        }
-        &-icon {
-            @include flex(row, space-around, center);
-            width: 30%;
-            padding-top: 18px;
-            padding-bottom: 5px;
-            svg {
-                width: 13.65px;
-                height: 13.65px;
-            }
-        }
-        &-information {
-            display: none;
-        }
-        span {
-            font-family: Noto Sans KR;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 10px;
-            line-height: 14px;
-            text-align: center;
-            color: #a0a0a0;
-        }
-        &-content{
-            height: 50px;
-        }
+  .footer {
+    @include flex(column, center, center);
+    width: 100%;
+    height: 95.65px;
+    background: #f2f2f2;
+    &.login {
+      display: flex;
+      width: 100%;
+      height: 95.65px;
+      background: #2d2d2d;
     }
+    &-icon {
+      @include flex(row, space-around, center);
+      width: 30%;
+      padding-top: 18px;
+      padding-bottom: 5px;
+      svg {
+        width: 13.65px;
+        height: 13.65px;
+      }
+    }
+    &-information {
+      display: none;
+    }
+    span {
+      font-size: 10px;
+      line-height: 14px;
+      text-align: center;
+      color: #a0a0a0;
+    }
+    &-content {
+      height: 50px;
+    }
+  }
 }
