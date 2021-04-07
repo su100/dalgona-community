@@ -1,17 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as authActions from 'store/modules/auth';
+import React, { Component } from 'react';
 import FindPw from 'components/FindPw';
 
 class FindPwContainer extends Component {
-    render() {
-        return (
-            <Fragment>
-                <FindPw history={this.props.history} />
-            </Fragment>
-        );
-    }
+  render() {
+    const { history } = this.props;
+    return (
+      <>
+        <FindPw history={history} />
+      </>
+    );
+  }
 }
 
 export default FindPwContainer;

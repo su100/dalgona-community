@@ -2,192 +2,169 @@
 
 //pc, 기본
 .point-list {
+  width: 1141px;
+  &__date {
+    height: 36px;
+    background: #f6f6f6;
+    span {
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: 0.16px;
+      text-align: left;
+      padding-left: 33px;
+      color: #4f4f4f;
+    }
+  }
+  &__activity {
+    @include flex(row, flex-start, center);
     width: 1141px;
-    &__date {
-        height: 36px;
-        background: #f6f6f6;
-        span {
-            font-family: Noto Sans KR;
-            font-size: 17px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 36px;
-            letter-spacing: 0.1599999964237213px;
-            text-align: left;
-            padding-left: 33px;
-            color: #4f4f4f;
-        }
+    height: 72px;
+    border-bottom: 0.5px solid #c4c4c4;
+    &-info {
+      @include flex(column, center, center);
+      padding-left: 20px;
+      &-title {
+        width: 1018px;
+      }
+      &-luna {
+        width: 1018px;
+      }
+      &-luna {
+        width: 100%;
+        font-size: 15px;
+        line-height: 25px;
+        color: #a8a8a8;
+        text-align: left;
+      }
     }
-    &__activity {
-        @include flex(row, flex-start, center);
-        width: 1141px;
-        height: 72px;
-        border-bottom: 0.5px solid #c4c4c4;
-        &-info {
-            @include flex(column, center, center);
-            padding-left: 20px;
-            &-title {
-                width: 1018px;
-            }
-            &-luna {
-                width: 1018px;
-            }
-            &-luna {
-                width: 100%;
-                font-family: Noto Sans KR;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 15px;
-                line-height: 25px;
-                color: #a8a8a8;
-                text-align: left;
-            }
-        }
-        &-point {
-            width: 84px;
-            font-family: Noto Sans KR;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 22px;
-            line-height: 28px;
-            color: #1f1f1f;
-            img {
-                padding-left: 10px;
-                padding-right: 10px;
-                width: 28px;
-                height: 28px;
-            }
-        }
+    &-point {
+      width: 84px;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 28px;
+      color: #1f1f1f;
+      img {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 28px;
+        height: 28px;
+      }
     }
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .point-list {
-        width: 100%;
-        &__date {
-            width: 100%;
-            height: 28.9px;
-            background: #f6f6f6;
-            span {
-                padding-left: 20px;
-                font-family: Noto Sans KR;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 20px;
-                letter-spacing: 0em;
-                text-align: left;
-            }
-        }
-        &__activity {
-            @include flex(row, space-between, center);
-            width: 100%;
-            height: 97px;
-            border-bottom: 0.467px solid #e2e2e2;
-            &-info {
-                @include flex(column, center, center);
-                padding-left: 20px;
-                &-title {
-                    width: 100%;
-                    font-family: Noto Sans KR;
-                    font-size: 20px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 33px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    padding-bottom: 6px;
-                }
-                &-luna {
-                    width: 100%;
-                    font-family: Noto Sans KR;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 16px;
-                    line-height: 25px;
-                    color: #a8a8a8;
-                    text-align: left;
-                }
-            }
-            &-point {
-                &.mobile {
-                    @include flex(row, center, center);
-                    font-family: Noto Sans KR;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 20px;
-                    line-height: 29px;
-                    color: #000000;
-                    width: 120px;
-                    img {
-                        width: 20px;
-                        height: 20px;
-                    }
-                }
-            }
-        }
+  .point-list {
+    width: 100%;
+    &__date {
+      width: 100%;
+      height: 28.9px;
+      background: #f6f6f6;
+      span {
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
     }
+    &__activity {
+      @include flex(row, space-between, center);
+      width: 100%;
+      height: 97px;
+      border-bottom: 0.467px solid #e2e2e2;
+      &-info {
+        @include flex(column, center, center);
+        padding-left: 20px;
+        &-title {
+          width: 100%;
+          font-size: 20px;
+          line-height: 33px;
+          letter-spacing: 0em;
+          text-align: left;
+          padding-bottom: 6px;
+        }
+        &-luna {
+          width: 100%;
+          font-size: 16px;
+          line-height: 25px;
+          color: #a8a8a8;
+          text-align: left;
+        }
+      }
+      &-point {
+        &.mobile {
+          @include flex(row, center, center);
+          font-size: 20px;
+          line-height: 29px;
+          color: #000000;
+          width: 120px;
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .point-list {
-        width: 100%;
-        &__date {
-            height: 27px;
-            span {
-                height: 22px;
-                padding-left: 20px;
-                font-family: Noto Sans KR;
-                font-size: 10px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 22px;
-                letter-spacing: 0em;
-                text-align: left;
-            }
-        }
-        &__activity {
-            @include flex(row, space-between, center);
-            width: 100%;
-            height: 80px;
-            border-bottom: 0.467px solid #e2e2e2;
-            &-info {
-                @include flex(column, center, center);
-                padding-left: 20px;
-                &-title {
-                    font-size: 12px;
-                    padding-bottom: 0px;
-                }
-                &-luna {
-                    font-size: 11px;
-                    line-height: 17px;
-                    padding-bottom: 3px;
-                }
-            }
-            &-reply {
-                &.mobile {
-                    font-family: Noto Sans KR;
-                    font-style: normal;
-                    font-weight: normal;
-                    font-size: 17px;
-                    line-height: 25px;
-                    color: #000000;
-
-                    img {
-                        height: 16px;
-                        width: 17px;
-                    }
-                }
-            }
-            &-point {
-                &.mobile {
-                    span {
-                        font-size: 17px;
-                    }
-                }
-            }
-        }
+  .point-list {
+    width: 100%;
+    &__date {
+      height: 27px;
+      span {
+        height: 22px;
+        padding-left: 20px;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
     }
+    &__activity {
+      @include flex(row, space-between, center);
+      width: 100%;
+      height: 80px;
+      border-bottom: 0.467px solid #e2e2e2;
+      &-info {
+        @include flex(column, center, center);
+        padding-left: 20px;
+        &-title {
+          font-size: 12px;
+          padding-bottom: 0px;
+        }
+        &-luna {
+          font-size: 11px;
+          line-height: 17px;
+          padding-bottom: 3px;
+        }
+      }
+      &-reply {
+        &.mobile {
+          font-size: 17px;
+          line-height: 25px;
+          color: #000000;
+
+          img {
+            height: 16px;
+            width: 17px;
+          }
+        }
+      }
+      &-point {
+        &.mobile {
+          span {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
 }

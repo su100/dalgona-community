@@ -2,27 +2,27 @@
 
 //pc, 기본
 .page-template {
-    main {
-        width: 1000px;
-        margin: 0 auto;
-    }
+  main {
+    width: 1000px;
+    margin: 0 auto;
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .page-template {
-        main {
-            width: 100%;
-            min-height: calc(100vh - 119.79px - 114.89px);
-        }
+  .page-template {
+    main {
+      width: 100%;
+      min-height: calc(100vh - 119.79px - 114.89px);
     }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .page-template {
-        main {
-            min-height: calc(100vh - 89.79px - 95.64px);
-        }
+  .page-template {
+    main {
+      min-height: calc(100vh - 89.79px - 95.64px);
     }
+  }
 }

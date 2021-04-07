@@ -1,45 +1,45 @@
 @import 'styles/base.scss';
 
 .hot-post-card {
-    @include flex(row, flex-start, flex-start);
-    margin-bottom: 16px;
-    width: 500px;
+  @include flex(row, flex-start, flex-start);
+  margin-bottom: 16px;
+  width: 500px;
+  height: 160px;
+  &:nth-child(-n + 3) {
+    margin-right: 44px;
+  }
+  img {
+    margin-right: 16px;
+    width: 160px;
     height: 160px;
-    &:nth-child(-n + 3) {
-        margin-right: 44px;
+    object-fit: cover;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+  h6 {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  p {
+    margin: 0;
+    color: #838383;
+  }
+  .home--hot--detail {
+    margin: 5px 0 30px;
+    font-size: 0.7rem;
+    span {
+      margin-right: 31px;
     }
-    img {
-        margin-right: 16px;
-        width: 160px;
-        height: 160px;
-        object-fit: cover;
+  }
+  .home--hot--contents {
+    width: 160px * 2;
+    @include ellipsis(2, 1rem);
+    .ql-editor {
+      padding: 0;
+      overflow-y: hidden;
     }
-    h3 {
-        margin: 0;
-        font-size: 1.4rem;
-    }
-    h6 {
-        margin: 0;
-        margin-top: 10px;
-        font-size: 1.1rem;
-    }
-    p {
-        margin: 0;
-        color: #838383;
-    }
-    .home--hot--detail {
-        margin: 5px 0 30px;
-        font-size: 0.7rem;
-        span {
-            margin-right: 31px;
-        }
-    }
-    .home--hot--contents {
-        width: 160px * 2;
-        @include ellipsis(2, 1rem);
-        .ql-editor {
-            padding: 0;
-            overflow-y: hidden;
-        }
-    }
+  }
 }

@@ -2,131 +2,129 @@
 
 //pc, 기본
 .votemodal {
+  @include flex(column, center, center);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  &-modal {
     @include flex(column, center, center);
+    height: 208px;
+    width: 386px;
+    border-radius: 8px;
+    background: #c4c4c4;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    span {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: 0em;
+      text-align: left;
+      padding-top: 15px;
+      padding-bottom: 38px;
+    }
+    &__button {
+      @include flex(row, center, center);
+      width: 330px;
+      button {
+        height: 40px;
+        width: 157px;
+        border-radius: 4px;
+        background: $main-color;
+        color: #fff;
+        font-size: 22px;
+        line-height: 20px;
+        &.cancel {
+          background: #e6e6e6;
+          color: #838383;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
+
+//태블릿
+@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
+  .votemodal {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.15);
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 999;
     &-modal {
-        @include flex(column, center, center);
-        height: 208px;
-        width: 386px;
-        border-radius: 8px;
-        background: #c4c4c4;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-        span {
-            font-family: Roboto;
-            font-size: 22px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 28px;
-            letter-spacing: 0em;
-            text-align: left;
-            padding-top: 15px;
-            padding-bottom: 38px;
-        }
-        &__button {
-            @include flex(row, center, center);
-            width: 330px;
-            button {
-                height: 40px;
-                width: 157px;
-                border-radius: 4px;
-                background: #ffd278;
-                color: #fff;
-                font-size: 22px;
-                line-height: 20px;
-                &.cancel {
-                    background: #e6e6e6;
-                    color: #838383;
-                    margin-right: 20px;
-                }
-            }
-        }
-    }
-}
-
-//태블릿
-@media screen and (min-width: $mobile-max+1px) and (max-width: $tablet-max) {
-    .votemodal {
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.15);
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        &-modal {
-            @include flex(column, space-between, center);
-            height: 197px;
-            width: 382px;
-            border-radius: 10px;
-            background: #ffffff;
+      @include flex(column, space-between, center);
+      height: 197px;
+      width: 382px;
+      border-radius: 10px;
+      background: #ffffff;
+      opacity: 0.85;
+      span {
+        padding-top: 54px;
+        padding-bottom: 54px;
+      }
+      div {
+        width: 100%;
+        button {
+          border-top: 0.5px solid #707070;
+          width: 100%;
+          height: 54px;
+          background: none;
+          color: #0078ff;
+          &.cancel {
+            margin-right: 0px;
+            color: #0078ff;
+            background: none;
             opacity: 0.85;
-            span {
-                padding-top: 54px;
-                padding-bottom: 54px;
-            }
-            div {
-                width: 100%;
-                button {
-                    border-top: 0.5px solid #707070;
-                    width: 100%;
-                    height: 54px;
-                    background: none;
-                    color: #0078ff;
-                    &.cancel {
-                        margin-right: 0px;
-                        color: #0078ff;
-                        background: none;
-                        opacity: 0.85;
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .votemodal {
+  .votemodal {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.15);
+    &-modal {
+      @include flex(column, space-between, center);
+      height: 100px;
+      width: 210px;
+      padding-bottom: 10px;
+      border-radius: 10px 10px 0 0;
+      background: #ffffff;
+      opacity: 0.85;
+      span {
+        font-size: 15px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      div {
         width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.15);
-        &-modal {
-            @include flex(column, space-between, center);
-            height: 100px;
-            width: 210px;
-            padding-bottom: 10px;
-            border-radius: 10px 10px 0 0;
+        button {
+          font-size: 15px;
+          border-top: 0.3px solid #707070;
+          border-radius: 0 0 10px 10px;
+          width: 100%;
+          height: 41px;
+          background: #ffffff;
+          opacity: 0.85;
+          color: #0078ff;
+          &.cancel {
             background: #ffffff;
+            margin-right: 0px;
+            color: #0078ff;
             opacity: 0.85;
-            span {
-                font-size: 15px;
-                padding-top: 30px;
-                padding-bottom: 30px;
-            }
-            div {
-                width: 100%;
-                button {
-                    font-size: 15px;
-                    border-top: 0.3px solid #707070;
-                    border-radius: 0 0 10px 10px;
-                    width: 100%;
-                    height: 41px;
-                    background: #ffffff;
-                    opacity: 0.85;
-                    color: #0078ff;
-                    &.cancel {
-                        background: #ffffff;
-                        margin-right: 0px;
-                        color: #0078ff;
-                        opacity: 0.85;
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }

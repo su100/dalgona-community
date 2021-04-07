@@ -1,127 +1,126 @@
 @import 'styles/base.scss';
 
 .find-id-pw {
-    @include flex(column, center, center);
-    margin-top: 125px;
-    text-align: center;
-    font-family: Noto Sans KR;
+  @include flex(column, center, center);
+  margin-top: 125px;
+  text-align: center;
 
-    .find-id-pw__tab--method {
-        margin-bottom: 20px;
-        .find-id-pw__label {
-            &:nth-child(2) {
-                margin-right: 338px;
-            }
-            &.active {
-                font-weight: bold;
-            }
-        }
-    }
-    .find-id-pw__box {
-        height: 150px;
-        .find-id-pw__input {
-            input[type='text'] {
-                padding: 0;
-                width: 207px;
-                height: 32px;
-                border-width: 1px;
-            }
-            button {
-                width: 75px;
-                height: 32px;
-                background: #d5d5d5;
-                color: #fff;
-            }
-        }
-        p {
-            color: #838383;
-            font-size: 17px;
-            line-height: 22px;
-        }
-    }
-    .find-id-pw__button--submit {
-        margin-bottom: 130px;
-        width: 250px;
-        height: 73px;
-        background: #f7c95f;
-        border-radius: 8px;
+  .find-id-pw__tab--method {
+    margin-bottom: 20px;
+    .find-id-pw__label {
+      &:nth-child(2) {
+        margin-right: 338px;
+      }
+      &.active {
         font-weight: bold;
-        font-size: 24px;
+      }
     }
+  }
+  .find-id-pw__box {
+    height: 150px;
+    .find-id-pw__input {
+      input[type='text'] {
+        padding: 0;
+        width: 207px;
+        height: 32px;
+        border-width: 1px;
+      }
+      button {
+        width: 75px;
+        height: 32px;
+        background: #d5d5d5;
+        color: #fff;
+      }
+    }
+    p {
+      color: #838383;
+      font-size: 17px;
+      line-height: 22px;
+    }
+  }
+  .find-id-pw__button--submit {
+    margin-bottom: 130px;
+    width: 250px;
+    height: 73px;
+    background: #f7c95f;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 24px;
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .find-id-pw {
-        margin-top: 123.96px;
-        .find-id-pw__tab--method {
-            margin-bottom: 45px;
-            .find-id-pw__label {
-                &:nth-child(2) {
-                    margin-right: 96px;
-                }
-            }
+  .find-id-pw {
+    margin-top: 123.96px;
+    .find-id-pw__tab--method {
+      margin-bottom: 45px;
+      .find-id-pw__label {
+        &:nth-child(2) {
+          margin-right: 96px;
         }
-
-        .find-id-pw__box {
-            height: 150px;
-            .find-id-pw__input {
-                input[type='text'] {
-                    width: 600px;
-                    height: 49.9px;
-                }
-                button {
-                    width: 128px;
-                    height: 49.9px;
-                }
-            }
-        }
-
-        .find-id-pw__button--submit {
-            position: fixed;
-            bottom: 0;
-            margin-bottom: 0;
-            width: 100vw;
-            height: 71.9px;
-            background: #d5d5d5;
-            color: #fff;
-            border-radius: 0;
-            font-weight: normal;
-            font-size: 20px;
-        }
+      }
     }
+
+    .find-id-pw__box {
+      height: 150px;
+      .find-id-pw__input {
+        input[type='text'] {
+          width: 600px;
+          height: 49.9px;
+        }
+        button {
+          width: 128px;
+          height: 49.9px;
+        }
+      }
+    }
+
+    .find-id-pw__button--submit {
+      position: fixed;
+      bottom: 0;
+      margin-bottom: 0;
+      width: 100vw;
+      height: 71.9px;
+      background: #d5d5d5;
+      color: #fff;
+      border-radius: 0;
+      font-weight: normal;
+      font-size: 20px;
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .find-id-pw {
-        margin-top: 41px;
-        .find-id-pw__tab--method {
-            margin-bottom: 33px;
-            .find-id-pw__label {
-                &:nth-child(2) {
-                    margin-right: 40px;
-                }
-            }
+  .find-id-pw {
+    margin-top: 41px;
+    .find-id-pw__tab--method {
+      margin-bottom: 33px;
+      .find-id-pw__label {
+        &:nth-child(2) {
+          margin-right: 40px;
         }
-
-        .find-id-pw__box {
-            height: 150px;
-            .find-id-pw__input {
-                input[type='text'] {
-                    width: 246px;
-                    height: 32px;
-                }
-                button {
-                    width: 74px;
-                    height: 32px;
-                }
-            }
-        }
-
-        .find-id-pw__button--submit {
-            height: 51px;
-            font-size: 17px;
-        }
+      }
     }
+
+    .find-id-pw__box {
+      height: 150px;
+      .find-id-pw__input {
+        input[type='text'] {
+          width: 246px;
+          height: 32px;
+        }
+        button {
+          width: 74px;
+          height: 32px;
+        }
+      }
+    }
+
+    .find-id-pw__button--submit {
+      height: 51px;
+      font-size: 17px;
+    }
+  }
 }

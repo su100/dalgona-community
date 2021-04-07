@@ -3,17 +3,12 @@ import PageTemplate from 'components/common/PageTemplate';
 import NavContainer from 'containers/NavContainer';
 import ActivityContainer from 'containers/ActivityContainer';
 
-const ActivityPage = ({ history, location, match }) => {
-    return (
-        <div>
-            <PageTemplate
-                header={<NavContainer history={history} match={match} location={location} isHome={false} />}
-                nofooter={true}
-            >
-                <ActivityContainer history={history} location={location} />
-            </PageTemplate>
-        </div>
-    );
-};
+const ActivityPage = ({ history, location, match }) => (
+  <div>
+    <PageTemplate header={<NavContainer history={history} match={match} location={location} isHome={false} />} nofooter>
+      <ActivityContainer history={history} location={location} />
+    </PageTemplate>
+  </div>
+);
 
 export default ActivityPage;

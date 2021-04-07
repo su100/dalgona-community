@@ -1,92 +1,102 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import photoIcon from 'images/photo.svg';
 
 import './CommentInput.scss';
 
-const CommentInput = (props) => {
-    let fileInput = React.createRef();
+const CommentInput = ({
+  type,
+  isAnonymous,
+  previewURL,
+  deleteImg,
+  commentText,
+  handleComment,
+  handleAnonymous,
+  setImage,
+  setPreview,
+  addReply,
+  updateReply,
+  updateRereply,
+  addRereply,
+}) => {
+  const fileInput = React.createRef();
 
-    const selectImg = (e) => {
-        let reader = new FileReader();
-        let file = e.target.files[0];
+  const selectImg = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
 
-        reader.onloadend = () => {
-            props.setImage(props.type, file);
-            props.setPreview(props.type, reader.result);
-        };
-        reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(type, file);
+      setPreview(type, reader.result);
     };
+    reader.readAsDataURL(file);
+  };
 
-    const onClickSelect = (e) => {
-        fileInput.current.click();
-    };
+  const onClickSelect = () => {
+    fileInput.current.click();
+  };
 
-    const onClickPost = (e) => {
-        const id = e.currentTarget.id;
-        if (id === 'comment') {
-            props.addReply(e);
-        } else if (id === 'update-reply') {
-            props.updateReply(e);
-        } else if (id === 'update-rereply') {
-            props.updateRereply(e);
-        } else {
-            props.addRereply(e);
-        }
-    };
+  const onClickPost = (e) => {
+    const { id } = e.currentTarget;
+    if (id === 'comment') {
+      addReply(e);
+    } else if (id === 'update-reply') {
+      updateReply(e);
+    } else if (id === 'update-rereply') {
+      updateRereply(e);
+    } else {
+      addRereply(e);
+    }
+  };
 
-    return (
-        <div className={`comment-input ${props.type}`}>
-            {props.previewURL && (
-                <div className="comment-input__preview">
-                    <div className="comment-input__preview--background" />
-                    <img src={props.previewURL} alt="preview" />
-                    <button id={props.type} onClick={props.deleteImg}>
-                        X
-                    </button>
-                </div>
-            )}
-            <textarea
-                id={props.type}
-                className="comment-input__input"
-                value={props.commentText}
-                onChange={props.handleComment}
-                placeholder="댓글을 입력하세요."
-            />
-            <div className="comment-input--bottom">
-                <div className="comment-input--bottom-file">
-                    <span>
-                        <input
-                            id={props.type}
-                            type="checkbox"
-                            checked={props.isAnonymous}
-                            onChange={props.handleAnonymous}
-                        />
-                        익명
-                    </span>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        ref={fileInput}
-                        id={props.type}
-                        onChange={selectImg}
-                        onClick={(event) => {
-                            event.target.value = null;
-                        }}
-                    />
-                    <button id={props.type} onClick={onClickSelect}>
-                        <img src={photoIcon} alt="photoIcon" /> 파일선택
-                    </button>
-                </div>
-                <div>
-                    <button id={props.type} className="comment-input__button--submit" onClick={onClickPost}>
-                        <span className="only-pc"> 등록 </span>
-                        <span className="not-pc"> 등록하기 </span>
-                    </button>
-                </div>
-            </div>
+  return (
+    <div className={`comment-input ${type}`}>
+      {previewURL && (
+        <div className="comment-input__preview">
+          <div className="comment-input__preview--background" />
+          <img src={previewURL} alt="preview" />
+          <button id={type} onClick={deleteImg}>
+            X
+          </button>
         </div>
-    );
+      )}
+      <textarea
+        id={type}
+        className="comment-input__input"
+        value={commentText}
+        onChange={handleComment}
+        placeholder="댓글을 입력하세요."
+      />
+      <div className="comment-input--bottom">
+        <div className="comment-input--bottom-file">
+          <span>
+            <input id={type} type="checkbox" checked={isAnonymous} onChange={handleAnonymous} />
+            익명
+          </span>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInput}
+            id={type}
+            onChange={selectImg}
+            onClick={(event) => {
+              event.target.value = null;
+            }}
+          />
+          <button id={type} onClick={onClickSelect}>
+            <img src={photoIcon} alt="photoIcon" />
+            <span>파일선택</span>
+          </button>
+        </div>
+        <div>
+          <button id={type} className="comment-input__button--submit" onClick={onClickPost}>
+            <span className="only-pc"> 등록 </span>
+            <span className="not-pc"> 등록하기 </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CommentInput;

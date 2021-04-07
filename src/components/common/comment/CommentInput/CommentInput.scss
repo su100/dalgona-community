@@ -2,155 +2,142 @@
 
 //pc, 기본
 .comment-input {
-    padding-bottom: 35px;
-    padding-top: 15px;
+  padding-bottom: 35px;
+  padding-top: 15px;
+  width: 100%;
+  .comment-input__preview {
+    @include flex(row, flex-start, center);
+    margin-bottom: 20px;
+    width: inherit;
+    height: 150px;
+    .comment-input__preview--background {
+      position: absolute;
+      width: inherit;
+      height: 150px;
+      background: #000000;
+      opacity: 0.13;
+    }
+    img {
+      margin-left: 20px;
+      height: 119px;
+    }
+    button {
+      margin-left: 3px;
+      margin-top: 10px;
+      align-self: flex-start;
+      color: #fff;
+      z-index: 10;
+    }
+  }
+  .comment-input__input {
     width: 100%;
-    font-family: Noto Sans KR;
-    .comment-input__preview {
-        @include flex(row, flex-start, center);
-        margin-bottom: 20px;
-        width: inherit;
-        height: 150px;
-        .comment-input__preview--background {
-            position: absolute;
-            width: inherit;
-            height: 150px;
-            background: #000000;
-            opacity: 0.13;
-        }
-        img {
-            margin-left: 20px;
-            height: 119px;
-        }
-        button {
-            margin-left: 3px;
-            margin-top: 10px;
-            align-self: flex-start;
-            color: #fff;
-            z-index: 10;
-        }
+    height: 120px;
+    font-size: 20px;
+    resize: none;
+    background: #e6e6e6;
+    border: none;
+    border-radius: 4px;
+    &::placeholder {
+      color: #dedede;
     }
-    .comment-input__input {
-        width: 100%;
-        height: 120px;
-        font-size: 20px;
-        resize: none;
-        background: #e6e6e6;
-        border: none;
-        border-radius: 4px;
-        &::placeholder {
-            color: #dedede;
-        }
-    }
-    .comment-input--bottom {
-        @include flex(row, space-between, center);
-        width: 100%;
-        margin-top: 14px;
-        .comment-input--bottom-file {
-            @include flex(row-reverse, space-between, center);
-            span {
-                margin-left: 10px;
-                margin-right: 20px;
-            }
-            img {
-                margin-right: 3px;
-            }
+  }
+  .comment-input--bottom {
+    @include flex(row, space-between, center);
+    width: 100%;
+    margin-top: 14px;
+    .comment-input--bottom-file {
+      @include flex(row-reverse, space-between, center);
+      span {
+        margin-left: 10px;
+        margin-right: 20px;
+      }
+      img {
+        margin-right: 3px;
+      }
 
-            button {
-                width: 93px;
-                height: 43px;
-                background: #dadada;
-                opacity: 0.5;
-                border-radius: 4px;
-            }
-            input[type='file'] {
-                display: none;
-            }
-        }
-        .comment-input__button--submit {
-            height: 43px;
-            width: 80px;
-            border-radius: 4px;
-            background: $main-color;
-            color: white;
-            span {
-                margin: 0px;
-            }
-        }
-        button {
-            img {
-                width: 20px;
-                height: 20px;
-            }
-        }
+      button {
+        width: 93px;
+        height: 43px;
+        background: #dadada;
+        opacity: 0.5;
+        border-radius: 4px;
+      }
+      input[type='file'] {
+        display: none;
+      }
     }
-    &.recomment {
-        .comment-input__input {
-        }
+    .comment-input__button--submit {
+      height: 43px;
+      width: 80px;
+      border-radius: 4px;
+      background: $main-color;
+      color: white;
+      span {
+        margin: 0px;
+      }
     }
+    button {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .comment-input {
-        @include flex(column, center, center);
-        padding-top: 0px;
-        border-top: 10px solid #f2f2f2;
-        .comment-input__input {
-            height: 123px;
-            margin-top: 20px;
-            background: white;
-            border: 1px solid #a7a7a7;
-        }
-        .comment-input--bottom {
-            @include flex(row, space-between, center);
-            .comment-input--bottom-file {
-                @include flex(row, flex-start, center);
-                padding-bottom: 30px;
-                button {
-                    width: 85px;
-                    height: 43px;
-                    background: white;
-                    opacity: 1;
-                }
-            }
-            .comment-input__button--submit {
-                height: 28px;
-                width: 80px;
-                line-height: 28px;
-                margin-bottom: 34px;
-                span {
-                    width: 80px;
-                    margin: 0px;
-                }
-            }
-        }
-        &.recomment {
-        }
+  .comment-input {
+    @include flex(column, center, center);
+    padding-top: 0px;
+    border-top: 10px solid #f2f2f2;
+    .comment-input__input {
+      height: 123px;
+      margin-top: 20px;
+      background: white;
+      border: 1px solid #a7a7a7;
     }
+    .comment-input--bottom {
+      @include flex(row, space-between, center);
+      .comment-input--bottom-file {
+        @include flex(row, flex-start, center);
+        padding-bottom: 30px;
+        button {
+          width: 85px;
+          height: 43px;
+          background: white;
+          opacity: 1;
+        }
+      }
+      .comment-input__button--submit {
+        height: 28px;
+        width: 80px;
+        line-height: 28px;
+        margin-bottom: 34px;
+        span {
+          width: 80px;
+          margin: 0px;
+        }
+      }
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .comment-input {
-        border-top: 5px solid #f2f2f2;
-        .comment-input__input {
-            height: 101px;
-            font-size: 15px;
-        }
-        .comment-input--bottom {
-            height: 50px;
-            font-size: 11px;
-            button {
-                width: 50px;
-                font-size: 11px;
-            }
-            .comment-input__button--submit {
-            }
-        }
-        &.recomment {
-            .comment-input__input {
-            }
-        }
+  .comment-input {
+    border-top: 5px solid #f2f2f2;
+    .comment-input__input {
+      height: 101px;
+      font-size: 15px;
     }
+    .comment-input--bottom {
+      height: 50px;
+      font-size: 11px;
+      button {
+        width: 50px;
+        font-size: 11px;
+      }
+    }
+  }
 }
