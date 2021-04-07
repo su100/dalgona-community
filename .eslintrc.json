@@ -22,6 +22,9 @@
             }
         ],
         "react/prefer-stateless-function": 0,
-        "import/no-unresolved": 0
+        "import/no-unresolved": 0,
+        "no-alert": 0,
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "camelcase": 0
     }
 }
