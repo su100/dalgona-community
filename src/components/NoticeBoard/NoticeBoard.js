@@ -9,76 +9,78 @@ import Pagination from 'components/common/Pagination';
 import './NoticeBoard.scss';
 
 class NoticeBoard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchWord: '',
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchWord: '',
+    };
+  }
+
+  handlePage = (e) => {
+    const { history, location } = this.props;
+    const query = queryString.parse(location.search);
+    const page = e.target.value;
+
+    // searchType:title, searchWord, page
+    if (query.search) {
+      // url에서 searchWord있는지 판별
+      history.push(`/notice?page=${page}&search=${query.search}`);
+    } else {
+      history.push(`/notice?page=${page}`);
     }
+  };
 
-    handlePage = (e) => {
-        const { history, location } = this.props;
-        const query = queryString.parse(location.search);
-        const page = e.target.value;
+  handleChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
-        //searchType:title, searchWord, page
-        if (query.search) {
-            //url에서 searchWord있는지 판별
-            history.push(`/notice?page=${page}&search=${query.search}`);
-        } else {
-            history.push(`/notice?page=${page}`);
-        }
-    };
-
-    handleChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value });
-    };
-
-    getSearch = () => {
-        //검색하기
-        const { searchWord } = this.state;
-        if (searchWord.trim() === '') {
-            alert('검색어를 입력해주세요.');
-        } else {
-            this.props.history.push(`/notice?page=1&search=${searchWord}`);
-        }
-    };
-
-    render() {
-        const request = location.search;
-        const query = queryString.parse(request);
-        const currentPage = query.page ? Number(query.page) : 1;
-        const { postList, postCount, isSuperuser } = this.props;
-        return (
-            <div className="notice-board">
-                {isSuperuser ? (
-                    <Header
-                        title="공지사항"
-                        searchWord={this.state.searchWord}
-                        handleChange={this.handleChange}
-                        placeholder="글 제목을 검색하세요"
-                        getSearch={this.getSearch}
-                        boardType="notice"
-                        hasWrite
-                    />
-                ) : (
-                    <Header
-                        title="공지사항"
-                        searchWord={this.state.searchWord}
-                        handleChange={this.handleChange}
-                        placeholder="글 제목을 검색하세요"
-                        getSearch={this.getSearch}
-                    />
-                )}
-                <div className="border_line" />
-                <PostList link="/notice" postList={postList} request={request} />
-                <section className="only-pc notice-board__container--btn">
-                    {isSuperuser && <Link to={`/notice/write`}>글쓰기</Link>}
-                </section>
-                <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
-            </div>
-        );
+  getSearch = () => {
+    // 검색하기
+    const { history } = this.props;
+    const { searchWord } = this.state;
+    if (searchWord.trim() === '') {
+      alert('검색어를 입력해주세요.');
+    } else {
+      history.push(`/notice?page=1&search=${searchWord}`);
     }
+  };
+
+  render() {
+    const { postList, postCount, isSuperuser, location } = this.props;
+    const { searchWord } = this.state;
+    const request = location.search;
+    const query = queryString.parse(request);
+    const currentPage = query.page ? Number(query.page) : 1;
+    return (
+      <div className="notice-board">
+        {isSuperuser ? (
+          <Header
+            title="공지사항"
+            searchWord={searchWord}
+            handleChange={this.handleChange}
+            placeholder="글 제목을 검색하세요"
+            getSearch={this.getSearch}
+            boardType="notice"
+            hasWrite
+          />
+        ) : (
+          <Header
+            title="공지사항"
+            searchWord={searchWord}
+            handleChange={this.handleChange}
+            placeholder="글 제목을 검색하세요"
+            getSearch={this.getSearch}
+          />
+        )}
+        <div className="border_line" />
+        <PostList link="/notice" postList={postList} request={request} />
+        <section className="only-pc notice-board__container--btn">
+          {isSuperuser && <Link to="/notice/write">글쓰기</Link>}
+        </section>
+        <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
+      </div>
+    );
+  }
 }
 
 export default NoticeBoard;
