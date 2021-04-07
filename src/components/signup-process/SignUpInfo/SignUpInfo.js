@@ -14,7 +14,6 @@ class SignUpInfo extends Component {
       email: '',
       Img: null,
       previewURL: '',
-      rePreview: '',
       usernameCheck: false,
       emailCheck: false,
       nicknameCheck: false,
@@ -22,7 +21,7 @@ class SignUpInfo extends Component {
     this.fileInput = React.createRef();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     const { signup_success, onClickNext } = this.props;
     if (prevProps.signup_success !== signup_success && signup_success) {
       // 댓글 작성 성공했을 때
@@ -31,6 +30,7 @@ class SignUpInfo extends Component {
   }
 
   setImage = (file) => {
+    const { Img } = this.state;
     this.setState({ Img: file });
   };
 
@@ -48,7 +48,7 @@ class SignUpInfo extends Component {
     reader.readAsDataURL(file);
   };
 
-  deleteImg = (e) => {
+  deleteImg = () => {
     this.setState({ Img: null, previewURL: '' });
   };
 
@@ -68,7 +68,7 @@ class SignUpInfo extends Component {
     return false;
   };
 
-  checkUnique = (name) => (e) => {
+  checkUnique = (name) => () => {
     const { checkUsername, checkEmail, checkNickname } = this.props;
     const { username, email, nickname } = this.state;
 
@@ -170,9 +170,8 @@ class SignUpInfo extends Component {
       nickname: '한글/영문/숫자 1~20자',
       email: '이메일 주소 입력',
     };
-    const { previewURL, usernameCheck, emailCheck, nicknameCheck } = this.state;
+    const { previewURL, usernameCheck, emailCheck, nicknameCheck, type } = this.state;
     const { userNameUnique, emailUnique, nicknameUnique } = this.props;
-
     return (
       <div className="signupinfo">
         <div className="signupinfo__title">
@@ -230,7 +229,7 @@ class SignUpInfo extends Component {
           {previewURL && (
             <div className="signupinfo__img-preview">
               <img src={previewURL} alt="preview" />
-              <button type="button" id={this.type} onClick={this.deleteImg}>
+              <button type="button" id={type} onClick={this.deleteImg}>
                 X
               </button>
             </div>
@@ -238,7 +237,7 @@ class SignUpInfo extends Component {
         </div>
 
         <div className="signupinfo__content">
-          {Object.keys(keyObject).map((value, index) => (
+          {Object.keys(keyObject).map((value) => (
             <div className="signupinfo__content-form" key={value.id}>
               <div className="signupinfo__title-form">{keyObject[value]}</div>
               <div className="signupinfo__content-form-input">
@@ -247,7 +246,7 @@ class SignUpInfo extends Component {
                   id={value}
                   type={this.isPassword(value) ? 'password' : undefined}
                   label={keyObject[value]}
-                  value={this.state[value]}
+                  value={value}
                   onChange={this.handleEditor}
                   placeholder={placeHolder[value]}
                 />
