@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { termsCommunity } from 'constants/index.js';
-import { termsPrivate } from 'constants/index.js';
+import { termsCommunity, termsPrivate } from 'constants/index.js';
 import step1 from 'images/step1.png';
 import './SignUpAgree.scss';
 
