@@ -66,7 +66,7 @@ class Write extends Component {
   };
 
   render() {
-    const { isAuthenticated, boardInfo, editPost, addPostImage, location } = this.props;
+    const { isAuthenticated, boardInfo, editPost, addPostImage, location, history } = this.props;
     const { previewURL, isEdit, title, isAnonymous } = this.state;
     return (
       <div className="write">
@@ -95,7 +95,7 @@ class Write extends Component {
           isAuthenticated={isAuthenticated}
         />
         <div className="write__btn">
-          <button onClick={this.props.history.goBack} className="write__btn-cancel">
+          <button onClick={history.goBack} className="write__btn-cancel">
             취소
           </button>
           <button onClick={isEdit ? this.updatePost : this.addPost} className="write__btn-confirm">
