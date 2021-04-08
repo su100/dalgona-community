@@ -240,7 +240,7 @@ class CommentList extends Component {
       } else {
         formData.append('board_post_id', postid);
         formData.append('body', updateText);
-        if (updateImg !== null) formData.append('image', updateImg);
+        if (updateImg !== null) formData.append('reply_image', updateImg);
         formData.append('anonymous', updateAnonymous);
       }
       console.log('update');
