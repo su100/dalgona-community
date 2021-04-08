@@ -13,7 +13,7 @@ class View extends Component {
         <div className="view__detail">
           <Link to={`/${type}/${path[2]}`}>
             <span>
-              홈 &lt;
+              {'홈 >'}
               {type === `luna` && `루나>${path[2]}`}
               {type === `free` && `자유>${path[2]}`}
               {type === `notice` && `달고나>공지사항`}

@@ -33,18 +33,6 @@ class CommentList extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    // 여기서는 setState 를 하는 것이 아니라
-    // 특정 props 가 바뀔 때 설정하고 설정하고 싶은 state 값을 리턴하는 형태로
-    // 사용됩니다.
-    /*
-    if (nextProps.value !== prevState.value) {
-      return { value: nextProps.value };
-    }
-    return null; // null 을 리턴하면 따로 업데이트 할 것은 없다라는 의미
-    */
-  }
-
   getSnapshotBeforeUpdate(prevProps) {
     const { reply_success, rereply_success } = this.props;
     if (prevProps.reply_success !== reply_success && reply_success) {
@@ -58,20 +46,14 @@ class CommentList extends Component {
     return null;
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(snapshot) {
     // 댓글 대댓글 입력 초기화
     const { page } = this.state;
     const { vote, voteid, postid, voteReply, getReply } = this.props;
     if (snapshot === 'reply') {
-      this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
+      this.setReplyReset();
     } else if (snapshot === 'rereply') {
-      this.setState({
-        reImg: '',
-        rePreview: '',
-        recommentId: 0,
-        reText: '',
-        reAnonymous: false,
-      });
+      this.setRereplyReset();
     }
     if (snapshot === 'reply' || snapshot === 'rereply') {
       if (vote) {
@@ -81,6 +63,20 @@ class CommentList extends Component {
       }
     }
   }
+
+  setReplyReset = () => {
+    this.setState({ isAnonymous: false, commentText: '', commentImg: '', previewURL: '' });
+  };
+
+  setRereplyReset = () => {
+    this.setState({
+      reImg: '',
+      rePreview: '',
+      recommentId: 0,
+      reText: '',
+      reAnonymous: false,
+    });
+  };
 
   handlePage = (e) => {
     const page = e.target.value;
@@ -381,8 +377,8 @@ class CommentList extends Component {
             <span>
               댓글
               {vote ? voteReplyCount : postReplyCount}
-개
-</span>
+              {'개'}
+            </span>
           </div>
           <div className="not-pc">
             <div className="comment-list__sort">

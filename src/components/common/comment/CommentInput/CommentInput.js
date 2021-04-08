@@ -79,8 +79,8 @@ const CommentInput = ({
             ref={fileInput}
             id={type}
             onChange={selectImg}
-            onClick={(event) => {
-              event.target.value = null;
+            onClick={(e) => {
+              e.target.value = null;
             }}
           />
           <button id={type} onClick={onClickSelect}>
