@@ -48,8 +48,7 @@
     .comment-input--bottom-file {
       @include flex(row-reverse, space-between, center);
       span {
-        margin-left: 10px;
-        margin-right: 20px;
+        margin-left: 5px;
       }
       img {
         margin-right: 3px;
