@@ -34,13 +34,26 @@ class CommentList extends Component {
   }
 
   getSnapshotBeforeUpdate(prevProps) {
-    const { reply_success, rereply_success } = this.props;
+    const { page } = this.state;
+    const { reply_success, rereply_success, vote, voteid, postid, voteReply, getReply } = this.props;
     if (prevProps.reply_success !== reply_success && reply_success) {
       // 댓글 작성 성공했을 때
+      this.setReplyReset();
+      if (vote) {
+        voteReply(voteid, page);
+      } else {
+        getReply(postid, page);
+      }
       return 'reply';
     }
     if (prevProps.rereply_success !== rereply_success && rereply_success) {
       // 대댓글 작성 성공했을 때
+      this.setRereplyReset();
+      if (vote) {
+        voteReply(voteid, page);
+      } else {
+        getReply(postid, page);
+      }
       return 'rereply';
     }
     return null;
@@ -230,6 +243,7 @@ class CommentList extends Component {
         if (updateImg !== null) formData.append('image', updateImg);
         formData.append('anonymous', updateAnonymous);
       }
+      console.log('update');
       updateReply(formData, updateId);
       this.closeUpdate();
     }

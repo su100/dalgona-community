@@ -222,7 +222,7 @@ export const getMyPost = (page) =>
 //  별 획득 내역 조회
 export const getMyPoint = (type, page) =>
   axios.get(`${API_BASE_URL}/accounts/profile/mypoint/${type}`, {
-    params: page,
+    params: { page },
     headers: { Authorization: getAccesesToken() },
   });
 
@@ -281,7 +281,7 @@ export const addPostReply = (formdata) =>
   });
 //  댓글 수정하기
 export const updatePostReply = (formdata, updateId) =>
-  axios.put(`${API_BASE_URL}/board/rereply/${updateId}`, formdata, {
+  axios.put(`${API_BASE_URL}/board/reply/${updateId}`, formdata, {
     headers: { Authorization: getAccesesToken() },
   });
 //  댓글 삭제하기
@@ -296,7 +296,7 @@ export const addPostRereply = (formdata) =>
   });
 //  대댓글 수정하기
 export const updatePostRereply = (formdata, replyUrl) =>
-  axios.put(`${API_BASE_URL}/board/rereply/${replyUrl}`, {
+  axios.put(`${API_BASE_URL}/board/rereply/${replyUrl}`, formdata, {
     headers: { Authorization: getAccesesToken() },
   });
 //  대댓글 삭제하기
