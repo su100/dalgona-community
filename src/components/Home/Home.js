@@ -164,7 +164,7 @@ class Home extends Component {
       <div className="home">
         <BasicSlider autoplay speed={5000} infinite background="#dadada">
           {hotVote.map((vote) => (
-            <VoteItem key={vote.id} id={vote.id} title={vote.title} voteitem={vote.voteitem} />
+            <VoteItem key={vote.title} id={vote.id} title={vote.title} voteitem={vote.voteitem} />
           ))}
         </BasicSlider>
         <section className="home__section--favboard">
