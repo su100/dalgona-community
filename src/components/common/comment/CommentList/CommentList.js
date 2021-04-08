@@ -301,6 +301,7 @@ class CommentList extends Component {
       replyRecommend,
       reReplyRecommend,
       deleteRereply,
+      reply_count,
     } = this.props;
     const {
       isUpdate,
@@ -336,7 +337,7 @@ class CommentList extends Component {
               )}
               <div className="comment-list__info-count-reply">
                 <span className="border">댓글</span>
-                <span>{vote ? voteReplyCount : postReplyCount}</span>
+                <span>{reply_count}</span>
               </div>
             </div>
             <div className="comment-list__sort">
@@ -390,7 +391,7 @@ class CommentList extends Component {
           <div className="comment-list__reply">
             <span>
               댓글
-              {vote ? voteReplyCount : postReplyCount}
+              {reply_count}
               {'개'}
             </span>
           </div>
