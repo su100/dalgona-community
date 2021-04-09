@@ -16,6 +16,19 @@ class WriteContainer extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { location, history, post_success, addPostId, update_success, updatePostId } = this.props;
+    //  게시판 바뀔 때
+    if (post_success && prevProps.post_success !== post_success) {
+      const tmp = location.pathname.split('/');
+      history.replace(`/${tmp[1]}/${tmp[2]}/${addPostId}`);
+    } else if (update_success && prevProps.update_success !== update_success) {
+      const tmp = location.pathname.split('/');
+      history.push(`/${tmp[1]}/${tmp[2]}/${updatePostId}`);
+    }
+    return null;
+  }
+
   getBoardInfo = async () => {
     const { location, WriteActions } = this.props;
     const tmp = location.pathname.split('/');
@@ -37,28 +50,20 @@ class WriteContainer extends Component {
   };
 
   addPost = async (title, body, boardUrl, anonymous) => {
-    const { WriteActions, history, post_success, location } = this.props;
+    const { WriteActions } = this.props;
     try {
       await WriteActions.addPost(title, body, boardUrl, anonymous);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    if (post_success) {
-      const tmp = location.pathname.split('/');
-      history.push(`/${tmp[1]}/${boardUrl}`);
-    }
   };
 
   updatePost = async (boardUrl, postId, title, body, anonymous) => {
-    const { WriteActions, history, update_success, location } = this.props;
+    const { WriteActions } = this.props;
     try {
       await WriteActions.updatePost(boardUrl, postId, title, body, anonymous);
     } catch (e) {
       console.log(`error log: ${e}`);
-    }
-    if (update_success) {
-      const tmp = location.pathname.split('/');
-      history.push(`/${tmp[1]}/${boardUrl}`);
     }
   };
 
@@ -89,6 +94,8 @@ export default connect(
     boardInfo: state.write.get('boardInfo'),
     editPost: state.write.get('editPost'),
     imageURL: state.write.get('imageURL'),
+    addPostId: state.write.get('addPostId'),
+    updatePostId: state.write.get('updatePostId'),
     loading: state.pender.pending['write/ADD_POST_IMAGE'],
     post_loading: state.pender.pending['write/ADD_POST'],
     img_success: state.pender.success['write/ADD_POST_IMAGE'],
