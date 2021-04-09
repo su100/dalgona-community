@@ -35,7 +35,7 @@ class Post extends Component {
     const { setPost, location, history, postInfo } = this.props;
     const tmp = location.pathname.split('/');
     setPost(postInfo);
-    history.push(`/${tmp[1]}/write/${tmp[2]}`);
+    history.push(tmp[3] ? `/${tmp[1]}/${tmp[2]}/write` : `/${tmp[1]}/write`);
   };
 
   deletePost = () => {
