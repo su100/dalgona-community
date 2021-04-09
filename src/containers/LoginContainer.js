@@ -15,17 +15,22 @@ class LoginContainer extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const { success, history } = this.props;
+    if (success) {
+      //  로그인 성공시 뒤로가기
+      history.goBack();
+    }
+  }
+
   signIn = async (username, password) => {
-    const { AuthActions, success, failure, isEmailNotCertified, history } = this.props;
+    const { AuthActions, failure, isEmailNotCertified, history } = this.props;
     try {
       await AuthActions.signIn(username, password);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    if (success) {
-      //  로그인 성공시 뒤로가기
-      history.goBack();
-    } else if (failure && isEmailNotCertified) {
+    if (failure && isEmailNotCertified) {
       //  이메일 인증 안 된 경우 재인증 페이지
       AuthActions.setUsername(username);
       history.push('/SignUp');

@@ -15,6 +15,14 @@ class Point extends Component {
     };
   }
 
+  componentDidMount() {
+    const { getMyPoint } = this.props;
+    const { location } = this.props;
+    const { type } = this.state;
+    const query = queryString.parse(location.search);
+    getMyPoint(type, query.page);
+  }
+
   getSnapshotBeforeUpdate(prevProps) {
     // 주소 바뀔 때
     const { location } = this.props;
@@ -22,16 +30,6 @@ class Point extends Component {
       return true;
     }
     return null;
-  }
-
-  componentDidUpdate(snapshot) {
-    const { getMyPoint } = this.props;
-    if (snapshot) {
-      const { location } = this.props;
-      const { type } = this.state;
-      const query = queryString.parse(location.search);
-      getMyPoint(type, query.page);
-    }
   }
 
   handlePage = (e) => {

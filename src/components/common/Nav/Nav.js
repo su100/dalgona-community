@@ -15,7 +15,7 @@ class Nav extends Component {
     this.state = {
       isOpen: false,
       openMenu: 'home',
-      isPC: true,
+      isPC: false,
       openSidebar: false,
       path: '',
       isSearch: false,
@@ -66,7 +66,7 @@ class Nav extends Component {
   };
 
   checkIsPc = () => {
-    if (window.innerWidth > 1024) {
+    if (window.innerWidth > 1022) {
       this.setState({ isPC: true });
     } else {
       this.setState({ isPC: false });

@@ -42,6 +42,8 @@ const initialState = Map({
   imageURL: '',
   boardInfo: {},
   editPost: {},
+  addPostId: '',
+  updatePostId: '',
 });
 
 /* reducer + pender */
@@ -70,8 +72,7 @@ export default handleActions(
       type: ADD_POST,
       onSuccess: (state, action) => {
         const data = action.payload;
-        console.log(data);
-        return state;
+        return state.set('addPostId', data.data.id);
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
@@ -83,8 +84,7 @@ export default handleActions(
       type: UPDATE_POST,
       onSuccess: (state, action) => {
         const data = action.payload;
-        console.log(data);
-        return state;
+        return state.set('updatePostId', data.data.id);
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
