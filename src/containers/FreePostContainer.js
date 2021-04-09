@@ -17,12 +17,15 @@ class FreePostContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { location, match } = this.props;
+    const { location, match, delete_success, history } = this.props;
     if (location !== prevProps.location) {
       const { postid } = match.params;
       this.getPostInfo(postid);
       this.getReply(postid, 1, 'recomment_count');
       this.getPost();
+    } else if (delete_success && prevProps.delete_success !== delete_success) {
+      const tmp = location.pathname.split('/');
+      history.replace(`/${tmp[1]}/${tmp[2]}`);
     }
   }
 
@@ -140,15 +143,11 @@ class FreePostContainer extends Component {
   };
 
   deletePost = async () => {
-    const { WriteActions, match, location, delete_success, history } = this.props;
+    const { WriteActions, match } = this.props;
     try {
       await WriteActions.deletePost(match.params.board_url, match.params.postid); //  boardUrl, postId
     } catch (e) {
       console.log(`error log: ${e}`);
-    }
-    if (delete_success) {
-      const tmp = location.pathname.split('/');
-      history.replace(`/${tmp[1]}/${tmp[2]}`);
     }
   };
 

@@ -292,8 +292,6 @@ class CommentList extends Component {
       vote,
       isRecommend,
       commentList,
-      voteReplyCount,
-      postReplyCount,
       recommend_count,
       recommend,
       recommendPost,
