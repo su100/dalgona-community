@@ -12,7 +12,7 @@ class SignUpInfo extends Component {
       passwordConfirm: '',
       nickname: '',
       email: '',
-      Img: null,
+      img: null,
       previewURL: '',
       usernameCheck: false,
       emailCheck: false,
@@ -30,8 +30,7 @@ class SignUpInfo extends Component {
   }
 
   setImage = (file) => {
-    const { Img } = this.state;
-    this.setState({ Img: file });
+    this.setState({ img: file });
   };
 
   setPreview = (url) => {
@@ -49,7 +48,7 @@ class SignUpInfo extends Component {
   };
 
   deleteImg = () => {
-    this.setState({ Img: null, previewURL: '' });
+    this.setState({ img: null, previewURL: '' });
   };
 
   onClickSelect = () => {

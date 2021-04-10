@@ -44,7 +44,13 @@ class SearchContainer extends Component {
     const { history, location, searchCount, searchList } = this.props;
     return (
       <>
-        <Search history={history} location={location} searchCount={searchCount} searchList={searchList} />
+        <Search
+          key={location.search}
+          history={history}
+          location={location}
+          searchCount={searchCount}
+          searchList={searchList}
+        />
       </>
     );
   }
