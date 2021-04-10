@@ -11,37 +11,17 @@ class Search extends Component {
     const { location } = this.props;
     const query = queryString.parse(location.search);
     this.state = {
-      page: 1,
       searchWord: query.searchWord,
       searchDivision: query.searchDivision,
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps) {
-    const { location } = this.props;
-    if (prevProps.location !== location) {
-      return true;
-    }
-    return null;
-  }
-
-  componentDidUpdate(snapshot) {
-    if (snapshot) {
-      // 주소바뀜=>검색일어남
-      const { location } = this.props;
-      const query = queryString.parse(location.search);
-      // 검색어, 검색범위 변경 적용
-      this.setSearch(query.searchWord, query.searchDivision);
-    }
-  }
-
-  setSearch = (searchWord, searchDivision) => {
-    this.setState({ searchWord, searchDivision });
-  };
-
   handlePage = (e) => {
-    const { page } = this.state;
-    this.setState({ page: e.target.value });
+    const { history, location } = this.props;
+    const query = queryString.parse(location.search);
+    const page = e.target.value;
+
+    history.push(`/search?page=${page}&searchWord=${query.searchWord}&searchDivision=${query.searchDivision}`);
   };
 
   handleChange = (e) => {
