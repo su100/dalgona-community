@@ -67,6 +67,7 @@
         border-bottom: 1px solid rgba(175, 175, 175, 0.5);
         .search__item--left {
           width: calc(100% - 77px - 16px - 4px - 42px);
+          height: 100%;
           img {
             margin-right: 16px;
             min-width: 77px;
@@ -74,12 +75,14 @@
             height: 77px;
           }
           .search__item--info {
-            height: 77px;
+            height: 100%;
+            padding: 20px 0;
+            box-sizing: border-box;
             @include flex(column, space-between, flex-start);
             .search__item--title {
               font-weight: 500;
               font-size: 17px;
-              @include ellipsis(2, 17px);
+              @include ellipsis(2, 20px);
             }
             span {
               font-size: 14px;
@@ -126,7 +129,7 @@
             height: 40px;
           }
           .search__item--info {
-            height: 40px;
+            padding: 10px 0;
             .search__item--title {
               font-weight: normal;
               @include ellipsis(1, 17px);
