@@ -33,7 +33,7 @@ class LoginContainer extends Component {
     if (failure && isEmailNotCertified) {
       //  이메일 인증 안 된 경우 재인증 페이지
       AuthActions.setUsername(username);
-      history.push('/SignUp');
+      history.push('/signup');
     }
   };
 
