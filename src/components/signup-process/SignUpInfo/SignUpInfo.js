@@ -113,7 +113,7 @@ class SignUpInfo extends Component {
       nicknameCheck,
       emailCheck,
     } = this.state;
-    const { userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
+    const { checkedUser, userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
     // 항목 검사
@@ -142,6 +142,8 @@ class SignUpInfo extends Component {
       alert('닉네임 중복 여부를 확인해주세요');
     } else if (!passwordRegex.test(password)) {
       alert('패스워드 형식을 확인해주세요');
+    } else if (checkedUser.size === 0) {
+      alert('본인인증이 완료되지 않았습니다. 새로고침하여 다시 진행해주세요.');
     } else {
       const formData = new FormData();
       formData.append('username', username);
@@ -149,6 +151,7 @@ class SignUpInfo extends Component {
       formData.append('password1', password);
       formData.append('password2', passwordConfirm);
       formData.append('nickname', nickname);
+      checkedUser.mapKeys((key, value) => formData.append(key, value)); // 본인인증 정보 추가
       if (img) formData.append('profile_image', img);
       signUp(formData);
     }
@@ -245,7 +248,6 @@ class SignUpInfo extends Component {
                   id={value}
                   type={this.isPassword(value) ? 'password' : undefined}
                   label={keyObject[value]}
-                  value={value}
                   onChange={this.handleEditor}
                   placeholder={placeHolder[value]}
                 />

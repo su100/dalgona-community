@@ -22,6 +22,9 @@ export const isUserLoggedIn = () => {
   return false;
 };
 
+// 본인인증
+export const checkUser = (formdata) => axios.post(`${API_BASE_URL}/accounts/certification`, formdata);
+
 //  회원가입
 export const signUp = (formdata) => axios.post(`${API_BASE_URL}/rest-auth/registration`, formdata);
 

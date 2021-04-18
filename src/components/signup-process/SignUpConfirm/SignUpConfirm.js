@@ -2,7 +2,7 @@ import React from 'react';
 import step2 from 'images/step2.png';
 import './SignUpConfirm.scss';
 
-const SignUpConfirm = () => (
+const SignUpConfirm = ({ handleCheck }) => (
   <div className="signupconfirm">
     <div className="signupconfirm__title">
       <span className="not-pc">02 </span>
@@ -20,11 +20,9 @@ const SignUpConfirm = () => (
         <span className="signupconfirm__content mobile">본인인증이 필요합니다.</span>
       </div>
     </div>
-    <div className="only-pc">
-      <button type="button" className="signupconfirm__button">
-        휴대폰으로 본인확인 하기
-      </button>
-    </div>
+    <button type="button" className="signupconfirm__button" onClick={handleCheck}>
+      휴대폰으로 본인확인 하기
+    </button>
   </div>
 );
 
