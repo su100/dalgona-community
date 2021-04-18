@@ -24,17 +24,19 @@ class LoginContainer extends Component {
   }
 
   signIn = async (username, password) => {
-    const { AuthActions, failure, isEmailNotCertified, history } = this.props;
+    const {
+      AuthActions,
+      // failure, isEmailNotCertified, history
+    } = this.props;
     try {
       await AuthActions.signIn(username, password);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    if (failure && isEmailNotCertified) {
-      //  이메일 인증 안 된 경우 재인증 페이지
-      AuthActions.setUsername(username);
-      history.push('/signup');
-    }
+    // if (failure && isEmailNotCertified) {
+    //   AuthActions.setUsername(username);
+    //   history.push('/signup');
+    // }
   };
 
   render() {
@@ -49,7 +51,7 @@ class LoginContainer extends Component {
 
 export default connect(
   (state) => ({
-    isEmailNotCertified: state.auth.get('isEmailNotCertified'),
+    // isEmailNotCertified: state.auth.get('isEmailNotCertified'),
     isAuthenticated: state.auth.get('isAuthenticated'),
     rememberMe: state.auth.get('rememberMe'),
     success: state.pender.success['auth/SIGN_IN'],

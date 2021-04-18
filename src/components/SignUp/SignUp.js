@@ -12,22 +12,56 @@ class SignUp extends Component {
     this.state = {
       currentPage: 'agree',
       agreeConfirm: false,
+      userConfirm: false,
     };
   }
 
   onClickNext = () => {
-    const { history } = this.props;
-    const { currentPage, agreeConfirm } = this.state;
+    const { history, user_success } = this.props;
+    const { currentPage, agreeConfirm, userConfirm } = this.state;
     if (currentPage === 'agree') {
       if (agreeConfirm) this.setState({ currentPage: 'confirm' });
       else alert('동의가 필요합니다');
     } else if (currentPage === 'confirm') {
-      this.setState({ currentPage: 'info' });
+      // if문으로 본인인증 완료된 상태인지 변수로 판단해
+      // 본인인증 완료상태면
+      if (userConfirm && user_success) {
+        this.setState({ currentPage: 'info' });
+      } else {
+        // 본인인증 미완료면 비활성화
+        alert('본인 인증이 미완료 상태입니다.');
+      }
     } else if (currentPage === 'info') {
       this.setState({ currentPage: 'finish' });
     } else {
       history.push('/');
     }
+  };
+
+  handleCheck = () => {
+    /* 가맹점 식별코드 */
+    const userCode = 'imp87136066';
+    const { IMP } = window;
+    const { checkUser } = this.props;
+    IMP.init(userCode);
+    // IMP.certification(param, callback) 호출
+    IMP.certification(
+      {
+        min_age: 14, // 만 14세이상
+      },
+      (rsp) => {
+        // callback
+        if (rsp.success) {
+          // 본인인증 성공여부
+          this.setState({ userConfirm: true });
+          // 백엔드로 이미 가입된 사람인지 확인
+          checkUser(rsp.imp_uid, this.onClickNext);
+        } else {
+          // 본인 인증 실패 시 로직,
+          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+        }
+      }
+    );
   };
 
   handleAgreeConfirm = () => {
@@ -38,6 +72,7 @@ class SignUp extends Component {
   render() {
     const { currentPage, agreeConfirm } = this.state;
     const {
+      checkedUser,
       userNameUnique,
       emailUnique,
       nicknameUnique,
@@ -45,6 +80,7 @@ class SignUp extends Component {
       signup_success,
       signUpSuccess,
       signUp,
+      checkUser,
       checkUsername,
       checkEmail,
       checkNickname,
@@ -56,9 +92,10 @@ class SignUp extends Component {
         {currentPage === 'agree' && (
           <SignUpAgree handleAgreeConfirm={this.handleAgreeConfirm} agreeConfirm={agreeConfirm} />
         )}
-        {currentPage === 'confirm' && <SignUpConfirm />}
+        {currentPage === 'confirm' && <SignUpConfirm handleCheck={this.handleCheck} checkUser={checkUser} />}
         {currentPage === 'info' && (
           <SignUpInfo
+            checkedUser={checkedUser}
             userNameUnique={userNameUnique}
             emailUnique={emailUnique}
             nicknameUnique={nicknameUnique}

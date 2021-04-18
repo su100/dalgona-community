@@ -6,6 +6,7 @@ import * as api from 'lib/api';
 import { Storage } from 'lib/storage';
 
 /* 액션 타입 */
+export const CHECK_USER = 'auth/CHECK_USER'; //  회원가입
 export const SIGN_UP = 'auth/SIGN_UP'; //  회원가입
 export const SIGN_IN = 'auth/SIGN_IN'; //  로그인
 export const SET_REMEMBER = 'auth/SET_REMEMBER'; //  자동로그인 여부
@@ -22,6 +23,7 @@ export const SET_UNIQUE = 'auth/SET_UNIQUE'; //  중복 체크 활성화
 export const SET_AUTH = 'auth/SET_AUTH'; //  로그인 여부 설정
 
 /* 액션 생성자 */
+export const checkUser = createAction(CHECK_USER, api.checkUser);
 export const signUp = createAction(SIGN_UP, api.signUp);
 export const signIn = createAction(SIGN_IN, api.signIn);
 export const setRemember = createAction(SET_REMEMBER);
@@ -40,7 +42,7 @@ export const setAuth = createAction(SET_AUTH);
 /* 초기 상태 정의 */
 const initialState = Map({
   isAuthenticated: false,
-  isEmailNotCertified: false,
+  // isEmailNotCertified: false,
   rememberMe: false,
   userNameUnique: false,
   emailUnique: false,
@@ -50,6 +52,7 @@ const initialState = Map({
   nickname: '',
   username: '',
   signUpSuccess: false,
+  checkedUser: Map({}),
 });
 
 /* reducer + pender */
@@ -81,6 +84,21 @@ export default handleActions(
       return state;
     },
     ...pender({
+      type: CHECK_USER,
+      onSuccess: (state, action) => {
+        const { data } = action.payload; // imp_uid, unique_key, gender, birthday
+        return state.set('checkedUser', Map(data));
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload.response;
+        console.log(data);
+        if (data.error) {
+          alert(data.error);
+        }
+        return state;
+      },
+    }),
+    ...pender({
       type: SIGN_IN,
       onSuccess: (state, action) => {
         const { data } = action.payload;
@@ -103,9 +121,10 @@ export default handleActions(
         console.log(data);
         if (data.non_field_errors?.includes('Unable to log in with provided credentials.'))
           alert('존재하지 않는 아이디이거나 잘못된 패스워드입니다.');
-        else if (data.non_field_errors?.includes('E-mail is not verified.')) {
-          return state.set('isEmailNotCertified', true);
-        } else {
+        // else if (data.non_field_errors?.includes('E-mail is not verified.')) {
+        //   return state.set('isEmailNotCertified', true);
+        // }
+        else {
           alert('로그인 에러');
         }
         return state.set('isAuthenticated', false);
