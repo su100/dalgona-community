@@ -2,7 +2,7 @@ import React from 'react';
 import star from 'images/star_filled.png';
 import './PointList.scss';
 
-const PointList = ({ date, myPoint }) => (
+const PointList = ({ date, myPoint, pointType }) => (
   <div className="point-list">
     <div className="point-list__date">
       <span>{date}</span>
@@ -19,14 +19,14 @@ const PointList = ({ date, myPoint }) => (
           </div>
           <div className="only-pc">
             <div className="point-list__activity-point">
-              +
+              {pointType === 'get' ? '+' : '-'}
               <img src={star} alt="star" />
               {point.points}
             </div>
           </div>
           <div className="not-pc">
             <div className="point-list__activity-point mobile">
-              <span className="pointcount">{`+${point.points}개`}</span>
+              <span className="pointcount">{`${pointType === 'get' ? '+' : '-'}${point.points}개`}</span>
               <img src={star} alt="star" />
             </div>
           </div>
