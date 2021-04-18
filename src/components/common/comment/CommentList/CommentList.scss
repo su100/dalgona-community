@@ -75,18 +75,19 @@
     border-bottom: 1px solid rgba(131, 131, 131, 0.5);
     box-sizing: border-box;
     .comment-list__item--left {
-      @include flex(row, flex-start, center);
+      @include flex(row, flex-start, flex-start);
       width: 100%;
+      .comment-list__item--user-default {
+        margin-right: 17px;
+        width: 40px;
+        height: 40px;
+      }
     }
     .comment-list__item--main {
       height: inherit;
       color: #838383;
-
-      .comment-list__item--img {
-        max-width: 146px;
-        max-height: 111px;
-      }
       .comment-list__item--detail {
+        margin-bottom: 16px;
         font-size: 11px;
         span {
           margin-right: 9px;
@@ -107,11 +108,19 @@
           height: 111px;
         }
       }
+      .comment-list__item--container {
+        @include flex(row, flex-start, center);
+      }
+      .comment-list__item--img {
+        margin-right: 25px;
+        max-width: 146px;
+        max-height: 111px;
+      }
       .comment-list__item--contents {
-        margin: 25px 0;
         font-size: 14px;
       }
       .comment-list__item--button {
+        margin-top: 17px;
         button {
           margin-right: 6px;
           width: 33px;
@@ -219,12 +228,8 @@
           //디자인 나오면 폭 수정
           width: 100%;
           color: #3b3b3b;
-          .comment-list__item--img {
-            margin-top: 8.56px;
-            max-width: 192px;
-            max-height: 145px;
-          }
           .comment-list__item--detail {
+            margin-bottom: 8.56px;
             font-size: 17px;
             span {
               margin-right: 7px;
@@ -241,13 +246,21 @@
               font-size: 17px;
             }
           }
+          .comment-list__item--container {
+            @include flex(column, center, flex-start);
+          }
+          .comment-list__item--img {
+            margin-right: 0;
+            max-width: 192px;
+            max-height: 145px;
+          }
           .comment-list__item--contents {
-            margin: 3.19px 0 14.24px;
             font-size: 19px;
             color: #000000;
           }
 
           .comment-list__item--button {
+            margin-top: 14px;
             button {
               margin-left: 6px;
               padding-left: 6px;
@@ -357,6 +370,7 @@
             max-height: 111px;
           }
           .comment-list__item--detail {
+            margin-bottom: 11px;
             font-size: 12px;
             span {
               margin-right: 4px;
@@ -371,10 +385,10 @@
             }
           }
           .comment-list__item--contents {
-            margin: 5px 0 7px;
             font-size: 16px;
           }
           .comment-list__item--button {
+            margin-top: 7px;
             button {
               margin-left: 3px;
               padding-left: 3px;

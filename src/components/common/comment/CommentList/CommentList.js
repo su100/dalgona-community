@@ -418,13 +418,11 @@ class CommentList extends Component {
           <div key={comment.id} className="comment-list__container">
             <div className="comment-list__item">
               <div className="comment-list__item--left">
-                <div className="not-pc">
-                  <img
-                    className="comment-list__item--user-default"
-                    src={comment.author.profile_image ?? userDefault}
-                    alt="userImg"
-                  />
-                </div>
+                <img
+                  className="comment-list__item--user-default"
+                  src={comment.author.profile_image ?? userDefault}
+                  alt="userImg"
+                />
                 <div className="comment-list__item--main">
                   <div className="comment-list__item--detail">
                     <span className="comment-list__item--username">
@@ -433,16 +431,16 @@ class CommentList extends Component {
                     <span>{comment.created_at}</span>
                     <span>{`추천 ${comment.recommend_count}`}</span>
                   </div>
-                  {(comment.votereply_image || comment.reply_image) && (
-                    <div>
+                  <div className="comment-list__item--container">
+                    {(comment.votereply_image || comment.reply_image) && (
                       <img
                         className="comment-list__item--img"
                         src={comment.votereply_image || comment.reply_image}
                         alt="comment"
                       />
-                    </div>
-                  )}
-                  <div className="comment-list__item--contents">{!vote ? comment.body : comment.content}</div>
+                    )}
+                    <div className="comment-list__item--contents">{!vote ? comment.body : comment.content}</div>
+                  </div>
                   <div className="comment-list__item--button">
                     <button
                       id={comment.id}
