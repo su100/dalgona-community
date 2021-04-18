@@ -8,7 +8,7 @@
   .comment-input__preview {
     @include flex(row, flex-start, center);
     margin-bottom: 20px;
-    width: inherit;
+    width: 1000px;
     height: 150px;
     .comment-input__preview--background {
       position: absolute;
@@ -95,6 +95,14 @@
       margin-top: 20px;
       background: white;
       border: 1px solid #a7a7a7;
+    }
+    .comment-input__preview {
+      width: 100%;
+      height: 150px;
+      .comment-input__preview--background {
+        width: calc(100% - 40px);
+        height: 150px;
+      }
     }
     .comment-input--bottom {
       @include flex(row, space-between, center);
