@@ -116,6 +116,8 @@ export default handleActions(
         console.log(data);
         if (data.body?.includes('Ensure this field has at least 4 characters.')) {
           alert('4글자 이상 입력해주세요.');
+        } else if (data.body?.includes('This field may not be blank.')) {
+          alert('댓글 내용을 입력해주세요.');
         }
         return state;
       },
@@ -129,6 +131,11 @@ export default handleActions(
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
+        if (data.body?.includes('Ensure this field has at least 4 characters.')) {
+          alert('4글자 이상 입력해주세요.');
+        } else if (data.body?.includes('This field may not be blank.')) {
+          alert('댓글 내용을 입력해주세요.');
+        }
         return state;
       },
     }),
@@ -153,6 +160,11 @@ export default handleActions(
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
+        if (data.body?.includes('Ensure this field has at least 4 characters.')) {
+          alert('4글자 이상 입력해주세요.');
+        } else if (data.body?.includes('This field may not be blank.')) {
+          alert('댓글 내용을 입력해주세요.');
+        }
         return state;
       },
     }),
@@ -165,6 +177,11 @@ export default handleActions(
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
+        if (data.body?.includes('Ensure this field has at least 4 characters.')) {
+          alert('4글자 이상 입력해주세요.');
+        } else if (data.body?.includes('This field may not be blank.')) {
+          alert('댓글 내용을 입력해주세요.');
+        }
         return state;
       },
     }),
