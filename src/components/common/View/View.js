@@ -27,7 +27,7 @@ class View extends Component {
         <div className="view__info">
           <div className="only-pc">
             <span>{postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname}</span>
-            <span>{moment(new Date(postInfo.created_at)).format('YYYY/MM/DD HH:MM')}</span>
+            <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
             <span>
               조회수
               {postInfo.views}
