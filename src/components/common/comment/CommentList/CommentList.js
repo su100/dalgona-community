@@ -421,7 +421,7 @@ class CommentList extends Component {
                 <div className="not-pc">
                   <img
                     className="comment-list__item--user-default"
-                    src={comment.userImg ?? userDefault}
+                    src={comment.author.profile_image ?? userDefault}
                     alt="userImg"
                   />
                 </div>
