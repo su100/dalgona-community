@@ -81,6 +81,11 @@
     .comment-list__item--main {
       height: inherit;
       color: #838383;
+
+      .comment-list__item--img {
+        max-width: 146px;
+        max-height: 111px;
+      }
       .comment-list__item--detail {
         font-size: 11px;
         span {
