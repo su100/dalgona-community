@@ -219,6 +219,11 @@
           //디자인 나오면 폭 수정
           width: 100%;
           color: #3b3b3b;
+          .comment-list__item--img {
+            margin-top: 8.56px;
+            max-width: 192px;
+            max-height: 145px;
+          }
           .comment-list__item--detail {
             font-size: 17px;
             span {
@@ -346,6 +351,11 @@
           height: 40px;
         }
         .comment-list__item--main {
+          .comment-list__item--img {
+            margin-top: 11px;
+            max-width: 152px;
+            max-height: 111px;
+          }
           .comment-list__item--detail {
             font-size: 12px;
             span {
