@@ -414,220 +414,226 @@ class CommentList extends Component {
             </div>
           </div>
         </div>
-        {commentList.map((comment) => (
-          <div key={comment.id} className="comment-list__container">
-            <div className="comment-list__item">
-              <div className="comment-list__item--left">
-                <img
-                  className="comment-list__item--user-default"
-                  src={comment.author.profile_image ?? userDefault}
-                  alt="userImg"
-                />
-                <div className="comment-list__item--main">
-                  <div className="comment-list__item--detail">
-                    <span className="comment-list__item--username">
-                      {!comment.anonymous ? comment.author.nickname : '익명'}
-                    </span>
-                    <span>{comment.created_at}</span>
-                    <span>{`추천 ${comment.recommend_count}`}</span>
+        {commentList.map((comment) => {
+          let nickname;
+          if (comment.anonymous) {
+            nickname = '익명';
+          } else if (comment.author.nickname) {
+            nickname = comment.author.nickname;
+          } else {
+            nickname = '삭제된 댓글';
+          }
+          return (
+            <div key={comment.id} className="comment-list__container">
+              <div className="comment-list__item">
+                <div className="comment-list__item--left">
+                  <img
+                    className="comment-list__item--user-default"
+                    src={comment.author?.profile_image ?? userDefault}
+                    alt="userImg"
+                  />
+                  <div className="comment-list__item--main">
+                    <div className="comment-list__item--detail">
+                      <span className="comment-list__item--username">{nickname}</span>
+                      <span>{comment.created_at}</span>
+                      <span>{`추천 ${comment.recommend_count}`}</span>
+                    </div>
+                    <div className="comment-list__item--container">
+                      {(comment.votereply_image || comment.reply_image) && (
+                        <img
+                          className="comment-list__item--img"
+                          src={comment.votereply_image || comment.reply_image}
+                          alt="comment"
+                        />
+                      )}
+                      <div className="comment-list__item--contents">{!vote ? comment.body : comment.content}</div>
+                    </div>
+                    <div className="comment-list__item--button">
+                      <button
+                        id={comment.id}
+                        onClick={Number(recommentId) === comment.id ? this.closeRecomment : this.openRecomment}
+                      >
+                        답글
+                      </button>
+                      {comment.is_author ? (
+                        <>
+                          <button id={comment.id} onClick={() => this.openUpdate(comment)}>
+                            수정
+                          </button>
+                          <button id={comment.id} onClick={deleteReply}>
+                            삭제
+                          </button>
+                        </>
+                      ) : (
+                        <button>신고</button>
+                      )}
+                      {isRecommend && (
+                        <span className="only-pc">
+                          <button
+                            className={comment.recommended ? 'comment-list__item--button recommend' : ''}
+                            id={comment.id}
+                            onClick={replyRecommend}
+                          >
+                            추천
+                          </button>
+                        </span>
+                      )}
+                    </div>
+                    {isUpdate && Number(updateId) === comment.id && (
+                      <div className="comment-list__item--openupdate">
+                        <CommentInput
+                          type="update-reply"
+                          setUpdate={() => this.setUpdate(comment)}
+                          handleAnonymous={this.handleAnonymous}
+                          isAnonymous={updateAnonymous}
+                          handleComment={this.handleComment}
+                          commentText={updateText}
+                          setImage={this.setImage}
+                          setPreview={this.setPreview}
+                          commentImg={updateImg}
+                          previewURL={updatePreview}
+                          deleteImg={this.deleteImg}
+                          updateReply={this.updateReply}
+                          updateRereply={this.updateRereply}
+                        />
+                      </div>
+                    )}
                   </div>
-                  <div className="comment-list__item--container">
-                    {(comment.votereply_image || comment.reply_image) && (
+                </div>
+                {isRecommend && (
+                  <div className="not-pc">
+                    <button id={comment.id} onClick={replyRecommend}>
                       <img
-                        className="comment-list__item--img"
-                        src={comment.votereply_image || comment.reply_image}
-                        alt="comment"
+                        className="comment-list__item__button--heart"
+                        src={comment.recommended ? heartFilled : heart}
+                        alt="heart"
                       />
-                    )}
-                    <div className="comment-list__item--contents">{!vote ? comment.body : comment.content}</div>
-                  </div>
-                  <div className="comment-list__item--button">
-                    <button
-                      id={comment.id}
-                      onClick={Number(recommentId) === comment.id ? this.closeRecomment : this.openRecomment}
-                    >
-                      답글
                     </button>
-                    {comment.is_author ? (
-                      <>
-                        <button id={comment.id} onClick={() => this.openUpdate(comment)}>
-                          수정
-                        </button>
-                        <button id={comment.id} onClick={deleteReply}>
-                          삭제
-                        </button>
-                      </>
-                    ) : (
-                      <button>신고</button>
-                    )}
+                  </div>
+                )}
+              </div>
+              {comment[rereplyList] &&
+                comment[rereplyList].map((reComment) => (
+                  <div key={reComment.id} className="comment-list__item comment-list__item--recomment">
+                    <div className="comment-list__item--left">
+                      <div className="comment-list__item--recomment-mark" />
+                      <img className="comment-list__item--user-default" src={userDefault} alt="userImg" />
+
+                      <div className="comment-list__item--main">
+                        <div className="comment-list__item--detail">
+                          <span className="comment-list__item--username">
+                            {reComment.anonymous ? '익명' : reComment.author.nickname}
+                          </span>
+                          <span>{reComment.created_at}</span>
+                          <span>{isRecommend && `추천 ${reComment.recommend_count}`}</span>
+                        </div>
+                        {(reComment.voterereply_image || reComment.rereply_image) && (
+                          <div>
+                            <img
+                              className="comment-list__item--img"
+                              src={reComment.voterereply_image || reComment.rereply_image}
+                              alt="comment"
+                            />
+                          </div>
+                        )}
+                        {reComment.image && (
+                          <div>
+                            <img
+                              src={
+                                !reComment.anonymous &&
+                                reComment.author.profile_image !== null &&
+                                reComment.author.profile_image
+                              }
+                              alt="comment"
+                            />
+                          </div>
+                        )}
+                        <div className="comment-list__item--contents">{vote ? reComment.content : reComment.body}</div>
+                        <div className="comment-list__item--button">
+                          {reComment.is_author ? (
+                            <>
+                              <button id={reComment.id} onClick={() => this.openUpdate(reComment, comment.id)}>
+                                수정
+                              </button>
+                              <button id={reComment.id} onClick={deleteRereply}>
+                                삭제
+                              </button>
+                            </>
+                          ) : (
+                            <button>신고</button>
+                          )}
+                          {isRecommend && (
+                            <span className="only-pc">
+                              <button
+                                className={reComment.recommended ? 'comment-list__item--button recommend' : ''}
+                                id={reComment.id}
+                                onClick={reReplyRecommend}
+                              >
+                                추천
+                              </button>
+                            </span>
+                          )}
+                        </div>
+                        {isUpdate && Number(updateId) === reComment.id && (
+                          <div className="comment-list__item--openupdate">
+                            <CommentInput
+                              type="update-rereply"
+                              setUpdate={() => this.setUpdate(reComment)}
+                              handleAnonymous={this.handleAnonymous}
+                              isAnonymous={updateAnonymous}
+                              handleComment={this.handleComment}
+                              commentText={updateText}
+                              setImage={this.setImage}
+                              setPreview={this.setPreview}
+                              commentImg={updateImg}
+                              previewURL={updatePreview}
+                              deleteImg={this.deleteImg}
+                              updateReply={this.updateReply}
+                              updateRereply={this.updateRereply}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
                     {isRecommend && (
-                      <span className="only-pc">
-                        <button
-                          className={comment.recommended ? 'comment-list__item--button recommend' : ''}
-                          id={comment.id}
-                          onClick={replyRecommend}
-                        >
-                          추천
+                      <div className="not-pc">
+                        <button id={reComment.id} onClick={reReplyRecommend}>
+                          <img
+                            className="comment-list__item__button--heart"
+                            src={reComment.recommended ? heartFilled : heart}
+                            alt="heart"
+                          />
                         </button>
-                      </span>
+                      </div>
                     )}
                   </div>
-                  {isUpdate && Number(updateId) === comment.id && (
-                    <div className="comment-list__item--openupdate">
+                ))}
+              {Number(recommentId) === comment.id && (
+                <div className="comment-list__item comment-list__item--recomment">
+                  <div className="comment-list__item--left">
+                    <div className="comment-list__item--recomment-mark" />
+                    <div className="comment-list__item--main">
                       <CommentInput
-                        type="update-reply"
-                        setUpdate={() => this.setUpdate(comment)}
+                        type="recomment"
                         handleAnonymous={this.handleAnonymous}
-                        isAnonymous={updateAnonymous}
+                        isAnonymous={reAnonymous}
                         handleComment={this.handleComment}
-                        commentText={updateText}
+                        commentText={reText}
                         setImage={this.setImage}
                         setPreview={this.setPreview}
-                        commentImg={updateImg}
-                        previewURL={updatePreview}
+                        commentImg={reImg}
+                        previewURL={rePreview}
                         deleteImg={this.deleteImg}
-                        updateReply={this.updateReply}
-                        updateRereply={this.updateRereply}
+                        addReply={this.addReply}
+                        addRereply={this.addRereply}
                       />
                     </div>
-                  )}
-                </div>
-              </div>
-              {isRecommend && (
-                <div className="not-pc">
-                  <button id={comment.id} onClick={replyRecommend}>
-                    <img
-                      className="comment-list__item__button--heart"
-                      src={comment.recommended ? heartFilled : heart}
-                      alt="heart"
-                    />
-                  </button>
+                  </div>
                 </div>
               )}
             </div>
-            {comment[rereplyList] &&
-              comment[rereplyList].map((reComment) => (
-                <div key={reComment.id} className="comment-list__item comment-list__item--recomment">
-                  <div className="comment-list__item--left">
-                    <div className="comment-list__item--recomment-mark" />
-                    <div className="not-pc">
-                      <img className="comment-list__item--user-default" src={userDefault} alt="userImg" />
-                    </div>
-
-                    <div className="comment-list__item--main">
-                      <div className="comment-list__item--detail">
-                        <span className="comment-list__item--username">
-                          {reComment.anonymous ? '익명' : reComment.author.nickname}
-                        </span>
-                        <span>{reComment.created_at}</span>
-                        <span>{isRecommend && `추천 ${reComment.recommend_count}`}</span>
-                      </div>
-                      {(reComment.voterereply_image || reComment.rereply_image) && (
-                        <div>
-                          <img
-                            className="comment-list__item--img"
-                            src={reComment.voterereply_image || reComment.rereply_image}
-                            alt="comment"
-                          />
-                        </div>
-                      )}
-                      {reComment.image && (
-                        <div>
-                          <img
-                            src={
-                              !reComment.anonymous &&
-                              reComment.author.profile_image !== null &&
-                              reComment.author.profile_image
-                            }
-                            alt="comment"
-                          />
-                        </div>
-                      )}
-                      <div className="comment-list__item--contents">{vote ? reComment.content : reComment.body}</div>
-                      <div className="comment-list__item--button">
-                        {reComment.is_author ? (
-                          <>
-                            <button id={reComment.id} onClick={() => this.openUpdate(reComment, comment.id)}>
-                              수정
-                            </button>
-                            <button id={reComment.id} onClick={deleteRereply}>
-                              삭제
-                            </button>
-                          </>
-                        ) : (
-                          <button>신고</button>
-                        )}
-                        {isRecommend && (
-                          <span className="only-pc">
-                            <button
-                              className={reComment.recommended ? 'comment-list__item--button recommend' : ''}
-                              id={reComment.id}
-                              onClick={reReplyRecommend}
-                            >
-                              추천
-                            </button>
-                          </span>
-                        )}
-                      </div>
-                      {isUpdate && Number(updateId) === reComment.id && (
-                        <div className="comment-list__item--openupdate">
-                          <CommentInput
-                            type="update-rereply"
-                            setUpdate={() => this.setUpdate(reComment)}
-                            handleAnonymous={this.handleAnonymous}
-                            isAnonymous={updateAnonymous}
-                            handleComment={this.handleComment}
-                            commentText={updateText}
-                            setImage={this.setImage}
-                            setPreview={this.setPreview}
-                            commentImg={updateImg}
-                            previewURL={updatePreview}
-                            deleteImg={this.deleteImg}
-                            updateReply={this.updateReply}
-                            updateRereply={this.updateRereply}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  {isRecommend && (
-                    <div className="not-pc">
-                      <button id={reComment.id} onClick={reReplyRecommend}>
-                        <img
-                          className="comment-list__item__button--heart"
-                          src={reComment.recommended ? heartFilled : heart}
-                          alt="heart"
-                        />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            {Number(recommentId) === comment.id && (
-              <div className="comment-list__item comment-list__item--recomment">
-                <div className="comment-list__item--left">
-                  <div className="comment-list__item--recomment-mark" />
-                  <div className="comment-list__item--main">
-                    <CommentInput
-                      type="recomment"
-                      handleAnonymous={this.handleAnonymous}
-                      isAnonymous={reAnonymous}
-                      handleComment={this.handleComment}
-                      commentText={reText}
-                      setImage={this.setImage}
-                      setPreview={this.setPreview}
-                      commentImg={reImg}
-                      previewURL={rePreview}
-                      deleteImg={this.deleteImg}
-                      addReply={this.addReply}
-                      addRereply={this.addRereply}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
         <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
         <CommentInput
           type="comment"
