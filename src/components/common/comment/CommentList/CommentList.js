@@ -371,6 +371,7 @@ class CommentList extends Component {
             </div>
           </div>
         )}
+        <div className="comment-list__border" />
         <CommentInput
           type="comment"
           handleAnonymous={this.handleAnonymous}
@@ -644,6 +645,7 @@ class CommentList extends Component {
           );
         })}
         <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
+        <div className="comment-list__border" />
         <CommentInput
           type="comment"
           handleAnonymous={this.handleAnonymous}

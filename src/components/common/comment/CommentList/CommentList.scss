@@ -161,6 +161,9 @@
   .comment-list {
     padding: 0 20px;
     box-sizing: border-box;
+    .comment-list__border {
+      border-top: 10px solid #f2f2f2;
+    }
     .comment-list__count {
       @include flex(column, center, center);
       padding-top: 0px;
@@ -308,6 +311,9 @@
 @media screen and (max-width: $mobile-max) {
   .comment-list {
     @include flex(column, center, center);
+    .comment-list__border {
+      border-top: 5px solid #f2f2f2;
+    }
     .comment-list__count {
       @include flex(column, center, center);
       padding-top: 0px;
