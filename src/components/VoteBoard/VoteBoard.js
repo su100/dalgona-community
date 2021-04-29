@@ -61,6 +61,7 @@ class VoteBoard extends Component {
           handleChange={this.handleChange}
           placeholder="투표 제목을 검색하세요"
           getSearch={this.getSearch}
+          boardType="vote"
         />
 
         <section>
