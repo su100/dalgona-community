@@ -21,7 +21,9 @@ const Header = ({
   <div className="header">
     <div className="header__row">
       <div className="header__title">
-        <h4>{title}</h4>
+        <Link to={boardUrl ? `/${boardType}/${boardUrl}` : `/${boardType}`}>
+          <h4>{title}</h4>
+        </Link>
         {hasBookmark && (
           <button onClick={updateBookmark}>
             <img src={isBookmarked ? StarFilledIcon : StarIcon} alt="bookmark" />

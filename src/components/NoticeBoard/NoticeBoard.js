@@ -69,6 +69,7 @@ class NoticeBoard extends Component {
             searchWord={searchWord}
             handleChange={this.handleChange}
             placeholder="글 제목을 검색하세요"
+            boardType="notice"
             getSearch={this.getSearch}
           />
         )}

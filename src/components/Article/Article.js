@@ -60,6 +60,7 @@ class Article extends Component {
           searchWord={searchWord}
           handleChange={this.handleChange}
           getSearch={this.getSearch}
+          boardType="article"
         />
         <div className="border_line" />
         <div className="article__keyword">
