@@ -17,8 +17,10 @@ const Editor = ({
 }) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정 설정
+  const fileInput = useRef(null); // 사진첨부
 
   const onAddImage = (url) => {
+    // quill에 이미지블럭 추가
     // Save current cursor state
     // Range {index: 48, length: 0} 꼴
     const range = quillInstance.current.getSelection(true);
@@ -26,25 +28,21 @@ const Editor = ({
     quillInstance.current.setSelection(range.index + 1);
   };
 
-  const onClickImageBtn = () => {
-    const input = document.createElement('input');
+  const selectImg = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
 
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-    input.click();
-
-    input.onchange = async () => {
-      const file = input.files[0];
-      const formData = new FormData();
-
-      formData.append('image', file);
-      addPostImage(formData, onAddImage);
-    };
+    formData.append('image', file);
+    addPostImage(formData, onAddImage);
   };
 
   const setFocus = () => {
     const quill = quillInstance.current;
     quill.focus();
+  };
+
+  const onClickSelect = () => {
+    fileInput.current.click();
   };
 
   useEffect(() => {
@@ -74,7 +72,7 @@ const Editor = ({
         });
 
         const toolbar = quill.getModule('toolbar');
-        toolbar.addHandler('image', onClickImageBtn);
+        toolbar.addHandler('image', selectImg);
       }
     }
   }, []);
@@ -107,9 +105,18 @@ const Editor = ({
                 <input type="checkbox" checked={isAnonymous} onChange={handleAnonymous} id="anonymous" />
                 익명
               </label>
-              <button className="btn-photo" onClick={onClickImageBtn}>
+              <button className="btn-photo" onClick={onClickSelect}>
                 <img src={photoIcon} alt="add-pic" />
                 <span>파일선택</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInput}
+                  onChange={selectImg}
+                  onClick={(e) => {
+                    e.target.value = null;
+                  }}
+                />
               </button>
             </div>
           </div>
