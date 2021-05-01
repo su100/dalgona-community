@@ -40,12 +40,13 @@ class WriteContainer extends Component {
   };
 
   addPostImage = async (formdata, func) => {
-    const { WriteActions, imageURL } = this.props;
+    const { WriteActions } = this.props;
     try {
       await WriteActions.addPostImage(formdata);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { imageURL } = this.props;
     func(imageURL);
   };
 
