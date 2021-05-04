@@ -3,8 +3,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as dalgonaActions from 'store/modules/dalgona';
 import Point from 'components/Point';
+import { getMyPoint } from 'lib/api';
+import { List } from 'immutable';
 
 class PointContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentType: 'get',
+      myGetPoint: null,
+      myUsePoint: null,
+      myLosePoint: null,
+      myPointCount: 0,
+      myListCount: 0,
+    };
+    this.type = {
+      get: 'myGetPoint',
+      use: 'myUsePoint',
+      lose: 'myLosePoint',
+    };
+  }
+
   componentDidMount() {
     const { isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
@@ -16,16 +35,33 @@ class PointContainer extends Component {
   }
 
   getMyPoint = async (type, page) => {
-    const { DalgonaActions } = this.props;
+    const myPoint = this.type[type];
+    const { state } = this;
+    this.setState({ currentType: type });
+    if (state[myPoint]) return;
     try {
-      await DalgonaActions.getMyPoint(type, page);
+      const { data } = await getMyPoint(type, page);
+      const { results, total, count } = data;
+      const myPointList = {};
+      for (let i = 0; i < results.length; i++) {
+        const date = results[i].created_at.substring(0, 10);
+        if (Object.keys(myPointList).includes(date)) {
+          myPointList[date] = myPointList[date].push(results[i]);
+        } else {
+          myPointList[date] = List([results[i]]);
+        }
+      }
+      this.setState({ myPointCount: total, [myPoint]: myPointList, myListCount: count });
     } catch (e) {
       console.log(`error log: ${e}`);
     }
   };
 
   render() {
-    const { history, location, myPointCount, myPoint, myListCount } = this.props;
+    const { state, props, type } = this;
+    const { history, location } = props;
+    const { currentType, myPointCount, myListCount } = state;
+    const myPoint = type[currentType];
     return (
       <>
         <Point
@@ -33,7 +69,7 @@ class PointContainer extends Component {
           location={location}
           myPointCount={myPointCount}
           myListCount={myListCount}
-          myPoint={myPoint}
+          myPoint={state[myPoint]}
           getMyPoint={this.getMyPoint}
         />
       </>
