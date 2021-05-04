@@ -124,9 +124,10 @@ class Point extends Component {
           </div>
         </div>
         <section>
-          {Object.keys(myPoint).map((date) => (
-            <PointList key={date} date={date} myPoint={myPoint[date]} pointType={type} />
-          ))}
+          {myPoint &&
+            Object.keys(myPoint).map((date) => (
+              <PointList key={date} date={date} myPoint={myPoint[date]} pointType={type} />
+            ))}
         </section>
         <Pagination countList={myListCount} currentPage={currentPage} handlePage={this.handlePage} />
       </div>
