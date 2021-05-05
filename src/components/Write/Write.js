@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Editor from 'components/common/Editor';
 import './Write.scss';
-import { setPost } from 'store/modules/write';
 
 class Write extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class Write extends Component {
   }
 
   componentWillUnmount() {
+    const { setPost } = this.props;
     setPost({}); // store의 editPost 초기화
   }
 
@@ -71,7 +71,7 @@ class Write extends Component {
     return (
       <div className="write">
         <div className="write__top">
-          <span>글쓰기</span>
+          <span>{isEdit ? '글수정' : '글쓰기'}</span>
         </div>
         {previewURL && (
           <div className="signupinfo__img-preview">

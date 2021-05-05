@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BOARD_DIVISION } from 'constants/index';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
 import './HotPostCard.scss';
@@ -63,7 +64,7 @@ const HotPostCard = ({ index, post }) => {
   return (
     <Link
       className="hot-post-card"
-      to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${post.board_url.board_url}/${post.id}`}
+      to={`/${BOARD_DIVISION[post.board_url.division]}/${post.board_url.board_url}/${post.id}`}
       key={post.id}
     >
       <div>{imageURL !== '' && <img src={imageURL} alt="post" />}</div>

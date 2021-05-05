@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/ko';
+import { BOARD_DIVISION } from 'constants/index';
 import ArticleList from 'components/common/ArticleList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import HotPostCard from 'components/common/HotPostCard';
@@ -46,6 +47,7 @@ class Home extends Component {
   };
 
   hotPostRender = (postList) => {
+    console.log(postList);
     const rows = [];
     // 3개씩 한줄에 넣기
     if (postList.length < 3) {
@@ -69,7 +71,7 @@ class Home extends Component {
         cols.push(
           <Link
             className="home__item--hotpost"
-            to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${post.board_url.board_url}/${post.id}`}
+            to={`/${BOARD_DIVISION[post.board_url.division]}/${post.board_url.board_url}/${post.id}`}
             key={post.id}
           >
             {imageURL === '' ? (
@@ -109,7 +111,7 @@ class Home extends Component {
           cols.push(
             <Link
               className="home__item--hotpost"
-              to={`/${post.board_url.division === 2 ? 'luna' : 'free'}/${post.board_url.board_url}/${post.id}`}
+              to={`/${BOARD_DIVISION[post.board_url.division]}/${post.board_url.board_url}/${post.id}`}
               key={post.id}
             >
               {imageURL === '' ? (
