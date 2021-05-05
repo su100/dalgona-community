@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BOARD_DIVISION } from '../../../constants';
+import { BOARD_DIVISION } from 'constants/index';
 import './ActivityList.scss';
 
 const ActivityList = ({ date, myPost }) => (
