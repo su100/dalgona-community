@@ -22,6 +22,19 @@ class FindIdPw extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  onClickCertification = () => {
+    const { sendEmailForPw, idpw } = this.props;
+    const { username, email } = this.state;
+
+    if (email === '') {
+      alert('이메일을 입력해주세요');
+    } else if (idpw === 'pw' && username === '') {
+      alert('아이디를 입력해주세요');
+    } else {
+      sendEmailForPw(username, email);
+    }
+  };
+
   goNext = () => {
     const { goNextStage } = this.props;
     const { type } = this.state;
@@ -53,7 +66,6 @@ class FindIdPw extends Component {
             />
             이메일로 찾기
           </label>
-
           <label htmlFor="phone" className={type === 'phone' ? 'find-id-pw__label active' : 'find-id-pw__label'}>
             <input
               type="radio"
@@ -67,18 +79,20 @@ class FindIdPw extends Component {
           </label>
         </div>
         <div className="find-id-pw__box">
+          {type === 'email' && idpw === 'pw' && (
+            <div className="find-id-pw__input">
+              <input
+                type="text"
+                placeholder="아이디를 입력해주세요."
+                id="username"
+                value={username}
+                onChange={this.handleInput}
+              />
+              <button className="username">인증</button>
+            </div>
+          )}
           {type === 'email' ? (
             <>
-              <div className="find-id-pw__input">
-                <input
-                  type="text"
-                  placeholder="아이디를 입력해주세요."
-                  id="username"
-                  value={username}
-                  onChange={this.handleInput}
-                />
-                <button className="username">인증</button>
-              </div>
               <div className="find-id-pw__input">
                 <input
                   type="text"
@@ -87,9 +101,9 @@ class FindIdPw extends Component {
                   value={email}
                   onChange={this.handleInput}
                 />
-                <button>인증</button>
+                <button onClick={this.onClickCertification}>인증</button>
               </div>
-              <div className="find-id-pw__number">
+              <div className="find-id-pw__input">
                 <input
                   type="text"
                   placeholder="인증번호를 입력해주세요."
