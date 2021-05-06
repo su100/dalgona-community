@@ -65,8 +65,8 @@ export const deleteUser = () =>
     headers: { Authorization: getAccesesToken() },
   });
 
-// 이메일로 비번 찾기
-export const findPwByEmail = (username, email) =>
+// 비번 찾기 이메일 전송
+export const sendEmailForPw = (username, email) =>
   axios.post(
     `${API_BASE_URL}/username-find`,
     { username, email },
@@ -75,7 +75,7 @@ export const findPwByEmail = (username, email) =>
     }
   );
 
-// 비번 찾기 시 이메일 전송
+// 리셋?
 export const resetPwByEmail = () =>
   axios.post(`${API_BASE_URL}/password-reset-confirm/MQ/alxvkp-53bad4db476cbec4cc1799872f4c111a/`, {
     headers: { Authorization: getAccesesToken() },
