@@ -7,11 +7,19 @@ class FindIdPw extends Component {
     super(props);
     this.state = {
       type: 'email',
+      email: '',
+      certification: '',
+      username: '',
     };
   }
 
   handleType = (e) => {
     this.setState({ type: e.target.value });
+  };
+
+  handleInput = (e) => {
+    console.log(e.target.value);
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   goNext = () => {
@@ -30,7 +38,7 @@ class FindIdPw extends Component {
 
   render() {
     const { idpw } = this.props;
-    const { type } = this.state;
+    const { type, email, certification, username } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -62,11 +70,33 @@ class FindIdPw extends Component {
           {type === 'email' ? (
             <>
               <div className="find-id-pw__input">
-                <input type="text" placeholder="이메일을 입력해주세요." />
-                <button>인증</button>
+                <input
+                  type="text"
+                  placeholder="아이디를 입력해주세요."
+                  id="username"
+                  value={username}
+                  onChange={this.handleInput}
+                />
+                <button className="username">인증</button>
               </div>
               <div className="find-id-pw__input">
-                <input type="text" placeholder="인증번호를 입력해주세요." />
+                <input
+                  type="text"
+                  placeholder="이메일을 입력해주세요."
+                  id="email"
+                  value={email}
+                  onChange={this.handleInput}
+                />
+                <button>인증</button>
+              </div>
+              <div className="find-id-pw__number">
+                <input
+                  type="text"
+                  placeholder="인증번호를 입력해주세요."
+                  id="certification"
+                  value={certification}
+                  onChange={this.handleInput}
+                />
                 <button>인증</button>
               </div>
             </>
