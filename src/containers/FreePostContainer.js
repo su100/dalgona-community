@@ -17,7 +17,7 @@ class FreePostContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { location, match, delete_success, history } = this.props;
+    const { location, match } = this.props;
     if (location !== prevProps.location) {
       const { postid } = match.params;
       this.getPostInfo(postid);

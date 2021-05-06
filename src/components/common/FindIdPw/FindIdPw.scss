@@ -19,18 +19,22 @@
   .find-id-pw__box {
     height: 150px;
     .find-id-pw__input {
-      input[type='text'] {
-        padding: 0;
-        width: 207px;
-        height: 32px;
-        border-width: 1px;
-      }
-      button {
-        width: 75px;
-        height: 32px;
-        background: #d5d5d5;
-        color: #fff;
-      }
+      margin-top: 1px;
+    }
+    input[type='text'] {
+      padding: 0;
+      width: 207px;
+      height: 32px;
+      border-width: 1px;
+    }
+    .username {
+      background: none;
+    }
+    button {
+      width: 75px;
+      height: 32px;
+      background: #d5d5d5;
+      color: #fff;
     }
     p {
       color: #838383;

@@ -88,6 +88,7 @@ class App extends Component {
           <Route exact path="/free/:board_url/:postid" component={FreePostPage} />
           <Route exact path="/notice/:noticeid" component={NoticePostPage} />
           <Route exact path="/event/:eventid" component={EventPostPage} />
+          <Route exact path="/password-reset-confirm/:uidb64/:token" component={FindPwPage} />
           <Route path="/" component={NotFoundPage} />
         </Switch>
       </div>

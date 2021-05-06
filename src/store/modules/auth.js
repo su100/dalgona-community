@@ -21,6 +21,9 @@ export const CONFIRM_ACCOUNT = 'auth/CONFIRM_ACCOUNT'; //  이메일 인증 확�
 export const DELETE_USER = 'auth/DELETE_USER'; //  회원탈퇴
 export const SET_UNIQUE = 'auth/SET_UNIQUE'; //  중복 체크 활성화
 export const SET_AUTH = 'auth/SET_AUTH'; //  로그인 여부 설정
+export const SEND_EMAIL_FOR_PW = 'auth/SEND_EMAIL_FOR_PW'; // 이메일로 비밀번호 찾기
+export const ACCOUNT_FIND = 'auth/ACCOUNT_FIND'; // 본인인증 아이디 비번 찾기
+export const RESET_PASSWORD_EMAIL = 'auth/RESET_PASSWORD_EMAIL'; // 이메일 패스워드 재설정
 
 /* 액션 생성자 */
 export const checkUser = createAction(CHECK_USER, api.checkUser);
@@ -38,6 +41,9 @@ export const confirmAccount = createAction(CONFIRM_ACCOUNT, api.confirmAccount);
 export const deleteUser = createAction(DELETE_USER, api.deleteUser);
 export const setUnique = createAction(SET_UNIQUE);
 export const setAuth = createAction(SET_AUTH);
+export const sendEmailForPw = createAction(SEND_EMAIL_FOR_PW, api.sendEmailForPw);
+export const accountFind = createAction(ACCOUNT_FIND, api.accountFind);
+export const resetPassWordEmail = createAction(RESET_PASSWORD_EMAIL, api.resetPassWordEmail);
 
 /* 초기 상태 정의 */
 const initialState = Map({
@@ -281,6 +287,49 @@ export default handleActions(
         const { data } = action.payload.response;
         console.log(data);
         alert('이메일 인증 에러');
+        return state;
+      },
+    }),
+    ...pender({
+      type: SEND_EMAIL_FOR_PW,
+      onSuccess: (state, action) => {
+        console.log(action.payload);
+        alert('이메일 전송 완료!! 예외 처리 아직 안함');
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload;
+        console.log(data);
+        alert('이메일 인증 에러');
+        return state;
+      },
+    }),
+    ...pender({
+      type: ACCOUNT_FIND,
+      onSuccess: (state, action) => {
+        const { data } = action.payload;
+        alert('비밀번호를 수정하셨습니다. 예외처리 아직 안함');
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload;
+        console.log(data);
+        alert('인증 에러');
+        return state;
+      },
+    }),
+    ...pender({
+      type: RESET_PASSWORD_EMAIL,
+      onSuccess: (state, action) => {
+        const { data } = action.payload;
+        console.log(data);
+        alert('비밀번호를 수정하셨습니다. 예외처리 아직 안함');
+        return state;
+      },
+      onFailure: (state, action) => {
+        const { data } = action.payload;
+        console.log(data);
+        alert('인증 에러');
         return state;
       },
     }),

@@ -7,6 +7,9 @@ class FindIdPw extends Component {
     super(props);
     this.state = {
       type: 'email',
+      email: '',
+      certification: '',
+      username: '',
     };
   }
 
@@ -14,23 +17,68 @@ class FindIdPw extends Component {
     this.setState({ type: e.target.value });
   };
 
+  handleInput = (e) => {
+    console.log(e.target.value);
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  onClickCertification = () => {
+    const { sendEmailForPw, idpw } = this.props;
+    const { username, email } = this.state;
+
+    if (email === '') {
+      alert('이메일을 입력해주세요');
+    } else if (idpw === 'pw' && username === '') {
+      alert('아이디를 입력해주세요');
+    } else {
+      sendEmailForPw(username, email);
+    }
+  };
+
+  handleCheck = () => {
+    /* 가맹점 식별코드 */
+    const userCode = 'imp87136066';
+    const { IMP } = window;
+    const { goNextStage, setImpUid } = this.props;
+
+    IMP.init(userCode);
+    // IMP.certification(param, callback) 호출
+    IMP.certification(
+      {
+        min_age: 14, // 만 14세이상
+      },
+      (rsp) => {
+        // callback
+        if (rsp.success) {
+          // 본인인증 성공여부
+          setImpUid(rsp.imp_uid);
+          goNextStage();
+          // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
+        } else {
+          // 본인 인증 실패 시 로직,
+          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+        }
+      }
+    );
+  };
+
   goNext = () => {
-    const { goNextStage } = this.props;
+    const { goNextStage, idpw } = this.props;
     const { type } = this.state;
     if (type === 'email') {
       console.log('인증 검사하기');
       console.log('인증된 경우 stage 다음으로');
       goNextStage();
-    } else {
+    } else if (idpw === 'pw') {
       console.log('본인인증 modal 띄우기');
       console.log('본인인증 완료시 stage 다음으로');
-      goNextStage();
+      this.handleCheck();
     }
   };
 
   render() {
     const { idpw } = this.props;
-    const { type } = this.state;
+    const { type, email, certification, username } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -45,7 +93,6 @@ class FindIdPw extends Component {
             />
             이메일로 찾기
           </label>
-
           <label htmlFor="phone" className={type === 'phone' ? 'find-id-pw__label active' : 'find-id-pw__label'}>
             <input
               type="radio"
@@ -59,14 +106,38 @@ class FindIdPw extends Component {
           </label>
         </div>
         <div className="find-id-pw__box">
+          {type === 'email' && idpw === 'pw' && (
+            <div className="find-id-pw__input">
+              <input
+                type="text"
+                placeholder="아이디를 입력해주세요."
+                id="username"
+                value={username}
+                onChange={this.handleInput}
+              />
+              <button className="username">인증</button>
+            </div>
+          )}
           {type === 'email' ? (
             <>
               <div className="find-id-pw__input">
-                <input type="text" placeholder="이메일을 입력해주세요." />
-                <button>인증</button>
+                <input
+                  type="text"
+                  placeholder="이메일을 입력해주세요."
+                  id="email"
+                  value={email}
+                  onChange={this.handleInput}
+                />
+                <button onClick={this.onClickCertification}>인증</button>
               </div>
               <div className="find-id-pw__input">
-                <input type="text" placeholder="인증번호를 입력해주세요." />
+                <input
+                  type="text"
+                  placeholder="인증번호를 입력해주세요."
+                  id="certification"
+                  value={certification}
+                  onChange={this.handleInput}
+                />
                 <button>인증</button>
               </div>
             </>
