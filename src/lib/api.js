@@ -65,17 +65,15 @@ export const deleteUser = () =>
     headers: { Authorization: getAccesesToken() },
   });
 
-// 아이디 비번 찾기 이메일 전송
-export const usernameFind = (username, email) => axios.post(`${API_BASE_URL}/username-find`, { username, email });
+// 비번 찾기 이메일 전송
+export const sendEmailForPw = (username, email) => axios.post(`${API_BASE_URL}/password-reset`, { username, email });
 
 // 아이디 비번 찾기 본인 인증
 export const accountFind = (formData) => axios.post(`${API_BASE_URL}/account-find`, formData);
 
 // 리셋? 비번찾기
-export const resetPwByEmail = () =>
-  axios.post(`${API_BASE_URL}/password-reset-confirm/MQ/alxvkp-53bad4db476cbec4cc1799872f4c111a/`, {
-    headers: { Authorization: getAccesesToken() },
-  });
+export const resetPassWordEmail = (uid, token, formData) =>
+  axios.post(`${API_BASE_URL}/password-reset-confirm/${uid}/${token}/`, formData);
 
 /* home */
 //  실시간 인기글 6개 가져오기
