@@ -65,6 +65,9 @@ export const deleteUser = () =>
     headers: { Authorization: getAccesesToken() },
   });
 
+// 아이디 찾기 이메일 전송
+export const sendEmailForId = (email) => axios.post(`${API_BASE_URL}/username-find`, { email });
+
 // 비번 찾기 이메일 전송
 export const sendEmailForPw = (username, email) => axios.post(`${API_BASE_URL}/password-reset`, { username, email });
 
