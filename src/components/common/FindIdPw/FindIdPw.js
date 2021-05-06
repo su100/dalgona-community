@@ -39,7 +39,7 @@ class FindIdPw extends Component {
     /* 가맹점 식별코드 */
     const userCode = 'imp87136066';
     const { IMP } = window;
-    const { idpw, goNextStage, setImpUid } = this.props;
+    const { goNextStage, setImpUid } = this.props;
 
     IMP.init(userCode);
     // IMP.certification(param, callback) 호출
