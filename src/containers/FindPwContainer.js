@@ -14,17 +14,33 @@ class FindPwContainer extends Component {
     }
   };
 
+  accountFind = async (imp_uid, new_password) => {
+    const { AuthActions } = this.props;
+    try {
+      await AuthActions.accountFind(imp_uid, new_password);
+    } catch (e) {
+      console.log(`error log: ${e}`);
+    }
+  };
+
   render() {
-    const { history } = this.props;
+    const { history, accountFindSuccess } = this.props;
     return (
       <>
-        <FindPw history={history} sendEmailForPw={this.sendEmailForPw} />
+        <FindPw
+          history={history}
+          sendEmailForPw={this.sendEmailForPw}
+          accountFind={this.accountFind}
+          accountFindSuccess={accountFindSuccess}
+        />
       </>
     );
   }
 }
 export default connect(
-  (state) => ({}),
+  (state) => ({
+    accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
+  }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),
   })

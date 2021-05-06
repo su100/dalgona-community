@@ -35,17 +35,43 @@ class FindIdPw extends Component {
     }
   };
 
+  handleCheck = () => {
+    /* 가맹점 식별코드 */
+    const userCode = 'imp87136066';
+    const { IMP } = window;
+    const { idpw, goNextStage } = this.props;
+
+    IMP.init(userCode);
+    // IMP.certification(param, callback) 호출
+    IMP.certification(
+      {
+        min_age: 14, // 만 14세이상
+      },
+      (rsp) => {
+        // callback
+        if (rsp.success) {
+          // 본인인증 성공여부
+          goNextStage();
+          // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
+        } else {
+          // 본인 인증 실패 시 로직,
+          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+        }
+      }
+    );
+  };
+
   goNext = () => {
-    const { goNextStage } = this.props;
+    const { goNextStage, idpw } = this.props;
     const { type } = this.state;
     if (type === 'email') {
       console.log('인증 검사하기');
       console.log('인증된 경우 stage 다음으로');
       goNextStage();
-    } else {
+    } else if (idpw === 'pw') {
       console.log('본인인증 modal 띄우기');
       console.log('본인인증 완료시 stage 다음으로');
-      goNextStage();
+      this.handleCheck();
     }
   };
 

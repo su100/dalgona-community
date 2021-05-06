@@ -35,7 +35,7 @@ class FindPw extends Component {
   };
 
   render() {
-    const { sendEmailForPw } = this.props;
+    const { sendEmailForPw, accountFindSuccess } = this.props;
     const { stage, pw1, pw2 } = this.state;
     return (
       <div className="find-pw">
@@ -47,7 +47,7 @@ class FindPw extends Component {
           </Link>
         </div>
         {stage === 1 ? (
-          <FindIdPw idpw="pw" goNextStage={this.goNextStage} sendEmailForPw={sendEmailForPw} />
+          <FindIdPw idpw="pw" goNextStage={this.goNextStage} sendEmailForPw={sendEmailForPw} accountFindSuccess />
         ) : (
           <div className="find-pw--next">
             <p>비밀번호 변경</p>
