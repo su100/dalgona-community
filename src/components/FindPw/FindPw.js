@@ -24,15 +24,16 @@ class FindPw extends Component {
 
   pwCheck = () => {
     // input 값 일치하는지 체크
-    const { history, accountFind, accountFindSuccess } = this.props;
+    const { history, accountFind, resetPassWordEmail, accountFindSuccess, resetPwSuccess, pathname } = this.props;
     const { pw1, pw2, imp_uid } = this.state;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+    const path = pathname.split('/');
     if (pw1 !== pw2) {
       alert('비밀번호가 일치하지 않습니다.');
     } else if (!passwordRegex.test(pw1)) {
       // 첫번째 input 조건 체크 영문자, 숫자, 특수문자 조합 8-20
       alert('비밀번호 형식을 다시 확인해주세요');
-    } else {
+    } else if (path[1] === 'find') {
       const formData = new FormData();
       formData.append('imp_uid', imp_uid);
       formData.append('new_password', pw2);
@@ -40,12 +41,24 @@ class FindPw extends Component {
       if (accountFindSuccess) {
         history.push('/login');
       }
+    } else {
+      const formData = new FormData();
+      formData.append('new_password1', pw1);
+      formData.append('new_password2', pw2);
+      formData.append('uid', path[2]);
+      formData.append('token', path[3]);
+      resetPassWordEmail(path[2], path[3], formData);
+      if (resetPwSuccess) {
+        history.push('/login');
+      }
     }
   };
 
   render() {
-    const { sendEmailForPw, accountFindSuccess } = this.props;
+    const { sendEmailForPw, pathname } = this.props;
     const { stage, pw1, pw2 } = this.state;
+    const path = pathname.split('/');
+
     return (
       <div className="find-pw">
         <h2>아이디 비밀번호 찾기</h2>
@@ -55,7 +68,7 @@ class FindPw extends Component {
             비밀번호 찾기
           </Link>
         </div>
-        {stage === 1 ? (
+        {stage === 1 && path[1] === 'find' ? (
           <FindIdPw
             idpw="pw"
             goNextStage={this.goNextStage}
