@@ -69,8 +69,7 @@ export const deleteUser = () =>
 export const usernameFind = (username, email) => axios.post(`${API_BASE_URL}/username-find`, { username, email });
 
 // 아이디 비번 찾기 본인 인증
-export const accountFind = (imp_uid, new_password) =>
-  axios.post(`${API_BASE_URL}/account-find`, { imp_uid, new_password });
+export const accountFind = (formData) => axios.post(`${API_BASE_URL}/account-find`, formData);
 
 // 리셋? 비번찾기
 export const resetPwByEmail = () =>

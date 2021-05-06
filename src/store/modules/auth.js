@@ -305,8 +305,7 @@ export default handleActions(
     ...pender({
       type: ACCOUNT_FIND,
       onSuccess: (state, action) => {
-        console.log(action.payload);
-        alert('비밀번호를 수정하셨습니다.');
+        alert('비밀번호를 수정하셨습니다. 예외처리 아직 안함');
         return state;
       },
       onFailure: (state, action) => {

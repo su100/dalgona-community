@@ -14,10 +14,10 @@ class FindPwContainer extends Component {
     }
   };
 
-  accountFind = async (imp_uid, new_password) => {
+  accountFind = async (formData) => {
     const { AuthActions } = this.props;
     try {
-      await AuthActions.accountFind(imp_uid, new_password);
+      await AuthActions.accountFind(formData);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
