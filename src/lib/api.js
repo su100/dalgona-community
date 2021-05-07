@@ -65,6 +65,9 @@ export const deleteUser = () =>
     headers: { Authorization: getAccesesToken() },
   });
 
+// 아이디 찾기 이메일 전송
+export const sendEmailForId = (email) => axios.post(`${API_BASE_URL}/username-find`, { email });
+
 // 비번 찾기 이메일 전송
 export const sendEmailForPw = (username, email) => axios.post(`${API_BASE_URL}/password-reset`, { username, email });
 
@@ -361,3 +364,9 @@ export const recommendPost = (boardUrl) =>
 export const getLunaBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/2`);
 export const getFreeBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/1`);
 export const getDalgonaBoard = () => axios.get(`${API_BASE_URL}/boardlist/division/0`);
+
+// 이메일 validator
+export const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
