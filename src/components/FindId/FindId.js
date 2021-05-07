@@ -9,6 +9,13 @@ class FindId extends Component {
     this.state = { stage: 1 };
   }
 
+  componentDidUpdate(prevProps) {
+    const { findIdRequest } = this.props;
+    if (prevProps.findIdRequest !== findIdRequest) {
+      this.goNextStage();
+    }
+  }
+
   goNextStage = () => {
     this.setState({ stage: 2 });
   };
@@ -19,11 +26,11 @@ class FindId extends Component {
   };
 
   render() {
+    const { sendEmailForId, accountFind, checkEmail, accountFindSuccess } = this.props;
     const { stage } = this.state;
     return (
       <div className="find-id">
         <h2>아이디 비밀번호 찾기</h2>
-
         <div className="find-id-pw__tab">
           <Link to="/find/id" className="active">
             아이디 찾기
@@ -31,7 +38,13 @@ class FindId extends Component {
           <Link to="/find/pw">비밀번호 찾기</Link>
         </div>
         {stage === 1 ? (
-          <FindIdPw idpw="id" goNextStage={this.goNextStage} />
+          <FindIdPw
+            idpw="id"
+            goNextStage={this.goNextStage}
+            sendEmailForId={sendEmailForId}
+            accountFind={accountFind}
+            checkEmail={checkEmail}
+          />
         ) : (
           <div className="find-id--next">
             <p>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { validateEmail } from 'lib/api';
 
 import './FindIdPw.scss';
 
@@ -23,11 +24,13 @@ class FindIdPw extends Component {
   };
 
   onClickCertification = () => {
-    const { sendEmailForPw, idpw } = this.props;
+    const { sendEmailForId, sendEmailForPw, idpw } = this.props;
     const { username, email } = this.state;
 
-    if (email === '') {
-      alert('이메일을 입력해주세요');
+    if (!validateEmail(email)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+    } else if (idpw === 'id') {
+      sendEmailForId(email);
     } else if (idpw === 'pw' && username === '') {
       alert('아이디를 입력해주세요');
     } else {
@@ -65,6 +68,8 @@ class FindIdPw extends Component {
   goNext = () => {
     const { goNextStage, idpw } = this.props;
     const { type } = this.state;
+    console.log(this.props);
+    console.log(this.state);
     if (type === 'email') {
       console.log('인증 검사하기');
       console.log('인증된 경우 stage 다음으로');
@@ -130,16 +135,18 @@ class FindIdPw extends Component {
                 />
                 <button onClick={this.onClickCertification}>인증</button>
               </div>
-              <div className="find-id-pw__input">
-                <input
-                  type="text"
-                  placeholder="인증번호를 입력해주세요."
-                  id="certification"
-                  value={certification}
-                  onChange={this.handleInput}
-                />
-                <button>인증</button>
-              </div>
+              {idpw === 'pw' && (
+                <div className="find-id-pw__input">
+                  <input
+                    type="text"
+                    placeholder="인증번호를 입력해주세요."
+                    id="certification"
+                    value={certification}
+                    onChange={this.handleInput}
+                  />
+                  <button>인증</button>
+                </div>
+              )}
             </>
           ) : (
             <p>
