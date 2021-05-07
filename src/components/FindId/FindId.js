@@ -16,6 +16,13 @@ class FindId extends Component {
     }
   }
 
+  findIdByImpUid = (imp_uid) => {
+    const { accountFind } = this.props;
+    const formData = new FormData();
+    formData.append('imp_uid', imp_uid);
+    accountFind(formData);
+  };
+
   goNextStage = () => {
     this.setState({ stage: 2 });
   };
@@ -26,7 +33,7 @@ class FindId extends Component {
   };
 
   render() {
-    const { sendEmailForId, accountFind, checkEmail, accountFindSuccess } = this.props;
+    const { sendEmailForId, checkEmail } = this.props;
     const { stage } = this.state;
     return (
       <div className="find-id">
@@ -42,7 +49,7 @@ class FindId extends Component {
             idpw="id"
             goNextStage={this.goNextStage}
             sendEmailForId={sendEmailForId}
-            accountFind={accountFind}
+            findIdByImpUid={this.findIdByImpUid}
             checkEmail={checkEmail}
           />
         ) : (

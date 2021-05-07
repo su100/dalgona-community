@@ -42,7 +42,7 @@ class FindIdPw extends Component {
     /* 가맹점 식별코드 */
     const userCode = 'imp87136066';
     const { IMP } = window;
-    const { goNextStage, setImpUid } = this.props;
+    const { goNextStage, setImpUid, findIdByImpUid, idpw } = this.props;
 
     IMP.init(userCode);
     // IMP.certification(param, callback) 호출
@@ -54,7 +54,8 @@ class FindIdPw extends Component {
         // callback
         if (rsp.success) {
           // 본인인증 성공여부
-          setImpUid(rsp.imp_uid);
+          if (idpw === 'id') findIdByImpUid(rsp.imp_uid);
+          else if (idpw === 'pw') setImpUid(rsp.imp_uid);
           goNextStage();
           // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
         } else {
@@ -74,7 +75,7 @@ class FindIdPw extends Component {
       console.log('인증 검사하기');
       console.log('인증된 경우 stage 다음으로');
       goNextStage();
-    } else if (idpw === 'pw') {
+    } else if (idpw === 'id' || idpw === 'pw') {
       console.log('본인인증 modal 띄우기');
       console.log('본인인증 완료시 stage 다음으로');
       this.handleCheck();
