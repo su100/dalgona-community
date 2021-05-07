@@ -61,6 +61,7 @@ const initialState = Map({
   username: '',
   signUpSuccess: false,
   checkedUser: Map({}),
+  findIdRequest: false,
 });
 
 /* reducer + pender */
@@ -295,15 +296,17 @@ export default handleActions(
     ...pender({
       type: SEND_EMAIL_FOR_ID,
       onSuccess: (state, action) => {
-        console.log(action.payload);
-        alert('이메일 전송 완료!! 예외 처리 아직 안함');
-        return state;
+        const {
+          data: { result },
+        } = action.payload;
+        alert(result);
+        return state.set('findIdRequest', true);
       },
       onFailure: (state, action) => {
         const { data } = action.payload;
         console.log(data);
         alert('이메일 인증 에러');
-        return state;
+        return state.set('findIdRequest', false);
       },
     }),
     ...pender({
