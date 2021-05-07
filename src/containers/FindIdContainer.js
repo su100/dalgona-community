@@ -34,7 +34,6 @@ class FindIdContainer extends Component {
 
   render() {
     const { history, accountFindSuccess, findIdRequest } = this.props;
-    console.log(this.props);
     return (
       <>
         <FindId
