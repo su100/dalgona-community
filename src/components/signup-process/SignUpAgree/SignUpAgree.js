@@ -45,9 +45,7 @@ const SignUpAgree = ({ handleAgreeConfirm }) => {
         <span className="not-pc">01 </span>
         <span>약관동의</span>
       </div>
-      <div className="not-pc">
-        <img src={step1} alt=" " />
-      </div>
+      <img className="signup-step" src={step1} alt=" " />
       <div className="signupagree__button">
         <button type="button" className={agree ? 'click' : 'noclick'} onClick={onClickAgree}>
           모두 동의함(만 14세 이상)

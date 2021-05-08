@@ -180,9 +180,7 @@ class SignUpInfo extends Component {
           <span className="not-pc">03 </span>
           <span>회원정보입력</span>
         </div>
-        <div className="not-pc">
-          <img className="signupinfo__step" src={step3} alt="" />
-        </div>
+        <img className="signupinfo__step" src={step3} alt="" />
         <div className="signupinfo__img">
           <div className="signupinfo__title-form">대표사진</div>
           <input

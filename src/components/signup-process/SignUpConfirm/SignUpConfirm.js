@@ -9,9 +9,7 @@ const SignUpConfirm = ({ handleCheck }) => (
       <span className="not-pc">본인확인</span>
       <span className="only-pc">본인인증</span>
     </div>
-    <div className="not-pc">
-      <img src={step2} alt="" />
-    </div>
+    <img className="signup-step" src={step2} alt="" />
     <div className="not-pc">
       <div className="signupconfirm__content">
         <span>회원가입을 위하여</span>

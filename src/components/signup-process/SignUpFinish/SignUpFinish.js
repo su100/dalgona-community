@@ -11,6 +11,9 @@ const SignUpFinish = () => (
         <span className="only-pc">가입완료!</span>
       </div>
       <div className="signupfinish__img">
+        <img className="signup-step" src={step4} alt="" />
+      </div>
+      <div className="signupfinish__img">
         <img src={biglogo} alt="" />
       </div>
       <div className="signupfinish__description">
@@ -30,7 +33,7 @@ const SignUpFinish = () => (
         <span>가입완료</span>
       </div>
       <div className="signupfinish__img">
-        <img src={step4} alt="" />
+        <img className="signup-step" src={step4} alt="" />
       </div>
       <div className="signupfinish__content">
         <span>회원가입이 완료되었습니다.</span>
