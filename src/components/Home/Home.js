@@ -47,7 +47,6 @@ class Home extends Component {
   };
 
   hotPostRender = (postList) => {
-    console.log(postList);
     const rows = [];
     // 3개씩 한줄에 넣기
     if (postList.length < 3) {
