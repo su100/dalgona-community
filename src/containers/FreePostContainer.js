@@ -6,6 +6,7 @@ import * as authActions from 'store/modules/auth';
 import * as freeActions from 'store/modules/free';
 import * as writeActions from 'store/modules/write';
 import Post from 'components/Post';
+import { NotFoundPage } from 'pages';
 
 class FreePostContainer extends Component {
   componentDidMount() {
@@ -195,8 +196,15 @@ class FreePostContainer extends Component {
       postInfo,
       postReplyList,
       postReplyCount,
+      postInfoFailure,
     } = this.props;
     const isSuperuser = profile.get('is_superuser');
+    if (postInfoFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <Post
@@ -243,6 +251,7 @@ export default connect(
     delete_success: state.pender.success['write/DELETE_POST'],
     postCount: state.free.get('postCount'),
     postList: state.free.get('postList'),
+    postInfoFailure: state.pender.failure['free/POST_INFO'],
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

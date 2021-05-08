@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as lunaActions from 'store/modules/luna';
 import LunaBoard from 'components/LunaBoard';
+import { NotFoundPage } from 'pages';
 
 class LunaBoardContainer extends Component {
   componentDidMount() {
@@ -115,7 +116,15 @@ class LunaBoardContainer extends Component {
       postCount,
       postList,
       bookmarkList,
+      viewBoardFailure,
     } = this.props;
+
+    if (viewBoardFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <LunaBoard
@@ -142,6 +151,7 @@ export default connect(
     postCount: state.luna.get('postCount'),
     postList: state.luna.get('postList'),
     bookmarkList: state.luna.get('bookmarkList'),
+    viewBoardFailure: state.pender.failure['luna/VIEW_BOARD'],
   }),
   (dispatch) => ({
     LunaActions: bindActionCreators(lunaActions, dispatch),

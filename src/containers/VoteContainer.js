@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import * as issueActions from 'store/modules/issue';
 import Vote from 'components/Vote';
+import { NotFoundPage } from 'pages';
 
 class VoteContainer extends Component {
   componentDidMount() {
@@ -136,7 +137,14 @@ class VoteContainer extends Component {
       isVote,
       location,
       match,
+      voteInfoFailure,
     } = this.props;
+    if (voteInfoFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <Vote
@@ -180,6 +188,7 @@ export default connect(
     reply_list_success: state.pender.success['issue/GET_VOTE_REPLY'],
     reply_success: state.pender.success['issue/POST_VOTE_REPLY'],
     rereply_success: state.pender.success['issue/POST_VOTE_REREPLY'],
+    voteInfoFailure: state.pender.failure['issue/VOTE_INFO'],
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),
