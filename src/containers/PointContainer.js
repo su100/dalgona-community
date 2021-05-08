@@ -35,23 +35,24 @@ class PointContainer extends Component {
   }
 
   getMyPoint = async (type, page) => {
-    const myPoint = this.type[type];
-    const { state } = this;
+    const pointType = this.type[type];
     this.setState({ currentType: type });
-    if (state[myPoint]) return;
+
+    // if (state[pointType]) return;
     try {
       const { data } = await getMyPoint(type, page);
       const { results, total, count } = data;
       const myPointList = {};
-      for (let i = 0; i < results.length; i++) {
-        const date = results[i].created_at.substring(0, 10);
+      results.forEach((result) => {
+        const date = result.created_at.substring(0, 10);
         if (Object.keys(myPointList).includes(date)) {
-          myPointList[date] = myPointList[date].push(results[i]);
+          myPointList[date] = myPointList[date].push(result);
         } else {
-          myPointList[date] = List([results[i]]);
+          myPointList[date] = List([result]);
         }
-      }
-      this.setState({ myPointCount: total, [myPoint]: myPointList, myListCount: count });
+      });
+
+      this.setState({ myPointCount: total, [pointType]: myPointList, myListCount: count });
     } catch (e) {
       console.log(`error log: ${e}`);
     }
@@ -62,6 +63,7 @@ class PointContainer extends Component {
     const { history, location } = props;
     const { currentType, myPointCount, myListCount } = state;
     const myPoint = type[currentType];
+
     return (
       <>
         <Point
@@ -83,6 +85,7 @@ export default connect(
     myPoint: state.dalgona.get('myPoint'),
     myPointCount: state.dalgona.get('myPointCount'),
     myListCount: state.dalgona.get('myListCount'),
+    getPointSuccess: state.pender.success['dalgona/GET_MY_POINT'],
   }),
   (dispatch) => ({
     DalgonaActions: bindActionCreators(dalgonaActions, dispatch),

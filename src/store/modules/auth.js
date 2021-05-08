@@ -312,8 +312,8 @@ export default handleActions(
     ...pender({
       type: SEND_EMAIL_FOR_PW,
       onSuccess: (state, action) => {
-        console.log(action.payload);
-        alert('이메일 전송 완료!! 예외 처리 아직 안함');
+        const { data } = action.payload;
+        alert('이메일 전송 완료');
         return state;
       },
       onFailure: (state, action) => {
@@ -341,8 +341,7 @@ export default handleActions(
       type: RESET_PASSWORD_EMAIL,
       onSuccess: (state, action) => {
         const { data } = action.payload;
-        console.log(data);
-        alert('비밀번호를 수정하셨습니다. 예외처리 아직 안함');
+        alert('비밀번호를 수정하셨습니다');
         return state;
       },
       onFailure: (state, action) => {

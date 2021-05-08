@@ -33,9 +33,11 @@ class Point extends Component {
   }
 
   handlePage = (e) => {
-    const { history } = this.props;
+    const { history, getMyPoint } = this.props;
+    const { type } = this.state;
     const page = e.target.value;
     this.setState({ page });
+    getMyPoint(type, page);
     history.push(`/my/point?page=${page}`);
   };
 
@@ -129,7 +131,9 @@ class Point extends Component {
               <PointList key={date} date={date} myPoint={myPoint[date]} pointType={type} />
             ))}
         </section>
-        <Pagination countList={myListCount} currentPage={currentPage} handlePage={this.handlePage} />
+        {myListCount !== undefined && (
+          <Pagination countList={myListCount} currentPage={currentPage} handlePage={this.handlePage} />
+        )}
       </div>
     );
   }
