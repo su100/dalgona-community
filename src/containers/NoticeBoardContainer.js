@@ -9,7 +9,6 @@ import NoticeBoard from 'components/NoticeBoard';
 class NoticeBoardContainer extends Component {
   componentDidMount() {
     this.getPostList(); //  글 목록 가져오기
-    this.getProfile();
   }
 
   getSnapshotBeforeUpdate(prevProps) {
