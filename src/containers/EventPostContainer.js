@@ -9,7 +9,7 @@ import Post from 'components/Post';
 
 class EventPostContainer extends Component {
   componentDidMount() {
-    const match = this.props;
+    const { match } = this.props;
     const { eventid } = match.params;
     this.getPostInfo(eventid);
     this.getReply(eventid, 1);
