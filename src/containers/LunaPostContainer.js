@@ -6,6 +6,7 @@ import * as authActions from 'store/modules/auth';
 import * as lunaActions from 'store/modules/luna';
 import * as writeActions from 'store/modules/write';
 import Post from 'components/Post';
+import { NotFoundPage } from 'pages';
 
 class LunaPostContainer extends Component {
   componentDidMount() {
@@ -206,8 +207,15 @@ class LunaPostContainer extends Component {
       postCount,
       postList,
       profile,
+      postIndoFailure,
     } = this.props;
     const isSuperuser = profile.get('is_superuser');
+    if (postIndoFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <Post
@@ -256,6 +264,7 @@ export default connect(
     delete_success: state.pender.success['write/DELETE_POST'],
     postCount: state.luna.get('postCount'),
     postList: state.luna.get('postList'),
+    postIndoFailure: state.pender.failure['luna/POST_INFO'],
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

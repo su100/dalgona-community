@@ -6,6 +6,7 @@ import * as authActions from 'store/modules/auth';
 import * as dalgonaActions from 'store/modules/dalgona';
 import * as writeActions from 'store/modules/write';
 import Post from 'components/Post';
+import { NotFoundPage } from 'pages';
 
 class EventPostContainer extends Component {
   componentDidMount() {
@@ -54,7 +55,6 @@ class EventPostContainer extends Component {
   getPostInfo = async (postId) => {
     const { location, DalgonaActions } = this.props;
     const tmp = location.pathname.split('/');
-    console.log(tmp[1]);
     try {
       await DalgonaActions.getPostInfo(tmp[1], postId);
     } catch (e) {
@@ -202,7 +202,14 @@ class EventPostContainer extends Component {
       postInfo,
       postReplyList,
       postReplyCount,
+      postInfoFailure,
     } = this.props;
+    if (postInfoFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <Post
@@ -247,6 +254,7 @@ export default connect(
     delete_success: state.pender.success['write/DELETE_POST'],
     eventCount: state.dalgona.get('eventCount'),
     eventList: state.dalgona.get('eventList'),
+    postInfoFailure: state.pender.failure['dalgona/POST_INFO'],
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

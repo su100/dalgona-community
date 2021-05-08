@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as freeActions from 'store/modules/free';
 import FreeBoard from 'components/FreeBoard';
+import { NotFoundPage } from 'pages';
 
 class FreeBoardContainer extends Component {
   componentDidMount() {
@@ -115,7 +116,14 @@ class FreeBoardContainer extends Component {
       postCount,
       postList,
       bookmarkList,
+      viewBoardFailure,
     } = this.props;
+    if (viewBoardFailure)
+      return (
+        <>
+          <NotFoundPage />
+        </>
+      );
     return (
       <>
         <FreeBoard
@@ -142,6 +150,7 @@ export default connect(
     postCount: state.free.get('postCount'),
     postList: state.free.get('postList'),
     bookmarkList: state.free.get('bookmarkList'),
+    viewBoardFailure: state.pender.failure['free/VIEW_BOARD'],
   }),
   (dispatch) => ({
     FreeActions: bindActionCreators(freeActions, dispatch),
