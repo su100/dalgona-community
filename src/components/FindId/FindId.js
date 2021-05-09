@@ -10,8 +10,8 @@ class FindId extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { findIdRequest } = this.props;
-    if (prevProps.findIdRequest !== findIdRequest) {
+    const { findIdFromEmailSuccess } = this.props;
+    if (!prevProps.findIdFromEmailSuccess && findIdFromEmailSuccess) {
       this.goNextStage();
     }
   }
