@@ -33,7 +33,7 @@ class FindIdContainer extends Component {
   };
 
   render() {
-    const { history, accountFindSuccess, findIdRequest } = this.props;
+    const { history, accountFindSuccess, findIdFromEmailSuccess } = this.props;
     return (
       <>
         <FindId
@@ -42,7 +42,7 @@ class FindIdContainer extends Component {
           accountFind={this.accountFind}
           checkEmail={this.checkEmail}
           accountFindSuccess={accountFindSuccess}
-          findIdRequest={findIdRequest}
+          findIdFromEmailSuccess={findIdFromEmailSuccess}
         />
       </>
     );
@@ -52,7 +52,7 @@ class FindIdContainer extends Component {
 export default connect(
   (state) => ({
     accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
-    findIdRequest: state.pender.success['auth/SEND_EMAIL_FOR_ID'],
+    findIdFromEmailSuccess: state.pender.success['auth/SEND_EMAIL_FOR_ID'],
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

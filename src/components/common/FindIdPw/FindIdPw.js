@@ -23,7 +23,7 @@ class FindIdPw extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onClickCertification = () => {
+  onClickCertification = (e) => {
     const { sendEmailForId, sendEmailForPw, idpw } = this.props;
     const { username, email } = this.state;
 
@@ -31,6 +31,7 @@ class FindIdPw extends Component {
       alert('올바른 이메일 형식을 입력해주세요.');
     } else if (idpw === 'id') {
       sendEmailForId(email);
+      this.setState({ [e.target.id]: '' });
     } else if (idpw === 'pw' && username === '') {
       alert('아이디를 입력해주세요');
     } else {
@@ -134,7 +135,9 @@ class FindIdPw extends Component {
                   value={email}
                   onChange={this.handleInput}
                 />
-                <button onClick={this.onClickCertification}>인증</button>
+                <button id="email" onClick={this.onClickCertification}>
+                  인증
+                </button>
               </div>
               {idpw === 'pw' && (
                 <div className="find-id-pw__input">
@@ -160,9 +163,11 @@ class FindIdPw extends Component {
             </p>
           )}
         </div>
-        <button className="find-id-pw__button--submit" onClick={this.goNext}>
-          확인
-        </button>
+        {(idpw !== 'id' || type !== 'email') && (
+          <button className="find-id-pw__button--submit" onClick={this.goNext}>
+            확인
+          </button>
+        )}
       </div>
     );
   }

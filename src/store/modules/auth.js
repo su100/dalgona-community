@@ -61,7 +61,6 @@ const initialState = Map({
   username: '',
   signUpSuccess: false,
   checkedUser: Map({}),
-  findIdRequest: false,
 });
 
 /* reducer + pender */
@@ -300,13 +299,14 @@ export default handleActions(
           data: { result },
         } = action.payload;
         alert(result);
-        return state.set('findIdRequest', true);
+        return state;
       },
       onFailure: (state, action) => {
-        const { data } = action.payload;
-        console.log(data);
-        alert('이메일 인증 에러');
-        return state.set('findIdRequest', false);
+        const {
+          data: { result },
+        } = action.payload.response;
+        alert(result);
+        return state;
       },
     }),
     ...pender({
