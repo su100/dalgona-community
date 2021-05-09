@@ -163,9 +163,11 @@ class FindIdPw extends Component {
             </p>
           )}
         </div>
-        <button className="find-id-pw__button--submit" onClick={this.goNext}>
-          확인
-        </button>
+        {(idpw !== 'id' || type !== 'email') && (
+          <button className="find-id-pw__button--submit" onClick={this.goNext}>
+            확인
+          </button>
+        )}
       </div>
     );
   }
