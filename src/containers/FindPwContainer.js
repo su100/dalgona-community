@@ -15,20 +15,28 @@ class FindPwContainer extends Component {
   };
 
   accountFind = async (formData) => {
-    const { AuthActions } = this.props;
+    const { history, AuthActions } = this.props;
     try {
       await AuthActions.accountFind(formData);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { accountFindSuccess } = this.props;
+    if (accountFindSuccess) {
+      history.push('/login');
+    }
   };
 
   resetPassWordEmail = async (uid, token, formData) => {
-    const { AuthActions } = this.props;
+    const { history, AuthActions } = this.props;
     try {
       await AuthActions.resetPassWordEmail(uid, token, formData);
     } catch (e) {
       console.log(`error log: ${e}`);
+    }
+    const { resetPwSuccess } = this.props;
+    if (resetPwSuccess) {
+      history.push('/login');
     }
   };
 
@@ -52,7 +60,7 @@ class FindPwContainer extends Component {
 export default connect(
   (state) => ({
     accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
-    resetPwSuccess: state.pender.success['auth/RESET_PASSWORD_EMAIL'],
+    resetPwSuccess: state.auth.get('resetPwSuccess'),
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

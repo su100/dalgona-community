@@ -24,10 +24,11 @@ class FindPw extends Component {
 
   pwCheck = () => {
     // input 값 일치하는지 체크
-    const { history, accountFind, resetPassWordEmail, accountFindSuccess, resetPwSuccess, pathname } = this.props;
+    const { accountFind, resetPassWordEmail, pathname } = this.props;
     const { pw1, pw2, imp_uid } = this.state;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
     const path = pathname.split('/');
+
     if (pw1 !== pw2) {
       alert('비밀번호가 일치하지 않습니다.');
     } else if (!passwordRegex.test(pw1)) {
@@ -38,9 +39,6 @@ class FindPw extends Component {
       formData.append('imp_uid', imp_uid);
       formData.append('new_password', pw2);
       accountFind(formData);
-      if (accountFindSuccess) {
-        history.push('/login');
-      }
     } else {
       const formData = new FormData();
       formData.append('new_password1', pw1);
@@ -48,9 +46,6 @@ class FindPw extends Component {
       formData.append('uid', path[2]);
       formData.append('token', path[3]);
       resetPassWordEmail(path[2], path[3], formData);
-      if (resetPwSuccess) {
-        history.push('/login');
-      }
     }
   };
 
