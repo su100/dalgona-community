@@ -66,18 +66,8 @@ class NavContainer extends PureComponent {
   };
 
   render() {
-    const {
-      history,
-      location,
-      isAuthenticated,
-      isHome,
-      isLogin,
-      match,
-      profile,
-      lunaBoard,
-      freeBoard,
-      dalgonaBoard,
-    } = this.props;
+    const { history, location, isAuthenticated, isHome, isLogin, match, profile, lunaBoard, freeBoard, dalgonaBoard } =
+      this.props;
     return (
       <Nav
         history={history}
