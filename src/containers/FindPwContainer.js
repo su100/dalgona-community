@@ -23,7 +23,7 @@ class FindPwContainer extends Component {
     }
     const { accountFindSuccess } = this.props;
     if (accountFindSuccess) {
-      history.push('/login');
+      history.replace('/login');
     }
   };
 
@@ -36,7 +36,7 @@ class FindPwContainer extends Component {
     }
     const { resetPwSuccess } = this.props;
     if (resetPwSuccess) {
-      history.push('/login');
+      history.replace('/login');
     }
   };
 
