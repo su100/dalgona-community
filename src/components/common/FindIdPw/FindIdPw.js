@@ -9,7 +9,6 @@ class FindIdPw extends Component {
     this.state = {
       type: 'email',
       email: '',
-      certification: '',
       username: '',
     };
   }
@@ -19,7 +18,6 @@ class FindIdPw extends Component {
   };
 
   handleInput = (e) => {
-    console.log(e.target.value);
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -70,22 +68,16 @@ class FindIdPw extends Component {
   goNext = () => {
     const { goNextStage, idpw } = this.props;
     const { type } = this.state;
-    console.log(this.props);
-    console.log(this.state);
     if (type === 'email') {
-      console.log('인증 검사하기');
-      console.log('인증된 경우 stage 다음으로');
       goNextStage();
     } else if (idpw === 'id' || idpw === 'pw') {
-      console.log('본인인증 modal 띄우기');
-      console.log('본인인증 완료시 stage 다음으로');
       this.handleCheck();
     }
   };
 
   render() {
     const { idpw } = this.props;
-    const { type, email, certification, username } = this.state;
+    const { type, email, username } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -122,7 +114,6 @@ class FindIdPw extends Component {
                 value={username}
                 onChange={this.handleInput}
               />
-              <button className="username">인증</button>
             </div>
           )}
           {type === 'email' ? (
@@ -135,9 +126,6 @@ class FindIdPw extends Component {
                   value={email}
                   onChange={this.handleInput}
                 />
-                <button id="email" onClick={this.onClickCertification}>
-                  인증
-                </button>
               </div>
             </>
           ) : (
@@ -151,11 +139,12 @@ class FindIdPw extends Component {
             </p>
           )}
         </div>
-        {(idpw !== 'id' || type !== 'email') && (
-          <button className="find-id-pw__button--submit" onClick={this.goNext}>
-            확인
-          </button>
-        )}
+        <button
+          className="find-id-pw__button--submit"
+          onClick={type === 'email' ? this.onClickCertification : this.goNext}
+        >
+          확인
+        </button>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import FindIdContainer from 'containers/FindIdContainer';
 
 const FindIdPage = ({ history, location }) => (
   <div>
-    <PageTemplate header={<NavContainer history={history} location={location} isHome />}>
+    <PageTemplate header={<NavContainer history={history} location={location} isHome />} nofooter>
       <FindIdContainer history={history} />
     </PageTemplate>
   </div>
