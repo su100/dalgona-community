@@ -24,9 +24,9 @@ class NoticeBoard extends Component {
     // searchType:title, searchWord, page
     if (query.search) {
       // url에서 searchWord있는지 판별
-      history.push(`/notice?page=${page}&search=${query.search}`);
+      history.push(`/dalgona/notice?page=${page}&search=${query.search}`);
     } else {
-      history.push(`/notice?page=${page}`);
+      history.push(`/dalgona/notice?page=${page}`);
     }
   };
 
@@ -41,7 +41,7 @@ class NoticeBoard extends Component {
     if (searchWord.trim() === '') {
       alert('검색어를 입력해주세요.');
     } else {
-      history.push(`/notice?page=1&search=${searchWord}`);
+      history.push(`/dalgona/notice?page=1&search=${searchWord}`);
     }
   };
 
@@ -74,9 +74,9 @@ class NoticeBoard extends Component {
           />
         )}
         <div className="border_line" />
-        <PostList link="/notice" postList={postList} request={request} />
+        <PostList link="/dalgona/notice" postList={postList} request={request} />
         <section className="only-pc notice-board__container--btn">
-          {isSuperuser && <Link to="/notice/write">글쓰기</Link>}
+          {isSuperuser && <Link to="/dalgona/notice/write">글쓰기</Link>}
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
       </div>

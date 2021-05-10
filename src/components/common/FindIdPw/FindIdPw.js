@@ -9,7 +9,6 @@ class FindIdPw extends Component {
     this.state = {
       type: 'email',
       email: '',
-      certification: '',
       username: '',
     };
   }
@@ -81,7 +80,7 @@ class FindIdPw extends Component {
 
   render() {
     const { idpw } = this.props;
-    const { type, email, certification, username } = this.state;
+    const { type, email, username } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -118,7 +117,6 @@ class FindIdPw extends Component {
                 value={username}
                 onChange={this.handleInput}
               />
-              <button className="username">인증</button>
             </div>
           )}
           {type === 'email' ? (
@@ -131,22 +129,7 @@ class FindIdPw extends Component {
                   value={email}
                   onChange={this.handleInput}
                 />
-                <button id="email" onClick={this.onClickCertification}>
-                  인증
-                </button>
               </div>
-              {idpw === 'pw' && (
-                <div className="find-id-pw__input">
-                  <input
-                    type="text"
-                    placeholder="인증번호를 입력해주세요."
-                    id="certification"
-                    value={certification}
-                    onChange={this.handleInput}
-                  />
-                  <button>인증</button>
-                </div>
-              )}
             </>
           ) : (
             <p>
@@ -159,11 +142,12 @@ class FindIdPw extends Component {
             </p>
           )}
         </div>
-        {(idpw !== 'id' || type !== 'email') && (
-          <button className="find-id-pw__button--submit" onClick={this.goNext}>
-            확인
-          </button>
-        )}
+        <button
+          className="find-id-pw__button--submit"
+          onClick={type === 'email' ? this.onClickCertification : this.goNext}
+        >
+          확인
+        </button>
       </div>
     );
   }

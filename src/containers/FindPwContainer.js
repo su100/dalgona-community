@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ProgressCircle from 'components/common/ProgressCircle';
 import FindPw from 'components/FindPw';
 import * as authActions from 'store/modules/auth';
 
@@ -15,27 +16,36 @@ class FindPwContainer extends Component {
   };
 
   accountFind = async (formData) => {
-    const { AuthActions } = this.props;
+    const { history, AuthActions } = this.props;
     try {
       await AuthActions.accountFind(formData);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { accountFindSuccess } = this.props;
+    if (accountFindSuccess) {
+      history.push('/login');
+    }
   };
 
   resetPassWordEmail = async (uid, token, formData) => {
-    const { AuthActions } = this.props;
+    const { history, AuthActions } = this.props;
     try {
       await AuthActions.resetPassWordEmail(uid, token, formData);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { resetPwSuccess } = this.props;
+    if (resetPwSuccess) {
+      history.push('/login');
+    }
   };
 
   render() {
-    const { history, location, accountFindSuccess, resetPwSuccess } = this.props;
+    const { history, location, emailLoading, accountFindSuccess, resetPwSuccess } = this.props;
     return (
       <>
+        {emailLoading && <ProgressCircle />}
         <FindPw
           history={history}
           pathname={location.pathname}
@@ -51,8 +61,9 @@ class FindPwContainer extends Component {
 }
 export default connect(
   (state) => ({
+    emailLoading: state.pender.pending['auth/SEND_EMAIL_FOR_PW'],
     accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
-    resetPwSuccess: state.pender.success['auth/RESET_PASSWORD_EMAIL'],
+    resetPwSuccess: state.auth.get('resetPwSuccess'),
   }),
   (dispatch) => ({
     AuthActions: bindActionCreators(authActions, dispatch),

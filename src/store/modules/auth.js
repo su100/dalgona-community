@@ -61,6 +61,7 @@ const initialState = Map({
   username: '',
   signUpSuccess: false,
   checkedUser: Map({}),
+  resetPwSuccess: false,
 });
 
 /* reducer + pender */
@@ -312,8 +313,10 @@ export default handleActions(
     ...pender({
       type: SEND_EMAIL_FOR_PW,
       onSuccess: (state, action) => {
-        const { data } = action.payload;
-        alert('이메일 전송 완료');
+        const {
+          data: { result },
+        } = action.payload;
+        alert(result);
         return state;
       },
       onFailure: (state, action) => {
@@ -339,10 +342,9 @@ export default handleActions(
     }),
     ...pender({
       type: RESET_PASSWORD_EMAIL,
-      onSuccess: (state, action) => {
-        const { data } = action.payload;
+      onSuccess: (state) => {
         alert('비밀번호를 수정하셨습니다');
-        return state;
+        return state.set('resetPwSuccess', true);
       },
       onFailure: (state, action) => {
         const { data } = action.payload;

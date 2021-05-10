@@ -235,7 +235,7 @@ class Nav extends Component {
               {(isPC || openMenu === 'dalgona') && (
                 <div className="nav-hover__menu-col">
                   {dalgonaBoard.map((board) => (
-                    <Link key={board.board_url} to={{ pathname: `/${board.board_url}`, path: 'dalgona' }}>
+                    <Link key={board.board_url} to={{ pathname: `/dalgona/${board.board_url}`, path: 'dalgona' }}>
                       <span>{board.board_name}</span>
                     </Link>
                   ))}
