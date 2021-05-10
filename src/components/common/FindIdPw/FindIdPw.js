@@ -139,18 +139,6 @@ class FindIdPw extends Component {
                   인증
                 </button>
               </div>
-              {idpw === 'pw' && (
-                <div className="find-id-pw__input">
-                  <input
-                    type="text"
-                    placeholder="인증번호를 입력해주세요."
-                    id="certification"
-                    value={certification}
-                    onChange={this.handleInput}
-                  />
-                  <button>인증</button>
-                </div>
-              )}
             </>
           ) : (
             <p>
