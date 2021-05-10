@@ -1,0 +1,18 @@
+@import 'styles/base.scss';
+
+.progress-circle {
+  position: fixed;
+  left: 0;
+  top: 0;
+  @include flex(row, center, center);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  &__background {
+    @include flex(row, center, center);
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 8px;
+  }
+}

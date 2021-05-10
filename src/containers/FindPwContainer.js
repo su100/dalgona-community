@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ProgressCircle from 'components/common/ProgressCircle';
 import FindPw from 'components/FindPw';
 import * as authActions from 'store/modules/auth';
 
@@ -41,9 +42,10 @@ class FindPwContainer extends Component {
   };
 
   render() {
-    const { history, location, accountFindSuccess, resetPwSuccess } = this.props;
+    const { history, location, emailLoading, accountFindSuccess, resetPwSuccess } = this.props;
     return (
       <>
+        {emailLoading && <ProgressCircle />}
         <FindPw
           history={history}
           pathname={location.pathname}
@@ -59,6 +61,7 @@ class FindPwContainer extends Component {
 }
 export default connect(
   (state) => ({
+    emailLoading: state.pender.pending['auth/SEND_EMAIL_FOR_PW'],
     accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
     resetPwSuccess: state.auth.get('resetPwSuccess'),
   }),
