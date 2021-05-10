@@ -5,6 +5,11 @@ import FindId from 'components/FindId';
 import * as authActions from 'store/modules/auth';
 
 class FindIdContainer extends Component {
+  constructor() {
+    super();
+    this.state = { userId: null };
+  }
+
   sendEmailForId = async (email) => {
     const { AuthActions } = this.props;
     try {
@@ -17,7 +22,8 @@ class FindIdContainer extends Component {
   accountFind = async (formData) => {
     const { AuthActions } = this.props;
     try {
-      await AuthActions.accountFind(formData);
+      const { data } = await AuthActions.accountFind(formData);
+      this.setState({ userId: data.success });
     } catch (e) {
       console.log(`error log: ${e}`);
     }
@@ -34,6 +40,7 @@ class FindIdContainer extends Component {
 
   render() {
     const { history, accountFindSuccess, findIdFromEmailSuccess } = this.props;
+    const { userId } = this.state;
     return (
       <>
         <FindId
@@ -42,6 +49,7 @@ class FindIdContainer extends Component {
           accountFind={this.accountFind}
           checkEmail={this.checkEmail}
           accountFindSuccess={accountFindSuccess}
+          userId={userId}
           findIdFromEmailSuccess={findIdFromEmailSuccess}
         />
       </>

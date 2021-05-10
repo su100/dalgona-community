@@ -327,8 +327,8 @@ export default handleActions(
       type: ACCOUNT_FIND,
       onSuccess: (state, action) => {
         const { data } = action.payload;
-        alert(data.success);
-        return state;
+        console.log(data);
+        return state.set('userId', data.success);
       },
       onFailure: (state, action) => {
         const { data } = action.payload;
