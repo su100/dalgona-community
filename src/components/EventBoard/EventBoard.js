@@ -23,9 +23,9 @@ class EventBoard extends Component {
     // searchType:title, searchWord, page
     if (query.search) {
       // url에서 searchWord있는지 판별
-      history.push(`/event?page=${page}&search=${query.search}`);
+      history.push(`/dalgona/event?page=${page}&search=${query.search}`);
     } else {
-      history.push(`/event?page=${page}`);
+      history.push(`/dalgona/event?page=${page}`);
     }
   };
 
@@ -40,7 +40,7 @@ class EventBoard extends Component {
     if (searchWord.trim() === '') {
       alert('검색어를 입력해주세요.');
     } else {
-      history.push(`/event?page=1&search=${searchWord}`);
+      history.push(`/dalgona/event?page=1&search=${searchWord}`);
     }
   };
 
@@ -73,9 +73,9 @@ class EventBoard extends Component {
           />
         )}
         <div className="border_line" />
-        <PostList hasReply link="/event" postList={postList} request={request} />
+        <PostList hasReply link="/dalgona/event" postList={postList} request={request} />
         <section className="only-pc event-board__container--btn">
-          {isSuperuser && <Link to="/event/write">글쓰기</Link>}
+          {isSuperuser && <Link to="/dalgona/event/write">글쓰기</Link>}
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
       </div>
