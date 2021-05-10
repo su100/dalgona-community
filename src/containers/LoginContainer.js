@@ -24,19 +24,16 @@ class LoginContainer extends Component {
   }
 
   signIn = async (username, password) => {
-    const {
-      AuthActions,
-      // failure, isEmailNotCertified, history
-    } = this.props;
+    const { AuthActions, failure, isEmailNotCertified, history } = this.props;
     try {
       await AuthActions.signIn(username, password);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    // if (failure && isEmailNotCertified) {
-    //   AuthActions.setUsername(username);
-    //   history.push('/signup');
-    // }
+    if (failure && isEmailNotCertified) {
+      AuthActions.setUsername(username);
+      history.push('/signup');
+    }
   };
 
   render() {

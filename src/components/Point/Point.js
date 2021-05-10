@@ -23,7 +23,7 @@ class Point extends Component {
     getMyPoint(type, query.page);
   }
 
-  getSnapshotBeforeUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     // 주소 바뀔 때
     const { location } = this.props;
     if (prevProps.location !== location) {

@@ -5,7 +5,7 @@ import FindPwContainer from 'containers/FindPwContainer';
 
 const FindPwPage = ({ history, location }) => (
   <div>
-    <PageTemplate header={<NavContainer history={history} location={location} isHome />}>
+    <PageTemplate header={<NavContainer history={history} location={location} isHome />} nofooter>
       <FindPwContainer history={history} location={location} />
     </PageTemplate>
   </div>
