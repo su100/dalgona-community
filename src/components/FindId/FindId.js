@@ -10,17 +10,20 @@ class FindId extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { findIdFromEmailSuccess } = this.props;
-    if (!prevProps.findIdFromEmailSuccess && findIdFromEmailSuccess) {
+    const { findIdFromEmailSuccess, accountFindSuccess } = this.props;
+    if (
+      (!prevProps.findIdFromEmailSuccess && findIdFromEmailSuccess) ||
+      (!prevProps.accountFindSuccess && accountFindSuccess)
+    ) {
       this.goNextStage();
     }
   }
 
-  findIdByImpUid = (imp_uid) => {
+  findIdByImpUid = async (imp_uid) => {
     const { accountFind } = this.props;
     const formData = new FormData();
     formData.append('imp_uid', imp_uid);
-    accountFind(formData);
+    await accountFind(formData);
   };
 
   goNextStage = () => {
@@ -33,7 +36,7 @@ class FindId extends Component {
   };
 
   render() {
-    const { sendEmailForId, checkEmail } = this.props;
+    const { sendEmailForId, checkEmail, userId } = this.props;
     const { stage } = this.state;
     return (
       <div className="find-id">
@@ -54,12 +57,17 @@ class FindId extends Component {
           />
         ) : (
           <div className="find-id--next">
-            <p>
-              고객님의 정보와 일치하는 아이디입니다.
-              <br />
-              <span>로그인 또는 비밀번호 찾기 버튼을 눌러주세요.</span>
-            </p>
-            <h3>aa1234</h3>
+            {userId ? (
+              <p>
+                {`당신의 아이디는 ${userId} 입니다.`}
+                <br />
+              </p>
+            ) : (
+              <p>
+                입력하신 이메일에서 아이디를 확인해주세요.
+                <br />
+              </p>
+            )}
             <Link to="/login" className="find-id__button">
               로그인
             </Link>

@@ -53,9 +53,12 @@ class FindIdPw extends Component {
         // callback
         if (rsp.success) {
           // 본인인증 성공여부
-          if (idpw === 'id') findIdByImpUid(rsp.imp_uid);
-          else if (idpw === 'pw') setImpUid(rsp.imp_uid);
-          goNextStage();
+          if (idpw === 'id') {
+            findIdByImpUid(rsp.imp_uid);
+          } else if (idpw === 'pw') {
+            setImpUid(rsp.imp_uid);
+            goNextStage();
+          }
           // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
         } else {
           // 본인 인증 실패 시 로직,
