@@ -11,7 +11,6 @@ class FindId extends Component {
 
   componentDidUpdate(prevProps) {
     const { findIdFromEmailSuccess, accountFindSuccess, userId } = this.props;
-    console.log(userId);
     if (
       (!prevProps.findIdFromEmailSuccess && findIdFromEmailSuccess) ||
       (!prevProps.accountFindSuccess && accountFindSuccess)

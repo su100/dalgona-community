@@ -19,7 +19,6 @@ class FindIdPw extends Component {
   };
 
   handleInput = (e) => {
-    console.log(e.target.value);
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -55,9 +54,7 @@ class FindIdPw extends Component {
         // callback
         if (rsp.success) {
           // 본인인증 성공여부
-          console.log(idpw);
           if (idpw === 'id') {
-            console.log('실행되냐?');
             findIdByImpUid(rsp.imp_uid);
           } else if (idpw === 'pw') {
             setImpUid(rsp.imp_uid);
@@ -75,15 +72,9 @@ class FindIdPw extends Component {
   goNext = () => {
     const { goNextStage, idpw } = this.props;
     const { type } = this.state;
-    console.log(this.props);
-    console.log(this.state);
     if (type === 'email') {
-      console.log('인증 검사하기');
-      console.log('인증된 경우 stage 다음으로');
       goNextStage();
     } else if (idpw === 'id' || idpw === 'pw') {
-      console.log('본인인증 modal 띄우기');
-      console.log('본인인증 완료시 stage 다음으로');
       this.handleCheck();
     }
   };
