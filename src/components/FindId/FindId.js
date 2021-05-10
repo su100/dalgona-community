@@ -55,11 +55,9 @@ class FindId extends Component {
         ) : (
           <div className="find-id--next">
             <p>
-              고객님의 정보와 일치하는 아이디입니다.
+              입력하신 이메일에서 아이디를 확인해주세요.
               <br />
-              <span>로그인 또는 비밀번호 찾기 버튼을 눌러주세요.</span>
             </p>
-            <h3>aa1234</h3>
             <Link to="/login" className="find-id__button">
               로그인
             </Link>
