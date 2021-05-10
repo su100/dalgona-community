@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ProgressCircle from 'components/common/ProgressCircle';
 import FindId from 'components/FindId';
 import * as authActions from 'store/modules/auth';
 
@@ -33,9 +34,10 @@ class FindIdContainer extends Component {
   };
 
   render() {
-    const { history, accountFindSuccess, findIdFromEmailSuccess } = this.props;
+    const { history, emailLoading, accountFindSuccess, findIdFromEmailSuccess } = this.props;
     return (
       <>
+        {emailLoading && <ProgressCircle />}
         <FindId
           history={history}
           sendEmailForId={this.sendEmailForId}
@@ -51,6 +53,7 @@ class FindIdContainer extends Component {
 
 export default connect(
   (state) => ({
+    emailLoading: state.pender.pending['auth/SEND_EMAIL_FOR_ID'],
     accountFindSuccess: state.pender.success['auth/ACCOUNT_FIND'],
     findIdFromEmailSuccess: state.pender.success['auth/SEND_EMAIL_FOR_ID'],
   }),

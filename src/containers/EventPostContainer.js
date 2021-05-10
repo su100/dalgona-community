@@ -56,7 +56,7 @@ class EventPostContainer extends Component {
     const { location, DalgonaActions } = this.props;
     const tmp = location.pathname.split('/');
     try {
-      await DalgonaActions.getPostInfo(tmp[1], postId);
+      await DalgonaActions.getPostInfo(tmp[2], postId);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
@@ -177,15 +177,16 @@ class EventPostContainer extends Component {
   };
 
   deletePost = async () => {
-    const { WriteActions, match, location, history, delete_success } = this.props;
+    const { WriteActions, match, location, history } = this.props;
     try {
       await WriteActions.deletePost('event', match.params.eventid); //  boardUrl, postId
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { delete_success } = this.props;
     if (delete_success) {
       const tmp = location.pathname.split('/');
-      history.replace(`/${tmp[1]}`);
+      history.replace(`/${tmp[1]}/${tmp[2]}`);
     }
   };
 
