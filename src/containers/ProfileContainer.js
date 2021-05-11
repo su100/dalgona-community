@@ -43,12 +43,13 @@ class ProfileContainer extends Component {
   };
 
   deleteUser = async () => {
-    const { AuthActions, quitSuccess, history } = this.props;
+    const { AuthActions, history } = this.props;
     try {
       await AuthActions.deleteUser();
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { quitSuccess } = this.props;
     if (quitSuccess) {
       //  탈퇴 성공시
       AuthActions.signOut(); //  로그아웃
