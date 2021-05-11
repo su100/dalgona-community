@@ -102,8 +102,17 @@ class SignUpInfo extends Component {
   };
 
   signUp = () => {
-    const { img, username, email, password, passwordConfirm, nickname, usernameCheck, nicknameCheck, emailCheck } =
-      this.state;
+    const {
+      img,
+      username,
+      email,
+      password,
+      passwordConfirm,
+      nickname,
+      usernameCheck,
+      nicknameCheck,
+      emailCheck,
+    } = this.state;
     const { checkedUser, userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
