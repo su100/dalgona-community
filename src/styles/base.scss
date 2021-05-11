@@ -33,6 +33,10 @@ span.only-pc {
   display: none;
 }
 
+.br-m {
+  display: none;
+}
+
 //태블릿
 @media screen and (max-width: $tablet-max) {
   .only-pc {
@@ -61,5 +65,8 @@ span.only-pc {
 @media screen and (max-width: $mobile-max) {
   .border_line {
     height: 7px;
+  }
+  .br-m {
+    display: block;
   }
 }
