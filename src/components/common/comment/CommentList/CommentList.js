@@ -318,9 +318,10 @@ class CommentList extends Component {
       updateText,
       updateImg,
       updatePreview,
+      page,
     } = this.state;
     const query = queryString.parse(location.search);
-    const currentPage = query.page ? Number(query.page) : 1;
+    const currentPage = page ? Number(page) : 1;
     const rereplyList = vote ? 'voteboardrereply' : 'rereply';
     return (
       <div className="comment-list">
@@ -644,7 +645,7 @@ class CommentList extends Component {
             </div>
           );
         })}
-        <Pagination countList={commentList.length} handlePage={this.handlePage} currentPage={currentPage} />
+        <Pagination countList={reply_count} handlePage={this.handlePage} currentPage={currentPage} isReply />
         <div className="comment-list__border" />
         <CommentInput
           type="comment"

@@ -52,6 +52,7 @@ class Article extends Component {
     const { searchWord } = this.state;
     const query = queryString.parse(location.search);
     const currentPage = query.page ? Number(query.page) : 1;
+
     return (
       <div className="article">
         <Header

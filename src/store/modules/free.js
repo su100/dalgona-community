@@ -98,7 +98,7 @@ export default handleActions(
     ...pender({
       type: GET_POST_REPLY,
       onSuccess: (state, action) =>
-        state.set('postReplyList', action.payload.data.results).set('postReplyCount', action.payload.data.count),
+        state.set('postReplyList', action.payload.data.results).set('postReplyCount', action.payload.data.total_count),
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);

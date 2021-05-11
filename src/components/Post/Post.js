@@ -111,7 +111,7 @@ class Post extends Component {
           commentList={postReplyList}
           postReplyCount={postReplyCount}
           isAuthenticated={isAuthenticated}
-          reply_count={postInfo.reply_count}
+          reply_count={postReplyCount}
           reply_success={reply_success}
           rereply_success={rereply_success}
           recommend_count={postInfo.recommend_count}

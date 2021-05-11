@@ -28,7 +28,10 @@ class Nav extends Component {
     this.checkIsPc();
     this.setPath();
     window.addEventListener('resize', this.checkIsPc);
-    //   window.addEventListener('mouseout', this.closeMenu);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkIsPc);
   }
 
   handleOver = (e) => {

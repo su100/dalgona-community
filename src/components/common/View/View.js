@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import Editor from 'components/common/Editor';
 import './View.scss';
 
@@ -27,12 +26,12 @@ class View extends Component {
         <div className="view__info">
           <div className="only-pc">
             <span>{postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname}</span>
-            <span>{moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}</span>
+            <span>{postInfo.created_at}</span>
             <span>{`조회수 ${postInfo.views}`}</span>
           </div>
           <span className="not-pc">
             {!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명 '}
-            {` | 조회수${postInfo.views} | ${moment(postInfo.created_at).format('YYYY/MM/DD HH:MM')}`}
+            {` | 조회수${postInfo.views} | ${postInfo.created_at}`}
           </span>
           {(isSuperuser || postInfo.is_author) && (
             <div className="view__btn-area">
