@@ -23,6 +23,7 @@ const Pagination = ({ countList, currentPage, handlePage }) => {
       // 첫페이지 아닐 때
       tmp.push(
         <button
+          className="page-num"
           id={currentPage}
           key="prev"
           onClick={handlePage}
@@ -45,10 +46,11 @@ const Pagination = ({ countList, currentPage, handlePage }) => {
         </button>
       );
     }
-    if (currentPage > 5 && currentPage !== lastPage && currentPage < lastPage) {
+    if (currentPage !== lastPage && currentPage < lastPage) {
       // 마지막페이지 아닐 때
       tmp.push(
         <button
+          className="page-num"
           key="next"
           id={currentPage}
           onClick={handlePage}
