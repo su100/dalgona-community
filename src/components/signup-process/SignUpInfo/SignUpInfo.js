@@ -67,38 +67,31 @@ class SignUpInfo extends Component {
     return false;
   };
 
-  checkUnique = (name) => () => {
+  checkUnique = (e) => {
     const { checkUsername, checkEmail, checkNickname } = this.props;
     const { username, email, nickname } = this.state;
-
     // 정규표현식으로 조건검사
-    const idRegex = /^[a-z0-9!@#$%^&*]{5,20}$/;
-    const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    const nicknameRegex = /^[가-힣a-zA-Z0-9]{1,20}$/;
-    if (name === 'username') {
+
+    const type = e.target.id;
+
+    const idRegex = /^[a-z0-9]{5,20}/;
+    const nicknameRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣A-Za-z0-9]{1,20}$/;
+    const emailRegex = /[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+/;
+    if (type === 'username') {
       if (username === '') alert('아이디를 입력해주세요');
       else if (!idRegex.test(username)) alert('아이디 형식이 잘못되었습니다.');
-      else checkUsername(username);
-    } else if (name === 'email') {
+      else checkUsername(username, this.checkDuplicate); // 중복 확인 성공시 중복체크 여부 활성화
+    } else if (type === 'email') {
       if (email === '') alert('이메일을 입력해주세요');
       else if (!emailRegex.test(email)) alert('이메일 형식이 잘못되었습니다.');
-      else checkEmail(email);
+      else checkEmail(email, this.checkDuplicate); // 중복 확인 성공시 중복체크 여부 활성화
     } else if (nickname === '') alert('닉네임을 입력해주세요');
     else if (!nicknameRegex.test(nickname)) alert('닉네임 형식이 잘못되었습니다.');
-    else checkNickname(nickname);
+    else checkNickname(nickname, this.checkDuplicate); // 중복 확인 성공시 중복체크 여부 활성화
   };
 
-  onClickDuplicate = (e) => {
-    const { checkUsername, checkNickname, checkEmail } = this.props;
-    const { username, nickname, email } = this.state;
-    if (e.target.id === 'username' && username !== '') {
-      checkUsername(username);
-    } else if (e.target.id === 'nickname' && nickname !== '') {
-      checkNickname(nickname);
-    } else if (e.target.id === 'email' && email !== '') {
-      checkEmail(email);
-    }
-    this.setState({ [`${e.target.id}Check`]: true });
+  checkDuplicate = (type) => {
+    this.setState({ [`${type}Check`]: true });
   };
 
   signUp = () => {
@@ -114,7 +107,6 @@ class SignUpInfo extends Component {
       emailCheck,
     } = this.state;
     const { checkedUser, userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
-
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
     // 항목 검사
     if (username === '') {
@@ -172,7 +164,7 @@ class SignUpInfo extends Component {
       nickname: '한글/영문/숫자 1~20자',
       email: '이메일 주소 입력',
     };
-    const { previewURL, usernameCheck, emailCheck, nicknameCheck, type } = this.state;
+    const { previewURL, usernameCheck, emailCheck, nicknameCheck, password, passwordConfirm, type } = this.state;
     const { userNameUnique, emailUnique, nicknameUnique } = this.props;
     return (
       <div className="signupinfo">
@@ -239,7 +231,12 @@ class SignUpInfo extends Component {
         <div className="signupinfo__content">
           {Object.keys(keyObject).map((value) => (
             <div className="signupinfo__content-form" key={value.id}>
-              <div className="signupinfo__title-form">{keyObject[value]}</div>
+              <div className="signupinfo__title-form">
+                {keyObject[value]}
+                {value === 'passwordConfirm' && passwordConfirm && passwordConfirm !== password && (
+                  <span className="password-check">비밀번호가 일치하지 않습니다.</span>
+                )}
+              </div>
               <div className="signupinfo__content-form-input">
                 <input
                   className={this.isPassword(value) ? 'signupinfo__content-form-input password' : undefined}
@@ -260,7 +257,7 @@ class SignUpInfo extends Component {
                         : 'signupinfo__content-form-input noclick'
                     }
                     id={value}
-                    onClick={this.onClickDuplicate}
+                    onClick={this.checkUnique}
                   >
                     중복확인
                   </button>
