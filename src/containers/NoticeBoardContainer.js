@@ -7,8 +7,16 @@ import * as authActions from 'store/modules/auth';
 import NoticeBoard from 'components/NoticeBoard';
 
 class NoticeBoardContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isSuperuser: false,
+    };
+  }
+
   componentDidMount() {
     this.getPostList(); //  글 목록 가져오기
+    this.updateIsSuperuser();
   }
 
   getSnapshotBeforeUpdate(prevProps) {
@@ -21,9 +29,14 @@ class NoticeBoardContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    const { profile } = this.props;
     if (snapshot) {
       //  글 목록 가져오기
       this.getPost();
+    }
+    console.log(prevProps.profile, profile);
+    if (prevProps.profile !== profile) {
+      this.updateIsSuperuser();
     }
   }
 
@@ -51,6 +64,12 @@ class NoticeBoardContainer extends Component {
     this.getPostList(params);
   }
 
+  updateIsSuperuser = () => {
+    const { profile } = this.props;
+    const isSuperuser = profile.get('is_superuser');
+    this.setState({ isSuperuser });
+  };
+
   getProfile = async () => {
     const { AuthActions } = this.props;
     try {
@@ -61,8 +80,8 @@ class NoticeBoardContainer extends Component {
   };
 
   render() {
-    const { history, location, noticeCount, noticeList, profile } = this.props;
-    const isSuperuser = profile.get('is_superuser');
+    const { history, location, noticeCount, noticeList } = this.props;
+    const { isSuperuser } = this.state;
 
     return (
       <>
