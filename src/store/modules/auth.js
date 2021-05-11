@@ -117,13 +117,7 @@ export default handleActions(
         } else {
           Storage.session.set('__AUTH__', data.token);
         }
-        const profile = Map({
-          nickname: data.user.nickname,
-          introduction: data.user.introduction,
-          profile_image: data.user.profile_image,
-        });
-        //  받아온 회원정보 sessionStorage에 저장(사이드바에서 사용될것)
-        return state.set('isAuthenticated', true).set('profile', profile);
+        return state.set('isAuthenticated', true);
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
@@ -180,7 +174,10 @@ export default handleActions(
     }),
     ...pender({
       type: GET_PROFILE,
-      onSuccess: (state, action) => state.set('profile', Map(action.payload.data)),
+      onSuccess: (state, action) => {
+        console.log(action.payload);
+        return state.set('profile', Map(action.payload.data));
+      },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         if (data.detail?.includes('Invalid signature.')) {
