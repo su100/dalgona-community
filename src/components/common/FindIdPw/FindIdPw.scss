@@ -6,11 +6,10 @@
   text-align: center;
 
   .find-id-pw__tab--method {
+    @include flex(row, space-between, center);
+    width: 300px;
     margin-bottom: 20px;
     .find-id-pw__label {
-      &:nth-child(2) {
-        margin-right: 338px;
-      }
       &.active {
         font-weight: bold;
       }
@@ -56,14 +55,9 @@
   .find-id-pw {
     margin-top: 123.96px;
     .find-id-pw__tab--method {
+      width: 40vw;
       margin-bottom: 45px;
-      .find-id-pw__label {
-        &:nth-child(2) {
-          margin-right: 96px;
-        }
-      }
     }
-
     .find-id-pw__box {
       height: 150px;
       .find-id-pw__input {
@@ -98,12 +92,8 @@
   .find-id-pw {
     margin-top: 41px;
     .find-id-pw__tab--method {
+      width: 80vw;
       margin-bottom: 33px;
-      .find-id-pw__label {
-        &:nth-child(2) {
-          margin-right: 40px;
-        }
-      }
     }
 
     .find-id-pw__box {

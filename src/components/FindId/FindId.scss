@@ -2,174 +2,173 @@
 
 //pc, 기본
 .find-id {
+  @include flex(column, center, center);
+  text-align: center;
+  margin-bottom: 150px;
+  h2 {
+    width: 800px;
+    text-align: left;
+  }
+  .find-id-pw__tab {
+    width: 1024px;
+    margin-top: 100px;
+    border-bottom: 1px solid #838383;
+    a {
+      display: inline-block;
+      padding: 9px 0;
+      font-size: 28px;
+      &.active {
+        border-bottom: 2px solid #000;
+        color: #1f1f1f;
+        font-weight: bold;
+      }
+      &:first-child {
+        margin-right: 130px;
+      }
+    }
+  }
+  .find-id--next {
     @include flex(column, center, center);
-    font-family: Noto Sans KR;
-    text-align: center;
-    margin-bottom: 150px;
-    h2 {
-        width: 800px;
-        text-align: left;
+    margin-top: 105px;
+    p {
+      font-size: 22px;
+      span {
+        font-size: 17px;
+        line-height: 25px;
+        color: #7c7c7c;
+      }
     }
-    .find-id-pw__tab {
-        width: 1024px;
-        margin-top: 100px;
-        border-bottom: 1px solid #838383;
-        a {
-            display: inline-block;
-            padding: 9px 0;
-            font-size: 28px;
-            &.active {
-                border-bottom: 2px solid #000;
-                color: #1f1f1f;
-                font-weight: bold;
-            }
-            &:first-child {
-                margin-right: 130px;
-            }
-        }
+    h3 {
+      font-weight: 500;
+      font-size: 30px;
     }
-    .find-id--next {
-        @include flex(column, center, center);
-        margin-top: 105px;
-        p {
-            font-size: 22px;
-            span {
-                font-size: 17px;
-                line-height: 25px;
-                color: #7c7c7c;
-            }
-        }
-        h3 {
-            font-weight: 500;
-            font-size: 30px;
-        }
-        .find-id__button {
-            display: block;
-            width: 300px;
-            line-height: 40px;
-            background: #f2f2f2;
-            border: 1px solid #a7a7a7;
-            font-size: 20px;
-        }
-        .find-id__button--finish {
-            margin-top: 80px;
-            width: 250px;
-            height: 73px;
-            background: #f7c95f;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 24px;
-        }
+    .find-id__button {
+      display: block;
+      width: 300px;
+      line-height: 40px;
+      background: #f2f2f2;
+      border: 1px solid #a7a7a7;
+      font-size: 20px;
     }
+    .find-id__button--finish {
+      margin-top: 80px;
+      width: 250px;
+      height: 73px;
+      background: #f7c95f;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
 }
 
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .find-id {
-        h2 {
-            margin: 0;
-            padding-left: 0;
-            line-height: 70px;
-            border-bottom: 1px solid rgba(175, 175, 175, 0.5);
-            text-align: center;
-            font-weight: 500;
-            font-size: 21px;
-        }
-        .find-id-pw__tab {
-            margin-top: 0;
-            width: 728px;
-            border-bottom: 1px solid #afafaf;
-            a {
-                padding: 20.5px 0;
-                color: #b1b1b1;
-                font-size: 18px;
-                &:first-child {
-                    margin-right: 268px;
-                }
-            }
-        }
-
-        .find-id--next {
-            margin-top: 13vh;
-            p {
-                font-size: 22px;
-                span {
-                    font-size: 17px;
-                    line-height: 25px;
-                    color: #7c7c7c;
-                }
-            }
-            h3 {
-                font-weight: 500;
-                font-size: 30px;
-            }
-            .find-id__button {
-                display: block;
-                width: 728px;
-                line-height: 49px;
-                background: #f2f2f2;
-                border: 1px solid #a7a7a7;
-                font-size: 20px;
-            }
-            .find-id__button--finish {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                margin-bottom: 0;
-                width: 100vw;
-                height: 71.9px;
-                background: #d5d5d5;
-                color: #fff;
-                border-radius: 0;
-                font-weight: normal;
-                font-size: 20px;
-            }
-        }
+  .find-id {
+    h2 {
+      width: 100%;
+      margin: 0;
+      padding-left: 0;
+      line-height: 70px;
+      border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+      text-align: center;
+      font-weight: 500;
+      font-size: 21px;
     }
+    .find-id-pw__tab {
+      width: 70vw;
+      margin-top: 0;
+      border-bottom: 1px solid #afafaf;
+      a {
+        padding: 20.5px 0;
+        color: #b1b1b1;
+        font-size: 18px;
+        &:first-child {
+          margin-right: 268px;
+        }
+      }
+    }
+
+    .find-id--next {
+      margin-top: 13vh;
+      p {
+        font-size: 22px;
+        span {
+          font-size: 17px;
+          line-height: 25px;
+          color: #7c7c7c;
+        }
+      }
+      h3 {
+        font-weight: 500;
+        font-size: 30px;
+      }
+      .find-id__button {
+        display: block;
+        width: 728px;
+        line-height: 49px;
+        background: #f2f2f2;
+        border: 1px solid #a7a7a7;
+        font-size: 20px;
+      }
+      .find-id__button--finish {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        margin-bottom: 0;
+        width: 100vw;
+        height: 71.9px;
+        background: #d5d5d5;
+        color: #fff;
+        border-radius: 0;
+        font-weight: normal;
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .find-id {
-        h2 {
-            line-height: 47px;
-            font-size: 17px;
-        }
-        .find-id-pw__tab {
-            width: 320px;
-            a {
-                padding: 13px 0;
-                font-size: 14px;
-                &.active {
-                    border-bottom: 1px solid #000;
-                }
-                &:first-child {
-                    margin-right: 86px;
-                }
-            }
-        }
-        .find-id--next {
-            margin-top: 15vh;
-            p {
-                font-size: 17px;
-                span {
-                    font-size: 15px;
-                    line-height: 27px;
-                }
-            }
-            h3 {
-                font-size: 25px;
-                line-height: 27px;
-            }
-            .find-id__button {
-                width: 320px;
-                height: 49px;
-                font-size: 15px;
-            }
-            .find-id__button--finish {
-                height: 51px;
-                font-size: 17px;
-            }
-        }
+  .find-id {
+    h2 {
+      line-height: 47px;
+      font-size: 17px;
     }
+    .find-id-pw__tab {
+      a {
+        padding: 13px 0;
+        font-size: 14px;
+        &.active {
+          border-bottom: 1px solid #000;
+        }
+        &:first-child {
+          margin-right: 86px;
+        }
+      }
+    }
+    .find-id--next {
+      margin-top: 15vh;
+      p {
+        font-size: 17px;
+        span {
+          font-size: 15px;
+          line-height: 27px;
+        }
+      }
+      h3 {
+        font-size: 25px;
+        line-height: 27px;
+      }
+      .find-id__button {
+        width: 320px;
+        height: 49px;
+        font-size: 15px;
+      }
+      .find-id__button--finish {
+        height: 51px;
+        font-size: 17px;
+      }
+    }
+  }
 }
