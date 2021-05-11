@@ -119,7 +119,7 @@ class SignUp extends Component {
             </div>
           </div>
         )}
-        {currentPage !== 'info' && currentPage !== 'finish' && (
+        {currentPage === 'agree' && (
           <button type="button" className="signup__button" onClick={this.onClickNext}>
             다음
           </button>

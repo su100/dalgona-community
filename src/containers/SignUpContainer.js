@@ -30,30 +30,42 @@ class SignUpContainer extends Component {
     }
   };
 
-  checkUsername = async (username) => {
+  checkUsername = async (username, func) => {
     const { AuthActions } = this.props;
     try {
       await AuthActions.checkUsername(username);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { username_success } = this.props;
+    if (username_success) {
+      func('username');
+    }
   };
 
-  checkEmail = async (email) => {
+  checkEmail = async (email, func) => {
     const { AuthActions } = this.props;
     try {
       await AuthActions.checkEmail(email);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { email_success } = this.props;
+    if (email_success) {
+      func('email');
+    }
   };
 
-  checkNickname = async (nickname) => {
+  checkNickname = async (nickname, func) => {
     const { AuthActions } = this.props;
     try {
       await AuthActions.checkNickname(nickname);
     } catch (e) {
       console.log(`error log: ${e}`);
+    }
+    const { nickname_success } = this.props;
+    if (nickname_success) {
+      func('nickname');
     }
   };
 
@@ -103,6 +115,9 @@ export default connect(
     nicknameUnique: state.auth.get('nicknameUnique'),
     signUpSuccess: state.auth.get('signUpSuccess'),
     user_success: state.pender.success['auth/CHECK_USER'],
+    username_success: state.pender.success['auth/CHECK_USERNAME'],
+    nickname_success: state.pender.success['auth/CHECK_NICKNAME'],
+    email_success: state.pender.success['auth/CHECK_EMAIL'],
     signup_success: state.pender.success['auth/SIGN_UP'],
     signup_failure: state.pender.failure['auth/SIGN_UP'],
   }),

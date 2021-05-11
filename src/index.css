@@ -29,3 +29,6 @@ button {
 ul {
   padding-inline-start: 0;
 }
+.imp-dialog.pc .imp-frame-danal-certification {
+  margin-top: calc((100vh - 660px) / 2);
+}

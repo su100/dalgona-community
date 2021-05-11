@@ -2,245 +2,254 @@
 
 //pc, 기본
 .signupinfo {
+  @include flex(column, center, center);
+  width: 944px;
+  height: 100%;
+  padding-bottom: 100px;
+  &__title {
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 82px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 41px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  &__img {
     @include flex(column, center, center);
-    width: 944px;
-    height: 100%;
-    padding-bottom: 100px;
-    &__title {
-        width: 100%;
-        padding-top: 100px;
-        padding-bottom: 82px;
-        font-size: 34px;
-        font-weight: 700;
-        line-height: 41px;
-        letter-spacing: 0em;
-        text-align: left;
+    width: 100%;
+    &-title {
+      @include flex(row, flex-start, center);
+      width: 100%;
+      padding-top: 78.99px;
+      padding-bottom: 24px;
     }
-    &__img {
-        @include flex(column, center, center);
-        width: 100%;
-        &-title {
-            @include flex(row, flex-start, center);
-            width: 100%;
-            padding-top: 78.99px;
-            padding-bottom: 24px;
-        }
-        input[type='file'] {
-            display: none;
+    input[type='file'] {
+      display: none;
+    }
+    button {
+      width: 194px;
+      height: 194px;
+      border: 1px solid #cbcbcb;
+      border-radius: 50%;
+    }
+    &--icon {
+      width: 32px;
+      height: 25px;
+      fill: #696969;
+    }
+    &-preview {
+      @include flex(row, center, center);
+      width: inherit;
+      height: 194px;
+      img {
+        width: 194px;
+        height: 194px;
+        border-radius: 50%;
+      }
+      button {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+        margin-bottom: 15px;
+        align-self: flex-start;
+        color: black;
+        z-index: 10;
+      }
+    }
+  }
+  .signupinfo__title-form {
+    margin-bottom: 16px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 17px;
+    text-align: left;
+    .password-check {
+      margin-left: 20px;
+      color: red;
+      font-size: 15px;
+      font-weight: normal;
+    }
+  }
+  &__content {
+    width: 100%;
+    &-form {
+      width: 100%;
+      margin-bottom: 30px;
+      &-input {
+        @include flex(row, flex-start, center);
+        height: 50px;
+        input {
+          margin: 0;
+          padding-left: 21px;
+          width: 100%;
+          height: 100%;
+          border: 1px solid #cbcbcb;
+          box-sizing: border-box;
         }
         button {
-            width: 194px;
-            height: 194px;
-            border: 1px solid #cbcbcb;
-            border-radius: 50%;
+          @include flex(row, center, center);
+          text-align: center;
+          width: 123px;
+          background: #c4c4c4;
         }
-        &--icon {
-            width: 32px;
-            height: 25px;
-            fill: #696969;
+        &.click {
+          background: #f7c95f;
         }
-        &-preview {
-            @include flex(row, center, center);
-            width: inherit;
-            height: 194px;
-            img {
-                width: 194px;
-                height: 194px;
-                border-radius: 50%;
-            }
-            button {
-                width: 25px;
-                height: 25px;
-                margin-right: 5px;
-                margin-bottom: 15px;
-                align-self: flex-start;
-                color: black;
-                z-index: 10;
-            }
+        &.noclick {
+          background: #d5d5d5;
         }
+      }
     }
-    .signupinfo__title-form {
-        margin-bottom: 16px;
-        width: 100%;
-        font-weight: 500;
-        font-size: 17px;
-        text-align: left;
-    }
-    &__content {
-        width: 100%;
-        &-form {
-            width: 100%;
-            margin-bottom: 30px;
-            &-input {
-                @include flex(row, flex-start, center);
-                height: 50px;
-                input {
-                    margin: 0;
-                    padding-left: 21px;
-                    width: 100%;
-                    height: 100%;
-                    border: 1px solid #cbcbcb;
-                    box-sizing: border-box;
-                }
-                button {
-                    @include flex(row, center, center);
-                    text-align: center;
-                    width: 123px;
-                    background: #c4c4c4;
-                }
-                &.click {
-                    background: #f7c95f;
-                }
-                &.noclick {
-                    background: #d5d5d5;
-                }
-            }
-        }
-    }
-    &__button {
-        margin-top: 110px;
-        height: 71.9px;
-        width: 100%;
-        background: $main-color;
-        color: white;
-    }
+  }
+  &__button {
+    margin-top: 110px;
+    height: 71.9px;
+    width: 100%;
+    background: $main-color;
+    color: white;
+  }
 }
 //태블릿
 @media screen and (max-width: $tablet-max) {
-    .signupinfo {
-        padding: 0 20px 120px;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        &__title {
-            padding-top: 23.97px;
-            padding-bottom: 20px;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 20px;
-            text-align: center;
-        }
-        .signupinfo__step {
-            padding-top: 20px;
-        }
-        .signupinfo__title-form {
-            font-weight: 500;
-            font-size: 17px;
-        }
-        &__img {
-            margin-bottom: 27.9px;
-        }
-        &__content {
-            &-form {
-                &-input {
-                    input {
-                        border: 1px solid #a7a7a7;
-                        border-right: none;
-                        &.password {
-                            border-right: 1px solid #a7a7a7;
-                        }
-                    }
-                    button {
-                        margin: 0px;
-                        width: 128px;
-                        font-size: 20px;
-                        line-height: 29px;
-                        color: #ffffff;
-                        background: #d5d5d5;
-                        border: 1px solid #a7a7a7;
-                        border-left: none;
-                    }
-                    &.click {
-                        background: #f7c95f;
-                    }
-                    &.noclick {
-                        background: #d5d5d5;
-                    }
-                }
-            }
-        }
-        &__button {
-            position: fixed;
-            bottom: 0;
-            height: 71.9px;
-        }
+  .signupinfo {
+    padding: 0 20px 120px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    &__title {
+      padding-top: 23.97px;
+      padding-bottom: 20px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: center;
     }
+    .signupinfo__step {
+      padding-top: 20px;
+    }
+    .signupinfo__title-form {
+      font-weight: 500;
+      font-size: 17px;
+    }
+    &__img {
+      margin-bottom: 27.9px;
+    }
+    &__content {
+      &-form {
+        &-input {
+          input {
+            border: 1px solid #a7a7a7;
+            border-right: none;
+            &.password {
+              border-right: 1px solid #a7a7a7;
+            }
+          }
+          button {
+            margin: 0px;
+            width: 128px;
+            font-size: 20px;
+            line-height: 29px;
+            color: #ffffff;
+            background: #d5d5d5;
+            border: 1px solid #a7a7a7;
+            border-left: none;
+          }
+          &.click {
+            background: #f7c95f;
+          }
+          &.noclick {
+            background: #d5d5d5;
+          }
+        }
+      }
+    }
+    &__button {
+      position: fixed;
+      bottom: 0;
+      height: 71.9px;
+    }
+  }
 }
 
 //모바일
 @media screen and (max-width: $mobile-max) {
-    .signupinfo {
-        padding: 0 20px 80px;
-        &__title {
-            padding: 15px 0 15px;
-            font-size: 14px;
-            line-height: 20px;
-        }
-        .signupinfo__step {
-            padding-top: 9px;
-            height: 30px;
-        }
-        .signupinfo__title-form {
-            margin-bottom: 7px;
-            font-size: 12px;
-        }
-        &__img {
-            margin-bottom: 20px;
-            &-title {
-                width: 320px;
-                padding-top: 46px;
-                padding-bottom: 0px;
-                font-size: 12px;
-                line-height: 17px;
-            }
-            button {
-                width: 92px;
-                height: 92px;
-                img {
-                    height: 11.96px;
-                    width: 14.96px;
-                }
-            }
-            &-preview {
-                height: 110px;
-                img {
-                    width: 92px;
-                    height: 92px;
-                    margin-bottom: 20px;
-                }
-                button {
-                    width: 15px;
-                    height: 15px;
-                    margin-bottom: 10px;
-                }
-            }
-        }
-        &__content {
-            &-form {
-                margin-bottom: 20px;
-                span {
-                    padding-top: 0px;
-                    padding-bottom: 7px;
-                    font-size: 12px;
-                    line-height: 17px;
-                }
-                &-input {
-                    height: 32px;
-                    input {
-                        height: inherit;
-                        padding-left: 10px;
-                        font-size: 15px;
-                    }
-                    button {
-                        width: 74px;
-                        font-size: 15px;
-                        line-height: 29px;
-                    }
-                }
-            }
-        }
-        &__button {
-            height: 51px;
-        }
+  .signupinfo {
+    padding: 0 20px 80px;
+    &__title {
+      padding: 15px 0 15px;
+      font-size: 14px;
+      line-height: 20px;
     }
+    .signupinfo__step {
+      padding-top: 9px;
+      height: 30px;
+    }
+    .signupinfo__title-form {
+      margin-bottom: 7px;
+      font-size: 12px;
+      .password-check {
+        font-size: 11px;
+      }
+    }
+    &__img {
+      margin-bottom: 20px;
+      &-title {
+        width: 320px;
+        padding-top: 46px;
+        padding-bottom: 0px;
+        font-size: 12px;
+        line-height: 17px;
+      }
+      button {
+        width: 92px;
+        height: 92px;
+        img {
+          height: 11.96px;
+          width: 14.96px;
+        }
+      }
+      &-preview {
+        height: 110px;
+        img {
+          width: 92px;
+          height: 92px;
+          margin-bottom: 20px;
+        }
+        button {
+          width: 15px;
+          height: 15px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &__content {
+      &-form {
+        margin-bottom: 20px;
+        span {
+          padding-top: 0px;
+          padding-bottom: 7px;
+          font-size: 12px;
+          line-height: 17px;
+        }
+        &-input {
+          height: 32px;
+          input {
+            height: inherit;
+            padding-left: 10px;
+            font-size: 15px;
+          }
+          button {
+            width: 74px;
+            font-size: 15px;
+            line-height: 29px;
+          }
+        }
+      }
+    }
+    &__button {
+      height: 51px;
+    }
+  }
 }
