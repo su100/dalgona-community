@@ -47,7 +47,7 @@ const Pagination = ({ countList, currentPage, handlePage, isReply }) => {
         </button>
       );
     }
-    if (currentPage !== lastPage && currentPage < lastPage) {
+    if (currentPage !== lastPage && currentPage < lastPage && endPage !== lastPage) {
       // 마지막페이지 아닐 때
       tmp.push(
         <button
