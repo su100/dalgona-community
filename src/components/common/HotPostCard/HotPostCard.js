@@ -22,10 +22,8 @@ const HotPostCard = ({ index, post }) => {
   // 기존 내용을 가져오기 위함(수정)
   const mounted = useRef(false);
   useEffect(() => {
-    const quill = quillInstance.current;
     mounted.current = true;
     let result;
-    const text = [];
 
     try {
       result = JSON.parse(post.body);
@@ -47,6 +45,7 @@ const HotPostCard = ({ index, post }) => {
       setImage('');
     }
 
+    /* 글 내용 
     // 텍스트만 보이게끔
     const tmp = result.ops.filter((element) => !element.insert.image);
 
@@ -59,6 +58,7 @@ const HotPostCard = ({ index, post }) => {
     });
     result.ops = text;
     quill.setContents(result);
+    */
   }, [post]);
 
   return (
@@ -67,23 +67,20 @@ const HotPostCard = ({ index, post }) => {
       to={`/${BOARD_DIVISION[post.board_url.division]}/${post.board_url.board_url}/${post.id}`}
       key={post.id}
     >
-      <div>{imageURL !== '' && <img src={imageURL} alt="post" />}</div>
-      <div>
-        <h3>{`0${index + 1}`}</h3>
-        <h6>{post.title}</h6>
-        <p className="home--hot--detail">
-          <span>
-            조회수
-            {post.views}
-          </span>
-          <span>{post.created_at}</span>
-          <span>
-            추천
-            {post.recommend_count}
-          </span>
-        </p>
-        <div className="home--hot--contents" ref={quillElement} />
-      </div>
+      <h3>{`0${index + 1}`}</h3>
+      <h6>{post.title}</h6>
+      {imageURL !== '' && <img src={imageURL} alt="post" />}
+      <p className="home--hot--detail">
+        <span>
+          조회수
+          {post.views}
+        </span>
+        <span>{post.created_at}</span>
+        <span>
+          추천
+          {post.recommend_count}
+        </span>
+      </p>
     </Link>
   );
 };
