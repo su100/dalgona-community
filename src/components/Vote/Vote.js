@@ -181,7 +181,7 @@ class Vote extends Component {
             location={location}
             vote
             commentList={voteReplyList}
-            reply_count={voteInfo.reply_count}
+            reply_count={voteReplyCount}
             reply_success={reply_success}
             voteReplyCount={voteReplyCount}
             isAuthenticated={isAuthenticated}
