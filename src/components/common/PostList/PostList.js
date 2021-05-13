@@ -68,13 +68,13 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                             <img src={imageURL} alt="post" />
                           </div>
                         )}
-                        <p>{post.title}</p>
+                        <p>{`[${post.board_url.board_name}] ${post.title}`}</p>
                       </div>
                       <div className="post-list__item--detail">
-                        {hasReply && <span className="post-list__item--comment--pc">{`댓글 ${post.reply_count}`}</span>}
                         <span>{`조회수 ${post.views}`}</span>
-                        <span className="post-list__item--date">{post.created_at}</span>
+                        {hasReply && <span className="post-list__item--comment--pc">{`댓글 ${post.reply_count}`}</span>}
                         <span>{`추천 ${post.recommend_count}`}</span>
+                        <span>{post.created_at}</span>
                       </div>
                     </div>
                   </div>
@@ -99,13 +99,13 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                             <img src={imageURL} alt="post" />
                           </div>
                         )}
-                        <p>{post.title}</p>
+                        <p>{`[${post.board_url.board_name}] ${post.title}`}</p>
                       </div>
                       <div className="post-list__item--detail">
-                        {hasReply && <span className="post-list__item--comment--pc">{`댓글 ${post.reply_count}`}</span>}
                         <span>{`조회수 ${post.views}`}</span>
-                        <span className="post-list__item--date">{post.created_at}</span>
+                        {hasReply && <span className="post-list__item--comment--pc">{`댓글 ${post.reply_count}`}</span>}
                         <span>{`추천 ${post.recommend_count}`}</span>
+                        <span>{post.created_at}</span>
                       </div>
                     </div>
                   </div>
@@ -152,24 +152,18 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                               <img src={imageURL} alt="post" />
                             </div>
                           )}
-                          <p>{post.title}</p>
+                          <p>{`[${post.board_url.board_name}] ${post.title}`}</p>
                         </div>
                         <div className="post-list__item--detail">
-                          {hasReply && (
-                            <span className="post-list__item--comment--pc">
-                              댓글
-                              {post.reply_count}
-                            </span>
-                          )}
                           <span>
                             조회수
                             {post.views}
                           </span>
-                          <span className="post-list__item--date">{post.created_at}</span>
                           <span>
                             추천
                             {post.recommend_count}
                           </span>
+                          <span>{post.created_at}</span>
                         </div>
                       </div>
                     </div>
@@ -194,15 +188,15 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
                               <img src={imageURL} alt="post" />
                             </div>
                           )}
-                          <p>{post.title}</p>
+                          <p>{`[${post.board_url.board_name}] ${post.title}`}</p>
                         </div>
                         <div className="post-list__item--detail">
                           {hasReply && (
                             <span className="post-list__item--comment--pc">{`댓글 ${post.reply_count}`}</span>
                           )}
                           <span>{`조회수 ${post.views}`}</span>
-                          <span className="post-list__item--date">{post.created_at}</span>
                           <span>{`추천 ${post.recommend_count}`}</span>
+                          <span>{post.created_at}</span>
                         </div>
                       </div>
                     </div>

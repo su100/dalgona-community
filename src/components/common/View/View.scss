@@ -28,7 +28,7 @@
     text-align: left;
   }
   &__info {
-    @include flex(row, space-between, center);
+    @include flex(row, flex-end, center);
     width: 100%;
     padding-top: 21px;
     padding-bottom: 40px;
@@ -78,6 +78,7 @@
       border-bottom: none;
     }
     &__info {
+      justify-content: flex-start;
       width: 728px;
       padding-top: 4px;
       padding-bottom: 5px;
