@@ -72,8 +72,8 @@ class App extends Component {
           <Route exact path="/signup" component={SignUpPage} />
           <Route exact path="/find/id" component={FindIdPage} />
           <Route exact path="/find/pw" component={FindPwPage} />
-          <Route exact path="/article" component={ArticlePage} />
-          <Route exact path="/vote" component={VoteBoardPage} />
+          <Route exact path="/issue/article" component={ArticlePage} />
+          <Route exact path="/issue/vote" component={VoteBoardPage} />
           <Route exact path="/vote/:voteid" component={VotePage} />
           <Route exact path="/luna/:board_url" component={LunaBoardPage} />
           <Route exact path="/free/:board_url" component={FreeBoardPage} />
