@@ -525,7 +525,11 @@ class CommentList extends Component {
                   <div key={reComment.id} className="comment-list__item comment-list__item--recomment">
                     <div className="comment-list__item--left">
                       <div className="comment-list__item--recomment-mark" />
-                      <img className="comment-list__item--user-default" src={userDefault} alt="userImg" />
+                      <img
+                        className="comment-list__item--user-default"
+                        src={reComment.author?.profile_image ?? userDefault}
+                        alt="userImg"
+                      />
 
                       <div className="comment-list__item--main">
                         <div className="comment-list__item--detail">
