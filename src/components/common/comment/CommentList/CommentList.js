@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import queryString from 'query-string';
 import CommentInput from 'components/common/comment/CommentInput';
 import Pagination from 'components/common/Pagination';
 import userDefault from 'images/user-default.png';
@@ -288,7 +287,6 @@ class CommentList extends Component {
 
   render() {
     const {
-      location,
       vote,
       isRecommend,
       commentList,
@@ -320,7 +318,6 @@ class CommentList extends Component {
       updatePreview,
       page,
     } = this.state;
-    const query = queryString.parse(location.search);
     const currentPage = page ? Number(page) : 1;
     const rereplyList = vote ? 'voteboardrereply' : 'rereply';
     return (

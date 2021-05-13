@@ -9,7 +9,6 @@ const PostList = ({ hasReply, postList, hasGrid, noBorder, link, isInPost, reque
     setType(e.currentTarget.id);
   };
 
-  console.log(postList);
   return (
     <div className={type === 'list' ? 'post-list' : 'post-list grid'}>
       {hasGrid && (
