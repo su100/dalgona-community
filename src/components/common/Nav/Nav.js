@@ -14,7 +14,7 @@ class Nav extends Component {
     super(props);
     this.state = {
       isOpen: false,
-      openMenu: 'home',
+      openMenu: '',
       isPC: false,
       openSidebar: false,
       path: '',
@@ -78,8 +78,9 @@ class Nav extends Component {
 
   setPath = () => {
     const { location } = this.props;
-    const { path } = location;
-    this.setState({ path });
+    const { pathname, path } = location;
+    const tmp = pathname.split('/');
+    this.setState({ path, openMenu: tmp[1] });
   };
 
   handleSidebar = () => {
@@ -111,7 +112,7 @@ class Nav extends Component {
     const { isSearch, searchWord, searchDivision, isOpen, openMenu, isPC, openSidebar, path } = this.state;
     const { isAuthenticated, profile, lunaBoard, freeBoard, dalgonaBoard } = this.props;
     const { isHome } = this.props;
-    const Menu = { home: '홈', main: '이슈', Luna: '루나', free: '자유', dalgona: '달고나' };
+    const Menu = { issue: '이슈', luna: '루나', free: '자유', dalgona: '달고나' };
     return (
       <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
         {openSidebar && (
@@ -206,21 +207,20 @@ class Nav extends Component {
               )}
             </div>
             <div className="nav-hover__menu">
-              {isPC && <div className="nav-hover__menu-col" />}
-              {(isPC || openMenu === 'main') && (
+              {(isPC || openMenu === 'issue') && (
                 <div className="nav-hover__menu-col">
-                  <Link to={{ pathname: '/article', path: 'main' }}>
+                  <Link to={{ pathname: '/issue/article', path: 'issue' }}>
                     <span> 기사</span>
                   </Link>
-                  <Link to={{ pathname: '/vote', path: 'main' }}>
+                  <Link to={{ pathname: '/issue/vote', path: 'issue' }}>
                     <span>투표</span>
                   </Link>
                 </div>
               )}
-              {(isPC || openMenu === 'Luna') && (
+              {(isPC || openMenu === 'luna') && (
                 <div className="nav-hover__menu-col">
                   {lunaBoard.map((board) => (
-                    <Link key={board.board_url} to={{ pathname: `/luna/${board.board_url}`, path: 'Luna' }}>
+                    <Link key={board.board_url} to={{ pathname: `/luna/${board.board_url}`, path: 'luna' }}>
                       <span>{board.board_name}</span>
                     </Link>
                   ))}
