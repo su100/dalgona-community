@@ -112,7 +112,7 @@ export default handleActions(
     ...pender({
       type: GET_VOTE_REPLY,
       onSuccess: (state, action) =>
-        state.set('voteReplyList', action.payload.data.results).set('voteReplyCount', action.payload.data.count),
+        state.set('voteReplyList', action.payload.data.results).set('voteReplyCount', action.payload.data.total_count),
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
