@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './VoteItem.scss';
 
 const VoteItem = ({ id, title, voteitem }) => (
-  <Link to={`/vote${id ? `/${id}` : ''}`} className="vote-item">
+  <Link to={`/issue/vote${id ? `/${id}` : ''}`} className="vote-item">
     <h2>{title}</h2>
     <h5>지금 투표하러가기 &gt;</h5>
     <div className="vote-item__box--img">

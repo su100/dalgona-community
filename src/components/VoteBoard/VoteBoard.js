@@ -26,9 +26,9 @@ class VoteBoard extends Component {
     // searchType:title, searchWord, page
     if (query.search) {
       // url에서 searchWord있는지 판별
-      history.push(`/vote?page=${page}&search=${query.search}`);
+      history.push(`/issue/vote?page=${page}&search=${query.search}`);
     } else {
-      history.push(`/vote?page=${page}`);
+      history.push(`/issue/vote?page=${page}`);
     }
   };
 
@@ -43,7 +43,7 @@ class VoteBoard extends Component {
     if (searchWord.trim() === '') {
       alert('검색어를 입력해주세요.');
     } else {
-      history.push(`/vote?page=1&search=${searchWord}`);
+      history.push(`/issue/vote?page=1&search=${searchWord}`);
     }
   };
 
@@ -61,7 +61,8 @@ class VoteBoard extends Component {
           handleChange={this.handleChange}
           placeholder="투표 제목을 검색하세요"
           getSearch={this.getSearch}
-          boardType="vote"
+          boardType="issue"
+          boardUrl="vote"
         />
 
         <section>
@@ -84,7 +85,7 @@ class VoteBoard extends Component {
             </button>
           </h4>
           {voteList.map((vote) => (
-            <Link to={`/vote/${vote.id}`} key={vote.id} className="vote-board__item">
+            <Link to={`/issue/vote/${vote.id}`} key={vote.id} className="vote-board__item">
               <div className="vote-board__item--left">
                 <img src={vote.board_image} alt="vote" />
                 <div className="vote-board__item--info">

@@ -238,7 +238,7 @@ class Home extends Component {
                 </button>
               </span>
               <span>
-                <Link to="/article">더보기 &gt;</Link>
+                <Link to="/issue/article">더보기 &gt;</Link>
               </span>
             </div>
           </div>
