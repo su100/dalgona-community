@@ -24,7 +24,10 @@ class FindPwContainer extends Component {
     }
     const { accountFindSuccess } = this.props;
     if (accountFindSuccess) {
-      history.replace('/login');
+      history.replace({
+        pathname: '/login',
+        path: 'findpw',
+      });
     }
   };
 
@@ -37,7 +40,10 @@ class FindPwContainer extends Component {
     }
     const { resetPwSuccess } = this.props;
     if (resetPwSuccess) {
-      history.replace('/login');
+      history.replace({
+        pathname: '/login',
+        path: 'findpw',
+      });
     }
   };
 

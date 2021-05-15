@@ -6,7 +6,7 @@ import HomeContainer from 'containers/HomeContainer';
 const HomePage = ({ history, location, match }) => (
   <div>
     <PageTemplate header={<NavContainer history={history} location={location} match={match} isHome />}>
-      <HomeContainer />
+      <HomeContainer history={history} location={location} match={match} />
     </PageTemplate>
   </div>
 );
