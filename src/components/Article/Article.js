@@ -23,9 +23,9 @@ class Article extends Component {
     // searchType:title, searchWord, page
     if (query.search) {
       // url에서 searchWord있는지 판별
-      history.push(`/article?page=${page}&search=${query.search}`);
+      history.push(`/issue/article?page=${page}&search=${query.search}`);
     } else {
-      history.push(`/article?page=${page}`);
+      history.push(`/issue/article?page=${page}`);
     }
   };
 
@@ -37,14 +37,14 @@ class Article extends Component {
     const word = e.target.value;
     const { history } = this.props;
     this.setState({ searchWord: word });
-    history.push(`/article?page=1&search=${word}`);
+    history.push(`/issue/article?page=1&search=${word}`);
   };
 
   getSearch = () => {
     // 검색하기
     const { history } = this.props;
     const { searchWord } = this.state;
-    history.push(`/article?page=1&search=${searchWord}`);
+    history.push(`/issue/article?page=1&search=${searchWord}`);
   };
 
   render() {
@@ -61,13 +61,12 @@ class Article extends Component {
           searchWord={searchWord}
           handleChange={this.handleChange}
           getSearch={this.getSearch}
-          boardType="article"
+          boardType="issue"
+          boardUrl="article"
         />
         <div className="border_line" />
         <div className="article__keyword">
-          <Link to="/article">
-            <h4>인기키워드</h4>
-          </Link>
+          <h4>인기키워드</h4>
           {newsKeyword.map((keyword) => (
             <button
               key={keyword.id}
