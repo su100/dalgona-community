@@ -7,7 +7,8 @@ import Login from 'components/Login';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    const { isAuthenticated, history } = this.props;
+    const { isAuthenticated, history, match, location } = this.props;
+    console.log(location);
     if (isAuthenticated) {
       //  권한 있을 때 접근하면 뒤로가기
       alert('이미 로그인된 상태입니다.');
@@ -19,7 +20,12 @@ class LoginContainer extends Component {
     const { success, history } = this.props;
     if (success) {
       //  로그인 성공시 뒤로가기
-      history.goBack();
+      const { location } = this.props;
+      if (location.path === 'findpw') {
+        history.replace('/');
+      } else {
+        history.goBack();
+      }
     }
   }
 
