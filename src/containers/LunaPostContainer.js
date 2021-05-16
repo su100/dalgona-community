@@ -162,12 +162,13 @@ class LunaPostContainer extends Component {
   };
 
   deletePost = async () => {
-    const { WriteActions, match, delete_success, location, history } = this.props;
+    const { WriteActions, match, location, history } = this.props;
     try {
       await WriteActions.deletePost(match.params.board_url, match.params.postid); // boardUrl, postId
     } catch (e) {
       console.log(`error log: ${e}`);
     }
+    const { delete_success } = this.props;
     if (delete_success) {
       const tmp = location.pathname.split('/');
       history.replace(`/${tmp[1]}/${tmp[2]}`);
