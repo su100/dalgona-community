@@ -182,11 +182,11 @@ export default handleActions(
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
-        if (data.detail?.includes('이미 참여한 투표입니다.')) {
-          return state.set('isVote', true);
-        }
         if (data.detail?.includes('마감된 투표입니다.')) {
           return state.set('finishVote', true);
+        }
+        if (data.detail?.includes('이미 참여한 투표입니다.')) {
+          return state.set('isVote', true);
         }
         if (data.detail?.includes('Authentication credentials were not provided.')) {
           alert('로그인이 필요합니다.');
