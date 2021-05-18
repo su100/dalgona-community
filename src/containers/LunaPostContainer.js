@@ -151,7 +151,7 @@ class LunaPostContainer extends Component {
     this.getPostReply(match.params.postid, 1);
   };
 
-  recommendPost = async (boardUrl) => {
+  recommendPost = async () => {
     const { WriteActions, match, isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
       alert('로그인이 필요합니다.');

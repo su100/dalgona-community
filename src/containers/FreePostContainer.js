@@ -161,7 +161,7 @@ class FreePostContainer extends Component {
     }
   };
 
-  recommendPost = async (postid) => {
+  recommendPost = async () => {
     const { WriteActions, history, match, isAuthenticated } = this.props;
     if (!isAuthenticated) {
       alert('로그인이 필요합니다.');

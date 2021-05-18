@@ -7,7 +7,7 @@ import Login from 'components/Login';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    const { isAuthenticated, history, match, location } = this.props;
+    const { isAuthenticated, history, location } = this.props;
     console.log(location);
     if (isAuthenticated) {
       //  권한 있을 때 접근하면 뒤로가기
