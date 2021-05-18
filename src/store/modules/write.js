@@ -77,6 +77,9 @@ export default handleActions(
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
+        if (data.title?.includes('Ensure this field has no more than 35 characters.')) {
+          alert('제목은 35글자 이내여야 합니다.');
+        }
         return state;
       },
     }),
