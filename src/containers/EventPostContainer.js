@@ -157,14 +157,19 @@ class EventPostContainer extends Component {
     }
   };
 
-  recommendPost = async () => {
-    const { WriteActions, match } = this.props;
-    try {
-      await WriteActions.recommendPost(match.params.eventid);
-    } catch (e) {
-      console.log(`error log: ${e}`);
+  recommendPost = async (boardUrl) => {
+    const { WriteActions, history, match, isAuthenticated } = this.props;
+    if (!isAuthenticated) {
+      alert('로그인이 필요합니다.');
+      history.push('/login');
+    } else {
+      try {
+        await WriteActions.recommendPost(match.params.eventid);
+      } catch (e) {
+        console.log(`error log: ${e}`);
+      }
+      this.getPostInfo(match.params.eventid);
     }
-    this.getPostInfo(match.params.eventid);
   };
 
   getPostList = async (params) => {
