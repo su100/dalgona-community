@@ -93,6 +93,7 @@ class CommentList extends Component {
   handlePage = (e) => {
     const page = e.target.value;
     const { vote, voteid, postid, voteReply, getReply } = this.props;
+
     if (vote) {
       voteReply(voteid, page);
     } else {
@@ -101,6 +102,12 @@ class CommentList extends Component {
     this.setState({
       page,
     });
+
+    const headerHeight = document.querySelector('header').scrollHeight;
+    const contentHeight = document.querySelector('.view').scrollHeight;
+    const commentInputHeight = document.querySelector('.comment-input.comment').scrollHeight;
+
+    window.scrollTo(0, headerHeight + contentHeight + commentInputHeight + 120);
   };
 
   handleComment = (e) => {
