@@ -179,8 +179,10 @@ class CommentList extends Component {
     const { commentText, commentImg, isAnonymous } = this.state;
 
     if (!isAuthenticated) {
-      alert('로그인이 필요합니다');
-      history.push('/login');
+      const result = window.confirm('로그인이 필요합니다');
+      if (result) {
+        history.push('/login');
+      }
     } else {
       const formData = new FormData();
       if (vote) {
@@ -422,6 +424,9 @@ class CommentList extends Component {
           } else {
             nickname = '삭제된 댓글';
           }
+          if (comment.is_author) {
+            nickname += '(글쓴이)';
+          }
           return (
             <div key={comment.id} className="comment-list__container">
               <div className="comment-list__item">
@@ -433,7 +438,13 @@ class CommentList extends Component {
                   />
                   <div className="comment-list__item--main">
                     <div className="comment-list__item--detail">
-                      <span className="comment-list__item--username">{nickname}</span>
+                      <span
+                        className={
+                          comment.is_author ? 'comment-list__item--username author' : 'comment-list__item--username'
+                        }
+                      >
+                        {nickname}
+                      </span>
                       <span>{comment.created_at}</span>
                       <span>{`추천 ${comment.recommend_count}`}</span>
                     </div>
@@ -530,8 +541,16 @@ class CommentList extends Component {
 
                       <div className="comment-list__item--main">
                         <div className="comment-list__item--detail">
-                          <span className="comment-list__item--username">
-                            {reComment.anonymous ? '익명' : reComment.author.nickname}
+                          <span
+                            className={
+                              reComment.is_author
+                                ? 'comment-list__item--username author'
+                                : 'comment-list__item--username'
+                            }
+                          >
+                            {reComment.anonymous
+                              ? '익명'
+                              : `${reComment.author.nickname}${reComment.is_author && '(글쓴이)'}`}
                           </span>
                           <span>{reComment.created_at}</span>
                           <span>{isRecommend && `추천 ${reComment.recommend_count}`}</span>
@@ -647,21 +666,6 @@ class CommentList extends Component {
           );
         })}
         <Pagination countList={reply_count} handlePage={this.handlePage} currentPage={currentPage} isReply />
-        <div className="comment-list__border" />
-        <CommentInput
-          type="comment"
-          handleAnonymous={this.handleAnonymous}
-          isAnonymous={isAnonymous}
-          handleComment={this.handleComment}
-          commentText={commentText}
-          setImage={this.setImage}
-          setPreview={this.setPreview}
-          commentImg={commentImg}
-          previewURL={previewURL}
-          deleteImg={this.deleteImg}
-          addReply={this.addReply}
-          addRereply={this.addRereply}
-        />
       </div>
     );
   }
