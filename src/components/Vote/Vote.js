@@ -70,6 +70,7 @@ class Vote extends Component {
       updateVoteRereply,
       getVoteInfo,
       voteReply,
+      finishVote,
     } = this.props;
     return (
       <div className="vote">
@@ -102,6 +103,7 @@ class Vote extends Component {
               <VoteModal
                 voteDuplicate={selectVote}
                 isVote={isVote}
+                finishVote={finishVote}
                 handleShowModal={this.handleShowModal}
                 userVote={userVote}
               />

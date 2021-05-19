@@ -138,6 +138,7 @@ class VoteContainer extends Component {
       location,
       match,
       voteInfoFailure,
+      finishVote,
     } = this.props;
     if (voteInfoFailure)
       return (
@@ -159,6 +160,7 @@ class VoteContainer extends Component {
           isVote={isVote}
           voteid={match.params.voteid}
           getVoteInfo={this.getVoteInfo}
+          finishVote={finishVote}
           voteReply={this.voteReply}
           userVote={this.userVote}
           postVoteReply={this.postVoteReply}
@@ -182,6 +184,7 @@ export default connect(
     voteReplyList: state.issue.get('voteReplyList'),
     voteReplyCount: state.issue.get('voteReplyCount'),
     isVote: state.issue.get('isVote'),
+    finishVote: state.issue.get('finishVote'),
     info_loading: state.pender.pending['issue/VOTE_INFO'],
     reply_loading: state.pender.pending['issue/GET_VOTE_REPLY'],
     info_success: state.pender.success['issue/VOTE_INFO'],

@@ -181,8 +181,7 @@ export default handleActions(
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
-        console.log(data);
-        if (data.detail?.includes('마감된 투표입니다.')) {
+        if (data.result?.includes('마감된 투표입니다.')) {
           return state.set('finishVote', true);
         }
         if (data.detail?.includes('이미 참여한 투표입니다.')) {
