@@ -22,7 +22,7 @@ class LunaPostContainer extends Component {
     if (location !== prevProps.location) {
       const { postid } = match.params;
       this.getPostInfo(postid);
-      this.getReply(postid, 1, 'recomment_count');
+      this.getReply(postid, 1, 'recommend_count');
       this.getPost();
     }
   }

@@ -22,7 +22,7 @@ class NoticePostContainer extends Component {
     if (location !== prevProps.location) {
       const { noticeid } = match.params;
       this.getPostInfo(noticeid);
-      this.getReply(noticeid, 1);
+      this.getReply(noticeid, 1, 'recommend_count');
       this.getPost();
     }
   }
@@ -163,7 +163,7 @@ class NoticePostContainer extends Component {
     this.getPostReply(match.params.noticeid, 1);
   };
 
-  recommendPost = async (boardUrl) => {
+  recommendPost = async () => {
     const { WriteActions, history, match, isAuthenticated } = this.props;
     if (!isAuthenticated) {
       alert('로그인이 필요합니다.');
