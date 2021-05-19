@@ -90,6 +90,7 @@ class Post extends Component {
     const parentBoardUrl = urlInfo[3] ? urlInfo[1] : '';
     const boardUrl = parentBoardUrl ? `${parentBoardUrl}/${urlInfo[2]}` : urlInfo[1];
     const currentPostId = postInfo.id;
+    const replyCount = postInfo?.replyCount;
     return (
       <div className="post">
         <View
@@ -109,7 +110,7 @@ class Post extends Component {
           vote={false}
           getReply={getReply}
           commentList={postReplyList}
-          postReplyCount={postReplyCount}
+          postReplyCount={replyCount}
           isAuthenticated={isAuthenticated}
           reply_count={postReplyCount}
           reply_success={reply_success}

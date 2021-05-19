@@ -22,7 +22,7 @@ class EventPostContainer extends Component {
     if (location !== prevProps.location) {
       const { eventid } = match.params;
       this.getPostInfo(eventid);
-      this.getReply(eventid, 1);
+      this.getReply(eventid, 1, 'recommend_count');
       this.getPost();
     }
   }
