@@ -103,6 +103,9 @@
           border-right: none;
           font-weight: bold;
           font-size: 14px;
+          &.author {
+            color: $main-color;
+          }
         }
         img {
           width: 146px;
