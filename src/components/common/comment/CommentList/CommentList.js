@@ -505,7 +505,7 @@ class CommentList extends Component {
                               </button>
                             </>
                           ) : (
-                            <button>신고</button>
+                            <button onClick={() => alert('추후 업데이트될 기능입니다.')}>신고</button>
                           )}
                           {isRecommend && (
                             <span className="only-pc">
@@ -607,7 +607,7 @@ class CommentList extends Component {
                                   </button>
                                 </>
                               ) : (
-                                <button>신고</button>
+                                <button onClick={() => alert('추후 업데이트될 기능입니다.')}>신고</button>
                               )}
                               {isRecommend && (
                                 <span className="only-pc">
