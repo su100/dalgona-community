@@ -7,8 +7,7 @@ import Login from 'components/Login';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    const { isAuthenticated, history, location } = this.props;
-    console.log(location);
+    const { isAuthenticated, history } = this.props;
     if (isAuthenticated) {
       //  권한 있을 때 접근하면 뒤로가기
       alert('이미 로그인된 상태입니다.');
