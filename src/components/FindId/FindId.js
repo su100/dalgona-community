@@ -36,7 +36,7 @@ class FindId extends Component {
   };
 
   render() {
-    const { sendEmailForId, checkEmail, userId } = this.props;
+    const { sendEmailForId, checkEmail, userId, history } = this.props;
     const { stage } = this.state;
     return (
       <div className="find-id">
@@ -68,7 +68,13 @@ class FindId extends Component {
                 <br />
               </p>
             )}
-            <Link to="/login" className="find-id__button">
+            <Link
+              to={{
+                pathname: '/login',
+                state: { prevPath: history.location.pathname },
+              }}
+              className="find-id__button"
+            >
               로그인
             </Link>
             <Link to="/find/pw" className="find-id__button">
