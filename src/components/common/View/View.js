@@ -6,6 +6,7 @@ import './View.scss';
 class View extends Component {
   render() {
     const { postInfo, type, location, isSuperuser, editPost, deletePost } = this.props;
+    console.log(postInfo.author);
     const path = location.pathname.split('/');
     return (
       <div className="view">
@@ -24,12 +25,12 @@ class View extends Component {
         </div>
         <div className="view__info">
           <div className="only-pc">
-            <span>{postInfo.anonymous ? '익명' : postInfo.author && postInfo.author.nickname}</span>
+            <span>{postInfo.anonymous ? '익명' : postInfo.author?.nickname || '(탈퇴)'}</span>
             <span>{postInfo.created_at}</span>
             <span>{`조회수 ${postInfo.views}`}</span>
           </div>
           <span className="not-pc">
-            {!postInfo.anonymous && postInfo.author ? postInfo.author.nickname : '익명 '}
+            {postInfo.anonymous ? '익명' : postInfo.author?.nickname || '(탈퇴)'}
             {` | 조회수${postInfo.views} | ${postInfo.created_at}`}
           </span>
           {(isSuperuser || postInfo.is_author) && (
