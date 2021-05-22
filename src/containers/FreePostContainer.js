@@ -13,7 +13,7 @@ class FreePostContainer extends Component {
     const { match } = this.props;
     const { postid } = match.params;
     this.getPostInfo(postid);
-    this.getReply(postid, 1, 'recomment_count');
+    this.getReply(postid, 1);
     this.getPost();
   }
 
@@ -22,7 +22,7 @@ class FreePostContainer extends Component {
     if (location !== prevProps.location) {
       const { postid } = match.params;
       this.getPostInfo(postid);
-      this.getReply(postid, 1, 'recomment_count');
+      this.getReply(postid, 1, 'recommend_count');
       this.getPost();
     }
   }
@@ -162,13 +162,18 @@ class FreePostContainer extends Component {
   };
 
   recommendPost = async () => {
-    const { WriteActions, match } = this.props;
-    try {
-      await WriteActions.recommendPost(match.params.postid);
-    } catch (e) {
-      console.log(`error log: ${e}`);
+    const { WriteActions, history, match, isAuthenticated } = this.props;
+    if (!isAuthenticated) {
+      alert('로그인이 필요합니다.');
+      history.push('/login');
+    } else {
+      try {
+        await WriteActions.recommendPost(match.params.postid);
+      } catch (e) {
+        console.log(`error log: ${e}`);
+      }
+      this.getPostInfo(match.params.postid);
     }
-    this.getPostInfo(match.params.postid);
   };
 
   getPostList = async (params) => {

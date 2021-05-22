@@ -7,8 +7,7 @@ import Login from 'components/Login';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    const { isAuthenticated, history, match, location } = this.props;
-    console.log(location);
+    const { isAuthenticated, history } = this.props;
     if (isAuthenticated) {
       //  권한 있을 때 접근하면 뒤로가기
       alert('이미 로그인된 상태입니다.');
@@ -21,7 +20,8 @@ class LoginContainer extends Component {
     if (success) {
       //  로그인 성공시 뒤로가기
       const { location } = this.props;
-      if (location.path === 'findpw') {
+      const { prevPath } = location.state;
+      if (prevPath === '/find/id' || prevPath === '/find/pw') {
         history.replace('/');
       } else {
         history.goBack();
