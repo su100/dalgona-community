@@ -21,7 +21,11 @@ class LoginContainer extends Component {
       //  로그인 성공시 뒤로가기
       const { location } = this.props;
       const { state } = location;
-      if (state?.prevPath === '/find/id' || state?.prevPath === '/find/pw') {
+      if (
+        state?.prevPath === '/find/id' ||
+        state?.prevPath === '/find/pw' ||
+        state?.prevPath.includes('/password-reset-confirm')
+      ) {
         history.replace('/');
       } else {
         history.goBack();
