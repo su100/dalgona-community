@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CommentList from 'components/common/comment/CommentList';
 import VoteModal from 'components/common/VoteModal';
 import moment from 'moment';
@@ -77,13 +78,7 @@ class Vote extends Component {
     return (
       <div className="vote">
         <div className="vote__detail">
-          <span>
-            {'홈'}
-            {'>'}
-            {'이슈'}
-            {'>'}
-            {'투표'}
-          </span>
+          <Link to="/issue/vote">홈&gt;이슈&gt;투표</Link>
         </div>
         <div className="vote__info">
           <span className="vote__info-date">
@@ -155,11 +150,7 @@ class Vote extends Component {
               </button>
             )}
           </div>
-          <span className="vote__main-count">
-            {'현재'}
-            {voteInfo.vote_count}
-            {'표 차이'}
-          </span>
+          <span className="vote__main-count">{`현재 ${voteInfo.vote_count}표 차이`}</span>
           <div className="vote__main-ratio">
             <div
               style={{

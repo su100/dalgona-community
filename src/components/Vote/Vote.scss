@@ -8,19 +8,16 @@
     @include flex(row, flex-start, center);
     width: 100%;
     padding-top: 65px;
-    padding-right: 250px;
-    padding-bottom: 70px;
-    font-family: Roboto;
+    padding-bottom: 30px;
     font-size: 27px;
     font-weight: 400;
     letter-spacing: 0em;
-    text-align: left;
+    color: #838383;
   }
   &__info {
     @include flex(column, center, flex-start);
     width: 100%;
     &-date {
-      font-family: Noto Sans KR;
       font-size: 14px;
       font-weight: 700;
       padding-bottom: 23px;
@@ -31,7 +28,6 @@
       padding-right: 200px;
       width: 950px;
       &-title {
-        font-family: Roboto;
         font-size: 34px;
         font-weight: 700;
       }
@@ -40,7 +36,6 @@
         height: 32px;
         width: 83px;
         border-radius: 50px;
-        font-family: Noto Sans KR;
         font-size: 27px;
         font-weight: 700;
         background: $main-color;
@@ -245,7 +240,7 @@
           }
         }
         &-second {
-          height: 354.67999267578125px;
+          height: 354.67px;
           width: 356px;
           border-radius: 0px;
           &-circle {

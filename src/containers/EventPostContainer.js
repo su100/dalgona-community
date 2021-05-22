@@ -219,7 +219,7 @@ class EventPostContainer extends Component {
     return (
       <>
         <Post
-          type="event"
+          type="dalgona"
           history={history}
           location={location}
           isAuthenticated={isAuthenticated}
