@@ -59,7 +59,8 @@ class EventBoard extends Component {
             handleChange={this.handleChange}
             placeholder="글 제목을 검색하세요"
             getSearch={this.getSearch}
-            boardType="event"
+            boardType="dalgona"
+            boardUrl="event"
             hasWrite
           />
         ) : (
@@ -69,7 +70,8 @@ class EventBoard extends Component {
             handleChange={this.handleChange}
             placeholder="글 제목을 검색하세요"
             getSearch={this.getSearch}
-            boardType="event"
+            boardType="dalgona"
+            boardUrl="event"
           />
         )}
         <div className="border_line" />

@@ -15,8 +15,7 @@ class View extends Component {
               {'홈 >'}
               {type === `luna` && `루나>${path[2]}`}
               {type === `free` && `자유>${path[2]}`}
-              {type === `notice` && `달고나>공지사항`}
-              {type === `event` && `달고나>이벤트`}
+              {type === `dalgona` && `달고나>${path[2]}`}
             </span>
           </Link>
         </div>

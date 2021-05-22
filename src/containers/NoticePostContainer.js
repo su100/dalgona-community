@@ -219,7 +219,7 @@ class NoticePostContainer extends Component {
     return (
       <>
         <Post
-          type="notice"
+          type="dalgona"
           history={history}
           location={location}
           isAuthenticated={isAuthenticated}
