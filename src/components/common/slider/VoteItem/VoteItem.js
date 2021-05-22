@@ -6,7 +6,7 @@ import './VoteItem.scss';
 const VoteItem = ({ id, title, voteitem }) => (
   <Link to={`/issue/vote${id ? `/${id}` : ''}`} className="vote-item">
     <h2>{title}</h2>
-    <h5>지금 투표하러가기 &gt;</h5>
+    <h5>지금 투표하러 가기 &gt;</h5>
     <div className="vote-item__box--img">
       {voteitem[0].item_image ? (
         <img className="vote-item__image" src={voteitem[0].item_image} alt="vote-item" />

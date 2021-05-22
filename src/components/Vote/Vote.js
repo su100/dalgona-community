@@ -150,11 +150,7 @@ class Vote extends Component {
               </button>
             )}
           </div>
-          <span className="vote__main-count">
-            {'현재'}
-            {voteInfo.vote_count}
-            {'표 차이'}
-          </span>
+          <span className="vote__main-count">{`현재 ${voteInfo.vote_count}표 차이`}</span>
           <div className="vote__main-ratio">
             <div
               style={{
