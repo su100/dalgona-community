@@ -93,31 +93,46 @@ class VoteContainer extends Component {
   };
 
   replyRecommend = async (replyUrl) => {
-    const { IssueActions, match } = this.props;
+    const { IssueActions, match, history } = this.props;
     try {
       await IssueActions.replyRecommend(replyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
+      if (e.response.status === 401) {
+        if (window.confirm('로그인이 필요합니다.')) {
+          history.push('/login');
+        }
+      }
     }
     this.getVoteReply(match.params.voteid, 1); //  댓글 목록 새로고침
   };
 
   reReplyRecommend = async (reReplyUrl) => {
-    const { IssueActions, match } = this.props;
+    const { IssueActions, match, history } = this.props;
     try {
       await IssueActions.reReplyRecommend(reReplyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
+      if (e.response.status === 401) {
+        if (window.confirm('로그인이 필요합니다.')) {
+          history.push('/login');
+        }
+      }
     }
     this.getVoteReply(match.params.voteid, 1); //  댓글 목록 새로고침
   };
 
   userVote = async (voteitem) => {
-    const { IssueActions } = this.props;
+    const { IssueActions, history } = this.props;
     try {
       await IssueActions.userVote(voteitem);
     } catch (e) {
       console.log(`error log: ${e}`);
+      if (e.response.status === 401) {
+        if (window.confirm('로그인이 필요합니다.')) {
+          history.push('/login');
+        }
+      }
     }
   };
 
