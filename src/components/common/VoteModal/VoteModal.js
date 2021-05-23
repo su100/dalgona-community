@@ -1,7 +1,7 @@
 import React from 'react';
 import './VoteModal.scss';
 
-const VoteModal = ({ handleShowModal, isVote, finishVote, voteResult }) => (
+const VoteModal = ({ handleShowModal, voteResult }) => (
   <div className="votemodal">
     <div className="votemodal-modal">
       <span>{voteResult}</span>

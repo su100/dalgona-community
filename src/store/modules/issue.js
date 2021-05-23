@@ -176,7 +176,6 @@ export default handleActions(
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
-        console.log(data);
         return state.set('voteResult', data.result);
       },
     }),

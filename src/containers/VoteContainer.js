@@ -127,7 +127,6 @@ class VoteContainer extends Component {
     try {
       await IssueActions.userVote(voteitem);
     } catch (e) {
-      console.log(`error log: ${e}`);
       if (e.response.status === 401) {
         if (window.confirm('로그인이 필요합니다.')) {
           history.push('/login');
