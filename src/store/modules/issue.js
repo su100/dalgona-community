@@ -51,8 +51,7 @@ const initialState = Map({
   voteInfo: [],
   voteReplyList: [],
   voteReplyCount: 0,
-  isVote: false,
-  finishVote: false,
+  voteResult: '',
 });
 
 /* reducer + pender */
@@ -173,17 +172,12 @@ export default handleActions(
       onSuccess: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
-        return state;
+        return state.set('voteResult', data.result);
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
-        if (data.result?.includes('마감된 투표입니다.')) {
-          return state.set('finishVote', true);
-        }
-        if (data.detail?.includes('이미 참여한 투표입니다.')) {
-          return state.set('isVote', true);
-        }
-        return state;
+        console.log(data);
+        return state.set('voteResult', data.result);
       },
     }),
     ...pender({
