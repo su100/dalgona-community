@@ -172,7 +172,7 @@ export default handleActions(
       onSuccess: (state, action) => {
         const { data } = action.payload.response;
         console.log(data);
-        return state.set('voteResult', data.result);
+        return state.set('voteResult', '투표 완료');
       },
       onFailure: (state, action) => {
         const { data } = action.payload.response;
