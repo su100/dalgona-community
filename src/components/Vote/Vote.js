@@ -62,7 +62,6 @@ class Vote extends Component {
       voteReplyList,
       isAuthenticated,
       voteReplyCount,
-      isVote,
       rereply_success,
       userVote,
       postVoteReply,
@@ -71,7 +70,7 @@ class Vote extends Component {
       updateVoteRereply,
       getVoteInfo,
       voteReply,
-      finishVote,
+      voteResult,
     } = this.props;
 
     const replyCount = voteInfo?.reply_count;
@@ -99,10 +98,9 @@ class Vote extends Component {
             {isAuthenticated && showModal && (
               <VoteModal
                 voteDuplicate={selectVote}
-                isVote={isVote}
-                finishVote={finishVote}
                 handleShowModal={this.handleShowModal}
                 userVote={userVote}
+                voteResult={voteResult}
               />
             )}
             {voteInfo?.voteitem && (
