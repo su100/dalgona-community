@@ -294,6 +294,20 @@ class CommentList extends Component {
     }
   };
 
+  replyRecommend = (e) => {
+    const { replyRecommend } = this.props;
+    const { page } = this.state;
+    const postReplyId = e.currentTarget.id;
+    replyRecommend(postReplyId, page);
+  };
+
+  reReplyRecommend = (e) => {
+    const { reReplyRecommend } = this.props;
+    const { page } = this.state;
+    const postRereplyId = e.currentTarget.id;
+    reReplyRecommend(postRereplyId, page);
+  };
+
   render() {
     const {
       vote,
@@ -303,8 +317,6 @@ class CommentList extends Component {
       recommend,
       recommendPost,
       deleteReply,
-      replyRecommend,
-      reReplyRecommend,
       deleteRereply,
       reply_count,
     } = this.props;
@@ -489,7 +501,7 @@ class CommentList extends Component {
                           </div>
                           {isRecommend && (
                             <div className="not-pc">
-                              <button id={comment.id} onClick={replyRecommend}>
+                              <button id={comment.id} onClick={this.replyRecommend}>
                                 <img
                                   className="comment-list__item__button--heart"
                                   src={comment.recommended ? heartFilled : heart}
@@ -523,7 +535,7 @@ class CommentList extends Component {
                               <button
                                 className={comment.recommended ? 'comment-list__item--button recommend' : ''}
                                 id={comment.id}
-                                onClick={replyRecommend}
+                                onClick={this.replyRecommend}
                               >
                                 추천
                               </button>
@@ -605,7 +617,7 @@ class CommentList extends Component {
                               </div>
                               {isRecommend && (
                                 <div className="not-pc">
-                                  <button id={reComment.id} onClick={reReplyRecommend}>
+                                  <button id={reComment.id} onClick={this.reReplyRecommend}>
                                     <img
                                       className="comment-list__item__button--heart"
                                       src={reComment.recommended ? heartFilled : heart}
@@ -633,7 +645,7 @@ class CommentList extends Component {
                                   <button
                                     className={reComment.recommended ? 'comment-list__item--button recommend' : ''}
                                     id={reComment.id}
-                                    onClick={reReplyRecommend}
+                                    onClick={this.reReplyRecommend}
                                   >
                                     추천
                                   </button>

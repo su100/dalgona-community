@@ -143,24 +143,24 @@ class NoticePostContainer extends Component {
     }
   };
 
-  replyRecommend = async (replyUrl) => {
+  replyRecommend = async (replyUrl, currentPage) => {
     const { WriteActions, match } = this.props;
     try {
       await WriteActions.recommendPostReply(replyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    this.getPostReply(match.params.noticeid, 1);
+    this.getPostReply(match.params.noticeid, currentPage);
   };
 
-  reReplyRecommend = async (reReplyUrl) => {
+  reReplyRecommend = async (reReplyUrl, currentPage) => {
     const { WriteActions, match } = this.props;
     try {
       await WriteActions.recommendPostRereply(reReplyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    this.getPostReply(match.params.noticeid, 1);
+    this.getPostReply(match.params.noticeid, currentPage);
   };
 
   recommendPost = async () => {
@@ -225,7 +225,7 @@ class NoticePostContainer extends Component {
           isAuthenticated={isAuthenticated}
           reply_success={reply_success}
           rereply_success={rereply_success}
-          postid={match.params.postid}
+          postid={match.params.noticeid}
           getReply={this.getReply}
           getPostInfo={this.getPostInfo}
           addPostReply={this.addPostReply}

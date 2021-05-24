@@ -13,22 +13,10 @@ class Post extends Component {
     deletePostReply(postReplyId);
   };
 
-  replyRecommend = (e) => {
-    const { replyRecommend } = this.props;
-    const postReplyId = e.currentTarget.id;
-    replyRecommend(postReplyId);
-  };
-
   deleteRereply = (e) => {
     const { deletePostRereply } = this.props;
     const postRereplyId = e.currentTarget.id;
     deletePostRereply(postRereplyId);
-  };
-
-  reReplyRecommend = (e) => {
-    const { reReplyRecommend } = this.props;
-    const postRereplyId = e.currentTarget.id;
-    reReplyRecommend(postRereplyId);
   };
 
   editPost = () => {
@@ -81,6 +69,8 @@ class Post extends Component {
       addPostRereply,
       updatePostReply,
       updatePostRereply,
+      reReplyRecommend,
+      replyRecommend,
     } = this.props;
 
     const request = location.search;
@@ -118,8 +108,8 @@ class Post extends Component {
           recommend_count={postInfo.recommend_count}
           deleteReply={this.deleteReply}
           deleteRereply={this.deleteRereply}
-          replyRecommend={this.replyRecommend}
-          reReplyRecommend={this.reReplyRecommend}
+          replyRecommend={replyRecommend}
+          reReplyRecommend={reReplyRecommend}
           postid={postid}
           addReply={addPostReply}
           addRereply={addPostRereply}
