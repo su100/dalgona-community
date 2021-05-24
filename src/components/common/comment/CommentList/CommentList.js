@@ -445,7 +445,7 @@ class CommentList extends Component {
           } else {
             nickname = '삭제된 댓글';
           }
-          if (comment.author?.nickname === postAuthor?.nickname) {
+          if (!comment.anonymous && !vote && comment.author?.nickname === postAuthor?.nickname) {
             nickname += '(글쓴이)';
           }
           return (
@@ -461,7 +461,7 @@ class CommentList extends Component {
                     <div className="comment-list__item--detail">
                       <span
                         className={
-                          comment.author?.nickname === postAuthor?.nickname && comment.author
+                          !comment.anonymous && !vote && comment.author?.nickname === postAuthor?.nickname
                             ? 'comment-list__item--username author'
                             : 'comment-list__item--username'
                         }
@@ -566,7 +566,7 @@ class CommentList extends Component {
                         <div className="comment-list__item--detail">
                           <span
                             className={
-                              reComment.author?.nickname === postAuthor?.nickname && reComment.author
+                              !reComment.anonymous && !vote && reComment.author?.nickname === postAuthor?.nickname
                                 ? 'comment-list__item--username author'
                                 : 'comment-list__item--username'
                             }
@@ -574,7 +574,9 @@ class CommentList extends Component {
                             {reComment.anonymous
                               ? '익명'
                               : `${reComment.author.nickname}${
-                                  reComment.author?.nickname === postAuthor?.nickname ? '(글쓴이)' : ''
+                                  !reComment.anonymous && !vote && reComment.author?.nickname === postAuthor?.nickname
+                                    ? '(글쓴이)'
+                                    : ''
                                 }`}
                           </span>
                           <span>{reComment.created_at}</span>

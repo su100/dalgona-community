@@ -62,6 +62,7 @@ class Vote extends Component {
     } = this.props;
 
     const replyCount = voteInfo?.reply_count;
+
     return (
       <div className="vote">
         <div className="vote__detail">
