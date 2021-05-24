@@ -117,6 +117,7 @@ class Post extends Component {
           updateRereply={updatePostRereply}
           recommendPost={recommendPost}
           recommend={postInfo.recommended}
+          postAuthor={postInfo.author}
           isRecommend
         />
         <div className="border_line" />

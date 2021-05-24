@@ -319,6 +319,7 @@ class CommentList extends Component {
       deleteReply,
       deleteRereply,
       reply_count,
+      postAuthor,
     } = this.props;
     const {
       isUpdate,
@@ -339,6 +340,7 @@ class CommentList extends Component {
       updatePreview,
       page,
     } = this.state;
+
     const currentPage = page ? Number(page) : 1;
     const rereplyList = vote ? 'voteboardrereply' : 'rereply';
     return (
@@ -443,7 +445,7 @@ class CommentList extends Component {
           } else {
             nickname = '삭제된 댓글';
           }
-          if (comment.is_author) {
+          if (comment.author?.nickname === postAuthor?.nickname) {
             nickname += '(글쓴이)';
           }
           return (
@@ -459,7 +461,9 @@ class CommentList extends Component {
                     <div className="comment-list__item--detail">
                       <span
                         className={
-                          comment.is_author ? 'comment-list__item--username author' : 'comment-list__item--username'
+                          comment.author?.nickname === postAuthor?.nickname && comment.author
+                            ? 'comment-list__item--username author'
+                            : 'comment-list__item--username'
                         }
                       >
                         {nickname}
@@ -562,14 +566,16 @@ class CommentList extends Component {
                         <div className="comment-list__item--detail">
                           <span
                             className={
-                              reComment.is_author
+                              reComment.author?.nickname === postAuthor?.nickname && reComment.author
                                 ? 'comment-list__item--username author'
                                 : 'comment-list__item--username'
                             }
                           >
                             {reComment.anonymous
                               ? '익명'
-                              : `${reComment.author.nickname}${reComment.is_author && '(글쓴이)'}`}
+                              : `${reComment.author.nickname}${
+                                  reComment.author?.nickname === postAuthor?.nickname ? '(글쓴이)' : ''
+                                }`}
                           </span>
                           <span>{reComment.created_at}</span>
                           <span>{isRecommend && `추천 ${reComment.recommend_count}`}</span>
