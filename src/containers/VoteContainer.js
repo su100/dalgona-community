@@ -92,7 +92,7 @@ class VoteContainer extends Component {
     this.getVoteReply(match.params.voteid, 1); //  댓글 목록 새로고침
   };
 
-  replyRecommend = async (replyUrl) => {
+  replyRecommend = async (replyUrl, currentPage) => {
     const { IssueActions, match, history } = this.props;
     try {
       await IssueActions.replyRecommend(replyUrl);
@@ -104,10 +104,10 @@ class VoteContainer extends Component {
         }
       }
     }
-    this.getVoteReply(match.params.voteid, 1); //  댓글 목록 새로고침
+    this.getVoteReply(match.params.voteid, currentPage); //  댓글 목록 새로고침
   };
 
-  reReplyRecommend = async (reReplyUrl) => {
+  reReplyRecommend = async (reReplyUrl, currentPage) => {
     const { IssueActions, match, history } = this.props;
     try {
       await IssueActions.reReplyRecommend(reReplyUrl);
@@ -119,7 +119,7 @@ class VoteContainer extends Component {
         }
       }
     }
-    this.getVoteReply(match.params.voteid, 1); //  댓글 목록 새로고침
+    this.getVoteReply(match.params.voteid, currentPage); //  댓글 목록 새로고침
   };
 
   userVote = async (voteitem) => {

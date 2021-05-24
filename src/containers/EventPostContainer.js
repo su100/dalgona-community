@@ -129,24 +129,24 @@ class EventPostContainer extends Component {
     this.getPostReply(match.params.eventid, 1);
   };
 
-  replyRecommend = async (replyUrl) => {
+  replyRecommend = async (replyUrl, currentPage) => {
     const { WriteActions, match } = this.props;
     try {
       await WriteActions.recommendPostReply(replyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    this.getPostReply(match.params.eventid, 1);
+    this.getPostReply(match.params.eventid, currentPage);
   };
 
-  reReplyRecommend = async (reReplyUrl) => {
+  reReplyRecommend = async (reReplyUrl, currentPage) => {
     const { WriteActions, match } = this.props;
     try {
       await WriteActions.recommendPostRereply(reReplyUrl);
     } catch (e) {
       console.log(`error log: ${e}`);
     }
-    this.getPostReply(match.params.eventid, 1);
+    this.getPostReply(match.params.eventid, currentPage);
   };
 
   getReply = (postid, page, ordering) => {

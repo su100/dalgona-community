@@ -6,7 +6,6 @@ import './View.scss';
 class View extends Component {
   render() {
     const { postInfo, type, location, isSuperuser, editPost, deletePost } = this.props;
-    console.log(postInfo.author);
     const path = location.pathname.split('/');
     return (
       <div className="view">

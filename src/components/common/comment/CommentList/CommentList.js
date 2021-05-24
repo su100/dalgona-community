@@ -294,6 +294,20 @@ class CommentList extends Component {
     }
   };
 
+  replyRecommend = (e) => {
+    const { replyRecommend } = this.props;
+    const { page } = this.state;
+    const postReplyId = e.currentTarget.id;
+    replyRecommend(postReplyId, page);
+  };
+
+  reReplyRecommend = (e) => {
+    const { reReplyRecommend } = this.props;
+    const { page } = this.state;
+    const postRereplyId = e.currentTarget.id;
+    reReplyRecommend(postRereplyId, page);
+  };
+
   render() {
     const {
       vote,
@@ -303,10 +317,9 @@ class CommentList extends Component {
       recommend,
       recommendPost,
       deleteReply,
-      replyRecommend,
-      reReplyRecommend,
       deleteRereply,
       reply_count,
+      postAuthor,
     } = this.props;
     const {
       isUpdate,
@@ -327,6 +340,7 @@ class CommentList extends Component {
       updatePreview,
       page,
     } = this.state;
+
     const currentPage = page ? Number(page) : 1;
     const rereplyList = vote ? 'voteboardrereply' : 'rereply';
     return (
@@ -431,7 +445,7 @@ class CommentList extends Component {
           } else {
             nickname = '삭제된 댓글';
           }
-          if (comment.is_author) {
+          if (!comment.anonymous && !vote && comment.author?.nickname === postAuthor?.nickname) {
             nickname += '(글쓴이)';
           }
           return (
@@ -447,7 +461,9 @@ class CommentList extends Component {
                     <div className="comment-list__item--detail">
                       <span
                         className={
-                          comment.is_author ? 'comment-list__item--username author' : 'comment-list__item--username'
+                          !comment.anonymous && !vote && comment.author?.nickname === postAuthor?.nickname
+                            ? 'comment-list__item--username author'
+                            : 'comment-list__item--username'
                         }
                       >
                         {nickname}
@@ -489,7 +505,7 @@ class CommentList extends Component {
                           </div>
                           {isRecommend && (
                             <div className="not-pc">
-                              <button id={comment.id} onClick={replyRecommend}>
+                              <button id={comment.id} onClick={this.replyRecommend}>
                                 <img
                                   className="comment-list__item__button--heart"
                                   src={comment.recommended ? heartFilled : heart}
@@ -523,7 +539,7 @@ class CommentList extends Component {
                               <button
                                 className={comment.recommended ? 'comment-list__item--button recommend' : ''}
                                 id={comment.id}
-                                onClick={replyRecommend}
+                                onClick={this.replyRecommend}
                               >
                                 추천
                               </button>
@@ -550,14 +566,18 @@ class CommentList extends Component {
                         <div className="comment-list__item--detail">
                           <span
                             className={
-                              reComment.is_author
+                              !reComment.anonymous && !vote && reComment.author?.nickname === postAuthor?.nickname
                                 ? 'comment-list__item--username author'
                                 : 'comment-list__item--username'
                             }
                           >
                             {reComment.anonymous
                               ? '익명'
-                              : `${reComment.author.nickname}${reComment.is_author && '(글쓴이)'}`}
+                              : `${reComment.author.nickname}${
+                                  !reComment.anonymous && !vote && reComment.author?.nickname === postAuthor?.nickname
+                                    ? '(글쓴이)'
+                                    : ''
+                                }`}
                           </span>
                           <span>{reComment.created_at}</span>
                           <span>{isRecommend && `추천 ${reComment.recommend_count}`}</span>
@@ -605,7 +625,7 @@ class CommentList extends Component {
                               </div>
                               {isRecommend && (
                                 <div className="not-pc">
-                                  <button id={reComment.id} onClick={reReplyRecommend}>
+                                  <button id={reComment.id} onClick={this.reReplyRecommend}>
                                     <img
                                       className="comment-list__item__button--heart"
                                       src={reComment.recommended ? heartFilled : heart}
@@ -633,7 +653,7 @@ class CommentList extends Component {
                                   <button
                                     className={reComment.recommended ? 'comment-list__item--button recommend' : ''}
                                     id={reComment.id}
-                                    onClick={reReplyRecommend}
+                                    onClick={this.reReplyRecommend}
                                   >
                                     추천
                                   </button>

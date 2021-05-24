@@ -33,22 +33,10 @@ class Vote extends Component {
     deleteVoteReply(voteReplyId);
   };
 
-  replyRecommend = (e) => {
-    const { replyRecommend } = this.props;
-    const voteReplyId = e.currentTarget.id;
-    replyRecommend(voteReplyId);
-  };
-
   deleteRereply = (e) => {
     const { deleteVoteRereply } = this.props;
     const voteRereplyId = e.currentTarget.id;
     deleteVoteRereply(voteRereplyId);
-  };
-
-  reReplyRecommend = (e) => {
-    const { reReplyRecommend } = this.props;
-    const voteRereplyId = e.currentTarget.id;
-    reReplyRecommend(voteRereplyId);
   };
 
   render() {
@@ -74,6 +62,7 @@ class Vote extends Component {
     } = this.props;
 
     const replyCount = voteInfo?.reply_count;
+
     return (
       <div className="vote">
         <div className="vote__detail">
