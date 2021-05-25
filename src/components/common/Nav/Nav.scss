@@ -39,7 +39,7 @@
         text-decoration: none;
       }
       span {
-        font-size: 14px;
+        font-size: 17px;
       }
       &-login {
         color: #838383;
@@ -64,7 +64,7 @@
       &-content {
         min-width: 100px;
         text-align: center;
-        font-size: 14px;
+        font-size: 18px;
         &:hover {
           color: $main-color;
         }
@@ -84,7 +84,7 @@
     @include flex(row, center, center);
     width: 100%;
     height: 200px;
-    background: #c2c2c2;
+    background: rgba(211, 211, 211, 0.5);
     &__border {
       @include flex(row, flex-end, center);
       min-width: 400px;
@@ -95,7 +95,7 @@
         min-width: 200px;
         height: inherit;
         span {
-          font-size: 13px;
+          font-size: 15px;
           color: #838383;
           padding: 9px 0;
         }
@@ -114,12 +114,13 @@
       }
       &-col {
         @include flex(column, flex-start, center);
+        padding: 9px 5px;
         min-width: 100px;
         height: inherit;
         border-right: 1px solid #838383;
-        font-size: 13px;
+        font-size: 15px;
         color: #838383;
-        padding: 9px 0;
+        box-sizing: border-box;
         a {
           margin-bottom: 6px;
         }
@@ -147,6 +148,7 @@
       &__logo {
         @include flex(row, space-between, space-between);
         width: 100%;
+        height: 5rem;
         padding: 0;
         span {
           display: none;
@@ -155,22 +157,19 @@
           display: inline;
           padding: 0 20px;
         }
-        &-menu {
-          width: 16px;
-          height: 16px;
+        &-menu,
+        &-search {
+          width: auto;
+          height: 1.8rem;
         }
         &-logoimg {
           @include flex(row, center, center);
-          height: 31px;
+          height: 3rem;
           padding: 0px;
           img {
             padding: 0px;
-            height: 39px;
+            height: 3.7rem;
           }
-        }
-        &-search {
-          width: 16px;
-          height: 16px;
         }
       }
       &__login {
@@ -264,11 +263,14 @@
         height: 3.55rem;
         img {
           margin: 0px;
-          width: auto;
+        }
+        &-menu,
+        &-search {
+          height: 1.2rem;
         }
         &-logoimg {
           img {
-            height: 1.8rem;
+            height: 2.7rem;
           }
         }
       }
