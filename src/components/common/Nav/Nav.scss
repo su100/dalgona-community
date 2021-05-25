@@ -39,7 +39,7 @@
         text-decoration: none;
       }
       span {
-        font-size: 14px;
+        font-size: 17px;
       }
       &-login {
         color: #838383;
@@ -64,7 +64,7 @@
       &-content {
         min-width: 100px;
         text-align: center;
-        font-size: 14px;
+        font-size: 18px;
         &:hover {
           color: $main-color;
         }
@@ -95,7 +95,7 @@
         min-width: 200px;
         height: inherit;
         span {
-          font-size: 13px;
+          font-size: 15px;
           color: #838383;
           padding: 9px 0;
         }
@@ -114,12 +114,13 @@
       }
       &-col {
         @include flex(column, flex-start, center);
+        padding: 9px 5px;
         min-width: 100px;
         height: inherit;
         border-right: 1px solid #838383;
-        font-size: 13px;
+        font-size: 15px;
         color: #838383;
-        padding: 9px 0;
+        box-sizing: border-box;
         a {
           margin-bottom: 6px;
         }
