@@ -95,35 +95,18 @@ class Search extends Component {
                 <div className="search__item--left">
                   {imageURL !== '' && <img src={imageURL} alt="post" />}
                   <div className="search__item--info">
-                    <div className="search__item--title">{post.title}</div>
+                    <div className="search__item--title">{`[${post.board_url.board_name}] ${post.title}`}</div>
                     <div className="not-pc">
-                      <span>
-                        {'조회수'}
-                        {post.views}
-                        {'|'}
-                        {post.created_at}
-                        {'|'}
-                        {'추천'}
-                        {post.recommend_count}
-                      </span>
+                      <span>{`조회수 ${post.views} | ${post.created_at} | 추천 ${post.recommend_count}`}</span>
                     </div>
                   </div>
                 </div>
                 <div className="search__item--right">
                   <div className="only-pc">
-                    <span>
-                      댓글
-                      {post.reply_count}
-                    </span>
-                    <span>
-                      조회수
-                      {post.views}
-                    </span>
+                    <span>{`댓글 ${post.reply_count}`}</span>
+                    <span>{`조회수 ${post.views}`}</span>
                     <span>{post.created_at}</span>
-                    <span>
-                      추천
-                      {post.recommend_count}
-                    </span>
+                    <span>{`추천 ${post.recommend_count}`}</span>
                   </div>
                   <div className="not-pc search__reply-count">{post.reply_count}</div>
                 </div>

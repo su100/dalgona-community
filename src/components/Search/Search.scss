@@ -32,7 +32,7 @@
         .search__item--title {
           font-weight: bold;
           font-size: 14px;
-          @include ellipsis(2, 14px);
+          @include ellipsis(2, 18px);
         }
       }
       .search__item--right {
@@ -82,7 +82,7 @@
             .search__item--title {
               font-weight: 500;
               font-size: 17px;
-              @include ellipsis(2, 20px);
+              @include ellipsis(2, 21px);
             }
             span {
               font-size: 14px;
@@ -131,8 +131,8 @@
           .search__item--info {
             padding: 10px 0;
             .search__item--title {
-              font-weight: normal;
-              @include ellipsis(1, 17px);
+              font-weight: bold;
+              @include ellipsis(1, 20px);
             }
             span {
               font-size: 12px;
