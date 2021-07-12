@@ -59,6 +59,8 @@ class Vote extends Component {
       getVoteInfo,
       voteReply,
       voteResult,
+      replyRecommend,
+      reReplyRecommend,
     } = this.props;
 
     const replyCount = voteInfo?.reply_count;
@@ -176,8 +178,8 @@ class Vote extends Component {
             updateRereply={updateVoteRereply}
             deleteReply={this.deleteReply}
             deleteRereply={this.deleteRereply}
-            replyRecommend={this.replyRecommend}
-            reReplyRecommend={this.reReplyRecommend}
+            replyRecommend={replyRecommend}
+            reReplyRecommend={reReplyRecommend}
             getVoteInfo={getVoteInfo}
             voteReply={voteReply}
             isRecommend
