@@ -32,9 +32,9 @@ class NavContainer extends Component {
   }
 
   signOut = () => {
-    const { AuthActions, history } = this.props;
+    const { history, AuthActions } = this.props;
     AuthActions.signOut();
-    history.go(); //  새로고침으로 store초기화
+    history.push('/');
   };
 
   getProfile = async () => {

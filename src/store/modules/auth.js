@@ -76,6 +76,10 @@ export default handleActions(
       if (Storage.session.get('__AUTH__')) {
         Storage.session.remove('__AUTH__');
       }
+
+      // 다른 탭에서도 토큰 지워 로그아웃
+      window.localStorage.setItem('REMOVE_CREDENTIALS', Date.now().toString());
+      window.localStorage.removeItem('REMOVE_CREDENTIALS');
       //  로그인 여부 false, profile 빈 값
       return state.set('isAuthenticated', false).set('profile', Map({}));
     },
