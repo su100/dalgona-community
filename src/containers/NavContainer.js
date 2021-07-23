@@ -1,13 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import * as navActions from 'store/modules/nav';
 import Nav from 'components/common/Nav';
 
-class NavContainer extends PureComponent {
+class NavContainer extends Component {
   componentDidMount() {
     const { profile, lunaBoard, freeBoard, dalgonaBoard, isAuthenticated } = this.props;
+
     if (profile.size === 0 && isAuthenticated) {
       //  로그인 상태일 경우
       this.getProfile();
@@ -20,6 +21,13 @@ class NavContainer extends PureComponent {
     }
     if (dalgonaBoard.length === 0) {
       this.getDalgonaBoard();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isAuthenticated } = this.props;
+    if (isAuthenticated && prevProps.isAuthenticated !== isAuthenticated) {
+      this.getProfile();
     }
   }
 
