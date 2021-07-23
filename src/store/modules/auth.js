@@ -174,10 +174,7 @@ export default handleActions(
     }),
     ...pender({
       type: GET_PROFILE,
-      onSuccess: (state, action) => {
-        console.log(action.payload);
-        return state.set('profile', Map(action.payload.data));
-      },
+      onSuccess: (state, action) => state.set('profile', Map(action.payload.data)),
       onFailure: (state, action) => {
         const { data } = action.payload.response;
         if (data.detail?.includes('Invalid signature.')) {
