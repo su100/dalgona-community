@@ -69,6 +69,7 @@ export default handleActions(
   {
     [SET_REMEMBER]: (state, action) => state.set('rememberMe', action.payload),
     [SIGN_OUT]: (state) => {
+      console.log('SIGN_OUT');
       //  토큰 삭제
       if (Storage.local.get('__AUTH__')) {
         Storage.local.remove('__AUTH__');
@@ -76,12 +77,11 @@ export default handleActions(
       if (Storage.session.get('__AUTH__')) {
         Storage.session.remove('__AUTH__');
       }
-      // 다른 탭에서도 토큰 지워 로그아웃
+
+      window.location.reload();
+      // 다른 탭에서도 토큰 지워 로그아웃시키기
       Storage.local.set('REMOVE_CREDENTIALS', Date.now().toString());
       Storage.local.remove('REMOVE_CREDENTIALS');
-
-      // 새로고침으로 스토어 초기화
-      window.location.reload();
       //  로그인 여부 false, profile 빈 값
       return state.set('isAuthenticated', false).set('profile', Map({}));
     },

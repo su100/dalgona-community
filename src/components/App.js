@@ -46,14 +46,13 @@ class App extends Component {
 
     window.addEventListener('storage', (event) => {
       const credentials = getToken();
-
       if (event.key === 'LOGIN' && event.newValue) {
         // 로그인했는데 현재 탭 토큰과 다른 토큰이 들어오면
         const [type, value] = JSON.parse(event.newValue).split('|');
         if (credentials !== value) {
           Storage[type].set('__AUTH__', value);
-          window.location.reload();
         }
+        window.location.reload();
       }
 
       // 다른 새 탭 열리고 token이 sessionStorage에 있을 때
@@ -72,6 +71,11 @@ class App extends Component {
       if (event.key === 'REMOVE_CREDENTIALS' && credentials) {
         // 다른 탭에서 로그아웃 시 현재 탭에서도 로그아웃
         AuthActions.signOut();
+      }
+
+      if (event.key === '__AUTH__' && event.newValue === null) {
+        // 자동로그인 후 로그아웃시 새로고침
+        window.location.reload();
       }
     });
 
