@@ -38,7 +38,7 @@
     }
     .home__container--hot {
       @include flex(column, flex-start, flex-start);
-      max-height: 245px * 3;
+      max-height: 245px * 3 + 5px;
       flex-wrap: wrap;
     }
   }
