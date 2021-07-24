@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
+import { Storage } from 'lib/storage';
+import { getToken } from 'lib/api';
 
 import {
   HomePage,
@@ -38,18 +40,18 @@ class App extends Component {
     AuthActions.setAuth();
 
     window.addEventListener('storage', (event) => {
-      const credentials = window.sessionStorage.getItem('__AUTH__');
+      const credentials = getToken();
 
       // 다른 새 탭 열리고 token이 sessionStorage에 있을 때
       if (event.key === 'REQUESTING_SHARED_CREDENTIALS' && credentials) {
         // localStorage에 복사했다가 지움
-        window.localStorage.setItem('CREDENTIALS_SHARING', credentials);
-        window.localStorage.removeItem('CREDENTIALS_SHARING');
+        Storage.local.set('CREDENTIALS_SHARING', credentials);
+        Storage.local.remove('CREDENTIALS_SHARING');
       }
 
       // 새 탭 기준: 위의 조건문 돌면 session에 복사
       if (event.key === 'CREDENTIALS_SHARING' && !credentials) {
-        window.sessionStorage.setItem('__AUTH__', event.newValue);
+        Storage.session.set('__AUTH__', event.newValue);
         AuthActions.setAuth();
       }
 
@@ -59,8 +61,8 @@ class App extends Component {
       }
     });
 
-    window.localStorage.setItem('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
-    window.localStorage.removeItem('REQUESTING_SHARED_CREDENTIALS');
+    Storage.local.set('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
+    Storage.local.remove('REQUESTING_SHARED_CREDENTIALS');
   }
 
   render() {

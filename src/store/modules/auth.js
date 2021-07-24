@@ -77,8 +77,8 @@ export default handleActions(
         Storage.session.remove('__AUTH__');
       }
       // 다른 탭에서도 토큰 지워 로그아웃
-      window.localStorage.setItem('REMOVE_CREDENTIALS', Date.now().toString());
-      window.localStorage.removeItem('REMOVE_CREDENTIALS');
+      Storage.local.set('REMOVE_CREDENTIALS', Date.now().toString());
+      Storage.local.remove('REMOVE_CREDENTIALS');
 
       // 새로고침으로 스토어 초기화
       window.location.reload();
