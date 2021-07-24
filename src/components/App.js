@@ -35,12 +35,26 @@ import {
 import './App.scss';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    const { AuthActions } = props;
+    AuthActions.setAuth();
+  }
+
   componentDidMount() {
     const { AuthActions } = this.props;
-    AuthActions.setAuth();
 
     window.addEventListener('storage', (event) => {
       const credentials = getToken();
+
+      if (event.key === 'LOGIN' && event.newValue) {
+        // 로그인했는데 현재 탭 토큰과 다른 토큰이 들어오면
+        const [type, value] = JSON.parse(event.newValue).split('|');
+        if (credentials !== value) {
+          Storage[type].set('__AUTH__', value);
+          window.location.reload();
+        }
+      }
 
       // 다른 새 탭 열리고 token이 sessionStorage에 있을 때
       if (event.key === 'REQUESTING_SHARED_CREDENTIALS' && credentials) {
@@ -51,7 +65,7 @@ class App extends Component {
 
       // 새 탭 기준: 위의 조건문 돌면 session에 복사
       if (event.key === 'CREDENTIALS_SHARING' && !credentials) {
-        Storage.session.set('__AUTH__', event.newValue);
+        Storage.session.set('__AUTH__', JSON.parse(event.newValue));
         AuthActions.setAuth();
       }
 
@@ -61,8 +75,18 @@ class App extends Component {
       }
     });
 
-    Storage.local.set('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
-    Storage.local.remove('REQUESTING_SHARED_CREDENTIALS');
+    const token = getToken();
+
+    /* 새로고침 혹은 새 탭 */
+    // 이미 token이 있는 경우 다른 탭에 알리지 않음
+    if (token) {
+      // 현재 탭에 이미 token이 존재하면
+      AuthActions.setAuth();
+    } else {
+      // 현재 App이 새 탭에서 실행된 경우
+      Storage.local.set('REQUESTING_SHARED_CREDENTIALS', Date.now().toString());
+      Storage.local.remove('REQUESTING_SHARED_CREDENTIALS');
+    }
   }
 
   render() {

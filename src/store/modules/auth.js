@@ -120,9 +120,12 @@ export default handleActions(
         //  access token 저장
         if (state.get('rememberMe')) {
           Storage.local.set('__AUTH__', data.token);
+          Storage.local.set('LOGIN', `local|${data.token}`);
         } else {
           Storage.session.set('__AUTH__', data.token);
+          Storage.local.set('LOGIN', `session|${data.token}`);
         }
+        Storage.local.remove('LOGIN');
         return state.set('isAuthenticated', true);
       },
       onFailure: (state, action) => {
