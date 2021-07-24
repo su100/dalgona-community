@@ -69,6 +69,7 @@ export default handleActions(
   {
     [SET_REMEMBER]: (state, action) => state.set('rememberMe', action.payload),
     [SIGN_OUT]: (state) => {
+      console.log('SIGN_OUT');
       //  토큰 삭제
       if (Storage.local.get('__AUTH__')) {
         Storage.local.remove('__AUTH__');
@@ -77,9 +78,10 @@ export default handleActions(
         Storage.session.remove('__AUTH__');
       }
 
-      // 다른 탭에서도 토큰 지워 로그아웃
-      window.localStorage.setItem('REMOVE_CREDENTIALS', Date.now().toString());
-      window.localStorage.removeItem('REMOVE_CREDENTIALS');
+      window.location.reload();
+      // 다른 탭에서도 토큰 지워 로그아웃시키기
+      Storage.local.set('REMOVE_CREDENTIALS', Date.now().toString());
+      Storage.local.remove('REMOVE_CREDENTIALS');
       //  로그인 여부 false, profile 빈 값
       return state.set('isAuthenticated', false).set('profile', Map({}));
     },
@@ -118,9 +120,12 @@ export default handleActions(
         //  access token 저장
         if (state.get('rememberMe')) {
           Storage.local.set('__AUTH__', data.token);
+          Storage.local.set('LOGIN', `local|${data.token}`);
         } else {
           Storage.session.set('__AUTH__', data.token);
+          Storage.local.set('LOGIN', `session|${data.token}`);
         }
+        Storage.local.remove('LOGIN');
         return state.set('isAuthenticated', true);
       },
       onFailure: (state, action) => {

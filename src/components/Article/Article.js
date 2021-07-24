@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import Header from 'components/common/Header';
 import ArticleList from 'components/common/ArticleList';

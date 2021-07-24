@@ -26,15 +26,15 @@ class NavContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { isAuthenticated } = this.props;
+    // 로그인했을 때
     if (isAuthenticated && prevProps.isAuthenticated !== isAuthenticated) {
       this.getProfile();
     }
   }
 
   signOut = () => {
-    const { history, AuthActions } = this.props;
+    const { AuthActions } = this.props;
     AuthActions.signOut();
-    history.push('/');
   };
 
   getProfile = async () => {

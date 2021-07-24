@@ -4,7 +4,7 @@ import { Storage } from 'lib/storage';
 import { API_BASE_URL } from 'constants/index.js';
 
 /* Auth */
-const getToken = () => Storage.local.get('__AUTH__') || Storage.session.get('__AUTH__');
+export const getToken = () => Storage.local.get('__AUTH__') || Storage.session.get('__AUTH__');
 
 const getAccesesToken = () => {
   if (getToken()) {
