@@ -34,7 +34,6 @@ class NavContainer extends Component {
   signOut = () => {
     const { history, AuthActions } = this.props;
     AuthActions.signOut();
-    history.push('/');
   };
 
   getProfile = async () => {
