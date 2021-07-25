@@ -5,15 +5,6 @@ import * as authActions from 'store/modules/auth';
 import Login from 'components/Login';
 
 class LoginContainer extends Component {
-  componentDidMount() {
-    const { history, isAuthenticated } = this.props;
-    if (isAuthenticated) {
-      //  권한 있을 때 접근하면 뒤로가기
-      alert('이미 로그인된 상태입니다.');
-      history.goBack();
-    }
-  }
-
   componentDidUpdate() {
     const { success, history } = this.props;
     if (success) {
