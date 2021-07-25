@@ -8,10 +8,11 @@ class LoginContainer extends Component {
   componentDidUpdate() {
     const { success, history } = this.props;
     if (success) {
-      //  로그인 성공시 뒤로가기
+      //  로그인 성공
       const { location } = this.props;
       const { state } = location;
 
+      this.getProfile(); // 사용자 프로필 가져오기
       if (state?.prevPath) {
         // 기본 이동: 이전 경로 있음
         /*
@@ -33,6 +34,15 @@ class LoginContainer extends Component {
       }
     }
   }
+
+  getProfile = async () => {
+    const { AuthActions } = this.props;
+    try {
+      await AuthActions.getProfile();
+    } catch (e) {
+      console.log(`error log: ${e}`);
+    }
+  };
 
   signIn = async (username, password) => {
     const { AuthActions, failure, isEmailNotCertified, history } = this.props;
