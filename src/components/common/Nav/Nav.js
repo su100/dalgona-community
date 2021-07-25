@@ -110,8 +110,7 @@ class Nav extends Component {
 
   render() {
     const { isSearch, searchWord, searchDivision, isOpen, openMenu, isPC, openSidebar, path } = this.state;
-    const { isAuthenticated, profile, lunaBoard, freeBoard, dalgonaBoard } = this.props;
-    const { isHome } = this.props;
+    const { history, isAuthenticated, profile, lunaBoard, freeBoard, dalgonaBoard, isHome } = this.props;
     const Menu = { issue: '이슈', luna: '루나', free: '자유', dalgona: '달고나' };
     return (
       <div className={!openSidebar ? 'nav' : 'nav sidebaropen'}>
@@ -148,7 +147,7 @@ class Nav extends Component {
             </div>
           ) : (
             <div className="nav-main__login">
-              <Link to={{ pathname: '/login', path: 'login' }}>
+              <Link to={{ pathname: '/login', path: 'login', state: { prevPath: history.location?.pathname } }}>
                 <span className={path === 'login' ? 'nav-main__login-login click' : 'nav-main__login-login'}>
                   로그인
                 </span>

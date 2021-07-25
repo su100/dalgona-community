@@ -20,14 +20,25 @@ class LoginContainer extends Component {
       //  로그인 성공시 뒤로가기
       const { location } = this.props;
       const { state } = location;
-      if (
-        state?.prevPath === '/find/id' ||
-        state?.prevPath === '/find/pw' ||
-        state?.prevPath.includes('/password-reset-confirm')
-      ) {
-        history.replace('/');
+
+      if (state?.prevPath) {
+        // 기본 이동: 이전 경로 있음
+        /*
+        if (
+          state?.prevPath === '/find/id' ||
+          state?.prevPath === '/find/pw' ||
+          state?.prevPath.includes('/password-reset-confirm')
+        ) {
+          // 아이디 비밀번호 찾기 || 비밀번호 재설정 페이지는 home으로 replace
+          history.replace('/');
+        } else {
+           */
+        // 이전 페이지로 이동
+        history.push(state.prevPath);
+        /* } */
       } else {
-        history.goBack();
+        // 예외 이동: 이전 경로 없음 -> home
+        history.push('/');
       }
     }
   }
