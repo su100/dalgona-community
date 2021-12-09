@@ -18,7 +18,7 @@ class WriteContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { location, history, post_success, addPostId, update_success, updatePostId } = this.props;
-    //  게시판 바뀔 때
+    //  게시글 올리기 성공시
     if (post_success && prevProps.post_success !== post_success) {
       const tmp = location.pathname.split('/');
       history.replace(`/${tmp[1]}/${tmp[2]}/${addPostId}`);

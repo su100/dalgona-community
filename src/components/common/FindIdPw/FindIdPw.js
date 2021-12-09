@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { validateEmail } from 'lib/api';
+import Modal from 'components/common/Modal';
 
 import './FindIdPw.scss';
 
@@ -10,6 +11,8 @@ class FindIdPw extends Component {
       type: 'email',
       email: '',
       username: '',
+      isAlert: false,
+      modalMessage: '',
     };
   }
 
@@ -26,12 +29,12 @@ class FindIdPw extends Component {
     const { username, email } = this.state;
 
     if (!validateEmail(email)) {
-      alert('올바른 이메일 형식을 입력해주세요.');
+      this.setState({ isAlert: true, modalMessage: '올바른 이메일 형식을 입력해주세요.' });
     } else if (idpw === 'id') {
       sendEmailForId(email);
       this.setState({ [e.target.id]: '' });
     } else if (idpw === 'pw' && username === '') {
-      alert('아이디를 입력해주세요');
+      this.setState({ isAlert: true, modalMessage: '아이디를 입력해주세요' });
     } else {
       sendEmailForPw(username, email);
     }
@@ -62,7 +65,7 @@ class FindIdPw extends Component {
           // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
         } else {
           // 본인 인증 실패 시 로직,
-          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+          this.setState({ isAlert: true, modalMessage: `인증에 실패하였습니다. 에러: ${rsp.error_msg}` });
         }
       }
     );
@@ -78,9 +81,14 @@ class FindIdPw extends Component {
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    this.setState({ isAlert: false, modalMessage: '' });
+  };
+
   render() {
     const { idpw } = this.props;
-    const { type, email, username } = this.state;
+    const { type, email, username, isAlert, modalMessage } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -148,6 +156,8 @@ class FindIdPw extends Component {
         >
           확인
         </button>
+
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

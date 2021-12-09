@@ -6,6 +6,7 @@ import BoardHotList from 'components/common/BoardHotList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
+import Modal from 'components/common/Modal';
 
 import './FreeBoard.scss';
 
@@ -14,6 +15,8 @@ class FreeBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
+      isAlert: false,
+      modalMessage: '',
     };
   }
 
@@ -41,7 +44,7 @@ class FreeBoard extends Component {
     const { history, location } = this.props;
     const { pathname } = location;
     if (searchWord.trim() === '') {
-      alert('검색어를 입력해주세요.');
+      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`${pathname}?page=1&search=${searchWord}`);
     }
@@ -59,9 +62,14 @@ class FreeBoard extends Component {
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    this.setState({ isAlert: false, modalMessage: '' });
+  };
+
   render() {
     const { boardInfo, bookmarkList, bestPostList, postCount, postList, location } = this.props;
-    const { searchWord } = this.state;
+    const { searchWord, isAlert, modalMessage } = this.state;
     const request = location.search;
     const query = queryString.parse(request);
     const currentPage = query.page ? Number(query.page) : 1;
@@ -106,6 +114,7 @@ class FreeBoard extends Component {
           <Link to={`/free/${boardInfo.board_url}/write`}>글쓰기</Link>
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

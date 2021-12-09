@@ -4,13 +4,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as dalgonaActions from 'store/modules/dalgona';
 import Activity from 'components/Activity';
+import Modal from 'components/common/Modal';
 
 class ActivityContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isAlert: false,
+      modalMessage: '',
+      modalFunction: () => {},
+    };
+  }
+
   componentDidMount() {
     const { isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
-      alert('로그인이 필요합니다.');
-      history.push('/login');
+      this.setState({
+        isAlert: true,
+        modalMessage: '로그인이 필요합니다.',
+        modalFunction: () => history.push('/login'),
+      });
     } else {
       this.getMyPost(1);
     }
@@ -42,8 +55,16 @@ class ActivityContainer extends Component {
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    const { modalFunction } = this.state;
+    modalFunction();
+    this.setState({ isAlert: false, modalMessage: '', modalFunction: () => {} });
+  };
+
   render() {
     const { history, location, myPostCount, myPost } = this.props;
+    const { isAlert, modalMessage } = this.state;
     return (
       <>
         <Activity
@@ -53,6 +74,7 @@ class ActivityContainer extends Component {
           myPost={myPost}
           getMyPost={this.getMyPost}
         />
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </>
     );
   }

@@ -6,6 +6,7 @@ import BoardHotList from 'components/common/BoardHotList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
+import Modal from 'components/common/Modal';
 import './LunaBoard.scss';
 
 class LunaBoard extends Component {
@@ -13,6 +14,8 @@ class LunaBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
+      isAlert: false,
+      modalMessage: '',
     };
   }
 
@@ -40,7 +43,7 @@ class LunaBoard extends Component {
     const { searchWord } = this.state;
     const { pathname } = location;
     if (searchWord.trim() === '') {
-      alert('검색어를 입력해주세요.');
+      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`${pathname}?page=1&search=${searchWord}`);
     }
@@ -58,9 +61,14 @@ class LunaBoard extends Component {
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    this.setState({ isAlert: false, modalMessage: '' });
+  };
+
   render() {
     const { boardInfo, bookmarkList, bestPostList, postCount, postList, location } = this.props;
-    const { searchWord } = this.state;
+    const { searchWord, isAlert, modalMessage } = this.state;
     const request = location.search;
     const query = queryString.parse(request);
     const currentPage = query.page ? Number(query.page) : 1;
@@ -106,6 +114,7 @@ class LunaBoard extends Component {
           <Link to={`/luna/${boardInfo.board_url}/write`}>글쓰기</Link>
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

@@ -6,6 +6,7 @@ import Header from 'components/common/Header';
 import Pagination from 'components/common/Pagination';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import VoteItem from 'components/common/slider/VoteItem';
+import Modal from 'components/common/Modal';
 
 import refreshIcon from 'images/refresh.png';
 import './VoteBoard.scss';
@@ -15,6 +16,8 @@ class VoteBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
+      isAlert: false,
+      modalMessage: '',
     };
   }
 
@@ -41,15 +44,20 @@ class VoteBoard extends Component {
     const { history } = this.props;
     const { searchWord } = this.state;
     if (searchWord.trim() === '') {
-      alert('검색어를 입력해주세요.');
+      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`/issue/vote?page=1&search=${searchWord}`);
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    this.setState({ isAlert: false, modalMessage: '' });
+  };
+
   render() {
     const { hotVoteList, voteCount, voteList, location } = this.props;
-    const { searchWord } = this.state;
+    const { searchWord, isAlert, modalMessage } = this.state;
     const query = queryString.parse(location.search);
     const currentPage = query.page ? Number(query.page) : 1;
 
@@ -109,6 +117,7 @@ class VoteBoard extends Component {
           ))}
         </section>
         <Pagination countList={voteCount} currentPage={currentPage} handlePage={this.handlePage} />
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

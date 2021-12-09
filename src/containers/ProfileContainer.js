@@ -3,13 +3,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import Profile from 'components/Profile';
+import Modal from 'components/common/Modal';
 
 class ProfileContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isAlert: false,
+      modalMessage: '',
+      modalFunction: () => {},
+    };
+  }
+
   componentDidMount() {
     const { isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
-      alert('로그인이 필요합니다.');
-      history.push('/login');
+      this.setState({
+        isAlert: true,
+        modalMessage: '로그인이 필요합니다.',
+        modalFunction: () => history.push('/login'),
+      });
     } else {
       this.getProfile();
     }
@@ -57,8 +70,16 @@ class ProfileContainer extends Component {
     }
   };
 
+  closeModal = () => {
+    // isAlert, modalMessage 초기화
+    const { modalFunction } = this.state;
+    modalFunction();
+    this.setState({ isAlert: false, modalMessage: '', modalFunction: () => {} });
+  };
+
   render() {
     const { success, profile, nicknameUnique } = this.props;
+    const { isAlert, modalMessage } = this.state;
     return (
       <>
         {success && (
@@ -70,6 +91,7 @@ class ProfileContainer extends Component {
             checkNickname={this.checkNickname}
           />
         )}
+        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
       </>
     );
   }
