@@ -1,0 +1,80 @@
+@import 'styles/base.scss';
+
+.modal {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-box {
+    width: 300px;
+    background: white;
+    text-align: center;
+    border-radius: 3px;
+    .modal-title {
+      padding: 20px;
+      font-size: 1rem;
+    }
+    .modal-btnarea {
+      background: #cacaca;
+      color: white;
+      display: flex;
+      button {
+        width: 100%;
+        padding: 5px 0;
+        font-size: 1.1rem;
+        &:first-child {
+          background: $main-color;
+          color: black;
+        }
+        &:hover {
+          opacity: 0.8;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+//태블릿
+@media screen and (max-width: $tablet-max) {
+  .modal {
+    .modal-box {
+      width: 50vw;
+      .modal-title {
+        padding: 1.7rem;
+        font-size: 1.3rem;
+      }
+      .modal-btnarea {
+        button {
+          padding: 0.4rem;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+//모바일
+@media screen and (max-width: $mobile-max) {
+  .modal {
+    .modal-box {
+      width: 80vw;
+      .modal-title {
+        padding: 1.4rem;
+        font-size: 1.1rem;
+      }
+      .modal-btnarea {
+        button {
+          padding: 0.35rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

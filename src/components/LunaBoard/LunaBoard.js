@@ -6,6 +6,7 @@ import BoardHotList from 'components/common/BoardHotList';
 import BasicSlider from 'components/common/slider/BasicSlider';
 import PostList from 'components/common/PostList';
 import Pagination from 'components/common/Pagination';
+import Modal from 'components/common/Modal';
 import './LunaBoard.scss';
 
 class LunaBoard extends Component {
@@ -13,6 +14,10 @@ class LunaBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
+      confirmFunction: () => {},
     };
   }
 
@@ -40,7 +45,7 @@ class LunaBoard extends Component {
     const { searchWord } = this.state;
     const { pathname } = location;
     if (searchWord.trim() === '') {
-      alert('검색어를 입력해주세요.');
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`${pathname}?page=1&search=${searchWord}`);
     }
@@ -52,15 +57,30 @@ class LunaBoard extends Component {
     if (isAuthenticated) {
       // 로그인 되어있음
       updateBookmark();
-    } else if (window.confirm('로그인이 필요합니다.')) {
-      // 로그인 안 됨
-      history.push('/login');
+    } else {
+      this.setState({
+        isModal: true,
+        modalType: 'confirm',
+        modalMessage: '로그인이 필요합니다.',
+        confirmFunction: () => history.push('/login'),
+      });
     }
+  };
+
+  closeModal = () => {
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
+  confirmModal = () => {
+    const { confirmFunction } = this.state;
+    confirmFunction();
+    this.closeModal();
   };
 
   render() {
     const { boardInfo, bookmarkList, bestPostList, postCount, postList, location } = this.props;
-    const { searchWord } = this.state;
+    const { searchWord, isModal, modalType, modalMessage } = this.state;
     const request = location.search;
     const query = queryString.parse(request);
     const currentPage = query.page ? Number(query.page) : 1;
@@ -106,6 +126,14 @@ class LunaBoard extends Component {
           <Link to={`/luna/${boardInfo.board_url}/write`}>글쓰기</Link>
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
+        {isModal && (
+          <Modal
+            type={modalType}
+            message={modalMessage}
+            closeModal={this.closeModal}
+            confirmModal={this.confirmModal}
+          />
+        )}
       </div>
     );
   }

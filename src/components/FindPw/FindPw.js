@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import FindIdPw from 'components/common/FindIdPw';
+import Modal from 'components/common/Modal';
 import './FindPw.scss';
 
 class FindPw extends Component {
   constructor(props) {
     super(props);
-    this.state = { stage: 1, pw1: '', pw2: '', imp_uid: '' };
+    this.state = { stage: 1, pw1: '', pw2: '', imp_uid: '', isModal: false, modalType: '', modalMessage: '' };
   }
 
   goNextStage = () => {
@@ -30,10 +31,10 @@ class FindPw extends Component {
     const path = pathname.split('/');
 
     if (pw1 !== pw2) {
-      alert('비밀번호가 일치하지 않습니다.');
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '비밀번호가 일치하지 않습니다.' });
     } else if (!passwordRegex.test(pw1)) {
       // 첫번째 input 조건 체크 영문자, 숫자, 특수문자 조합 8-20
-      alert('비밀번호 형식을 다시 확인해주세요');
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '비밀번호 형식을 다시 확인해주세요' });
     } else if (path[1] === 'find') {
       const formData = new FormData();
       formData.append('imp_uid', imp_uid);
@@ -49,9 +50,14 @@ class FindPw extends Component {
     }
   };
 
+  closeModal = () => {
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
   render() {
     const { sendEmailForPw, pathname } = this.props;
-    const { stage, pw1, pw2 } = this.state;
+    const { stage, pw1, pw2, isModal, modalType, modalMessage } = this.state;
     const path = pathname.split('/');
 
     return (
@@ -86,6 +92,8 @@ class FindPw extends Component {
             </button>
           </div>
         )}
+
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import SignUpAgree from 'components/signup-process/SignUpAgree';
 import SignUpConfirm from 'components/signup-process/SignUpConfirm';
 import SignUpInfo from 'components/signup-process/SignUpInfo';
 import SignUpFinish from 'components/signup-process/SignUpFinish';
+import Modal from 'components/common/Modal';
 
 import './SignUp.scss';
 
@@ -13,6 +14,9 @@ class SignUp extends Component {
       currentPage: 'agree',
       agreeConfirm: false,
       userConfirm: false,
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
     };
   }
 
@@ -20,8 +24,11 @@ class SignUp extends Component {
     const { history, user_success } = this.props;
     const { currentPage, agreeConfirm, userConfirm } = this.state;
     if (currentPage === 'agree') {
-      if (agreeConfirm) this.setState({ currentPage: 'confirm' });
-      else alert('동의가 필요합니다');
+      if (agreeConfirm) {
+        this.setState({ currentPage: 'confirm' });
+      } else {
+        this.setState({ isModal: true, modalType: 'alert', modalMessage: '동의가 필요합니다' });
+      }
     } else if (currentPage === 'confirm') {
       // if문으로 본인인증 완료된 상태인지 변수로 판단해
       // 본인인증 완료상태면
@@ -29,7 +36,7 @@ class SignUp extends Component {
         this.setState({ currentPage: 'info' });
       } else {
         // 본인인증 미완료면 비활성화
-        alert('본인 인증이 미완료 상태입니다.');
+        this.setState({ isModal: true, modalType: 'alert', modalMessage: '본인 인증이 미완료 상태입니다.' });
       }
     } else if (currentPage === 'info') {
       this.setState({ currentPage: 'finish' });
@@ -58,7 +65,11 @@ class SignUp extends Component {
           checkUser(rsp.imp_uid, this.onClickNext);
         } else {
           // 본인 인증 실패 시 로직,
-          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+          this.setState({
+            isModal: true,
+            modalType: 'alert',
+            modalMessage: `인증에 실패하였습니다. 에러: ${rsp.error_msg}`,
+          });
         }
       }
     );
@@ -69,8 +80,13 @@ class SignUp extends Component {
     this.setState({ agreeConfirm: !agreeConfirm });
   };
 
+  closeModal = () => {
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
   render() {
-    const { currentPage, agreeConfirm } = this.state;
+    const { currentPage, agreeConfirm, isModal, modalType, modalMessage } = this.state;
     const {
       checkedUser,
       userNameUnique,
@@ -124,6 +140,7 @@ class SignUp extends Component {
             다음
           </button>
         )}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }
