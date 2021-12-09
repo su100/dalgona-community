@@ -12,7 +12,8 @@ class Write extends Component {
       title: isEdit ? props.editPost.title : '',
       isAnonymous: isEdit ? props.editPost.anonymous : false,
       editorState: '',
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
   }
@@ -47,9 +48,9 @@ class Write extends Component {
     const { isEdit, title, isAnonymous, editorState } = this.state;
     // 빈 값 체크
     if (title === '') {
-      this.setState({ isAlert: true, modalMessage: '제목을 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '제목을 입력해주세요.' });
     } else if (this.isEmpty(editorState)) {
-      this.setState({ isAlert: true, modalMessage: '내용을 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '내용을 입력해주세요.' });
     }
     if (isEdit) {
       updatePost(editPost.board_url, editPost.id, title, JSON.stringify(editorState, null, 2), isAnonymous);
@@ -64,13 +65,13 @@ class Write extends Component {
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
   };
 
   render() {
     const { isAuthenticated, boardInfo, editPost, addPostImage, location, history } = this.props;
-    const { previewURL, isEdit, title, isAnonymous, isAlert, modalMessage } = this.state;
+    const { previewURL, isEdit, title, isAnonymous, isModal, modalType, modalMessage } = this.state;
     return (
       <div className="write">
         <div className="write__top">
@@ -105,7 +106,7 @@ class Write extends Component {
             {isEdit ? '수정' : '등록'}
           </button>
         </div>
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

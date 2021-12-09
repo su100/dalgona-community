@@ -13,7 +13,8 @@ class EventBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
   }
@@ -41,20 +42,20 @@ class EventBoard extends Component {
     const { history } = this.props;
     const { searchWord } = this.state;
     if (searchWord.trim() === '') {
-      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`/dalgona/event?page=1&search=${searchWord}`);
     }
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
   };
 
   render() {
     const { postList, postCount, isSuperuser, location } = this.props;
-    const { searchWord, isAlert, modalMessage } = this.state;
+    const { searchWord, isModal, modalType, modalMessage } = this.state;
     const request = location.search;
     const query = queryString.parse(request);
     const currentPage = query.page ? Number(query.page) : 1;
@@ -88,7 +89,7 @@ class EventBoard extends Component {
           {isSuperuser && <Link to="/dalgona/event/write">글쓰기</Link>}
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

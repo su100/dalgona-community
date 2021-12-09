@@ -14,7 +14,8 @@ class SignUp extends Component {
       currentPage: 'agree',
       agreeConfirm: false,
       userConfirm: false,
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
   }
@@ -26,7 +27,7 @@ class SignUp extends Component {
       if (agreeConfirm) {
         this.setState({ currentPage: 'confirm' });
       } else {
-        this.setState({ isAlert: true, modalMessage: '동의가 필요합니다' });
+        this.setState({ isModal: true, modalType: 'alert', modalMessage: '동의가 필요합니다' });
       }
     } else if (currentPage === 'confirm') {
       // if문으로 본인인증 완료된 상태인지 변수로 판단해
@@ -35,7 +36,7 @@ class SignUp extends Component {
         this.setState({ currentPage: 'info' });
       } else {
         // 본인인증 미완료면 비활성화
-        this.setState({ isAlert: true, modalMessage: '본인 인증이 미완료 상태입니다.' });
+        this.setState({ isModal: true, modalType: 'alert', modalMessage: '본인 인증이 미완료 상태입니다.' });
       }
     } else if (currentPage === 'info') {
       this.setState({ currentPage: 'finish' });
@@ -64,7 +65,11 @@ class SignUp extends Component {
           checkUser(rsp.imp_uid, this.onClickNext);
         } else {
           // 본인 인증 실패 시 로직,
-          this.setState({ isAlert: true, modalMessage: `인증에 실패하였습니다. 에러: ${rsp.error_msg}` });
+          this.setState({
+            isModal: true,
+            modalType: 'alert',
+            modalMessage: `인증에 실패하였습니다. 에러: ${rsp.error_msg}`,
+          });
         }
       }
     );
@@ -76,12 +81,12 @@ class SignUp extends Component {
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
   };
 
   render() {
-    const { currentPage, agreeConfirm, isAlert, modalMessage } = this.state;
+    const { currentPage, agreeConfirm, isModal, modalType, modalMessage } = this.state;
     const {
       checkedUser,
       userNameUnique,
@@ -135,7 +140,7 @@ class SignUp extends Component {
             다음
           </button>
         )}
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

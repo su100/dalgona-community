@@ -16,7 +16,8 @@ class VoteBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
   }
@@ -44,20 +45,20 @@ class VoteBoard extends Component {
     const { history } = this.props;
     const { searchWord } = this.state;
     if (searchWord.trim() === '') {
-      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`/issue/vote?page=1&search=${searchWord}`);
     }
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
   };
 
   render() {
     const { hotVoteList, voteCount, voteList, location } = this.props;
-    const { searchWord, isAlert, modalMessage } = this.state;
+    const { searchWord, isModal, modalType, modalMessage } = this.state;
     const query = queryString.parse(location.search);
     const currentPage = query.page ? Number(query.page) : 1;
 
@@ -117,7 +118,7 @@ class VoteBoard extends Component {
           ))}
         </section>
         <Pagination countList={voteCount} currentPage={currentPage} handlePage={this.handlePage} />
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

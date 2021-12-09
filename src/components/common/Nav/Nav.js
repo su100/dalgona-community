@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Sidebar from 'components/common/Sidebar';
 import SearchInput from 'components/common/SearchInput';
 import SearchBox from 'components/common/SearchBox';
+import Modal from 'components/common/Modal';
 import searchIcon from 'images/searchIcon.png';
 import menuIcon from 'images/menu.png';
 import logo from 'images/logo.png';
@@ -21,6 +22,10 @@ class Nav extends Component {
       isSearch: false,
       searchWord: '',
       searchDivision: 'all',
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
+      confirmFunction: () => {},
     };
   }
 
@@ -94,7 +99,12 @@ class Nav extends Component {
 
   signOut = () => {
     const { signOut } = this.props;
-    if (window.confirm('로그아웃 하시겠습니까?')) signOut();
+    this.setState({
+      isModal: true,
+      modalType: 'confirm',
+      modalMessage: '로그아웃 하시겠습니까?',
+      confirmFunction: () => signOut(),
+    });
   };
 
   toggleSearch = () => {
@@ -108,8 +118,31 @@ class Nav extends Component {
     history.push(`/search?searchWord=${searchWord}&searchDivision=${searchDivision}`);
   };
 
+  closeModal = () => {
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '', confirmFunction: () => {} });
+  };
+
+  confirmModal = () => {
+    const { confirmFunction } = this.state;
+    confirmFunction();
+    this.closeModal();
+  };
+
   render() {
-    const { isSearch, searchWord, searchDivision, isOpen, openMenu, isPC, openSidebar, path } = this.state;
+    const {
+      isSearch,
+      searchWord,
+      searchDivision,
+      isOpen,
+      openMenu,
+      isPC,
+      openSidebar,
+      path,
+      isModal,
+      modalType,
+      modalMessage,
+    } = this.state;
     const { history, isAuthenticated, profile, lunaBoard, freeBoard, dalgonaBoard, isHome } = this.props;
     const Menu = { issue: '이슈', luna: '루나', free: '자유', dalgona: '달고나' };
     return (
@@ -258,6 +291,14 @@ class Nav extends Component {
             />
             <div className="border_line" />
           </div>
+        )}
+        {isModal && (
+          <Modal
+            type={modalType}
+            message={modalMessage}
+            closeModal={this.closeModal}
+            confirmModal={this.confirmModal}
+          />
         )}
       </div>
     );

@@ -15,7 +15,8 @@ class FreeBoard extends Component {
     super(props);
     this.state = {
       searchWord: '',
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
   }
@@ -44,7 +45,7 @@ class FreeBoard extends Component {
     const { history, location } = this.props;
     const { pathname } = location;
     if (searchWord.trim() === '') {
-      this.setState({ isAlert: true, modalMessage: '검색어를 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '검색어를 입력해주세요.' });
     } else {
       history.push(`${pathname}?page=1&search=${searchWord}`);
     }
@@ -56,20 +57,30 @@ class FreeBoard extends Component {
     if (isAuthenticated) {
       // 로그인 되어있음
       updateBookmark();
-    } else if (window.confirm('로그인이 필요합니다.')) {
-      // 로그인 안 됨
-      history.push('/login');
+    } else {
+      this.setState({
+        isModal: true,
+        modalType: 'confirm',
+        modalMessage: '로그인이 필요합니다.',
+        confirmFunction: () => history.push('/login'),
+      });
     }
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
+  confirmModal = () => {
+    const { confirmFunction } = this.state;
+    confirmFunction();
+    this.closeModal();
   };
 
   render() {
     const { boardInfo, bookmarkList, bestPostList, postCount, postList, location } = this.props;
-    const { searchWord, isAlert, modalMessage } = this.state;
+    const { searchWord, isModal, modalType, modalMessage } = this.state;
     const request = location.search;
     const query = queryString.parse(request);
     const currentPage = query.page ? Number(query.page) : 1;
@@ -114,7 +125,14 @@ class FreeBoard extends Component {
           <Link to={`/free/${boardInfo.board_url}/write`}>글쓰기</Link>
         </section>
         <Pagination countList={postCount} handlePage={this.handlePage} currentPage={currentPage} />
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && (
+          <Modal
+            type={modalType}
+            message={modalMessage}
+            closeModal={this.closeModal}
+            confirmModal={this.confirmModal}
+          />
+        )}
       </div>
     );
   }

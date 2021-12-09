@@ -10,7 +10,8 @@ class ActivityContainer extends Component {
   constructor() {
     super();
     this.state = {
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
       modalFunction: () => {},
     };
@@ -20,7 +21,8 @@ class ActivityContainer extends Component {
     const { isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
       this.setState({
-        isAlert: true,
+        isModal: true,
+        modalType: 'alert',
         modalMessage: '로그인이 필요합니다.',
         modalFunction: () => history.push('/login'),
       });
@@ -56,15 +58,15 @@ class ActivityContainer extends Component {
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
+    // isModal, modalMessage 초기화
     const { modalFunction } = this.state;
     modalFunction();
-    this.setState({ isAlert: false, modalMessage: '', modalFunction: () => {} });
+    this.setState({ isModal: false, modalType: '', modalMessage: '', modalFunction: () => {} });
   };
 
   render() {
     const { history, location, myPostCount, myPost } = this.props;
-    const { isAlert, modalMessage } = this.state;
+    const { isModal, modalType, modalMessage } = this.state;
     return (
       <>
         <Activity
@@ -74,7 +76,7 @@ class ActivityContainer extends Component {
           myPost={myPost}
           getMyPost={this.getMyPost}
         />
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </>
     );
   }

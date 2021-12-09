@@ -12,7 +12,8 @@ class Profile extends Component {
       nickname: props.profile.get('nickname'),
       introduction: props.profile.get('introduction'),
       img: null,
-      isAlert: false,
+      isModal: false,
+      modalType: '',
       modalMessage: '',
     };
     this.fileInput = React.createRef();
@@ -49,7 +50,7 @@ class Profile extends Component {
     const { profile, checkNickname } = this.props;
     const { nickname } = this.state;
     if (profile.get('nickname') === nickname) {
-      this.setState({ isAlert: true, modalMessage: '현재 닉네임입니다.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '현재 닉네임입니다.' });
     } else {
       checkNickname(nickname); // 중복확인하기
       this.setState({ isUnique: true }); // 중복확인버튼 눌렀음
@@ -62,10 +63,10 @@ class Profile extends Component {
 
     if (nickname !== profile.get('nickname') && !(isUnique && nicknameUnique)) {
       // 닉네임 변경시 중복체크해야함: 중복확인 버튼 누른 여부와 반환값이 참인지 확인
-      this.setState({ isAlert: true, modalMessage: '닉네임 중복확인을 해주세요' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '닉네임 중복확인을 해주세요' });
     } else if (nickname.trim() === '') {
       // 빈값 검사
-      this.setState({ isAlert: true, modalMessage: '닉네임을 입력해주세요.' });
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '닉네임을 입력해주세요.' });
     } else {
       const formData = new FormData();
       formData.append('nickname', nickname);
@@ -80,19 +81,28 @@ class Profile extends Component {
 
   deleteUser = () => {
     const { deleteUser } = this.props;
-    if (window.confirm('회원탈퇴하시겠습니까?\n탈퇴 시 복구할 수 없습니다.')) {
-      deleteUser();
-    }
+    this.setState({
+      isModal: true,
+      modalType: 'confirm',
+      modalMessage: '회원탈퇴하시겠습니까?\n탈퇴 시 복구할 수 없습니다.',
+      confirmFunction: () => deleteUser(),
+    });
   };
 
   closeModal = () => {
-    // isAlert, modalMessage 초기화
-    this.setState({ isAlert: false, modalMessage: '' });
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
+  confirmModal = () => {
+    const { confirmFunction } = this.state;
+    confirmFunction();
+    this.closeModal();
   };
 
   render() {
     const { profile, nicknameUnique } = this.props;
-    const { nickname, introduction, previewURL, isUnique, isAlert, modalMessage } = this.state;
+    const { nickname, introduction, previewURL, isUnique, isModal, modalType, modalMessage } = this.state;
     return (
       <div className="profile">
         <h4 className="not-pc">프로필 수정</h4>
@@ -153,7 +163,14 @@ class Profile extends Component {
             탈퇴하기
           </button>
         </div>
-        {isAlert && <Modal type="alert" message={modalMessage} closeModal={this.closeModal} />}
+        {isModal && (
+          <Modal
+            type={modalType}
+            message={modalMessage}
+            closeModal={this.closeModal}
+            confirmModal={this.confirmModal}
+          />
+        )}
       </div>
     );
   }

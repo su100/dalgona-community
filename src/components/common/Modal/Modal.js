@@ -7,7 +7,7 @@ class Modal extends Component {
     return (
       <div className="modal">
         <div className="modal-box">
-          <div className="modal-title">{message}</div>
+          <pre className="modal-title">{message}</pre>
           <div className="modal-btnarea">
             {type === 'confirm' && <button onClick={confirmModal}>확인</button>}
             <button onClick={closeModal}>{type === 'alert' ? '확인' : '취소'}</button>
