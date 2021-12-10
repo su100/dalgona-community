@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { validateEmail } from 'lib/api';
+import { iamportUID } from 'constants/index.js';
+import Modal from 'components/common/Modal';
 
 import './FindIdPw.scss';
 
@@ -10,6 +12,9 @@ class FindIdPw extends Component {
       type: 'email',
       email: '',
       username: '',
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
     };
   }
 
@@ -26,12 +31,12 @@ class FindIdPw extends Component {
     const { username, email } = this.state;
 
     if (!validateEmail(email)) {
-      alert('올바른 이메일 형식을 입력해주세요.');
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '올바른 이메일 형식을 입력해주세요.' });
     } else if (idpw === 'id') {
       sendEmailForId(email);
       this.setState({ [e.target.id]: '' });
     } else if (idpw === 'pw' && username === '') {
-      alert('아이디를 입력해주세요');
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '아이디를 입력해주세요' });
     } else {
       sendEmailForPw(username, email);
     }
@@ -39,7 +44,7 @@ class FindIdPw extends Component {
 
   handleCheck = () => {
     /* 가맹점 식별코드 */
-    const userCode = 'imp87136066';
+    const userCode = iamportUID;
     const { IMP } = window;
     const { goNextStage, setImpUid, findIdByImpUid, idpw } = this.props;
 
@@ -62,7 +67,11 @@ class FindIdPw extends Component {
           // 성공할 시 userConfirm 바꾸고 비번 바꾸는 창으로 이동
         } else {
           // 본인 인증 실패 시 로직,
-          alert(`인증에 실패하였습니다. 에러: ${rsp.error_msg}`);
+          this.setState({
+            isModal: true,
+            modalType: 'alert',
+            modalMessage: `인증에 실패하였습니다. 에러: ${rsp.error_msg}`,
+          });
         }
       }
     );
@@ -78,9 +87,14 @@ class FindIdPw extends Component {
     }
   };
 
+  closeModal = () => {
+    // isModal, modalType, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
   render() {
     const { idpw } = this.props;
-    const { type, email, username } = this.state;
+    const { type, email, username, isModal, modalType, modalMessage } = this.state;
     return (
       <div className="find-id-pw">
         <div className="find-id-pw__tab--method">
@@ -148,6 +162,8 @@ class FindIdPw extends Component {
         >
           확인
         </button>
+
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }

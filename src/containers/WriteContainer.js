@@ -3,14 +3,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from 'store/modules/auth';
 import * as writeActions from 'store/modules/write';
+import Modal from 'components/common/Modal';
 import Write from 'components/Write';
 
 class WriteContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
+      modalFunction: () => {},
+    };
+  }
+
   componentDidMount() {
     const { isAuthenticated, history } = this.props;
     if (!isAuthenticated) {
-      alert('로그인이 필요합니다.');
-      history.push('/login');
+      this.setState({
+        isModal: true,
+        modalType: 'alert',
+        modalMessage: '로그인이 필요합니다.',
+        modalFunction: () => history.push('/login'),
+      });
     } else {
       this.getBoardInfo(); //  게시판 정보 가져오기
     }
@@ -18,7 +33,7 @@ class WriteContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { location, history, post_success, addPostId, update_success, updatePostId } = this.props;
-    //  게시판 바뀔 때
+    //  게시글 올리기 성공시
     if (post_success && prevProps.post_success !== post_success) {
       const tmp = location.pathname.split('/');
       history.replace(`/${tmp[1]}/${tmp[2]}/${addPostId}`);
@@ -68,8 +83,16 @@ class WriteContainer extends Component {
     }
   };
 
+  closeModal = () => {
+    const { modalFunction } = this.state;
+    modalFunction();
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '', modalFunction: () => {} });
+  };
+
   render() {
     const { history, match, location, boardInfo, editPost, isAuthenticated, post_success, WriteActions } = this.props;
+    const { isModal, modalType, modalMessage } = this.state;
     return (
       <>
         <Write
@@ -85,6 +108,7 @@ class WriteContainer extends Component {
           updatePost={this.updatePost}
           addPost={this.addPost}
         />
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </>
     );
   }

@@ -13,6 +13,8 @@ export const BOARD_DIVISION = {
   2: 'luna',
 };
 
+export const iamportUID = '';
+
 export const API_BASE_URL = url;
 
 export const termsCommunity = `엔터테인먼트 커뮤니티 DALGONA (dalgona.me) 이용약관

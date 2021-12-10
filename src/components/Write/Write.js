@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Editor from 'components/common/Editor';
+import Modal from 'components/common/Modal';
 import './Write.scss';
 
 class Write extends Component {
@@ -11,6 +12,9 @@ class Write extends Component {
       title: isEdit ? props.editPost.title : '',
       isAnonymous: isEdit ? props.editPost.anonymous : false,
       editorState: '',
+      isModal: false,
+      modalType: '',
+      modalMessage: '',
     };
   }
 
@@ -37,25 +41,20 @@ class Write extends Component {
     return !textContent.trim();
   };
 
-  updatePost = () => {
-    const { editPost, updatePost } = this.props;
-    const { title, editorState, isAnonymous } = this.state;
-    updatePost(editPost.board_url, editPost.id, title, JSON.stringify(editorState, null, 2), isAnonymous);
-  };
-
   addPost = () => {
-    const { addPost, isAuthenticated, location, history } = this.props;
+    const { addPost, location, editPost, updatePost } = this.props;
     const pathname = location.pathname.split('/');
     const boardUrl = pathname[3] ? pathname[2] : pathname[1];
-    const { title, isAnonymous, editorState } = this.state;
+    const { isEdit, title, isAnonymous, editorState } = this.state;
     // 빈 값 체크
-    if (title === '') alert('제목을 입력해주세요.');
-    else if (this.isEmpty(editorState)) alert('내용을 입력해주세요.');
-    else {
-      if (!isAuthenticated) {
-        alert('로그인이 필요합니다.');
-        history.push('/login');
-      }
+    if (title === '') {
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '제목을 입력해주세요.' });
+    } else if (this.isEmpty(editorState)) {
+      this.setState({ isModal: true, modalType: 'alert', modalMessage: '내용을 입력해주세요.' });
+    }
+    if (isEdit) {
+      updatePost(editPost.board_url, editPost.id, title, JSON.stringify(editorState, null, 2), isAnonymous);
+    } else {
       addPost(
         title,
         JSON.stringify(editorState, null, 2),
@@ -65,9 +64,14 @@ class Write extends Component {
     }
   };
 
+  closeModal = () => {
+    // isModal, modalMessage 초기화
+    this.setState({ isModal: false, modalType: '', modalMessage: '' });
+  };
+
   render() {
     const { isAuthenticated, boardInfo, editPost, addPostImage, location, history } = this.props;
-    const { previewURL, isEdit, title, isAnonymous } = this.state;
+    const { previewURL, isEdit, title, isAnonymous, isModal, modalType, modalMessage } = this.state;
     return (
       <div className="write">
         <div className="write__top">
@@ -98,10 +102,11 @@ class Write extends Component {
           <button onClick={history.goBack} className="write__btn-cancel">
             취소
           </button>
-          <button onClick={isEdit ? this.updatePost : this.addPost} className="write__btn-confirm">
+          <button onClick={this.addPost} className="write__btn-confirm">
             {isEdit ? '수정' : '등록'}
           </button>
         </div>
+        {isModal && <Modal type={modalType} message={modalMessage} closeModal={this.closeModal} />}
       </div>
     );
   }
