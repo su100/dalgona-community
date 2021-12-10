@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { iamportUID } from 'constants/index.js';
 import SignUpAgree from 'components/signup-process/SignUpAgree';
 import SignUpConfirm from 'components/signup-process/SignUpConfirm';
 import SignUpInfo from 'components/signup-process/SignUpInfo';
@@ -47,7 +48,7 @@ class SignUp extends Component {
 
   handleCheck = () => {
     /* 가맹점 식별코드 */
-    const userCode = 'imp87136066';
+    const userCode = iamportUID;
     const { IMP } = window;
     const { checkUser } = this.props;
     IMP.init(userCode);

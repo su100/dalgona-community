@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { validateEmail } from 'lib/api';
+import { iamportUID } from 'constants/index.js';
 import Modal from 'components/common/Modal';
 
 import './FindIdPw.scss';
@@ -43,7 +44,7 @@ class FindIdPw extends Component {
 
   handleCheck = () => {
     /* 가맹점 식별코드 */
-    const userCode = 'imp87136066';
+    const userCode = iamportUID;
     const { IMP } = window;
     const { goNextStage, setImpUid, findIdByImpUid, idpw } = this.props;
 
