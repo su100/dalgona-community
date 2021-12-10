@@ -2,9 +2,9 @@ let url;
 
 //  개발 운영 api 주소 분기
 if (process.env.NODE_ENV === 'production') {
-  url = 'https://dalgonabackend.com';
+  url = 'https://dalgonabackend.shop';
 } else {
-  url = 'https://dalgonabackend.com';
+  url = 'https://dalgonabackend.shop';
 }
 
 export const BOARD_DIVISION = {
