@@ -3,10 +3,16 @@
 ## 프로젝트 개요
 
 
-엔터테인먼트 플랫폼 **'달고나'** 커뮤니티 프론트엔드   
+엔터테인먼트 플랫폼 **'달고나'** 커뮤니티 프론트엔드      
+
       
+## 서비스 주소
 
+### Front End Link
 
+https://wonderful-northcutt-c15dd2.netlify.app/
+     
+     
 ## 프로젝트 설명
 #### 주요 기능
 ```
@@ -32,13 +38,6 @@
     - 이벤트
 ```
 
-## 서비스 주소
-
-
-
-### Front End Link
-
-https://wonderful-northcutt-c15dd2.netlify.app/
 
 ## Project Duration
 
