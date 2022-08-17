@@ -14,7 +14,7 @@ class SignUp extends Component {
     this.state = {
       currentPage: 'agree',
       agreeConfirm: false,
-      userConfirm: false,
+      // userConfirm: false,
       isModal: false,
       modalType: '',
       modalMessage: '',
@@ -22,8 +22,8 @@ class SignUp extends Component {
   }
 
   onClickNext = () => {
-    const { history, user_success } = this.props;
-    const { currentPage, agreeConfirm, userConfirm } = this.state;
+    const { history } = this.props;
+    const { currentPage, agreeConfirm } = this.state;
     if (currentPage === 'agree') {
       if (agreeConfirm) {
         this.setState({ currentPage: 'confirm' });
@@ -106,7 +106,7 @@ class SignUp extends Component {
       signUpSuccess,
       signUp,
       checkUser,
-      checkUsername,
+      // checkUsername,
       checkEmail,
       checkNickname,
     } = this.props;
@@ -125,7 +125,7 @@ class SignUp extends Component {
             emailUnique={emailUnique}
             nicknameUnique={nicknameUnique}
             signUp={signUp}
-            checkUsername={checkUsername}
+            // checkUsername={checkUsername}
             checkEmail={checkEmail}
             checkNickname={checkNickname}
             setUnique={setUnique}
