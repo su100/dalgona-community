@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { iamportUID } from 'constants/index.js';
+// import { iamportUID } from 'constants/index.js';
 import SignUpAgree from 'components/signup-process/SignUpAgree';
 import SignUpConfirm from 'components/signup-process/SignUpConfirm';
 import SignUpInfo from 'components/signup-process/SignUpInfo';
@@ -14,7 +14,7 @@ class SignUp extends Component {
     this.state = {
       currentPage: 'agree',
       agreeConfirm: false,
-      userConfirm: false,
+      // userConfirm: false,
       isModal: false,
       modalType: '',
       modalMessage: '',
@@ -22,8 +22,8 @@ class SignUp extends Component {
   }
 
   onClickNext = () => {
-    const { history, user_success } = this.props;
-    const { currentPage, agreeConfirm, userConfirm } = this.state;
+    const { history } = this.props;
+    const { currentPage, agreeConfirm } = this.state;
     if (currentPage === 'agree') {
       if (agreeConfirm) {
         this.setState({ currentPage: 'confirm' });
@@ -31,6 +31,9 @@ class SignUp extends Component {
         this.setState({ isModal: true, modalType: 'alert', modalMessage: '동의가 필요합니다' });
       }
     } else if (currentPage === 'confirm') {
+      alert('본인인증이 완료되었습니다.');
+      this.setState({ currentPage: 'info' });
+      /*
       // if문으로 본인인증 완료된 상태인지 변수로 판단해
       // 본인인증 완료상태면
       if (userConfirm && user_success) {
@@ -38,7 +41,8 @@ class SignUp extends Component {
       } else {
         // 본인인증 미완료면 비활성화
         this.setState({ isModal: true, modalType: 'alert', modalMessage: '본인 인증이 미완료 상태입니다.' });
-      }
+      } 
+      */
     } else if (currentPage === 'info') {
       this.setState({ currentPage: 'finish' });
     } else {
@@ -48,6 +52,7 @@ class SignUp extends Component {
 
   handleCheck = () => {
     /* 가맹점 식별코드 */
+    /* 본인인증 아임포트 연동
     const userCode = iamportUID;
     const { IMP } = window;
     const { checkUser } = this.props;
@@ -74,6 +79,9 @@ class SignUp extends Component {
         }
       }
     );
+    */
+
+    this.onClickNext();
   };
 
   handleAgreeConfirm = () => {
@@ -98,7 +106,7 @@ class SignUp extends Component {
       signUpSuccess,
       signUp,
       checkUser,
-      checkUsername,
+      // checkUsername,
       checkEmail,
       checkNickname,
     } = this.props;
@@ -117,7 +125,7 @@ class SignUp extends Component {
             emailUnique={emailUnique}
             nicknameUnique={nicknameUnique}
             signUp={signUp}
-            checkUsername={checkUsername}
+            // checkUsername={checkUsername}
             checkEmail={checkEmail}
             checkNickname={checkNickname}
             setUnique={setUnique}
