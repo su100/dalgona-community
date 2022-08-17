@@ -106,7 +106,7 @@ class SignUpInfo extends Component {
       nicknameCheck,
       emailCheck,
     } = this.state;
-    const { checkedUser, userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
+    const { userNameUnique, emailUnique, nicknameUnique, signUp } = this.props;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
     // 항목 검사
     if (username === '') {
